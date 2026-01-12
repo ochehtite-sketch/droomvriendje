@@ -40,9 +40,8 @@ const VoorwaardenPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 2 - Identiteit van de ondernemer</h2>
             <div className="bg-purple-50 rounded-xl p-6">
-              <p><strong>OujiKidz B.V.</strong></p>
+              <p><strong>OujiKidz</strong></p>
               <p>De geer 2</p>
-              <p>4233HX Ameide</p>
               <p>Nederland</p>
               <p className="mt-4">E-mailadres: info@oujikidz.nl</p>
               <p>KVK-nummer: 96922125</p>
