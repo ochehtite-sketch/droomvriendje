@@ -7,6 +7,8 @@ import ContactPage from "./pages/ContactPage";
 import RetournerenPage from "./pages/RetournerenPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import VoorwaardenPage from "./pages/VoorwaardenPage";
+import BlogsPage from "./pages/BlogsPage";
+import CadeaubonPage from "./pages/CadeaubonPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/retourneren" element={<RetournerenPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/voorwaarden" element={<VoorwaardenPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/cadeaubon" element={<CadeaubonPage />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
