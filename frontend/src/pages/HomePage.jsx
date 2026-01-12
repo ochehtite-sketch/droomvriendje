@@ -423,12 +423,12 @@ const HomePage = () => {
               <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
               <ul className="space-y-2 text-purple-200 text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">Zoeken</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Retourneren</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Algemene Voorwaarden</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Beleid</a></li>
+                <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
+                <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Beleid</Link></li>
                 <li><a href="#faq" className="hover:text-white transition-colors">Veelgestelde Vragen</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Verzending</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
               <div className="mt-6">
                 <p className="font-semibold text-white mb-2 text-sm">Betaalmethoden</p>
