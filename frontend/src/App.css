@@ -8,6 +8,18 @@
   min-height: 100vh;
 }
 
+/* Hide Emergent branding */
+[class*="emergent"], 
+[class*="Emergent"],
+a[href*="emergent"],
+div:has(> a[href*="emergent"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
 /* Smooth transitions for interactive elements */
 button {
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
