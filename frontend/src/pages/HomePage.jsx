@@ -448,7 +448,7 @@ const HomePage = () => {
           {/* Bottom Footer */}
           <div className="border-t border-purple-800 pt-8 text-center">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-purple-200 text-sm">&copy; 2025 OujiKidz B.V. Alle rechten voorbehouden.</p>
+              <p className="text-purple-200 text-sm">&copy; 2025 OujiKidz. Alle rechten voorbehouden.</p>
               <div className="flex items-center space-x-4 text-purple-200 text-sm">
                 <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
                 <span>•</span>
