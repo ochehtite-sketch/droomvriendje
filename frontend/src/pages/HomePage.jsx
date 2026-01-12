@@ -378,9 +378,8 @@ const HomePage = () => {
               </div>
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
-                <p>OujiKidz B.V.</p>
+                <p>OujiKidz</p>
                 <p>De geer 2</p>
-                <p>4233HX Ameide</p>
                 <p className="mt-3">KVK: 96922125</p>
                 <p>BTW: NL867833890B01</p>
                 
