@@ -209,16 +209,18 @@ const HomePage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
             Zie OujiKidz In Actie
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {videos.map((video) => (
-              <div key={video.id} className="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-xl group">
-                <iframe
-                  src={video.url.replace('shorts/', 'embed/')}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={video.title}
-                ></iframe>
+              <div key={video.id} className="relative rounded-2xl overflow-hidden shadow-2xl group">
+                <div className="aspect-[9/16]">
+                  <iframe
+                    src={video.url.replace('shorts/', 'embed/')}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={video.title}
+                  ></iframe>
+                </div>
               </div>
             ))}
           </div>
