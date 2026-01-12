@@ -143,7 +143,7 @@ const VoorwaardenPage = () => {
             <p className="mb-4">
               Voor vragen over deze algemene voorwaarden kun je contact opnemen met:
             </p>
-            <p><strong>OujiKidz B.V.</strong></p>
+            <p><strong>OujiKidz</strong></p>
             <p>Email: info@oujikidz.nl</p>
             <p>KVK: 96922125</p>
             <p>BTW: NL867833890B01</p>
