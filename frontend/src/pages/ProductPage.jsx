@@ -327,9 +327,9 @@ const ProductPage = () => {
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
                 <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
-                <li><Link to="/retourneren" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
-                <li><Link to="/#reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
-                <li><Link to="/over-ons" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
+                <li><Link to="/uitproberen" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
+                <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
+                <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
               </ul>
             </div>
 
@@ -337,13 +337,13 @@ const ProductPage = () => {
             <div>
               <h3 className="font-bold mb-4 text-lg">OujiKidz helpt bij</h3>
               <ul className="space-y-2 text-purple-200 text-sm">
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Stressvermindering</Link></li>
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Angstvermindering</Link></li>
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Beter slapen</Link></li>
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Troost vinden</Link></li>
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
-                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Dementie</Link></li>
+                <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
+                <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
+                <li><Link to="/angst" className="hover:text-white transition-colors">Angstvermindering</Link></li>
+                <li><Link to="/slaapproblemen" className="hover:text-white transition-colors">Beter slapen</Link></li>
+                <li><Link to="/troost" className="hover:text-white transition-colors">Troost vinden</Link></li>
+                <li><Link to="/hsp" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
+                <li><Link to="/dementie" className="hover:text-white transition-colors">Dementie</Link></li>
               </ul>
             </div>
 
