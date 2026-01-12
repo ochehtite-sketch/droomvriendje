@@ -37,8 +37,8 @@ const PrivacyPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Contactgegevens</h2>
             <div className="bg-purple-50 rounded-xl p-6">
-              <p><strong>OujiKidz B.V.</strong></p>
-              <p>De geer 2, 4233HX Ameide</p>
+              <p><strong>OujiKidz</strong></p>
+              <p>De geer 2</p>
               <p>KVK: 96922125</p>
               <p>Email: info@oujikidz.nl</p>
             </div>
