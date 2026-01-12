@@ -404,9 +404,9 @@ const HomePage = () => {
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
                 <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
-                <li><Link to="/retourneren" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
-                <li><a href="#reviews" className="hover:text-white transition-colors">Beoordelingen</a></li>
-                <li><Link to="/over-ons" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
+                <li><Link to="/uitproberen" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
+                <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
+                <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
               </ul>
             </div>
 
