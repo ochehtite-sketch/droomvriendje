@@ -381,9 +381,16 @@ const HomePage = () => {
                 <p>OujiKidz B.V.</p>
                 <p>De geer 2</p>
                 <p>4233HX Ameide</p>
-                <p className="text-xs italic">(Dit is geen retouradres)</p>
                 <p className="mt-3">KVK: 96922125</p>
-                <p>BTW-nummer: NL867833890B01</p>
+                <p>BTW: NL867833890B01</p>
+                <p className="mt-3">Tel: 087726483</p>
+                
+                <div className="mt-4 pt-4 border-t border-purple-700">
+                  <p className="font-semibold text-white mb-1">Retouradres:</p>
+                  <p>Centerpoort-Nieuwgraaf</p>
+                  <p>Geograaf 16</p>
+                  <p>6921 EW Duiven</p>
+                </div>
               </div>
             </div>
 
@@ -400,7 +407,7 @@ const HomePage = () => {
                 <li><a href="#" className="hover:text-white transition-colors">Cadeaubon</a></li>
                 <li><Link to="/retourneren" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
                 <li><a href="#reviews" className="hover:text-white transition-colors">Beoordelingen</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">OujiKidz naam bedenker</a></li>
+                <li><Link to="/over-ons" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
               </ul>
             </div>
 
@@ -422,12 +429,12 @@ const HomePage = () => {
             <div>
               <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
               <ul className="space-y-2 text-purple-200 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Zoeken</a></li>
+                <li><a href="#producten" className="hover:text-white transition-colors">Zoeken</a></li>
                 <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
                 <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
                 <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Beleid</Link></li>
                 <li><a href="#faq" className="hover:text-white transition-colors">Veelgestelde Vragen</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Verzending</a></li>
+                <li><a href="#producten" className="hover:text-white transition-colors">Verzending</a></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
               <div className="mt-6">
@@ -445,11 +452,11 @@ const HomePage = () => {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-purple-200 text-sm">&copy; 2025 OujiKidz B.V. Alle rechten voorbehouden.</p>
               <div className="flex items-center space-x-4 text-purple-200 text-sm">
-                <a href="#" className="hover:text-white transition-colors">Voorwaarden</a>
+                <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
                 <span>•</span>
-                <a href="#" className="hover:text-white transition-colors">Privacy</a>
+                <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
                 <span>•</span>
-                <a href="#" className="hover:text-white transition-colors">Cookies</a>
+                <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
               </div>
             </div>
           </div>
