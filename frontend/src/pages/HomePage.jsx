@@ -321,6 +321,31 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
+            Veelgestelde Vragen
+          </h2>
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <AccordionItem 
+                key={idx} 
+                value={`item-${idx}`}
+                className="bg-purple-50 border-2 border-purple-100 rounded-xl px-6"
+              >
+                <AccordionTrigger className="text-left font-semibold text-purple-900 hover:text-purple-700">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-700">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
