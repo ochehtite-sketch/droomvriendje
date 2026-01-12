@@ -29,7 +29,7 @@ const PrivacyPage = () => {
         <div className="space-y-8 text-gray-700">
           <section>
             <p className="mb-4">
-              OujiKidz B.V., gevestigd aan De geer 2, 4233HX Ameide, is verantwoordelijk voor de verwerking 
+              OujiKidz, gevestigd aan De geer 2, is verantwoordelijk voor de verwerking 
               van persoonsgegevens zoals weergegeven in deze privacyverklaring.
             </p>
           </section>
