@@ -175,10 +175,10 @@ const ContactPage = () => {
           <div className="mt-8 bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6">
             <h3 className="font-bold text-purple-900 mb-3">Bedrijfsgegevens</h3>
             <div className="text-gray-700 space-y-1">
-              <p><strong>Bedrijfsnaam:</strong> OujiKidz B.V.</p>
+              <p><strong>Bedrijfsnaam:</strong> OujiKidz</p>
               <p><strong>KVK-nummer:</strong> 96922125</p>
               <p><strong>BTW-nummer:</strong> NL867833890B01</p>
-              <p><strong>Adres:</strong> De geer 2, 4233HX Ameide</p>
+              <p><strong>Adres:</strong> De geer 2</p>
             </div>
           </div>
         </div>
