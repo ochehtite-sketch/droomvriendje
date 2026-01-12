@@ -320,13 +320,13 @@ const ProductPage = () => {
             <div>
               <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
               <ul className="space-y-2 text-purple-200 text-sm">
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Verzwaringsknuffels</Link></li>
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
                 <li><Link to="/over-ons" className="hover:text-white transition-colors">Over OujiKidz</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blogs</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cadeaubon</a></li>
+                <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
+                <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
                 <li><Link to="/retourneren" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
                 <li><Link to="/#reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
                 <li><Link to="/over-ons" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
