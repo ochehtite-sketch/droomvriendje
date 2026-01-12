@@ -21,8 +21,11 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <Moon className="w-8 h-8 text-purple-600" />
-              <span className="text-2xl font-bold text-purple-900">OujiKidz</span>
+              <img 
+                src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
+                alt="OujiKidz Logo" 
+                className="h-10 w-auto"
+              />
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors">Producten</a>
