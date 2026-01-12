@@ -292,39 +292,89 @@ const ProductPage = () => {
       {/* Footer */}
       <footer className="bg-purple-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            {/* Bedrijfsgegevens */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Moon className="w-8 h-8" />
                 <span className="text-2xl font-bold">OujiKidz</span>
               </div>
-              <p className="text-purple-200">Kalmerende knuffels voor een betere nachtrust</p>
+              <div className="text-purple-200 text-sm space-y-1">
+                <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
+                <p>OujiKidz B.V.</p>
+                <p>De geer 2</p>
+                <p>4233HX Ameide</p>
+                <p className="text-xs italic">(Dit is geen retouradres)</p>
+                <p className="mt-3">KVK: 96922125</p>
+                <p>BTW-nummer: NL867833890B01</p>
+              </div>
             </div>
+
+            {/* Navigatie */}
             <div>
-              <h3 className="font-bold mb-4">Shop</h3>
-              <ul className="space-y-2 text-purple-200">
-                <li><Link to="/" className="hover:text-white transition-colors">Alle Producten</Link></li>
-                <li><a href="#" className="hover:text-white transition-colors">Acties</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4">Klantenservice</h3>
-              <ul className="space-y-2 text-purple-200">
+              <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
+              <ul className="space-y-2 text-purple-200 text-sm">
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Verzwaringsknuffels</Link></li>
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Over OujiKidz</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Verzending & Retour</a></li>
-                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blogs</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Cadeaubon</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">30 dagen gratis uitproberen</a></li>
+                <li><Link to="/#reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">OujiKidz naam bedenker</a></li>
               </ul>
             </div>
+
+            {/* OujiKidz helpt bij */}
             <div>
-              <h3 className="font-bold mb-4">Betaalmethoden</h3>
-              <div className="text-purple-200">
-                <p>iDEAL • Klarna</p>
-                <p>PayPal • Creditcard</p>
+              <h3 className="font-bold mb-4 text-lg">OujiKidz helpt bij</h3>
+              <ul className="space-y-2 text-purple-200 text-sm">
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Stressvermindering</Link></li>
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Angstvermindering</Link></li>
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Beter slapen</Link></li>
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Troost vinden</Link></li>
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
+                <li><Link to="/#voordelen" className="hover:text-white transition-colors">Dementie</Link></li>
+              </ul>
+            </div>
+
+            {/* Klantenservice */}
+            <div>
+              <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
+              <ul className="space-y-2 text-purple-200 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Zoeken</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Retourneren</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Algemene Voorwaarden</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Beleid</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">Veelgestelde Vragen</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Verzending</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              </ul>
+              <div className="mt-6">
+                <p className="font-semibold text-white mb-2 text-sm">Betaalmethoden</p>
+                <div className="text-purple-200 text-sm">
+                  <p>iDEAL • Klarna</p>
+                  <p>PayPal • Creditcard</p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="border-t border-purple-800 pt-8 text-center text-purple-200">
-            <p>&copy; 2025 OujiKidz. Alle rechten voorbehouden.</p>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-purple-800 pt-8 text-center">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <p className="text-purple-200 text-sm">&copy; 2025 OujiKidz B.V. Alle rechten voorbehouden.</p>
+              <div className="flex items-center space-x-4 text-purple-200 text-sm">
+                <a href="#" className="hover:text-white transition-colors">Voorwaarden</a>
+                <span>•</span>
+                <a href="#" className="hover:text-white transition-colors">Privacy</a>
+                <span>•</span>
+                <a href="#" className="hover:text-white transition-colors">Cookies</a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
