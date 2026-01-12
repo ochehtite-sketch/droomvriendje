@@ -31,7 +31,7 @@ const VoorwaardenPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 1 - Definities</h2>
             <p className="mb-2">In deze voorwaarden wordt verstaan onder:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Ondernemer:</strong> OujiKidz B.V., gevestigd aan De geer 2, 4233HX Ameide, KVK: 96922125</li>
+              <li><strong>Ondernemer:</strong> OujiKidz, gevestigd aan De geer 2, KVK: 96922125</li>
               <li><strong>Consument:</strong> de natuurlijke persoon die niet handelt in de uitoefening van beroep of bedrijf</li>
               <li><strong>Overeenkomst:</strong> de overeenkomst tussen de ondernemer en de consument</li>
             </ul>
