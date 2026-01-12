@@ -299,8 +299,11 @@ const ProductPage = () => {
             {/* Bedrijfsgegevens */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Moon className="w-8 h-8" />
-                <span className="text-2xl font-bold">OujiKidz</span>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
+                  alt="OujiKidz Logo" 
+                  className="h-8 w-auto"
+                />
               </div>
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
