@@ -383,7 +383,6 @@ const HomePage = () => {
                 <p>4233HX Ameide</p>
                 <p className="mt-3">KVK: 96922125</p>
                 <p>BTW: NL867833890B01</p>
-                <p className="mt-3">Tel: 087726483</p>
                 
                 <div className="mt-4 pt-4 border-t border-purple-700">
                   <p className="font-semibold text-white mb-1">Retouradres:</p>
