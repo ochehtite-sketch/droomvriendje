@@ -394,11 +394,11 @@ const HomePage = () => {
                 <li><a href="#producten" className="hover:text-white transition-colors">Verzwaringsknuffels</a></li>
                 <li><a href="#producten" className="hover:text-white transition-colors">Alle producten</a></li>
                 <li><a href="#producten" className="hover:text-white transition-colors">Voordeelbundels</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Over OujiKidz</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/over-ons" className="hover:text-white transition-colors">Over OujiKidz</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Blogs</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Cadeaubon</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">30 dagen gratis uitproberen</a></li>
+                <li><Link to="/retourneren" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
                 <li><a href="#reviews" className="hover:text-white transition-colors">Beoordelingen</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">OujiKidz naam bedenker</a></li>
               </ul>
