@@ -439,16 +439,11 @@ const HomePage = () => {
                   className="w-full h-full object-cover"
                   controls
                   playsInline
-                  poster=""
-                  onTimeUpdate={(e) => {
-                    if (e.target.currentTime >= 18) {
-                      e.target.pause();
-                      e.target.currentTime = 0;
-                    }
-                  }}
+                  autoPlay
+                  muted
+                  loop
                 >
-                  <source src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/fzcnrsz0_Oujikidz%203%20%283%29.mov" type="video/quicktime" />
-                  <source src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/fzcnrsz0_Oujikidz%203%20%283%29.mov" type="video/mp4" />
+                  <source src="/droomvriendjes_video.mp4" type="video/mp4" />
                   Je browser ondersteunt geen video.
                 </video>
               </div>
