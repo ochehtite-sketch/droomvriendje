@@ -350,61 +350,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-            {products.map((product) => (
-              <Card key={product.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-purple-100 hover:border-purple-300 group">
-                <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 p-8">
-                  {product.badge && (
-                    <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
-                      {product.badge}
-                    </Badge>
-                  )}
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-2xl font-bold text-purple-900">{product.shortName}</h3>
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-semibold">{product.rating}</span>
-                      <span className="text-sm text-gray-500">({product.reviews})</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
-                  <div className="space-y-2 mb-4">
-                    {product.benefits.slice(0, 3).map((benefit, idx) => (
-                      <div key={idx} className="text-sm text-gray-700">{benefit}</div>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-3xl font-bold text-purple-900">€{product.price.toFixed(2)}</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Link to={`/product/${product.id}`}>
-                      <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                        Meer Informatie
-                      </Button>
-                    </Link>
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-purple-600 text-purple-600 hover:bg-purple-50"
-                      onClick={() => addToCart(product)}
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      In Winkelwagen
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Video Section */}
       <section className="py-16 bg-white">
