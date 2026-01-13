@@ -70,11 +70,23 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 ### API Endpoints
 | Endpoint | Methode | Beschrijving |
 |----------|---------|--------------|
-| `/api/orders` | POST | Nieuwe bestelling aanmaken |
+| `/api/orders` | POST | Nieuwe bestelling aanmaken + email notificatie |
 | `/api/payments/create` | POST | Mollie betaling starten |
-| `/api/webhook/mollie` | POST | Betalingsstatus webhook |
+| `/api/webhook/mollie` | POST | Betalingsstatus webhook + success/fail emails |
 | `/api/orders/{id}` | GET | Bestelstatus ophalen |
 | `/api/payment-methods` | GET | Beschikbare betaalmethodes |
+| `/api/contact` | POST | Contactformulier → email naar owner |
+| `/api/checkout-started` | POST | Checkout notificatie → email naar owner |
+
+### Email Notificatie Configuratie
+- **Provider:** TransIP SMTP
+- **From:** info@droomvriendjes.nl
+- **To (alle notificaties):** info@droomvriendjes.nl
+- **Features:**
+  - Reply-To klant email bij contactformulier
+  - Checkout-started met winkelwagen items
+  - Order events (placed, success, fail)
+  - Klant bevestiging bij succesvolle betaling
 
 ### Mollie Configuratie
 - **Live Key:** Actief in productie (backend/.env)
@@ -83,7 +95,8 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 ## Test Resultaten
 - **Iteratie 1:** Backend 100%, Frontend 100%
 - **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
-- **Test rapporten:** `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`
+- **Iteratie 3:** Backend 92% (11/12), Frontend 100% - Email notificaties
+- **Test rapporten:** `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`, `/app/test_reports/iteration_3.json`
 
 ## Backlog
 
