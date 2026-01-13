@@ -177,9 +177,8 @@ const ContactPage = () => {
             <div className="text-gray-700 space-y-1">
               <p><strong>Bedrijfsnaam:</strong> Droomvriendjes</p>
               <p><strong>KVK-nummer:</strong> 9921083</p>
-              <p><strong>BTW-nummer:</strong> NL867833890B01</p>
-              <p><strong>Adres:</strong> SCHAESBERGERWEG 103
-                <p>6415 AD Heerlen</p>
+              <p><strong>Adres:</strong> SCHAESBERGERWEG 103, 6415 AD Heerlen</p>
+              <p className="text-sm italic">(Dit is geen bezoekadres)</p>
             </div>
           </div>
         </div>
