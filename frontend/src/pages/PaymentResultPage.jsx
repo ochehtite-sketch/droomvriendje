@@ -56,7 +56,7 @@ const PaymentResultPage = () => {
             <img 
               src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
               alt="Droomvriendjes" 
-              className="h-8 md:h-10"
+              className="h-12 md:h-14 w-auto"
             />
           </Link>
         </div>
