@@ -45,9 +45,7 @@ const HomePage = () => {
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Knuffels</a>
-              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Mini Knuffels</a>
-              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Winter Sale</a>
-              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Bundels</a>
+              <Link to="/cadeaubon" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Cadeaubonnen</Link>
               <Link to="/over-ons" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Over Droomvriendjes</Link>
               <Link to="/contact" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Contact</Link>
             </nav>
