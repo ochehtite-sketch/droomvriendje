@@ -1,31 +1,105 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Moon, ArrowLeft, Gift, Heart, Star, Check } from 'lucide-react';
-import { useToast } from '../hooks/use-toast';
+import { ArrowLeft, Gift, Heart, Star, Check, Loader2, CreditCard } from 'lucide-react';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 const CadeaubonPage = () => {
-  const { toast } = useToast();
+  const navigate = useNavigate();
   const [selectedAmount, setSelectedAmount] = useState(50);
   const [customAmount, setCustomAmount] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     ontvanger: '',
     email: '',
     boodschap: '',
-    verzender: ''
+    verzender: '',
+    verzenderEmail: ''
   });
 
   const amounts = [25, 50, 75, 100];
 
-  const handleSubmit = (e) => {
+  const getFinalAmount = () => {
+    return customAmount ? parseFloat(customAmount) : selectedAmount;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Cadeaubon besteld!",
-      description: "We sturen je de cadeaubon binnen 24 uur per email.",
-    });
+    setIsLoading(true);
+    setError(null);
+
+    const amount = getFinalAmount();
+    if (amount < 10) {
+      setError('Minimaal bedrag is €10');
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      // Create order for gift card
+      const orderResponse = await fetch(`${API_URL}/api/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer_email: formData.verzenderEmail,
+          customer_name: formData.verzender,
+          customer_address: '',
+          customer_city: '',
+          customer_zipcode: '',
+          items: [{
+            product_id: 'giftcard',
+            product_name: `Cadeaubon €${amount} voor ${formData.ontvanger}`,
+            price: amount,
+            quantity: 1,
+            image: ''
+          }],
+          total_amount: amount,
+          gift_card_data: {
+            recipient_name: formData.ontvanger,
+            recipient_email: formData.email,
+            message: formData.boodschap,
+            sender_name: formData.verzender
+          }
+        })
+      });
+
+      if (!orderResponse.ok) {
+        throw new Error('Bestelling aanmaken mislukt');
+      }
+
+      const { order_id } = await orderResponse.json();
+
+      // Create payment
+      const paymentResponse = await fetch(`${API_URL}/api/payments/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          order_id,
+          payment_method: 'ideal'
+        })
+      });
+
+      if (!paymentResponse.ok) {
+        const errorData = await paymentResponse.json();
+        throw new Error(errorData.detail || 'Betaling aanmaken mislukt');
+      }
+
+      const { checkout_url } = await paymentResponse.json();
+
+      // Redirect to Mollie checkout
+      window.location.href = checkout_url;
+
+    } catch (err) {
+      console.error('Checkout error:', err);
+      setError(err.message || 'Er is iets misgegaan. Probeer het opnieuw.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -36,7 +110,6 @@ const CadeaubonPage = () => {
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center space-x-2">
               <img src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
             </Link>
             <Link to="/">
               <Button variant="outline">
@@ -101,8 +174,8 @@ const CadeaubonPage = () => {
                       <Star className="w-6 h-6 text-pink-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-purple-900 mb-2">Eenvoudig Te Gebruiken</h3>
-                      <p className="text-gray-600">De cadeaubon wordt per email verstuurd en is direct te gebruiken in onze webshop. Geen gedoe!</p>
+                      <h3 className="font-bold text-purple-900 mb-2">Direct Verzonden</h3>
+                      <p className="text-gray-600">Na betaling wordt de cadeaubon direct per email verstuurd naar de ontvanger. Geen wachttijd!</p>
                     </div>
                   </div>
                 </CardContent>
@@ -113,19 +186,19 @@ const CadeaubonPage = () => {
               <h3 className="font-bold text-purple-900 mb-3">Hoe werkt het?</h3>
               <ol className="space-y-2 text-gray-700">
                 <li className="flex items-start">
-                  <Check className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
                   <span>Kies het bedrag en vul de gegevens in</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
                   <span>Betaal veilig via iDEAL, Klarna of creditcard</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                  <span>De cadeaubon wordt binnen 24 uur verstuurd</span>
+                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                  <span>De ontvanger krijgt direct de cadeaubon per email</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
                   <span>De ontvanger kan direct shoppen!</span>
                 </li>
               </ol>
@@ -137,6 +210,12 @@ const CadeaubonPage = () => {
             <Card className="border-2 border-purple-100 sticky top-24">
               <CardContent className="pt-6">
                 <h2 className="text-2xl font-bold text-purple-900 mb-6">Bestel Je Cadeaubon</h2>
+                
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+                    {error}
+                  </div>
+                )}
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Amount Selection */}
@@ -195,6 +274,7 @@ const CadeaubonPage = () => {
                       placeholder="email@voorbeeld.nl"
                       className="border-purple-200"
                     />
+                    <p className="text-xs text-gray-500 mt-1">Hier wordt de cadeaubon naartoe gestuurd</p>
                   </div>
 
                   <div>
@@ -219,12 +299,25 @@ const CadeaubonPage = () => {
                     />
                   </div>
 
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jouw email *</label>
+                    <Input
+                      type="email"
+                      required
+                      value={formData.verzenderEmail}
+                      onChange={(e) => setFormData({...formData, verzenderEmail: e.target.value})}
+                      placeholder="jouw@email.nl"
+                      className="border-purple-200"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Voor de bevestiging van je betaling</p>
+                  </div>
+
                   {/* Total */}
                   <div className="bg-purple-50 rounded-lg p-4">
                     <div className="flex justify-between items-center">
                       <span className="text-lg font-semibold text-purple-900">Totaal:</span>
                       <span className="text-3xl font-bold text-purple-900">
-                        €{customAmount || selectedAmount}
+                        €{getFinalAmount().toFixed(2).replace('.', ',')}
                       </span>
                     </div>
                   </div>
@@ -232,15 +325,27 @@ const CadeaubonPage = () => {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                    disabled={isLoading}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white py-6"
                   >
-                    <Gift className="w-5 h-5 mr-2" />
-                    Bestel Cadeaubon
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Bezig met verwerken...
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="w-5 h-5 mr-2" />
+                        Betalen €{getFinalAmount().toFixed(2).replace('.', ',')}
+                      </>
+                    )}
                   </Button>
 
-                  <p className="text-xs text-gray-500 text-center">
-                    De cadeaubon is 2 jaar geldig vanaf aankoopdatum
-                  </p>
+                  <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
+                    <span>✓ Veilig betalen</span>
+                    <span>✓ Direct verzonden</span>
+                    <span>✓ 2 jaar geldig</span>
+                  </div>
                 </form>
               </CardContent>
             </Card>
