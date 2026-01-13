@@ -140,7 +140,7 @@ const HomePage = () => {
             </div>
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <span className="text-amber-600 text-xl">✓</span>
-              <span className="text-gray-700">Binnen 30 dagen gratis retourneren</span>
+              <span className="text-gray-700">14 dagen bedenktijd</span>
             </div>
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <span className="text-amber-600 text-xl">✓</span>
