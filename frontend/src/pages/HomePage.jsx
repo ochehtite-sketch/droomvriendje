@@ -38,7 +38,7 @@ const HomePage = () => {
               <img 
                 src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                 alt="Droomvriendjes - Voor een zachte nachtrust" 
-                className="h-24 md:h-28 w-auto scale-150 origin-center"
+                className="h-28 md:h-32 w-auto scale-150 origin-center"
               />
             </Link>
             <nav className="hidden md:flex space-x-8">
