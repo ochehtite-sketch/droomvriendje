@@ -91,44 +91,59 @@ const HomePage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/50 via-blue-100/30 to-pink-100/50"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-purple-900 mb-6 leading-tight">
-              Een Betere Nachtrust<br />Voor Jouw Kind
+      <section className="relative py-12 md:py-20 overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+              Meer dan alleen een knuffel
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
-              Kalmerende knuffels met licht & muziek die helpen bij ontspanning en beter slapen
+            <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
+              Onze kalmerende knuffels met licht, muziek en projectie helpen bij ontspanning, stress en een betere nachtrust
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg">
-                <a href="#producten">Ontdek Onze Knuffels</a>
-              </Button>
-              <div className="flex items-center space-x-2">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <span className="text-gray-700 font-semibold">4.5/5.0 uit 500+ reviews</span>
+            
+            {/* Trustpilot Score */}
+            <div className="flex items-center justify-center space-x-3 mb-8">
+              <div className="flex items-center space-x-1 bg-green-600 px-3 py-2 rounded">
+                <Star className="w-5 h-5 fill-white text-white" />
+                <span className="text-white font-bold">Trustpilot</span>
               </div>
+              <div className="flex items-center space-x-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star key={star} className="w-5 h-5 fill-green-600 text-green-600" />
+                ))}
+              </div>
+              <span className="text-lg font-bold text-gray-900">4.7/5</span>
+              <span className="text-gray-600">uit 1200+ beoordelingen</span>
             </div>
             
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
-              <div className="flex items-center space-x-2">
-                <ShieldCheck className="w-5 h-5 text-green-600" />
-                <span>30 dagen geld-terug</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Truck className="w-5 h-5 text-blue-600" />
-                <span>Gratis verzending</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Award className="w-5 h-5 text-purple-600" />
-                <span>CE gecertificeerd</span>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg shadow-lg">
+                <a href="#producten">Bekijk Alle Knuffels</a>
+              </Button>
+            </div>
+          </div>
+          
+          {/* Trust Features */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
+            <div className="text-center p-4 bg-gray-50 rounded-lg">
+              <div className="text-3xl mb-2">🚚</div>
+              <p className="text-sm font-semibold text-gray-900">Gratis verzending</p>
+              <p className="text-xs text-gray-600">Vanaf €50</p>
+            </div>
+            <div className="text-center p-4 bg-gray-50 rounded-lg">
+              <div className="text-3xl mb-2">↩️</div>
+              <p className="text-sm font-semibold text-gray-900">30 dagen retour</p>
+              <p className="text-xs text-gray-600">Niet goed = geld terug</p>
+            </div>
+            <div className="text-center p-4 bg-gray-50 rounded-lg">
+              <div className="text-3xl mb-2">⚡</div>
+              <p className="text-sm font-semibold text-gray-900">Voor 23:00 besteld</p>
+              <p className="text-xs text-gray-600">Morgen in huis</p>
+            </div>
+            <div className="text-center p-4 bg-gray-50 rounded-lg">
+              <div className="text-3xl mb-2">✓</div>
+              <p className="text-sm font-semibold text-gray-900">100.000+ klanten</p>
+              <p className="text-xs text-gray-600">Gaan je voor</p>
             </div>
           </div>
         </div>
