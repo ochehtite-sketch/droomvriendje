@@ -327,13 +327,13 @@ export const features = [
 export const videos = [
   {
     id: 1,
-    url: "https://youtube.com/shorts/qPOzl4_g4kc",
+    url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     title: "Bekijk hoe Droomvriendjes werkt",
     thumbnail: null
   },
   {
     id: 2,
-    url: "https://youtube.com/shorts/zcfppXFjLqE",
+    url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     title: "Tevreden klanten",
     thumbnail: null
   }
