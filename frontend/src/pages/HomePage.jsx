@@ -227,8 +227,8 @@ const HomePage = () => {
             </div>
             <div className="text-center p-4">
               <div className="text-3xl mb-2">↩️</div>
-              <p className="font-bold text-gray-900 text-sm mb-1">30 dagen retour</p>
-              <p className="text-xs text-gray-600">Niet goed = geld terug</p>
+              <p className="font-bold text-gray-900 text-sm mb-1">14 dagen bedenktijd</p>
+              <p className="text-xs text-gray-600">Defect? Geld terug!</p>
             </div>
             <div className="text-center p-4">
               <div className="text-3xl mb-2">👥</div>
