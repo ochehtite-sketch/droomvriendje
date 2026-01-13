@@ -5,8 +5,8 @@ export const products = [
     id: 1,
     name: "Baby Slaapmaatje Leeuw",
     shortName: "Leeuw",
-    price: 49.95,
-    originalPrice: 49.95,
+    price: 59.95,
+    originalPrice: 59.95,
     image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/9h12x5d9_Baby%20Slaapmaatje%20Leeuw%20%E2%80%93%20Projector%20Nachtlamp%20%2B%20Sound.png",
     description: "Projector nachtlamp met rustgevende geluiden. Perfect voor een betere nachtrust.",
     features: [
