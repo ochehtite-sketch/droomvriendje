@@ -4,11 +4,14 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Card, CardContent } from '../components/ui/card';
-import { Moon, ArrowLeft, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Moon, ArrowLeft, Mail, Phone, MapPin, Clock, Loader2 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ContactPage = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     naam: '',
     email: '',
@@ -17,19 +20,49 @@ const ContactPage = () => {
     bericht: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Bericht verzonden!",
-      description: "We nemen zo snel mogelijk contact met je op.",
-    });
-    setFormData({
-      naam: '',
-      email: '',
-      telefoon: '',
-      onderwerp: '',
-      bericht: ''
-    });
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          page_url: window.location.href
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        toast({
+          title: "✅ Bericht verzonden!",
+          description: "We nemen zo snel mogelijk contact met je op.",
+        });
+        setFormData({
+          naam: '',
+          email: '',
+          telefoon: '',
+          onderwerp: '',
+          bericht: ''
+        });
+      } else {
+        throw new Error(data.detail || 'Er ging iets mis');
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: "❌ Fout",
+        description: "Er ging iets mis bij het verzenden. Probeer het opnieuw of mail naar info@droomvriendjes.nl",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
