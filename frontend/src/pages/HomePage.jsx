@@ -613,6 +613,7 @@ const HomePage = () => {
                   alt="Droomvriendjes" 
                   className="h-10 brightness-0 invert"
                 />
+              </div>
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
                 <p>Droomvriendjes</p>
