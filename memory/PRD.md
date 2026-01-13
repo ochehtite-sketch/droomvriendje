@@ -22,15 +22,16 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 
 2. **Winkelwagen & Checkout**
    - Cart context met localStorage persistentie
-   - Sidebar winkelwagen met +/- knoppen
+   - Sidebar winkelwagen met +/- knoppen (nu ook op ProductPage!)
    - Checkout pagina met klantgegevens formulier
    - Betaalmethode selectie (iDEAL, Creditcard, PayPal, Bancontact)
    - Betaling resultaat pagina
 
-3. **Mollie Betalingen**
+3. **Mollie Betalingen (LIVE)**
    - Order creatie in MongoDB
    - Mollie payment creatie met checkout URL
    - Webhook handling voor status updates
+   - Email bevestiging via TransIP SMTP
 
 4. **SEO Optimalisatie**
    - Meta title & description
@@ -40,9 +41,21 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
    - JSON-LD structured data (Organization, Website, Product)
 
 5. **Branding**
-   - 🧸 Knuffel emoji als logo
+   - Custom logo afbeelding in header
    - "Droomvriendjes" naam overal
-   - Geen "Emergent" of "OujiKidz" tekst
+   - Professionele uitstraling
+
+6. **Product Reviews (13 januari 2025)**
+   - 33 gedetailleerde klantreviews toegevoegd
+   - Reviews gefilterd per product op shortName
+   - "Geverifieerd" badges bij alle reviews
+   - Elk product heeft 3 unieke reviews
+
+7. **Verbeterde UX (13 januari 2025)**
+   - Scroll naar boven bij navigatie naar productpagina
+   - "In Winkelwagen" knop opent cart sidebar
+   - "Direct Bestellen" knop gaat direct naar checkout
+   - Cart icoon met badge in ProductPage header
 
 ### API Endpoints
 | Endpoint | Methode | Beschrijving |
@@ -54,20 +67,18 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 | `/api/payment-methods` | GET | Beschikbare betaalmethodes |
 
 ### Mollie Configuratie
-- **Test Key:** test_mR4jayPxrJUMFzuBxyh47CjwqUDp9H
-- **Live Key:** live_8w8UnwaTeubC9mna4SSq5x4aPz7UpT  
+- **Live Key:** Actief in productie (backend/.env)
 - **Profile ID:** pfl_xeCrPvSH9y
 
 ## Test Resultaten
-- **Backend:** 100% (11/11 tests geslaagd)
-- **Frontend:** 100% (alle UI tests geslaagd)
-- **Test rapport:** `/app/test_reports/iteration_1.json`
+- **Iteratie 1:** Backend 100%, Frontend 100%
+- **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
+- **Test rapporten:** `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`
 
 ## Backlog
 
-### P1 - Belangrijk
-- [ ] E-mail bevestiging na succesvolle betaling
-- [ ] Header/Footer refactoren naar herbruikbare componenten
+### P0 - Kritiek (Refactoring)
+- [ ] Header/Footer refactoren naar herbruikbare componenten (25+ pagina's hebben duplicatie)
 
 ### P2 - Nice to Have
 - [ ] Admin dashboard voor bestellingen
@@ -76,6 +87,5 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 - [ ] Zoekfunctie voor producten
 
 ## Deployment
-- **Status:** Klaar voor deployment
-- **Domein:** Kan verbonden worden via Mijndomein.nl of andere providers
-- **Live betalingen:** Wissel MOLLIE_API_KEY naar live key in backend/.env
+- **Status:** Live met echte Mollie betalingen
+- **Email:** TransIP SMTP geconfigureerd voor orderbevestigingen
