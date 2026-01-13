@@ -12,7 +12,7 @@ const DementiePage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -25,7 +25,7 @@ const DementiePage = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Troost bij Dementie</h1>
         
         <div className="space-y-8 text-gray-700">
-          <p className="text-lg">Hoewel OujiKidz oorspronkelijk voor kinderen is ontwikkeld, blijken onze kalmerende knuffels ook waardevol voor mensen met dementie. De vertrouwde zachtheid en rustgevende prikkels kunnen troost en geborgenheid bieden.</p>
+          <p className="text-lg">Hoewel Droomvriendjes oorspronkelijk voor kinderen is ontwikkeld, blijken onze kalmerende knuffels ook waardevol voor mensen met dementie. De vertrouwde zachtheid en rustgevende prikkels kunnen troost en geborgenheid bieden.</p>
 
           <section className="bg-purple-50 rounded-2xl p-6">
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Voordelen voor Mensen met Dementie</h2>
@@ -40,7 +40,7 @@ const DementiePage = () => {
           </section>
 
           <h2 className="text-3xl font-bold text-purple-900">Hoe Werkt Het?</h2>
-          <p className="mb-4">De zachte materialen, rustgevende lichten en kalmerende geluiden van OujiKidz knuffels kunnen mensen met dementie helpen om:</p>
+          <p className="mb-4">De zachte materialen, rustgevende lichten en kalmerende geluiden van Droomvriendjes knuffels kunnen mensen met dementie helpen om:</p>
           <ul className="space-y-2 list-disc list-inside ml-4">
             <li>Tot rust te komen in onrustige momenten</li>
             <li>Zich verbonden te voelen door het knuffelen</li>
@@ -62,12 +62,12 @@ const DementiePage = () => {
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center mt-8">
             <Heart className="w-16 h-16 mx-auto mb-4" />
             <h2 className="text-2xl font-bold mb-4">Troost voor Alle Leeftijden</h2>
-            <p className="mb-6">OujiKidz biedt geborgenheid en rust, ook voor ouderen</p>
+            <p className="mb-6">Droomvriendjes biedt geborgenheid en rust, ook voor ouderen</p>
             <Link to="/"><Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Meer Informatie</Button></Link>
           </div>
 
           <div className="text-sm text-gray-600 italic mt-8">
-            <p>Let op: OujiKidz is geen medisch hulpmiddel en vervangt geen professionele zorg. Raadpleeg altijd een arts of zorgprofessional voor medisch advies.</p>
+            <p>Let op: Droomvriendjes is geen medisch hulpmiddel en vervangt geen professionele zorg. Raadpleeg altijd een arts of zorgprofessional voor medisch advies.</p>
           </div>
         </div>
       </div>

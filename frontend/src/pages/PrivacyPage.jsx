@@ -12,7 +12,7 @@ const PrivacyPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -32,7 +32,7 @@ const PrivacyPage = () => {
         <div className="space-y-8 text-gray-700">
           <section>
             <p className="mb-4">
-              OujiKidz, gevestigd aan De geer 2, is verantwoordelijk voor de verwerking 
+              Droomvriendjes, gevestigd aan De geer 2, is verantwoordelijk voor de verwerking 
               van persoonsgegevens zoals weergegeven in deze privacyverklaring.
             </p>
           </section>
@@ -40,16 +40,16 @@ const PrivacyPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Contactgegevens</h2>
             <div className="bg-purple-50 rounded-xl p-6">
-              <p><strong>OujiKidz</strong></p>
+              <p><strong>Droomvriendjes</strong></p>
               <p>De geer 2</p>
-              <p>KVK: 96922125</p>
-              <p>Email: info@oujikidz.nl</p>
+              <p>KVK: 9921083</p>
+              <p>Email: info@droomvriendjes.nl</p>
             </div>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Persoonsgegevens die wij verwerken</h2>
-            <p className="mb-4">OujiKidz verwerkt je persoonsgegevens doordat je gebruik maakt van onze diensten en/of omdat je deze gegevens zelf aan ons verstrekt.</p>
+            <p className="mb-4">Droomvriendjes verwerkt je persoonsgegevens doordat je gebruik maakt van onze diensten en/of omdat je deze gegevens zelf aan ons verstrekt.</p>
             <p className="mb-2">Hieronder vind je een overzicht van de persoonsgegevens die wij verwerken:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Voor- en achternaam</li>
@@ -65,7 +65,7 @@ const PrivacyPage = () => {
 
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Waarom we gegevens nodig hebben</h2>
-            <p className="mb-2">OujiKidz verwerkt jouw persoonsgegevens voor de volgende doelen:</p>
+            <p className="mb-2">Droomvriendjes verwerkt jouw persoonsgegevens voor de volgende doelen:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Het afhandelen van jouw bestelling</li>
               <li>Verzenden van onze producten</li>
@@ -73,14 +73,14 @@ const PrivacyPage = () => {
               <li>Je te informeren over wijzigingen van onze diensten en producten</li>
               <li>Je de mogelijkheid te bieden een account aan te maken</li>
               <li>Om goederen en diensten bij je af te leveren</li>
-              <li>OujiKidz analyseert jouw gedrag op de website om daarmee de website te verbeteren en het aanbod van producten en diensten af te stemmen op jouw voorkeuren</li>
+              <li>Droomvriendjes analyseert jouw gedrag op de website om daarmee de website te verbeteren en het aanbod van producten en diensten af te stemmen op jouw voorkeuren</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Hoe lang we gegevens bewaren</h2>
             <p>
-              OujiKidz bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren 
+              Droomvriendjes bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren 
               waarvoor je gegevens worden verzameld. Wij hanteren de volgende bewaartermijnen:
             </p>
             <ul className="list-disc list-inside space-y-2 ml-4 mt-4">
@@ -93,7 +93,7 @@ const PrivacyPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Delen met derden</h2>
             <p className="mb-4">
-              OujiKidz verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze 
+              Droomvriendjes verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze 
               overeenkomst met jou of om te voldoen aan een wettelijke verplichting.
             </p>
             <p>Met bedrijven die jouw gegevens verwerken in onze opdracht, sluiten wij een verwerkersovereenkomst om te zorgen voor eenzelfde niveau van beveiliging en vertrouwelijkheid van jouw gegevens.</p>
@@ -102,7 +102,7 @@ const PrivacyPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Cookies</h2>
             <p className="mb-4">
-              OujiKidz gebruikt functionele, analytische en tracking cookies. Een cookie is een klein tekstbestand 
+              Droomvriendjes gebruikt functionele, analytische en tracking cookies. Een cookie is een klein tekstbestand 
               dat bij het eerste bezoek aan deze website wordt opgeslagen in de browser van je computer, tablet 
               of smartphone. De cookies die wij gebruiken zijn noodzakelijk voor de technische werking van de 
               website en jouw gebruiksgemak.
@@ -116,22 +116,22 @@ const PrivacyPage = () => {
 
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Jouw rechten</h2>
-            <p className="mb-4">Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door OujiKidz.</p>
+            <p className="mb-4">Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door Droomvriendjes.</p>
             <p className="mb-4">Je hebt het recht op gegevensoverdraagbaarheid. Dat betekent dat je bij ons een verzoek kan indienen om de persoonsgegevens die wij van jou beschikken in een computerbestand naar jou of een ander, door jou genoemde organisatie, te sturen.</p>
             <p>
               Wil je gebruik maken van je recht op bezwaar en/of recht op gegevensoverdraagbaarheid of heb je 
               andere vragen/opmerkingen over de gegevensverwerking, stuur dan een gespecificeerd verzoek naar 
-              info@oujikidz.nl.
+              info@droomvriendjes.nl.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Beveiliging</h2>
             <p>
-              OujiKidz neemt de bescherming van jouw gegevens serieus en neemt passende maatregelen om misbruik, 
+              Droomvriendjes neemt de bescherming van jouw gegevens serieus en neemt passende maatregelen om misbruik, 
               verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. 
               Als jij het idee hebt dat jouw gegevens toch niet goed beveiligd zijn of er aanwijzingen zijn van 
-              misbruik, neem dan contact op via info@oujikidz.nl.
+              misbruik, neem dan contact op via info@droomvriendjes.nl.
             </p>
           </section>
 
@@ -140,8 +140,8 @@ const PrivacyPage = () => {
             <p className="mb-4">
               Heb je vragen over ons privacybeleid? Neem dan contact met ons op:
             </p>
-            <p>Email: info@oujikidz.nl</p>
-            <p>KVK: 96922125</p>
+            <p>Email: info@droomvriendjes.nl</p>
+            <p>KVK: 9921083</p>
           </section>
         </div>
       </div>

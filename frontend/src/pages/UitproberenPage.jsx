@@ -13,7 +13,7 @@ const UitproberenPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -37,9 +37,9 @@ const UitproberenPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="space-y-8">
           <section className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Probeer OujiKidz 30 Dagen Risico vrij</h2>
+            <h2 className="text-3xl font-bold text-purple-900 mb-4">Probeer Droomvriendjes 30 Dagen Risico vrij</h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              We zijn er zo van overtuigd dat jouw kind beter zal slapen met OujiKidz, dat we je 
+              We zijn er zo van overtuigd dat jouw kind beter zal slapen met Droomvriendjes, dat we je 
               30 dagen de tijd geven om het zelf te ervaren. Werkt het niet? Dan krijg je je geld terug.
             </p>
           </section>
@@ -51,7 +51,7 @@ const UitproberenPage = () => {
                   <span className="text-3xl font-bold text-purple-600">1</span>
                 </div>
                 <h3 className="font-bold text-purple-900 mb-2">Bestel</h3>
-                <p className="text-gray-600 text-sm">Kies je OujiKidz knuffel en ontvang deze binnen 1-2 werkdagen</p>
+                <p className="text-gray-600 text-sm">Kies je Droomvriendjes knuffel en ontvang deze binnen 1-2 werkdagen</p>
               </CardContent>
             </Card>
 
@@ -128,7 +128,7 @@ const UitproberenPage = () => {
 
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">Hoe meld ik een retour aan?</h3>
-                <p className="text-gray-600">Stuur een email naar info@oujikidz.nl met je bestelnummer. Je ontvangt dan direct een gratis retourlabel.</p>
+                <p className="text-gray-600">Stuur een email naar info@droomvriendjes.nl met je bestelnummer. Je ontvangt dan direct een gratis retourlabel.</p>
               </div>
 
               <div>

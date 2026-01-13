@@ -13,7 +13,7 @@ const HSPPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -40,7 +40,7 @@ const HSPPage = () => {
             </ul>
           </section>
 
-          <h2 className="text-3xl font-bold text-purple-900">OujiKidz voor HSP Kinderen</h2>
+          <h2 className="text-3xl font-bold text-purple-900">Droomvriendjes voor HSP Kinderen</h2>
           <p className="mb-6">Hoogsensitieve kinderen hebben extra ondersteuning nodig bij het verwerken van prikkels. Onze knuffels zijn ideaal voor HSP kinderen omdat ze:</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -74,7 +74,7 @@ const HSPPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Tips voor Ouders van HSP Kinderen</h2>
             <ul className="space-y-2">
               <li>• Plan rustige momenten in na drukke activiteiten</li>
-              <li>• Gebruik de OujiKidz knuffel als vast onderdeel van het avondritueel</li>
+              <li>• Gebruik de Droomvriendjes knuffel als vast onderdeel van het avondritueel</li>
               <li>• Accepteer en erken de gevoeligheid van je kind</li>
               <li>• Zorg voor een rustige, geordende slaapomgeving</li>
               <li>• Beperk prikkels voor het slapengaan (geen schermen, gedempte verlichting)</li>
@@ -84,7 +84,7 @@ const HSPPage = () => {
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
             <Sparkles className="w-16 h-16 mx-auto mb-4" />
             <h2 className="text-2xl font-bold mb-4">Speciaal voor Hoogsensitieve Kinderen</h2>
-            <p className="mb-6">Ontdek hoe OujiKidz kan helpen bij het verwerken van prikkels</p>
+            <p className="mb-6">Ontdek hoe Droomvriendjes kan helpen bij het verwerken van prikkels</p>
             <Link to="/"><Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Bekijk Onze Knuffels</Button></Link>
           </div>
         </div>

@@ -15,7 +15,7 @@ const ReviewsPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -72,7 +72,7 @@ const ReviewsPage = () => {
 
         <div className="mt-12 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Sluit Je Aan Bij 1000+ Tevreden Ouders</h2>
-          <p className="text-xl mb-6">Ontdek waarom zo veel gezinnen kiezen voor OujiKidz</p>
+          <p className="text-xl mb-6">Ontdek waarom zo veel gezinnen kiezen voor Droomvriendjes</p>
           <Link to="/"><Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Bekijk Onze Knuffels</Button></Link>
         </div>
       </div>

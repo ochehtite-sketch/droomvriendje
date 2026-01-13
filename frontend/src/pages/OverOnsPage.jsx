@@ -13,7 +13,7 @@ const OverOnsPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -29,13 +29,13 @@ const OverOnsPage = () => {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Over OujiKidz</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Over Droomvriendjes</h1>
         
         <div className="space-y-8">
           <section>
             <h2 className="text-3xl font-bold text-purple-900 mb-4">Onze Missie</h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              Bij OujiKidz geloven we dat elk kind recht heeft op een rustige, ontspannen nachtrust. 
+              Bij Droomvriendjes geloven we dat elk kind recht heeft op een rustige, ontspannen nachtrust. 
               Onze missie is om ouders en kinderen te helpen met innovatieve, veilige en effectieve 
               slaaphulpmiddelen die bijdragen aan beter slapen, minder stress en meer rust.
             </p>
@@ -62,7 +62,7 @@ const OverOnsPage = () => {
           <section>
             <h2 className="text-3xl font-bold text-purple-900 mb-4">Ons Verhaal</h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
-              OujiKidz is ontstaan uit persoonlijke ervaring met slaapproblemen bij jonge kinderen. 
+              Droomvriendjes is ontstaan uit persoonlijke ervaring met slaapproblemen bij jonge kinderen. 
               Als ouders hebben we gezien hoe moeilijk het kan zijn wanneer je kind moeite heeft met 
               in slaap vallen, overprikkeld is of last heeft van angst.
             </p>
@@ -74,7 +74,7 @@ const OverOnsPage = () => {
           </section>
 
           <section className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Waarom OujiKidz?</h2>
+            <h2 className="text-3xl font-bold text-purple-900 mb-4">Waarom Droomvriendjes?</h2>
             <ul className="space-y-3 text-lg text-gray-700">
               <li className="flex items-start">
                 <span className="text-purple-600 mr-3">✓</span>

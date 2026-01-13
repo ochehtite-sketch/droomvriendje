@@ -140,7 +140,7 @@ export const reviews = [
     rating: 5,
     date: "2 dagen geleden",
     title: "Eindelijk rust bij het slapengaan!",
-    text: "Onze dochter (3 jaar) heeft altijd moeite gehad met in slaap vallen. Sinds we de OujiKidz Leeuw hebben, vraagt ze er zelf om voor het slapen. Ze wordt er helemaal rustig van. Absolute aanrader!",
+    text: "Onze dochter (3 jaar) heeft altijd moeite gehad met in slaap vallen. Sinds we de Droomvriendjes Leeuw hebben, vraagt ze er zelf om voor het slapen. Ze wordt er helemaal rustig van. Absolute aanrader!",
     verified: true,
     product: "Leeuw"
   },
@@ -170,7 +170,7 @@ export const reviews = [
     rating: 5,
     date: "1 week geleden",
     title: "Minder stress en angst",
-    text: "Mijn dochter van 5 had last van nachtmerries. Met de OujiKidz knuffel voelt ze zich veiliger en slaapt ze veel rustiger. De kwaliteit is ook top!",
+    text: "Mijn dochter van 5 had last van nachtmerries. Met de Droomvriendjes knuffel voelt ze zich veiliger en slaapt ze veel rustiger. De kwaliteit is ook top!",
     verified: true,
     product: "Leeuw"
   },
@@ -200,7 +200,7 @@ export const reviews = [
     rating: 5,
     date: "3 weken geleden",
     title: "Top service en product",
-    text: "Snel geleverd en precies zoals omschreven. Onze tweeling is er dol op! Ze vechten er niet meer over wie welke knuffel krijgt, nu hebben ze allebei een OujiKidz!",
+    text: "Snel geleverd en precies zoals omschreven. Onze tweeling is er dol op! Ze vechten er niet meer over wie welke knuffel krijgt, nu hebben ze allebei een Droomvriendjes!",
     verified: true,
     product: "Leeuw"
   },
@@ -218,7 +218,7 @@ export const reviews = [
 
 export const faqs = [
   {
-    question: "Voor welke leeftijd zijn de OujiKidz knuffels geschikt?",
+    question: "Voor welke leeftijd zijn de Droomvriendjes knuffels geschikt?",
     answer: "Onze knuffels zijn geschikt vanaf 0 maanden. Ze zijn veilig getest en voldoen aan alle Europese veiligheidsnormen (CE-gecertificeerd)."
   },
   {
@@ -256,7 +256,7 @@ export const testimonials = [
     id: 1,
     name: "Marieke",
     role: "Moeder van Luna (4 jaar)",
-    text: "De OujiKidz Leeuw heeft ons gezin gered. Luna had elke avond een strijd om naar bed te gaan. Nu vraagt ze zelf om haar knuffel en slaapt binnen 15 minuten. We zijn zo dankbaar!",
+    text: "De Droomvriendjes Leeuw heeft ons gezin gered. Luna had elke avond een strijd om naar bed te gaan. Nu vraagt ze zelf om haar knuffel en slaapt binnen 15 minuten. We zijn zo dankbaar!",
     rating: 5,
     image: null
   },
@@ -328,7 +328,7 @@ export const videos = [
   {
     id: 1,
     url: "https://youtube.com/shorts/qPOzl4_g4kc",
-    title: "Bekijk hoe OujiKidz werkt",
+    title: "Bekijk hoe Droomvriendjes werkt",
     thumbnail: null
   },
   {

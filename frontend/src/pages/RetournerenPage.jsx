@@ -14,7 +14,7 @@ const RetournerenPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -35,7 +35,7 @@ const RetournerenPage = () => {
         <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl p-6 mb-8">
           <h2 className="text-2xl font-bold text-green-900 mb-2">30 Dagen Niet Goed = Geld Terug!</h2>
           <p className="text-gray-700">
-            Bij OujiKidz mag je je bestelling binnen 30 dagen retourneren. Zonder gedoe, gratis retour!
+            Bij Droomvriendjes mag je je bestelling binnen 30 dagen retourneren. Zonder gedoe, gratis retour!
           </p>
         </div>
 
@@ -50,7 +50,7 @@ const RetournerenPage = () => {
                     <span className="text-2xl font-bold text-purple-600">1</span>
                   </div>
                   <h3 className="font-bold text-purple-900 mb-2">Meld je retour</h3>
-                  <p className="text-sm text-gray-600">Stuur een email naar info@oujikidz.nl</p>
+                  <p className="text-sm text-gray-600">Stuur een email naar info@droomvriendjes.nl</p>
                 </CardContent>
               </Card>
 
@@ -117,7 +117,7 @@ const RetournerenPage = () => {
                 <Mail className="w-6 h-6 text-pink-600 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900">Contact opnemen</h3>
-                  <p className="text-gray-600">Stuur een email naar <a href="mailto:info@oujikidz.nl" className="text-purple-600 hover:underline">info@oujikidz.nl</a> met je bestelnummer en de reden van retour.</p>
+                  <p className="text-gray-600">Stuur een email naar <a href="mailto:info@droomvriendjes.nl" className="text-purple-600 hover:underline">info@droomvriendjes.nl</a> met je bestelnummer en de reden van retour.</p>
                 </div>
               </div>
             </div>
@@ -129,21 +129,21 @@ const RetournerenPage = () => {
               <Card className="border-2 border-purple-100">
                 <CardContent className="pt-6">
                   <h3 className="font-bold text-purple-900 mb-2">Zijn retourkosten gratis?</h3>
-                  <p className="text-gray-600">Ja! Bij OujiKidz is retourneren altijd gratis. We sturen je een gratis retourlabel.</p>
+                  <p className="text-gray-600">Ja! Bij Droomvriendjes is retourneren altijd gratis. We sturen je een gratis retourlabel.</p>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-purple-100">
                 <CardContent className="pt-6">
                   <h3 className="font-bold text-purple-900 mb-2">Kan ik ruilen voor een ander product?</h3>
-                  <p className="text-gray-600">Ja, dat kan! Stuur een email naar info@oujikidz.nl en geef aan welk product je wilt ruilen.</p>
+                  <p className="text-gray-600">Ja, dat kan! Stuur een email naar info@droomvriendjes.nl en geef aan welk product je wilt ruilen.</p>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-purple-100">
                 <CardContent className="pt-6">
                   <h3 className="font-bold text-purple-900 mb-2">Wat als het product beschadigd is?</h3>
-                  <p className="text-gray-600">Neem direct contact met ons op via info@oujikidz.nl. We lossen dit zo snel mogelijk voor je op!</p>
+                  <p className="text-gray-600">Neem direct contact met ons op via info@droomvriendjes.nl. We lossen dit zo snel mogelijk voor je op!</p>
                 </CardContent>
               </Card>
 

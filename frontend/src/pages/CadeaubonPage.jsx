@@ -37,7 +37,7 @@ const CadeaubonPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -55,7 +55,7 @@ const CadeaubonPage = () => {
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Gift className="w-20 h-20 mx-auto mb-4" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">OujiKidz Cadeaubon</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Droomvriendjes Cadeaubon</h1>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
             Het perfecte cadeau voor betere nachten en meer rust
           </p>
@@ -67,7 +67,7 @@ const CadeaubonPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left: Benefits */}
           <div>
-            <h2 className="text-3xl font-bold text-purple-900 mb-6">Waarom een OujiKidz Cadeaubon?</h2>
+            <h2 className="text-3xl font-bold text-purple-900 mb-6">Waarom een Droomvriendjes Cadeaubon?</h2>
             <div className="space-y-6">
               <Card className="border-2 border-purple-100">
                 <CardContent className="pt-6">

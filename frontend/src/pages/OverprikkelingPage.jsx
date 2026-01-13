@@ -13,7 +13,7 @@ const OverprikkelingPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -41,7 +41,7 @@ const OverprikkelingPage = () => {
             </ul>
           </section>
 
-          <h2 className="text-3xl font-bold text-purple-900">Hoe OujiKidz Helpt</h2>
+          <h2 className="text-3xl font-bold text-purple-900">Hoe Droomvriendjes Helpt</h2>
           <p>Onze knuffels bieden een rustige, voorspelbare prikkel die helpt bij het verwerken van alle indrukken van de dag. De zachte lichten en kalmerende geluiden creëren een veilige omgeving waarin je kind tot rust kan komen.</p>
 
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">

@@ -37,7 +37,7 @@ const ProductPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -301,15 +301,15 @@ const ProductPage = () => {
               <div className="flex items-center space-x-2 mb-4">
                 <img 
                   src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                  alt="OujiKidz Logo" 
+                  alt="Droomvriendjes Logo" 
                   className="h-8 w-auto"
                 />
               </div>
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
-                <p>OujiKidz</p>
+                <p>Droomvriendjes</p>
                 <p>De geer 2</p>
-                <p className="mt-3">KVK: 96922125</p>
+                <p className="mt-3">KVK: 9921083</p>
                 <p>BTW: NL867833890B01</p>
                 
                 <div className="mt-4 pt-4 border-t border-purple-700">
@@ -328,19 +328,19 @@ const ProductPage = () => {
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
-                <li><Link to="/over-ons" className="hover:text-white transition-colors">Over OujiKidz</Link></li>
+                <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
                 <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
                 <li><Link to="/uitproberen" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
                 <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
-                <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">OujiKidz naam bedenker</Link></li>
+                <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
               </ul>
             </div>
 
-            {/* OujiKidz helpt bij */}
+            {/* Droomvriendjes helpt bij */}
             <div>
-              <h3 className="font-bold mb-4 text-lg">OujiKidz helpt bij</h3>
+              <h3 className="font-bold mb-4 text-lg">Droomvriendjes helpt bij</h3>
               <ul className="space-y-2 text-purple-200 text-sm">
                 <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
                 <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
@@ -377,7 +377,7 @@ const ProductPage = () => {
           {/* Bottom Footer */}
           <div className="border-t border-purple-800 pt-8 text-center">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-purple-200 text-sm">&copy; 2025 OujiKidz. Alle rechten voorbehouden.</p>
+              <p className="text-purple-200 text-sm">&copy; 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
               <div className="flex items-center space-x-4 text-purple-200 text-sm">
                 <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
                 <span>•</span>

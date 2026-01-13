@@ -12,7 +12,7 @@ const SlaapproblemenPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -38,7 +38,7 @@ const SlaapproblemenPage = () => {
             </ul>
           </section>
 
-          <h2 className="text-3xl font-bold text-purple-900">De OujiKidz Slaapaanpak</h2>
+          <h2 className="text-3xl font-bold text-purple-900">De Droomvriendjes Slaapaanpak</h2>
           <p className="mb-4">Onze knuffels zijn specifiek ontworpen om slaapproblemen aan te pakken:</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -63,7 +63,7 @@ const SlaapproblemenPage = () => {
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
             <BedDouble className="w-16 h-16 mx-auto mb-4" />
             <h2 className="text-2xl font-bold mb-4">86% Slaapt Beter</h2>
-            <p className="mb-6">Met OujiKidz valt je kind sneller in slaap en slaapt beter door</p>
+            <p className="mb-6">Met Droomvriendjes valt je kind sneller in slaap en slaapt beter door</p>
             <Link to="/"><Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Probeer Nu</Button></Link>
           </div>
         </div>

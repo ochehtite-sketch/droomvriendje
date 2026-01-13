@@ -13,7 +13,7 @@ const StressPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -66,7 +66,7 @@ const StressPage = () => {
           </section>
 
           <section>
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Hoe Helpen OujiKidz Knuffels?</h2>
+            <h2 className="text-3xl font-bold text-purple-900 mb-4">Hoe Helpen Droomvriendjes Knuffels?</h2>
             <p className="mb-4">
               Onze kalmerende knuffels zijn speciaal ontworpen om stress bij kinderen te verminderen:
             </p>
@@ -106,7 +106,7 @@ const StressPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Tips voor Ouders</h2>
             <ol className="space-y-3">
               <li><strong>1. Herken de signalen:</strong> Let op veranderingen in gedrag en slaappatronen</li>
-              <li><strong>2. Creëer een rustig moment:</strong> Gebruik de OujiKidz knuffel in een vast avondritueel</li>
+              <li><strong>2. Creëer een rustig moment:</strong> Gebruik de Droomvriendjes knuffel in een vast avondritueel</li>
               <li><strong>3. Praat erover:</strong> Laat je kind vertellen over zijn of haar dag en zorgen</li>
               <li><strong>4. Beperk schermtijd:</strong> Vooral in de uren voor het slapengaan</li>
               <li><strong>5. Blijf consistent:</strong> Een vaste routine geeft rust en voorspelbaarheid</li>

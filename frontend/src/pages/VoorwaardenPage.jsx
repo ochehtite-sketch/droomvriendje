@@ -12,7 +12,7 @@ const VoorwaardenPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -34,7 +34,7 @@ const VoorwaardenPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 1 - Definities</h2>
             <p className="mb-2">In deze voorwaarden wordt verstaan onder:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Ondernemer:</strong> OujiKidz, gevestigd aan De geer 2, KVK: 96922125</li>
+              <li><strong>Ondernemer:</strong> Droomvriendjes, gevestigd aan De geer 2, KVK: 9921083</li>
               <li><strong>Consument:</strong> de natuurlijke persoon die niet handelt in de uitoefening van beroep of bedrijf</li>
               <li><strong>Overeenkomst:</strong> de overeenkomst tussen de ondernemer en de consument</li>
             </ul>
@@ -43,11 +43,11 @@ const VoorwaardenPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 2 - Identiteit van de ondernemer</h2>
             <div className="bg-purple-50 rounded-xl p-6">
-              <p><strong>OujiKidz</strong></p>
+              <p><strong>Droomvriendjes</strong></p>
               <p>De geer 2</p>
               <p>Nederland</p>
-              <p className="mt-4">E-mailadres: info@oujikidz.nl</p>
-              <p>KVK-nummer: 96922125</p>
+              <p className="mt-4">E-mailadres: info@droomvriendjes.nl</p>
+              <p>KVK-nummer: 9921083</p>
               <p>BTW-nummer: NL867833890B01</p>
             </div>
           </section>
@@ -146,9 +146,9 @@ const VoorwaardenPage = () => {
             <p className="mb-4">
               Voor vragen over deze algemene voorwaarden kun je contact opnemen met:
             </p>
-            <p><strong>OujiKidz</strong></p>
-            <p>Email: info@oujikidz.nl</p>
-            <p>KVK: 96922125</p>
+            <p><strong>Droomvriendjes</strong></p>
+            <p>Email: info@droomvriendjes.nl</p>
+            <p>KVK: 9921083</p>
             <p>BTW: NL867833890B01</p>
           </section>
         </div>

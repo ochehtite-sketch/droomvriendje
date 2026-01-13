@@ -11,7 +11,7 @@ const BlogsPage = () => {
       id: 1,
       title: "5 Tips voor een Betere Nachtrust bij Kinderen",
       excerpt: "Ontdek de beste tips om je kind te helpen beter te slapen. Van een vaste slaapro utine tot het creëren van een rustige slaapomgeving.",
-      author: "Team OujiKidz",
+      author: "Team Droomvriendjes",
       date: "10 januari 2025",
       readTime: "5 min",
       category: "Slaaptips",
@@ -61,7 +61,7 @@ const BlogsPage = () => {
       id: 6,
       title: "ADHD en Slaapproblemen: Wat Ouders Moeten Weten",
       excerpt: "Kinderen met ADHD hebben vaak moeite met slapen. Ontdek praktische tips en oplossingen om je kind te helpen.",
-      author: "Team OujiKidz",
+      author: "Team Droomvriendjes",
       date: "10 december 2024",
       readTime: "6 min",
       category: "Opvoeding",
@@ -78,7 +78,7 @@ const BlogsPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -95,7 +95,7 @@ const BlogsPage = () => {
       {/* Hero */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">OujiKidz Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Droomvriendjes Blog</h1>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
             Tips, advies en verhalen over betere nachtrust, kinderslaap en welzijn
           </p>

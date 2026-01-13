@@ -48,7 +48,7 @@ const ContactPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -75,8 +75,8 @@ const ContactPage = () => {
             <CardContent className="pt-6 text-center">
               <Mail className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h3 className="font-bold text-purple-900 mb-2">Email</h3>
-              <p className="text-gray-600">info@oujikidz.nl</p>
-              <p className="text-gray-600">support@oujikidz.nl</p>
+              <p className="text-gray-600">info@droomvriendjes.nl</p>
+              <p className="text-gray-600">support@droomvriendjes.nl</p>
             </CardContent>
           </Card>
 
@@ -177,8 +177,8 @@ const ContactPage = () => {
           <div className="mt-8 bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6">
             <h3 className="font-bold text-purple-900 mb-3">Bedrijfsgegevens</h3>
             <div className="text-gray-700 space-y-1">
-              <p><strong>Bedrijfsnaam:</strong> OujiKidz</p>
-              <p><strong>KVK-nummer:</strong> 96922125</p>
+              <p><strong>Bedrijfsnaam:</strong> Droomvriendjes</p>
+              <p><strong>KVK-nummer:</strong> 9921083</p>
               <p><strong>BTW-nummer:</strong> NL867833890B01</p>
               <p><strong>Adres:</strong> De geer 2</p>
             </div>

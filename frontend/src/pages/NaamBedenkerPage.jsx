@@ -12,7 +12,7 @@ const NaamBedenkerPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -24,14 +24,14 @@ const NaamBedenkerPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <Lightbulb className="w-20 h-20 text-purple-600 mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">Het Verhaal Achter OujiKidz</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">Het Verhaal Achter Droomvriendjes</h1>
         </div>
         
         <div className="space-y-8 text-gray-700">
           <section className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-8">
             <h2 className="text-3xl font-bold text-purple-900 mb-4">De Oorsprong van de Naam</h2>
             <p className="text-lg leading-relaxed">
-              De naam "OujiKidz" is ontstaan uit de combinatie van twee belangrijke elementen: 
+              De naam "Droomvriendjes" is ontstaan uit de combinatie van twee belangrijke elementen: 
               "Ouji" (Japans voor 'prins') en "Kidz" (kinderen). Deze naam symboliseert dat elk 
               kind koninklijk behandeld moet worden, vooral als het gaat om rust en slaap.
             </p>
@@ -40,7 +40,7 @@ const NaamBedenkerPage = () => {
           <section>
             <h2 className="text-3xl font-bold text-purple-900 mb-4">Ons Verhaal</h2>
             <p className="mb-4">
-              OujiKidz is geboren uit persoonlijke ervaring. Als ouders hebben wij zelf de uitdagingen 
+              Droomvriendjes is geboren uit persoonlijke ervaring. Als ouders hebben wij zelf de uitdagingen 
               meegemaakt van kinderen die moeite hadden met slapen. Nachten vol onrust, overprikkeling 
               en de constante zoektocht naar oplossingen.
             </p>
@@ -50,7 +50,7 @@ const NaamBedenkerPage = () => {
               besloten we het zelf te maken.
             </p>
             <p>
-              Zo ontstond OujiKidz: kalmerende knuffels die kinderen (en hun ouders!) helpen om tot 
+              Zo ontstond Droomvriendjes: kalmerende knuffels die kinderen (en hun ouders!) helpen om tot 
               rust te komen en beter te slapen.
             </p>
           </section>
@@ -65,7 +65,7 @@ const NaamBedenkerPage = () => {
           </section>
 
           <section>
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Waarom OujiKidz Werkt</h2>
+            <h2 className="text-3xl font-bold text-purple-900 mb-4">Waarom Droomvriendjes Werkt</h2>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="text-purple-600 mr-3 text-xl">•</span>
@@ -81,13 +81,13 @@ const NaamBedenkerPage = () => {
               </li>
               <li className="flex items-start">
                 <span className="text-purple-600 mr-3 text-xl">•</span>
-                <span><strong>Bewezen resultaat:</strong> 86% van de kinderen slaapt beter met OujiKidz</span>
+                <span><strong>Bewezen resultaat:</strong> 86% van de kinderen slaapt beter met Droomvriendjes</span>
               </li>
             </ul>
           </section>
 
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Word Deel van de OujiKidz Familie</h2>
+            <h2 className="text-3xl font-bold mb-4">Word Deel van de Droomvriendjes Familie</h2>
             <p className="text-xl mb-6">Sluit je aan bij meer dan 1000+ tevreden gezinnen</p>
             <Link to="/"><Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Ontdek Onze Knuffels</Button></Link>
           </div>

@@ -12,7 +12,7 @@ const TroostPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -39,7 +39,7 @@ const TroostPage = () => {
           </section>
 
           <h2 className="text-3xl font-bold text-purple-900">De Kracht van een Troostknuffel</h2>
-          <p>Onze OujiKidz knuffels bieden meer dan alleen fysieke troost. Door de zachte lichten en kalmerende geluiden creëren ze een omgeving van veiligheid en geborgenheid. Dit helpt kinderen om emoties te verwerken en zich weer goed te voelen.</p>
+          <p>Onze Droomvriendjes knuffels bieden meer dan alleen fysieke troost. Door de zachte lichten en kalmerende geluiden creëren ze een omgeving van veiligheid en geborgenheid. Dit helpt kinderen om emoties te verwerken en zich weer goed te voelen.</p>
 
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center mt-8">
             <Heart className="w-16 h-16 mx-auto mb-4" />

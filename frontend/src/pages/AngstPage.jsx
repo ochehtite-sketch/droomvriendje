@@ -12,7 +12,7 @@ const AngstPage = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="OujiKidz Logo" 
+                alt="Droomvriendjes Logo" 
                 className="h-10 w-auto"
               />
             </Link>
@@ -38,7 +38,7 @@ const AngstPage = () => {
             </ul>
           </section>
 
-          <h2 className="text-3xl font-bold text-purple-900">Hoe OujiKidz Helpt bij Angst</h2>
+          <h2 className="text-3xl font-bold text-purple-900">Hoe Droomvriendjes Helpt bij Angst</h2>
           <p className="mb-4">Onze kalmerende knuffels bieden een fysiek ankerpunt voor angstige kinderen:</p>
           <ul className="space-y-3 list-disc list-inside">
             <li><strong>Zacht licht</strong> neemt de angst voor het donker weg</li>
