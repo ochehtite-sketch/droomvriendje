@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { products, reviews, faqs } from '../mockData';
+import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -9,9 +10,16 @@ import { Star, ShoppingCart, Moon, Heart, Check, ArrowLeft, Sparkles, Shield } f
 
 const ProductPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+
+  // Scroll naar boven bij pagina laden
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   useEffect(() => {
     const foundProduct = products.find(p => p.id === parseInt(id));
@@ -138,6 +146,8 @@ const ProductPage = () => {
                 <Button 
                   size="lg" 
                   className="w-full bg-purple-600 hover:bg-purple-700 text-white text-lg py-6"
+                  onClick={() => addToCart(product)}
+                  data-testid="add-to-cart-button"
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   In Winkelwagen - €{product.price.toFixed(2)}
@@ -146,6 +156,11 @@ const ProductPage = () => {
                   size="lg" 
                   variant="outline"
                   className="w-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 text-lg py-6"
+                  onClick={() => {
+                    addToCart(product);
+                    navigate('/checkout');
+                  }}
+                  data-testid="direct-order-button"
                 >
                   Direct Bestellen
                 </Button>
@@ -277,8 +292,8 @@ const ProductPage = () => {
                       <span className="text-sm font-semibold">{relatedProduct.rating}</span>
                     </div>
                   </div>
-                  <Link to={`/product/${relatedProduct.id}`}>
-                    <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                  <Link to={`/product/${relatedProduct.id}`} onClick={() => window.scrollTo(0, 0)}>
+                    <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white" data-testid={`view-product-${relatedProduct.id}`}>
                       Bekijk Product
                     </Button>
                   </Link>

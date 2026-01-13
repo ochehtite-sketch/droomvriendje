@@ -290,6 +290,7 @@ export const products = [
 ];
 
 export const reviews = [
+  // Leeuw reviews
   {
     id: 1,
     name: "Sophie M.",
@@ -302,73 +303,333 @@ export const reviews = [
   },
   {
     id: 2,
+    name: "Emma K.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Minder stress en angst",
+    text: "Mijn dochter van 5 had last van nachtmerries. Met de Droomvriendjes Leeuw voelt ze zich veiliger en slaapt ze veel rustiger. De kwaliteit is ook top!",
+    verified: true,
+    product: "Leeuw"
+  },
+  {
+    id: 3,
+    name: "Peter H.",
+    rating: 5,
+    date: "3 weken geleden",
+    title: "Top service en product",
+    text: "Snel geleverd en precies zoals omschreven. Onze tweeling is er dol op! De sterrenprojectie is prachtig.",
+    verified: true,
+    product: "Leeuw"
+  },
+  // Schaap reviews
+  {
+    id: 4,
     name: "Lisa V.",
     rating: 5,
     date: "5 dagen geleden",
     title: "Echt fantastisch!",
     text: "Mijn zoontje met ADHD komt eindelijk tot rust met het Schaapje. De ademhaling en het licht helpen hem enorm. We zijn zo blij ermee!",
     verified: true,
-    product: "Schaapje"
-  },
-  {
-    id: 3,
-    name: "Mark de J.",
-    rating: 5,
-    date: "1 week geleden",
-    title: "Beste aankoop ooit!",
-    text: "De Troostbeer is geweldig! Onze baby van 8 maanden slaapt nu door. De sterrenhemel projectie is zo mooi en rustgevend. Top kwaliteit!",
-    verified: true,
-    product: "Troostbeer"
-  },
-  {
-    id: 4,
-    name: "Emma K.",
-    rating: 5,
-    date: "1 week geleden",
-    title: "Minder stress en angst",
-    text: "Mijn dochter van 5 had last van nachtmerries. Met de Droomvriendjes knuffel voelt ze zich veiliger en slaapt ze veel rustiger. De kwaliteit is ook top!",
-    verified: true,
-    product: "Leeuw"
+    product: "Schaap"
   },
   {
     id: 5,
-    name: "Thomas P.",
-    rating: 4,
-    date: "2 weken geleden",
-    title: "Erg tevreden",
-    text: "Mooi product, doet wat het belooft. Onze zoon valt nu sneller in slaap. Alleen de muziek zou iets langer mogen zijn, maar voor de rest super!",
-    verified: true,
-    product: "Troostbeer"
-  },
-  {
-    id: 6,
     name: "Sarah B.",
     rating: 5,
     date: "2 weken geleden",
     title: "Geweldige knuffel!",
-    text: "Het Schaapje is perfect! De ademhalingsfunctie helpt mijn dochter om rustig te worden. Ze neemt hem overal mee naartoe. Zeer aan te raden!",
+    text: "Het Schaapje is perfect! De white noise functie helpt mijn dochter om rustig te worden. Ze neemt hem overal mee naartoe. Zeer aan te raden!",
     verified: true,
-    product: "Schaapje"
+    product: "Schaap"
   },
   {
-    id: 7,
-    name: "Peter H.",
+    id: 6,
+    name: "Jasper de V.",
     rating: 5,
-    date: "3 weken geleden",
-    title: "Top service en product",
-    text: "Snel geleverd en precies zoals omschreven. Onze tweeling is er dol op! Ze vechten er niet meer over wie welke knuffel krijgt, nu hebben ze allebei een Droomvriendjes!",
+    date: "1 maand geleden",
+    title: "Beste investering ooit",
+    text: "Ons zoontje van 2 slaapt nu elke nacht door. Het schaapje is zijn beste vriendje geworden. Fantastische kwaliteit!",
     verified: true,
-    product: "Leeuw"
+    product: "Schaap"
+  },
+  // Teddy reviews
+  {
+    id: 7,
+    name: "Mark de J.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Beste aankoop ooit!",
+    text: "De Teddy is geweldig! Onze baby van 8 maanden slaapt nu door. De sterrenhemel projectie is zo mooi en rustgevend. Top kwaliteit!",
+    verified: true,
+    product: "Teddy"
   },
   {
     id: 8,
+    name: "Thomas P.",
+    rating: 4,
+    date: "2 weken geleden",
+    title: "Erg tevreden",
+    text: "Mooi product, doet wat het belooft. Onze zoon valt nu sneller in slaap. De kalmerende muziek is heerlijk!",
+    verified: true,
+    product: "Teddy"
+  },
+  {
+    id: 9,
     name: "Linda S.",
     rating: 5,
     date: "3 weken geleden",
     title: "Minder schermtijd!",
     text: "Eindelijk een schermvrij alternatief dat werkt! Onze zoon kijkt nu naar de sterrenhemel in plaats van naar een tablet. Geweldig product!",
     verified: true,
-    product: "Troostbeer"
+    product: "Teddy"
+  },
+  // Pinguïn reviews
+  {
+    id: 10,
+    name: "Marieke J.",
+    rating: 5,
+    date: "4 dagen geleden",
+    title: "Schattig en effectief!",
+    text: "De pinguïn is zo schattig! Mijn dochtertje is er verliefd op. De white noise helpt haar om rustig in te slapen. Aanrader!",
+    verified: true,
+    product: "Pinguïn"
+  },
+  {
+    id: 11,
+    name: "Dennis K.",
+    rating: 5,
+    date: "2 weken geleden",
+    title: "Perfect cadeau",
+    text: "Gekocht als kraamcadeau. De ouders waren super blij! De baby slaapt nu veel rustiger.",
+    verified: true,
+    product: "Pinguïn"
+  },
+  {
+    id: 12,
+    name: "Anne-Marie L.",
+    rating: 4,
+    date: "1 maand geleden",
+    title: "Hele fijne knuffel",
+    text: "Onze zoon van 4 is dol op zijn pinguïn. De sterrenprojectie is prachtig. Goede kwaliteit!",
+    verified: true,
+    product: "Pinguïn"
+  },
+  // Dinosaurus reviews
+  {
+    id: 13,
+    name: "Jordy B.",
+    rating: 5,
+    date: "3 dagen geleden",
+    title: "Stoer en rustgevend!",
+    text: "Mijn zoon wilde per se een dino en deze is perfect! Stoer design maar toch rustgevend. Hij slaapt nu veel beter.",
+    verified: true,
+    product: "Dinosaurus"
+  },
+  {
+    id: 14,
+    name: "Michelle T.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Eindelijk doorslapen",
+    text: "Onze 3-jarige was altijd bang in het donker. Met de dinosaurus en zijn sterrenhemel voelt hij zich nu veilig!",
+    verified: true,
+    product: "Dinosaurus"
+  },
+  {
+    id: 15,
+    name: "Kevin R.",
+    rating: 5,
+    date: "3 weken geleden",
+    title: "Top product",
+    text: "De dino is echt super! Goede geluidskwaliteit en mooie projectie. Mijn zoon neemt hem overal mee.",
+    verified: true,
+    product: "Dinosaurus"
+  },
+  // Duo Schaap & Teddy reviews
+  {
+    id: 16,
+    name: "Anouk de G.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Perfect voor tweeling!",
+    text: "Met een tweeling is dit de ideale set! Beide knuffels zijn prachtig en nu slapen ze allebei door. Heel blij mee!",
+    verified: true,
+    product: "Duo Schaap & Teddy"
+  },
+  {
+    id: 17,
+    name: "Bas M.",
+    rating: 5,
+    date: "2 weken geleden",
+    title: "Geweldige voordeelset",
+    text: "Gekocht voor onze twee kinderen. Beide zijn er dol op! Super prijs-kwaliteit verhouding.",
+    verified: true,
+    product: "Duo Schaap & Teddy"
+  },
+  {
+    id: 18,
+    name: "Esther v.D.",
+    rating: 5,
+    date: "1 maand geleden",
+    title: "Beide kinderen gelukkig",
+    text: "Geen ruzie meer over wie welke knuffel krijgt. Beiden prachtig en werken perfect!",
+    verified: true,
+    product: "Duo Schaap & Teddy"
+  },
+  // Beer Projector reviews
+  {
+    id: 19,
+    name: "Carlijn W.",
+    rating: 5,
+    date: "5 dagen geleden",
+    title: "Prachtige sterrenhemel!",
+    text: "De beer projector is fantastisch! De sterrenhemel is zo mooi, onze dochter vindt het magisch. Slaapt nu binnen 10 minuten.",
+    verified: true,
+    product: "Beer Projector"
+  },
+  {
+    id: 20,
+    name: "Rob S.",
+    rating: 4,
+    date: "2 weken geleden",
+    title: "Goede slaaphulp",
+    text: "Compacte beer met mooie projectie. Onze zoon is er blij mee. Batterijen gaan wel snel op.",
+    verified: true,
+    product: "Beer Projector"
+  },
+  {
+    id: 21,
+    name: "Iris P.",
+    rating: 5,
+    date: "3 weken geleden",
+    title: "Schattig en functioneel",
+    text: "De beertje is super schattig! De geluiden zijn kalmerend en de projectie is prachtig. Heel tevreden!",
+    verified: true,
+    product: "Beer Projector"
+  },
+  // Schaap Liggend reviews
+  {
+    id: 22,
+    name: "Nathalie K.",
+    rating: 5,
+    date: "4 dagen geleden",
+    title: "Extra zacht en lief",
+    text: "Dit liggende schaapje is super zacht! Mijn baby knuffelt er elke nacht mee. Het licht is perfect dim.",
+    verified: true,
+    product: "Schaap Liggend"
+  },
+  {
+    id: 23,
+    name: "Frank J.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Perfect voor baby",
+    text: "Ideaal voor in de wieg. Niet te groot, super zacht en de geluiden zijn kalmerend. Aanrader!",
+    verified: true,
+    product: "Schaap Liggend"
+  },
+  {
+    id: 24,
+    name: "Monique H.",
+    rating: 5,
+    date: "1 maand geleden",
+    title: "Beste keuze",
+    text: "Van alle slaapknuffels die we hebben geprobeerd is deze de beste. Zacht materiaal en fijn licht.",
+    verified: true,
+    product: "Schaap Liggend"
+  },
+  // Eenhoorn reviews
+  {
+    id: 25,
+    name: "Lotte B.",
+    rating: 5,
+    date: "2 dagen geleden",
+    title: "Droom voor elke meid!",
+    text: "Onze dochter is VERLIEFD op haar eenhoorn! Het roze licht en de sterretjes zijn prachtig. Ze wil niet meer zonder slapen.",
+    verified: true,
+    product: "Eenhoorn"
+  },
+  {
+    id: 26,
+    name: "Rianne T.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Magisch mooi",
+    text: "De eenhoorn is echt magisch! Mijn dochtertje noemt haar 'prinses'. Prachtige kwaliteit.",
+    verified: true,
+    product: "Eenhoorn"
+  },
+  {
+    id: 27,
+    name: "Suzanne M.",
+    rating: 5,
+    date: "2 weken geleden",
+    title: "Perfecte slaapmaatje",
+    text: "Super zacht en het licht is precies goed. Onze dochter slaapt nu rustig door. Top product!",
+    verified: true,
+    product: "Eenhoorn"
+  },
+  // Teddy Zittend reviews
+  {
+    id: 28,
+    name: "Jan-Willem D.",
+    rating: 5,
+    date: "3 dagen geleden",
+    title: "Klassieke teddy, moderne functies",
+    text: "Mooie klassieke teddy beer met alle moderne functies. De slaapliedjes zijn prachtig. Onze zoon is er dol op!",
+    verified: true,
+    product: "Teddy Zittend"
+  },
+  {
+    id: 29,
+    name: "Bianca L.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Nostalgisch en effectief",
+    text: "Doet me denken aan mijn eigen teddybeer maar dan met coole functies! Mijn kinderen slapen nu veel beter.",
+    verified: true,
+    product: "Teddy Zittend"
+  },
+  {
+    id: 30,
+    name: "Marco V.",
+    rating: 4,
+    date: "3 weken geleden",
+    title: "Heel tevreden",
+    text: "Premium kwaliteit teddy. Het licht is warm en de muziek rustgevend. Goede aankoop!",
+    verified: true,
+    product: "Teddy Zittend"
+  },
+  // Panda reviews
+  {
+    id: 31,
+    name: "Daniëlle H.",
+    rating: 5,
+    date: "1 dag geleden",
+    title: "Superschattig!",
+    text: "De panda is ZO schattig! Mijn zoontje wil hem niet meer loslaten. De sterrenprojectie is prachtig en de muziek kalmerend.",
+    verified: true,
+    product: "Panda"
+  },
+  {
+    id: 32,
+    name: "Steven K.",
+    rating: 5,
+    date: "1 week geleden",
+    title: "Beste cadeau ooit",
+    text: "Gekocht voor het zoontje van mijn zus. Ze waren er allemaal verliefd op! Werkt perfect.",
+    verified: true,
+    product: "Panda"
+  },
+  {
+    id: 33,
+    name: "Wendy P.",
+    rating: 5,
+    date: "2 weken geleden",
+    title: "Fantastische kwaliteit",
+    text: "De panda is van topkwaliteit. Zacht, mooie kleuren, en de functies werken perfect. Heel blij mee!",
+    verified: true,
+    product: "Panda"
   }
 ];
 
