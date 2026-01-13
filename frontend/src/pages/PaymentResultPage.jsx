@@ -52,9 +52,12 @@ const PaymentResultPage = () => {
       {/* Header */}
       <header className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl">🧸</span>
-            <span className="text-xl font-bold text-purple-900">Droomvriendjes</span>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+              alt="Droomvriendjes" 
+              className="h-8 md:h-10"
+            />
           </Link>
         </div>
       </header>
