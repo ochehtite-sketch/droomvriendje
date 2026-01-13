@@ -6,12 +6,13 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { Star, ShoppingCart, Moon, Heart, Check, ArrowLeft, Sparkles, Shield, X, Plus, Minus, Truck } from 'lucide-react';
+import { Star, ShoppingCart, Moon, Heart, Check, ArrowLeft, Sparkles, Shield } from 'lucide-react';
+import CartSidebar from '../components/CartSidebar';
 
 const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { cart, addToCart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
+  const { addToCart, getItemCount, setIsCartOpen } = useCart();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -33,7 +34,7 @@ const ProductPage = () => {
 
   const handleDirectOrder = () => {
     addToCart(product);
-    navigate('/checkout');
+    setIsCartOpen(true); // Open cart to enter email first
   };
 
   if (!product) {
@@ -49,91 +50,7 @@ const ProductPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
       {/* Shopping Cart Sidebar */}
-      {isCartOpen && (
-        <div className="fixed inset-0 z-[100]">
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50" onClick={() => setIsCartOpen(false)} />
-          
-          {/* Cart Panel */}
-          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl">
-            <div className="flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b">
-                <h2 className="text-lg font-bold">Winkelwagen ({getItemCount()})</h2>
-                <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-gray-100 rounded-full">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              
-              {/* Cart Items */}
-              <div className="flex-1 overflow-y-auto p-4">
-                {cart.length === 0 ? (
-                  <div className="text-center py-12">
-                    <ShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                    <p className="text-gray-500">Je winkelwagen is leeg</p>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {cart.map(item => (
-                      <div key={item.id} className="flex gap-4 p-3 bg-gray-50 rounded-lg">
-                        <img src={item.image} alt={item.shortName} className="w-20 h-20 object-cover rounded" />
-                        <div className="flex-1">
-                          <h3 className="font-medium">{item.shortName}</h3>
-                          <p className="text-purple-600 font-bold">€{item.price.toFixed(2).replace('.', ',')}</p>
-                          <div className="flex items-center gap-2 mt-2">
-                            <button 
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="p-1 bg-white border rounded hover:bg-gray-100"
-                            >
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="w-8 text-center">{item.quantity}</span>
-                            <button 
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="p-1 bg-white border rounded hover:bg-gray-100"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                            <button 
-                              onClick={() => removeFromCart(item.id)}
-                              className="ml-auto text-red-500 text-sm hover:underline"
-                            >
-                              Verwijder
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-              
-              {/* Footer */}
-              {cart.length > 0 && (
-                <div className="border-t p-4 space-y-4">
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>Totaal:</span>
-                    <span>€{getTotal().toFixed(2).replace('.', ',')}</span>
-                  </div>
-                  <div className="text-sm text-green-600 flex items-center gap-2">
-                    <Truck className="w-4 h-4" />
-                    Gratis verzending!
-                  </div>
-                  <Button 
-                    className="w-full bg-green-600 hover:bg-green-700 py-6 text-lg"
-                    onClick={() => {
-                      setIsCartOpen(false);
-                      navigate('/checkout');
-                    }}
-                  >
-                    Afrekenen
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      <CartSidebar />
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
