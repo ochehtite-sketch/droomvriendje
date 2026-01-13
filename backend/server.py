@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -6,9 +6,11 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
+from mollie.api.client import Client as MollieClient
+from bson import ObjectId
 
 
 ROOT_DIR = Path(__file__).parent
@@ -18,6 +20,12 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+# Mollie configuration
+MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
+MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
+FRONTEND_URL = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:3000').replace('/api', '')
+API_URL = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -36,6 +44,34 @@ class StatusCheck(BaseModel):
 
 class StatusCheckCreate(BaseModel):
     client_name: str
+
+# Order Models
+class OrderItem(BaseModel):
+    product_id: str
+    product_name: str
+    price: float
+    quantity: int
+    image: Optional[str] = None
+
+class OrderCreate(BaseModel):
+    customer_email: str
+    customer_name: str
+    customer_address: Optional[str] = None
+    customer_city: Optional[str] = None
+    customer_zipcode: Optional[str] = None
+    items: List[OrderItem]
+    total_amount: float
+
+class PaymentCreate(BaseModel):
+    order_id: str
+    payment_method: str = "ideal"
+
+class OrderResponse(BaseModel):
+    order_id: str
+    status: str
+    total_amount: float
+    customer_email: str
+    payment_method: Optional[str] = None
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
