@@ -607,10 +607,12 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Bedrijfsgegevens */}
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-3xl">🧸</span>
-                <span className="text-2xl font-bold">Droomvriendjes</span>
-              </div>
+              <div className="mb-4">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                  alt="Droomvriendjes" 
+                  className="h-10 brightness-0 invert"
+                />
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
                 <p>Droomvriendjes</p>
