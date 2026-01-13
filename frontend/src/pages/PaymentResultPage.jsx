@@ -53,7 +53,7 @@ const PaymentResultPage = () => {
       <header className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link to="/" className="flex items-center space-x-2">
-            <Moon className="w-8 h-8 text-purple-600" />
+            <span className="text-2xl">🧸</span>
             <span className="text-xl font-bold text-purple-900">Droomvriendjes</span>
           </Link>
         </div>
