@@ -317,7 +317,7 @@ const HomePage = () => {
               Ontdek Onze <span className="text-blue-600">Droomvriendjes</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Alle knuffels vanaf €49,95 • WINTER SALE: 2e knuffel 50% korting
+              Alle knuffels vanaf €59,95 • Gratis verzending
             </p>
           </div>
           
