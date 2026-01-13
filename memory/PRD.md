@@ -9,6 +9,7 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 - **Prijzen:** €59,95 per product (Duo set: €89,95)
 - **Taal:** Nederlands
 - **Betalingen:** Mollie integratie (iDEAL, Creditcard, PayPal, Bancontact)
+- **Email Notificaties:** Alle naar info@droomvriendjes.nl
 
 ## Geïmplementeerde Features (Januari 2025)
 
@@ -22,7 +23,8 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 
 2. **Winkelwagen & Checkout**
    - Cart context met localStorage persistentie
-   - Sidebar winkelwagen met +/- knoppen (nu ook op ProductPage!)
+   - Sidebar winkelwagen met +/- knoppen
+   - **Email veld verplicht voor Afrekenen** (checkout-started notificatie)
    - Checkout pagina met klantgegevens formulier
    - Betaalmethode selectie (iDEAL, Creditcard, PayPal, Bancontact)
    - Betaling resultaat pagina
@@ -33,28 +35,36 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
    - Webhook handling voor status updates
    - Email bevestiging via TransIP SMTP
 
-4. **SEO Optimalisatie**
+4. **Email Notificatie Systeem (13 januari 2025)** 📧
+   - **Contactformulier:** Email naar info@droomvriendjes.nl met Reply-To klant email
+   - **Checkout gestart:** Email met klant email + winkelwagen items
+   - **Bestelling geplaatst:** Notificatie naar owner
+   - **Betaling geslaagd:** Orderbevestiging naar klant + notificatie owner
+   - **Betaling mislukt:** Notificatie naar owner
+   - SMTP via TransIP (SPF/DKIM geconfigureerd)
+
+5. **SEO Optimalisatie**
    - Meta title & description
    - Keywords
    - Open Graph tags (Facebook)
    - Twitter Cards
    - JSON-LD structured data (Organization, Website, Product)
 
-5. **Branding**
+6. **Branding**
    - Custom logo afbeelding in header
    - "Droomvriendjes" naam overal
    - Professionele uitstraling
 
-6. **Product Reviews (13 januari 2025)**
+7. **Product Reviews (13 januari 2025)**
    - 33 gedetailleerde klantreviews toegevoegd
    - Reviews gefilterd per product op shortName
    - "Geverifieerd" badges bij alle reviews
    - Elk product heeft 3 unieke reviews
 
-7. **Verbeterde UX (13 januari 2025)**
+8. **Verbeterde UX (13 januari 2025)**
    - Scroll naar boven bij navigatie naar productpagina
    - "In Winkelwagen" knop opent cart sidebar
-   - "Direct Bestellen" knop gaat direct naar checkout
+   - "Direct Bestellen" knop opent cart sidebar
    - Cart icoon met badge in ProductPage header
 
 ### API Endpoints
