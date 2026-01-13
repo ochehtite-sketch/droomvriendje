@@ -862,6 +862,76 @@ async def get_payment_methods():
         }
 
 
+# ============== CONTACT & NOTIFICATION ENDPOINTS ==============
+
+class ContactFormData(BaseModel):
+    naam: str
+    email: str
+    telefoon: Optional[str] = ""
+    onderwerp: str
+    bericht: str
+    page_url: Optional[str] = ""
+
+class CheckoutStartedData(BaseModel):
+    customer_email: str
+    cart_items: List[dict]
+    total_amount: float
+    session_id: Optional[str] = ""
+
+@api_router.post("/contact")
+async def submit_contact_form(contact_data: ContactFormData):
+    """Handle contact form submission and send email to owner"""
+    try:
+        # Store in database
+        contact_dict = contact_data.model_dump()
+        contact_dict['submitted_at'] = datetime.now(timezone.utc).isoformat()
+        contact_dict['status'] = 'new'
+        
+        result = await db.contact_forms.insert_one(contact_dict)
+        
+        # Send email notification to owner
+        email_success = send_contact_form_email(contact_dict)
+        
+        logger.info(f"Contact form submitted: {result.inserted_id}, Email sent: {email_success}")
+        
+        return {
+            "status": "success",
+            "message": "Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.",
+            "email_sent": email_success
+        }
+        
+    except Exception as e:
+        logger.error(f"Contact form error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Er is een fout opgetreden bij het versturen van je bericht.")
+
+
+@api_router.post("/checkout-started")
+async def checkout_started(checkout_data: CheckoutStartedData):
+    """Handle checkout started notification"""
+    try:
+        # Store checkout event
+        checkout_dict = checkout_data.model_dump()
+        checkout_dict['started_at'] = datetime.now(timezone.utc).isoformat()
+        checkout_dict['status'] = 'started'
+        
+        result = await db.checkout_events.insert_one(checkout_dict)
+        
+        # Send email notification to owner
+        email_success = send_checkout_started_email(checkout_dict)
+        
+        logger.info(f"Checkout started: {result.inserted_id}, Email sent: {email_success}")
+        
+        return {
+            "status": "success",
+            "message": "Checkout started notification sent",
+            "email_sent": email_success
+        }
+        
+    except Exception as e:
+        logger.error(f"Checkout started error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to process checkout notification")
+
+
 @api_router.post("/test-email")
 async def test_email(email: str = "info@droomvriendjes.nl"):
     """Test email sending (for debugging only)"""
