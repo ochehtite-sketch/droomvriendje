@@ -769,12 +769,19 @@ async def mollie_webhook(request: Request):
         
         logger.info(f"Order {order_id} status updated to: {order_status}")
         
-        # Send confirmation email if payment is successful
-        if order_status == "paid":
-            order = await db.orders.find_one({"_id": ObjectId(order_id)})
-            if order:
-                order['_id'] = order_id  # Use string ID for email
+        # Send notifications based on payment status
+        order = await db.orders.find_one({"_id": ObjectId(order_id)})
+        if order:
+            order['_id'] = order_id  # Use string ID for email
+            
+            if order_status == "paid":
+                # Send confirmation email to customer
                 send_order_confirmation_email(order)
+                # Send success notification to owner
+                send_order_notification_email(order, 'payment_success')
+            elif order_status in ["cancelled", "expired", "failed"]:
+                # Send failure notification to owner
+                send_order_notification_email(order, 'payment_failed')
         
         return {"status": "success"}
         
