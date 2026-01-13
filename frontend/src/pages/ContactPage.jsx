@@ -81,9 +81,9 @@ const ContactPage = () => {
             <CardContent className="pt-6 text-center">
               <MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-purple-900 mb-2">Adres</h3>
-              <p className="text-gray-600">SCHAESBERGERWEG 103
-                <p>6415 AD Heerlen</p>
-              <p className="text-sm text-gray-500 italic mt-2">(Dit is geen retouradres)</p>
+              <p className="text-gray-600">SCHAESBERGERWEG 103</p>
+              <p className="text-gray-600">6415 AD Heerlen</p>
+              <p className="text-sm text-gray-500 italic mt-2">(Dit is geen bezoekadres)</p>
             </CardContent>
           </Card>
 
