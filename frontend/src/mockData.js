@@ -260,6 +260,32 @@ export const products = [
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
     warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 11,
+    name: "Panda Projector Knuffel",
+    shortName: "Panda",
+    price: 59.95,
+    originalPrice: 59.95,
+    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/nn2ytna7_Panda%20Projector%20Knuffel%20%E2%80%93%20Rustgevende%20Muziek%20%26%20Nachtlicht.png",
+    description: "Schattige panda met rustgevende muziek en nachtlicht. Perfect voor rustige nachtjes!",
+    features: [
+      "Sterrenhemel projectie",
+      "Rustgevende white noise",
+      "Zachte LED verlichting",
+      "Timer functie"
+    ],
+    benefits: [
+      "🐼 Schattig panda design",
+      "🌟 Sterrenprojectie",
+      "🎵 Rustgevende muziek",
+      "💤 Betere nachtrust"
+    ],
+    rating: 4.9,
+    reviews: 287,
+    badge: "BESTSELLER",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
   }
 ];
 
