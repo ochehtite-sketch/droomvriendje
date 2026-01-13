@@ -105,11 +105,15 @@ const CadeaubonPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
+          <div className="flex justify-between items-center py-2">
+            <Link to="/" className="flex items-center overflow-hidden">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                alt="Droomvriendjes - Voor een zachte nachtrust" 
+                className="h-20 md:h-24 w-auto scale-150 origin-center"
+              />
             </Link>
             <Link to="/">
               <Button variant="outline">
