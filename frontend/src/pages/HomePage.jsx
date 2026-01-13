@@ -31,14 +31,14 @@ const HomePage = () => {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-gray-100 shadow-sm" style={{backgroundColor: '#ffffff'}}>
+      <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 md:h-24">
             <Link to="/" className="flex items-center">
               <img 
                 src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                 alt="Droomvriendjes - Voor een zachte nachtrust" 
-                className="h-28 md:h-36 w-auto mix-blend-multiply"
+                className="h-16 md:h-20 w-auto"
               />
             </Link>
             <nav className="hidden md:flex space-x-8">
