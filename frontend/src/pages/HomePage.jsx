@@ -37,11 +37,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="Droomvriendjes Logo" 
-                className="h-12 w-auto"
-              />
+              <div className="flex items-center space-x-2">
+                <Moon className="w-10 h-10 text-purple-600" />
+                <span className="text-2xl font-bold text-purple-900">Droomvriendjes</span>
+              </div>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Knuffels</a>
