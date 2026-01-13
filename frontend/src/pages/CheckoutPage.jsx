@@ -99,9 +99,12 @@ const CheckoutPage = () => {
         {/* Header */}
         <header className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <span className="text-2xl">🧸</span>
-              <span className="text-xl font-bold text-purple-900">Droomvriendjes</span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                alt="Droomvriendjes" 
+                className="h-8 md:h-10"
+              />
             </Link>
           </div>
         </header>
@@ -127,9 +130,12 @@ const CheckoutPage = () => {
       <header className="bg-white border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <span className="text-2xl">🧸</span>
-              <span className="text-xl font-bold text-purple-900">Droomvriendjes</span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                alt="Droomvriendjes" 
+                className="h-8 md:h-10"
+              />
             </Link>
             <div className="flex items-center text-sm text-gray-600">
               <CreditCard className="w-4 h-4 mr-2" />
