@@ -628,6 +628,76 @@ async def get_status_checks():
     return status_checks
 
 
+# ============== CONTACT & NOTIFICATION ENDPOINTS ==============
+
+@api_router.post("/contact")
+async def submit_contact_form(contact: ContactFormCreate):
+    """Handle contact form submission and send email to owner"""
+    try:
+        # Store contact submission in database
+        contact_dict = {
+            "naam": contact.naam,
+            "email": contact.email,
+            "telefoon": contact.telefoon,
+            "onderwerp": contact.onderwerp,
+            "bericht": contact.bericht,
+            "page_url": contact.page_url,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        
+        await db.contact_submissions.insert_one(contact_dict)
+        logger.info(f"Contact form submission stored: {contact.email}")
+        
+        # Send email notification to owner
+        email_sent = send_contact_form_email(contact_dict)
+        
+        if email_sent:
+            return {"status": "success", "message": "Bericht succesvol verzonden"}
+        else:
+            # Still return success if stored in DB, but log the email failure
+            logger.warning(f"Contact form stored but email failed for: {contact.email}")
+            return {"status": "success", "message": "Bericht ontvangen (email notificatie uitgesteld)"}
+            
+    except Exception as e:
+        logger.error(f"Contact form error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Er ging iets mis: {str(e)}")
+
+
+@api_router.post("/checkout-started")
+async def checkout_started(checkout: CheckoutStartedCreate):
+    """Track checkout start and send notification to owner"""
+    try:
+        # Generate session ID if not provided
+        session_id = checkout.session_id or str(uuid.uuid4())[:8].upper()
+        
+        # Store checkout event in database
+        checkout_dict = {
+            "customer_email": checkout.customer_email,
+            "cart_items": [item.model_dump() for item in checkout.cart_items],
+            "total_amount": checkout.total_amount,
+            "session_id": session_id,
+            "status": "started",
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        
+        await db.checkout_events.insert_one(checkout_dict)
+        logger.info(f"Checkout started: {checkout.customer_email} - Session: {session_id}")
+        
+        # Send email notification to owner
+        email_sent = send_checkout_started_email(checkout_dict)
+        
+        return {
+            "status": "success",
+            "session_id": session_id,
+            "email_sent": email_sent
+        }
+            
+    except Exception as e:
+        logger.error(f"Checkout started error: {str(e)}")
+        # Don't fail the checkout process, just log the error
+        return {"status": "success", "session_id": "UNKNOWN", "email_sent": False}
+
+
 # ============== ORDER & PAYMENT ENDPOINTS ==============
 
 @api_router.post("/orders")
