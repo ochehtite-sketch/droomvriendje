@@ -11,11 +11,8 @@ const OverOnsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center space-x-2">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                alt="Droomvriendjes Logo" 
-                className="h-10 w-auto"
-              />
+              <Moon className="w-10 h-10 text-purple-600" />
+                <span className="text-2xl font-bold text-purple-900">Droomvriendjes</span>
             </Link>
             <Link to="/">
               <Button variant="outline">
