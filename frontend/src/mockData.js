@@ -130,6 +130,136 @@ export const products = [
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
     warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 6,
+    name: "Slaapknuffel Duo – Schaap & Teddy",
+    shortName: "Duo Schaap & Teddy",
+    price: 89.95,
+    originalPrice: 99.90,
+    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/zhibllwa_Slaapknuffel%20Duo%20%E2%80%93%20Schaap%20%26%20Teddy%20met%20Nachtlampjes%20liggend.png",
+    description: "Twee schattige slaapknuffels met nachtlampjes. Perfect voor broertjes en zusjes!",
+    features: [
+      "2 knuffels in 1 set",
+      "Beide met nachtlampje",
+      "Zachte materialen",
+      "Kalmerende geluiden"
+    ],
+    benefits: [
+      "👫 Perfect voor twee",
+      "💡 Dubbel nachtlicht",
+      "🎵 Rustgevende geluiden",
+      "💤 Samen slapen"
+    ],
+    rating: 4.8,
+    reviews: 234,
+    badge: "VOORDEELSET",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 7,
+    name: "Beer Sterrenprojector Nachtlamp",
+    shortName: "Beer Projector",
+    price: 49.95,
+    originalPrice: 49.95,
+    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vwsaoqd6_Beer%20Sterrenprojector%20Nachtlamp%20%E2%80%93%20Baby%20Slaaplicht%20met%20Geluiden%20liggend.png",
+    description: "Schattige beer met sterrenprojector en rustgevende slaapgeluiden voor je baby.",
+    features: [
+      "Sterrenhemel projectie",
+      "Meerdere slaapgeluiden",
+      "Compact design",
+      "Timer functie"
+    ],
+    benefits: [
+      "🌟 Sterrenhemel",
+      "🎶 Slaapgeluiden",
+      "🐻 Schattig design",
+      "😴 Betere slaap"
+    ],
+    rating: 4.6,
+    reviews: 178,
+    badge: "POPULAIR",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 8,
+    name: "Schaap Knuffel Nachtlampje",
+    shortName: "Schaap Liggend",
+    price: 49.95,
+    originalPrice: 49.95,
+    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/0h27cya5_Schaap%20Knuffel%20Nachtlampje%20%E2%80%93%20Kalmerend%20Licht%20%26%20Geluiden%20Liggend.png",
+    description: "Liggend schaapje met kalmerend licht en rustgevende geluiden. Super zacht!",
+    features: [
+      "Liggend design",
+      "Kalmerend nachtlicht",
+      "Rustgevende geluiden",
+      "Extra zacht materiaal"
+    ],
+    benefits: [
+      "🐑 Knuffelbaar design",
+      "💡 Zacht licht",
+      "🎵 Kalmerende geluiden",
+      "😌 Ontspanning"
+    ],
+    rating: 4.7,
+    reviews: 156,
+    badge: "NIEUW",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 9,
+    name: "Kalmerende Eenhoorn Knuffel",
+    shortName: "Eenhoorn",
+    price: 49.95,
+    originalPrice: 49.95,
+    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/30kl3u34_Kalmerende%20Eenhoorn%20Knuffel%20%E2%80%93%20Baby%20Slaaphulp%20met%20Licht.png",
+    description: "Magische eenhoorn met kalmerend licht. De perfecte slaaphulp voor je kleintje!",
+    features: [
+      "Roze eenhoorn design",
+      "Zacht nachtlampje",
+      "Sterretjes details",
+      "Super zacht pluche"
+    ],
+    benefits: [
+      "🦄 Magisch design",
+      "✨ Sterretjes patroon",
+      "💖 Roze dromen",
+      "😴 Rustige nachtjes"
+    ],
+    rating: 4.9,
+    reviews: 267,
+    badge: "BESTSELLER",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 10,
+    name: "Baby Nachtknuffel Teddy",
+    shortName: "Teddy Zittend",
+    price: 49.95,
+    originalPrice: 49.95,
+    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/bl25avet_Baby%20Nachtknuffel%20Teddy%20%E2%80%93%20Rustgevend%20Licht%20%26%20Muziek.png",
+    description: "Klassieke teddy beer met rustgevend licht en slaapliedjes. Een echte vriend!",
+    features: [
+      "Klassiek teddy design",
+      "Rustgevend nachtlicht",
+      "Slaapliedjes",
+      "Premium pluche"
+    ],
+    benefits: [
+      "🧸 Klassieke teddy",
+      "🎵 Slaapliedjes",
+      "💡 Warm licht",
+      "💤 Diepe slaap"
+    ],
+    rating: 4.8,
+    reviews: 312,
+    badge: "BESTSELLER",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
   }
 ];
 
