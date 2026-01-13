@@ -267,7 +267,7 @@ const HomePage = () => {
             <Card className="border-2 border-purple-100 hover:border-purple-300 transition-all hover:shadow-lg">
               <CardContent className="pt-6 text-center">
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Moon className="w-8 h-8 text-purple-600" />
+                  <span className="text-3xl">😴</span>
                 </div>
                 <h3 className="text-xl font-bold text-purple-900 mb-2">Verbeterde Nachtrust</h3>
                 <p className="text-gray-600">86% van de kinderen valt sneller in slaap en slaapt beter door</p>
@@ -595,7 +595,7 @@ const HomePage = () => {
             {/* Bedrijfsgegevens */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Moon className="w-8 h-8" />
+                <span className="text-3xl">🧸</span>
                 <span className="text-2xl font-bold">Droomvriendjes</span>
               </div>
               <div className="text-purple-200 text-sm space-y-1">
