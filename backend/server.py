@@ -631,6 +631,10 @@ async def create_order(order: OrderCreate):
     result = await db.orders.insert_one(order_dict)
     order_id = str(result.inserted_id)
     
+    # Send order notification to owner
+    order_dict['_id'] = order_id
+    send_order_notification_email(order_dict, 'order_placed')
+    
     logger.info(f"Order created: {order_id}")
     return {"order_id": order_id, "status": "pending"}
 
