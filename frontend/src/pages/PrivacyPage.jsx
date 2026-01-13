@@ -11,7 +11,7 @@ const PrivacyPage = () => {
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center space-x-2">
               <img src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" alt="Droomvriendjes" className="h-10 md:h-12" />
-                <span className="text-2xl font-bold text-purple-900">Droomvriendjes</span>
+                
             </Link>
             <Link to="/">
               <Button variant="outline">
