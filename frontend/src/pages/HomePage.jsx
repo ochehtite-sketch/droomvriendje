@@ -432,20 +432,32 @@ const HomePage = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
             Zie Droomvriendjes In Actie
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {videos.map((video) => (
-              <div key={video.id} className="relative rounded-2xl overflow-hidden shadow-2xl group">
-                <div className="aspect-[9/16]">
-                  <iframe
-                    src={video.url.replace('shorts/', 'embed/')}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={video.title}
-                  ></iframe>
-                </div>
+          <div className="flex justify-center">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl max-w-lg w-full">
+              <div className="aspect-[9/16] bg-gray-900">
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  poster=""
+                  onTimeUpdate={(e) => {
+                    if (e.target.currentTime >= 18) {
+                      e.target.pause();
+                      e.target.currentTime = 0;
+                    }
+                  }}
+                >
+                  <source src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/fzcnrsz0_Oujikidz%203%20%283%29.mov" type="video/quicktime" />
+                  <source src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/fzcnrsz0_Oujikidz%203%20%283%29.mov" type="video/mp4" />
+                  Je browser ondersteunt geen video.
+                </video>
               </div>
-            ))}
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <p className="text-white text-sm bg-black/50 rounded-lg py-2 px-4 backdrop-blur-sm">
+                  🧸 Droomvriendjes - Rust in je armen
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
