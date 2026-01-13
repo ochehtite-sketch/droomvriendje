@@ -14,22 +14,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-white">
-      {/* Trustpilot Banner */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-b border-amber-200 py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center space-x-2 text-sm">
-            <div className="flex items-center space-x-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="w-4 h-4 fill-green-600 text-green-600" />
-              ))}
-            </div>
-            <span className="font-semibold text-gray-800">4.7/5 Uitstekend!</span>
-            <span className="text-gray-600">1200+ reviews</span>
-            <span className="text-green-600 font-semibold">★★★★★</span>
-          </div>
-        </div>
-      </div>
-
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
