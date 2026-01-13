@@ -1,7 +1,10 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import PaymentResultPage from "./pages/PaymentResultPage";
 import OverOnsPage from "./pages/OverOnsPage";
 import ContactPage from "./pages/ContactPage";
 import RetournerenPage from "./pages/RetournerenPage";
@@ -24,30 +27,34 @@ import { Toaster } from "./components/ui/toaster";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/over-ons" element={<OverOnsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/retourneren" element={<RetournerenPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/voorwaarden" element={<VoorwaardenPage />} />
-          <Route path="/blogs" element={<BlogsPage />} />
-          <Route path="/cadeaubon" element={<CadeaubonPage />} />
-          <Route path="/stress" element={<StressPage />} />
-          <Route path="/overprikkeling" element={<OverprikkelingPage />} />
-          <Route path="/angst" element={<AngstPage />} />
-          <Route path="/slaapproblemen" element={<SlaapproblemenPage />} />
-          <Route path="/troost" element={<TroostPage />} />
-          <Route path="/hsp" element={<HSPPage />} />
-          <Route path="/dementie" element={<DementiePage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
-          <Route path="/naam-bedenker" element={<NaamBedenkerPage />} />
-          <Route path="/uitproberen" element={<UitproberenPage />} />
-        </Routes>
-        <Toaster />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/betaling-resultaat/:orderId" element={<PaymentResultPage />} />
+            <Route path="/over-ons" element={<OverOnsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/retourneren" element={<RetournerenPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/voorwaarden" element={<VoorwaardenPage />} />
+            <Route path="/blogs" element={<BlogsPage />} />
+            <Route path="/cadeaubon" element={<CadeaubonPage />} />
+            <Route path="/stress" element={<StressPage />} />
+            <Route path="/overprikkeling" element={<OverprikkelingPage />} />
+            <Route path="/angst" element={<AngstPage />} />
+            <Route path="/slaapproblemen" element={<SlaapproblemenPage />} />
+            <Route path="/troost" element={<TroostPage />} />
+            <Route path="/hsp" element={<HSPPage />} />
+            <Route path="/dementie" element={<DementiePage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/naam-bedenker" element={<NaamBedenkerPage />} />
+            <Route path="/uitproberen" element={<UitproberenPage />} />
+          </Routes>
+          <Toaster />
+        </BrowserRouter>
+      </CartProvider>
     </div>
   );
 }
