@@ -103,7 +103,7 @@ const CheckoutPage = () => {
               <img 
                 src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                 alt="Droomvriendjes" 
-                className="h-12 md:h-14 w-auto"
+                className="h-16 md:h-20 w-auto"
               />
             </Link>
           </div>
@@ -134,7 +134,7 @@ const CheckoutPage = () => {
               <img 
                 src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                 alt="Droomvriendjes" 
-                className="h-12 md:h-14 w-auto"
+                className="h-16 md:h-20 w-auto"
               />
             </Link>
             <div className="flex items-center text-sm text-gray-600">
