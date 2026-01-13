@@ -81,14 +81,29 @@ const VoorwaardenPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 6 - Herroepingsrecht</h2>
             <div className="bg-green-50 rounded-xl p-6 mb-4">
-              <p className="font-bold text-green-900 mb-2">30 Dagen bedenktijd</p>
-              <p>De consument kan een overeenkomst met betrekking tot de aankoop van een product gedurende een bedenktijd van 30 dagen zonder opgave van redenen ontbinden.</p>
+              <p className="font-bold text-green-900 mb-2">14 dagen bedenktijd (wettelijk herroepingsrecht)</p>
+              <p>De consument kan een overeenkomst met betrekking tot de aankoop van een product gedurende een bedenktijd van 14 dagen zonder opgave van redenen ontbinden, conform de Europese wetgeving voor online aankopen.</p>
             </div>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>De bedenktijd gaat in op de dag na ontvangst van het product door de consument.</li>
               <li>Tijdens de bedenktijd zal de consument zorgvuldig omgaan met het product en de verpakking.</li>
               <li>Hij zal het product slechts uitpakken of gebruiken in de mate die nodig is om de aard, de kenmerken en de werking van het product vast te stellen.</li>
               <li>Indien de consument gebruik maakt van zijn herroepingsrecht, zal hij het product met alle geleverde toebehoren en - indien redelijkerwijze mogelijk - in de originele staat en verpakking aan de ondernemer retourneren.</li>
+              <li>Retourkosten zijn voor rekening van de consument, tenzij anders overeengekomen.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 6a - Geld-terug-garantie bij defecten</h2>
+            <div className="bg-blue-50 rounded-xl p-6 mb-4">
+              <p className="font-bold text-blue-900 mb-2">Defect? Geld terug!</p>
+              <p>Je hebt recht op terugbetaling of kosteloze vervanging wanneer het product defect is bij ontvangst of binnen de garantieperiode een fabricagefout vertoont.</p>
+            </div>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li>De geld-terug-garantie is van toepassing bij aantoonbare defecten of schade bij levering.</li>
+              <li>Voor overige retouren geldt het wettelijke herroepingsrecht (14 dagen) zoals vermeld in Artikel 6.</li>
+              <li>Bij defecten neem je contact op via info@droomvriendjes.nl met foto's van het defect.</li>
+              <li>Na goedkeuring ontvang je een retourlabel en wordt het aankoopbedrag binnen 14 dagen teruggestort.</li>
             </ul>
           </section>
 
