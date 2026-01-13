@@ -1,4 +1,4 @@
-/* OujiKidz Custom Styles */
+/* Droomvriendjes Custom Styles */
 
 * {
   scroll-behavior: smooth;
@@ -8,16 +8,16 @@
   min-height: 100vh;
 }
 
-/* Hide Emergent branding */
-[class*="emergent"], 
-[class*="Emergent"],
-a[href*="emergent"],
-div:has(> a[href*="emergent"]) {
+/* Hide platform branding */
+#emergent-badge,
+[id*="emergent"],
+a[href*="emergent.sh"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   position: absolute !important;
   left: -9999px !important;
+  pointer-events: none !important;
 }
 
 /* Smooth transitions for interactive elements */
