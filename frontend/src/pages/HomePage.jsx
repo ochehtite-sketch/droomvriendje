@@ -611,7 +611,7 @@ const HomePage = () => {
                 <img 
                   src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                   alt="Droomvriendjes" 
-                  className="h-10"
+                  className="h-14 w-auto"
                 />
               </div>
               <div className="text-purple-200 text-sm space-y-1">
