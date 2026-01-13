@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import HomePage from "./pages/HomePage";
@@ -25,6 +26,11 @@ import UitproberenPage from "./pages/UitproberenPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
+  // Force correct page title
+  useEffect(() => {
+    document.title = "Droomvriendjes | Slaapknuffels met Nachtlampje & Rustgevende Geluiden";
+  }, []);
+
   return (
     <div className="App">
       <CartProvider>
