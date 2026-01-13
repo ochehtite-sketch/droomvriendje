@@ -516,6 +516,28 @@ async def get_payment_methods():
             ]
         }
 
+
+@api_router.post("/test-email")
+async def test_email(email: str = "info@droomvriendjes.nl"):
+    """Test email sending (for debugging only)"""
+    test_order = {
+        "_id": "TEST123456",
+        "customer_email": email,
+        "customer_name": "Test Klant",
+        "total_amount": 59.95,
+        "items": [
+            {"product_name": "Leeuw Slaapknuffel", "quantity": 1, "price": 59.95}
+        ]
+    }
+    
+    success = send_order_confirmation_email(test_order)
+    
+    if success:
+        return {"status": "success", "message": f"Test email sent to {email}"}
+    else:
+        return {"status": "error", "message": "Failed to send test email"}
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
