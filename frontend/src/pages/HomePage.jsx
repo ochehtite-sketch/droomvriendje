@@ -607,17 +607,14 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Bedrijfsgegevens */}
             <div>
-              <div className="mb-4 bg-white/10 rounded-lg p-3 inline-block">
-                <img 
-                  src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
-                  alt="Droomvriendjes" 
-                  className="h-12 w-auto"
-                />
+              <div className="flex items-center space-x-2 mb-4">
+                <span className="text-3xl">🧸</span>
+                <span className="text-2xl font-bold">Droomvriendjes</span>
               </div>
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
                 <p>Droomvriendjes</p>
-                <p>SCHAESBERGERWEG 103</p>
+                <p>Schaesbergerweg 103</p>
                 <p>6415 AD Heerlen</p>
                 <p className="text-xs italic">(Dit is geen bezoekadres)</p>
                 <p className="mt-3">KVK: 9921083</p>
