@@ -1,24 +1,24 @@
-// Mock data voor OujiKidz website
+// Mock data voor Droomvriendjes website
 
 export const products = [
   {
     id: 1,
-    name: "OujiKidz Leeuw",
+    name: "Baby Slaapmaatje Leeuw",
     shortName: "Leeuw",
     price: 49.95,
     originalPrice: 49.95,
-    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/s34dg25c_PRODUCT%20FOTO%201%20LEEUW.jpeg",
-    description: "Kalmerende knuffel met licht & muziek. Perfect voor een betere nachtrust.",
+    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/9h12x5d9_Baby%20Slaapmaatje%20Leeuw%20%E2%80%93%20Projector%20Nachtlamp%20%2B%20Sound.png",
+    description: "Projector nachtlamp met rustgevende geluiden. Perfect voor een betere nachtrust.",
     features: [
-      "Zacht licht & rustgevende geluiden",
-      "Kindvriendelijk en veilig getest",
-      "Helpt ontspannen en tot rust komen",
-      "Magische sterrenhemel projectie"
+      "Sterrenhemel projectie",
+      "Rustgevende white noise",
+      "Zachte LED verlichting",
+      "Timer functie"
     ],
     benefits: [
       "😴 Verbeterde nachtrust",
-      "🌙 Zacht licht & rustgevende geluiden",
-      "🧘 Rustgevend en kalmerend",
+      "🌙 Magische sterrenhemel",
+      "🧸 Rustgevend en kalmerend",
       "📵 Minder schermtijd"
     ],
     rating: 4.5,
@@ -29,17 +29,17 @@ export const products = [
   },
   {
     id: 2,
-    name: "OujiKidz Schaapje",
-    shortName: "Schaapje",
+    name: "Baby Nachtlamp Schaap",
+    shortName: "Schaap",
     price: 49.95,
     originalPrice: 49.95,
-    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/2bc259qe_OujiKidz%20Ademhalingsknuffel%20Schaapje%201.png",
-    description: "Ademhalingsknuffel met rustgevend licht. Helpt je kind tot rust te komen.",
+    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/0p603lsa_Baby%20Nachtlamp%20Schaap%20%E2%80%93%20Projector%20%2B%20White%20Noise.png",
+    description: "Slaapknuffel met projector en white noise. Helpt je kind tot rust te komen.",
     features: [
-      "Ademhalings-animatie voor ontspanning",
-      "Rustgevende lichtprojectie",
-      "Zacht en knuffelbaar materiaal",
-      "Helpt bij minder stress en angst"
+      "Sterrenprojector",
+      "White noise geluiden",
+      "Zacht en knuffelbaar",
+      "Dimbare verlichting"
     ],
     benefits: [
       "💤 Betere slaap",
@@ -49,23 +49,23 @@ export const products = [
     ],
     rating: 4.5,
     reviews: 143,
-    badge: "NIEUW",
+    badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
     warranty: "30 dagen geld-terug-garantie"
   },
   {
     id: 3,
-    name: "OujiKidz Troostbeer",
-    shortName: "Troostbeer",
+    name: "Teddy Projector Knuffel",
+    shortName: "Teddy",
     price: 49.95,
     originalPrice: 49.95,
-    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/o7asfi6w_OujiKidz%20Troostbeer%20met%20Nachtlicht%201.png",
-    description: "Troostbeer met nachtlicht en projectie. Voor een rustige en veilige nachtrust.",
+    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/ldt5r1t7_Teddy%20Projector%20Knuffel%20%E2%80%93%20Rustgevende%20Geluiden%20%26%20Nachtlicht%20bruin.png",
+    description: "Bruine teddy met nachtlicht en rustgevende geluiden. Voor een rustige nachtrust.",
     features: [
       "Rustgevend nachtlampje",
       "Sterrenhemel projectie",
       "Kalmerende muziek",
-      "Super zacht en knuffelbaar"
+      "Super zacht materiaal"
     ],
     benefits: [
       "🌟 Magische sterrenhemel",
@@ -75,7 +75,59 @@ export const products = [
     ],
     rating: 4.5,
     reviews: 219,
+    badge: "NIEUW",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 4,
+    name: "Pinguïn Nachtlampje",
+    shortName: "Pinguïn",
+    price: 49.95,
+    originalPrice: 49.95,
+    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/jhya5kre_Pingu%C3%AFn%20Nachtlampje%20%E2%80%93%20Sterrenprojector%20%2B%20White%20Noise.png",
+    description: "Schattige pinguïn met sterrenprojector en white noise voor optimale rust.",
+    features: [
+      "Sterrenprojector",
+      "White noise functie",
+      "Zachte LED kleuren",
+      "Gebruiksvriendelijk"
+    ],
+    benefits: [
+      "🐧 Schattig design",
+      "⭐ Sterrenhemel effect",
+      "🎶 White noise opties",
+      "💙 Kalmerend effect"
+    ],
+    rating: 4.5,
+    reviews: 156,
     badge: "POPULAIR",
+    ageRange: "Vanaf 0 maanden",
+    warranty: "30 dagen geld-terug-garantie"
+  },
+  {
+    id: 5,
+    name: "Dinosaurus Slaapknuffel",
+    shortName: "Dinosaurus",
+    price: 49.95,
+    originalPrice: 49.95,
+    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/vbsw8kjy_Dinosaurus%20Slaapknuffel%20met%20Projector%20%E2%80%93%20Nachtlamp%20%26%20White%20Noise.png",
+    description: "Stoere dinosaurus met nachtlamp en white noise. Perfect voor avonturiers!",
+    features: [
+      "Projector nachtlamp",
+      "White noise geluiden",
+      "Stoer dino design",
+      "Veilig en zacht"
+    ],
+    benefits: [
+      "🦕 Stoer design",
+      "🌌 Sterrenprojectie",
+      "🔊 Rustgevende geluiden",
+      "😴 Beter slapen"
+    ],
+    rating: 4.5,
+    reviews: 198,
+    badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
     warranty: "30 dagen geld-terug-garantie"
   }
