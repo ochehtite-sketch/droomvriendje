@@ -198,8 +198,20 @@ const ContactPage = () => {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                  Verstuur Bericht
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Verzenden...
+                    </>
+                  ) : (
+                    'Verstuur Bericht'
+                  )}
                 </Button>
               </form>
             </CardContent>
