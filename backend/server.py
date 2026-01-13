@@ -11,6 +11,10 @@ import uuid
 from datetime import datetime, timezone
 from mollie.api.client import Client as MollieClient
 from bson import ObjectId
+import smtplib
+import ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Configure logging FIRST (before any usage)
 logging.basicConfig(
@@ -33,11 +37,160 @@ MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendjes-clone.preview.emergentagent.com')
 API_URL = os.environ.get('API_URL', 'https://droomvriendjes-clone.preview.emergentagent.com')
 
+# SMTP Email configuration
+SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.transip.email')
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
+SMTP_USER = os.environ.get('SMTP_USER', '')
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
+SMTP_FROM = os.environ.get('SMTP_FROM', 'info@droomvriendjes.nl')
+
 # Create the main app without a prefix
 app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+
+# ============== EMAIL FUNCTIONS ==============
+
+def send_order_confirmation_email(order_data: dict):
+    """Send order confirmation email to customer"""
+    try:
+        customer_email = order_data.get('customer_email')
+        customer_name = order_data.get('customer_name', 'Klant')
+        order_id = str(order_data.get('_id', ''))[-8:].upper()
+        total_amount = order_data.get('total_amount', 0)
+        items = order_data.get('items', [])
+        
+        # Create email content
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = f'🧸 Bedankt voor je bestelling bij Droomvriendjes! #{order_id}'
+        msg['From'] = f'Droomvriendjes <{SMTP_FROM}>'
+        msg['To'] = customer_email
+        
+        # Build items HTML
+        items_html = ""
+        for item in items:
+            items_html += f"""
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">
+                    {item.get('product_name', 'Product')}
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">
+                    {item.get('quantity', 1)}x
+                </td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: right;">
+                    €{item.get('price', 0):.2f}
+                </td>
+            </tr>
+            """
+        
+        # HTML email template
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+        </head>
+        <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+            <div style="background-color: white; border-radius: 10px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <!-- Header -->
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #7c3aed; margin: 0;">🧸 Droomvriendjes</h1>
+                </div>
+                
+                <!-- Main Content -->
+                <h2 style="color: #333;">Bedankt voor je bestelling, {customer_name}!</h2>
+                
+                <p style="color: #666; line-height: 1.6;">
+                    Je bestelling is succesvol ontvangen en wordt zo snel mogelijk verwerkt. 
+                    Hieronder vind je een overzicht van je bestelling.
+                </p>
+                
+                <!-- Order Info -->
+                <div style="background-color: #f3e8ff; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                    <p style="margin: 0; color: #7c3aed;"><strong>Bestelnummer:</strong> #{order_id}</p>
+                </div>
+                
+                <!-- Order Items -->
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <thead>
+                        <tr style="background-color: #7c3aed; color: white;">
+                            <th style="padding: 12px; text-align: left;">Product</th>
+                            <th style="padding: 12px; text-align: center;">Aantal</th>
+                            <th style="padding: 12px; text-align: right;">Prijs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {items_html}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" style="padding: 15px; font-weight: bold; font-size: 18px;">Totaal</td>
+                            <td style="padding: 15px; font-weight: bold; font-size: 18px; text-align: right; color: #7c3aed;">
+                                €{total_amount:.2f}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <!-- Shipping Info -->
+                <div style="background-color: #e8f5e9; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                    <p style="margin: 0; color: #2e7d32;">
+                        ✓ <strong>Gratis verzending</strong> - Voor 23:00 besteld, morgen in huis!
+                    </p>
+                </div>
+                
+                <!-- Footer -->
+                <div style="border-top: 1px solid #eee; margin-top: 30px; padding-top: 20px; text-align: center; color: #999;">
+                    <p>Vragen over je bestelling?<br>
+                    Neem contact op via <a href="mailto:info@droomvriendjes.nl" style="color: #7c3aed;">info@droomvriendjes.nl</a></p>
+                    
+                    <p style="font-size: 12px; margin-top: 20px;">
+                        Droomvriendjes<br>
+                        Schaesbergerweg 103, 6415 AD Heerlen<br>
+                        KVK: 9921083
+                    </p>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+        # Plain text alternative
+        text_content = f"""
+        Bedankt voor je bestelling bij Droomvriendjes!
+        
+        Beste {customer_name},
+        
+        Je bestelling #{order_id} is succesvol ontvangen.
+        
+        Totaal: €{total_amount:.2f}
+        
+        Je bestelling wordt zo snel mogelijk verzonden.
+        Gratis verzending - Voor 23:00 besteld, morgen in huis!
+        
+        Vragen? Mail naar info@droomvriendjes.nl
+        
+        Met vriendelijke groet,
+        Droomvriendjes
+        """
+        
+        msg.attach(MIMEText(text_content, 'plain'))
+        msg.attach(MIMEText(html_content, 'html'))
+        
+        # Send email via SMTP SSL
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.sendmail(SMTP_FROM, customer_email, msg.as_string())
+        
+        logger.info(f"Order confirmation email sent to {customer_email}")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to send order confirmation email: {str(e)}")
+        return False
 
 
 # Define Models
