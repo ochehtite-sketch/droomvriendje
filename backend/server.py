@@ -549,6 +549,27 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Contact Form Model
+class ContactFormCreate(BaseModel):
+    naam: str
+    email: str
+    telefoon: Optional[str] = None
+    onderwerp: str
+    bericht: str
+    page_url: Optional[str] = None
+
+# Checkout Started Model
+class CartItem(BaseModel):
+    name: str
+    price: float
+    quantity: int
+
+class CheckoutStartedCreate(BaseModel):
+    customer_email: str
+    cart_items: List[CartItem]
+    total_amount: float
+    session_id: Optional[str] = None
+
 # Order Models
 class OrderItem(BaseModel):
     product_id: str
