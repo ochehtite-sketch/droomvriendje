@@ -133,22 +133,6 @@ const HomePage = () => {
               </div>
             </div>
             
-            {/* Bullet points */}
-            <div className="flex flex-col items-center space-y-2 mb-6">
-              <div className="flex items-center space-x-2">
-                <span className="text-[#c9a55a]">✦</span>
-                <span className="text-[#5a4a3a] text-sm md:text-base">Brengt ontspanning en geborgenheid</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-[#c9a55a]">✦</span>
-                <span className="text-[#5a4a3a] text-sm md:text-base">Kalmerende lichtjes en rustgevende geluiden</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-[#c9a55a]">✦</span>
-                <span className="text-[#5a4a3a] text-sm md:text-base">Voor kinderen én volwassenen</span>
-              </div>
-            </div>
-            
             {/* CTA Button */}
             <div className="flex justify-center">
               <Button 
