@@ -12,6 +12,12 @@ from datetime import datetime, timezone
 from mollie.api.client import Client as MollieClient
 from bson import ObjectId
 
+# Configure logging FIRST (before any usage)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -24,8 +30,8 @@ db = client[os.environ['DB_NAME']]
 # Mollie configuration
 MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
 MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
-FRONTEND_URL = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:3000').replace('/api', '')
-API_URL = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:8001')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendjes-clone.preview.emergentagent.com')
+API_URL = os.environ.get('API_URL', 'https://droomvriendjes-clone.preview.emergentagent.com')
 
 # Create the main app without a prefix
 app = FastAPI()
