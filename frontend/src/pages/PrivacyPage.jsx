@@ -32,7 +32,8 @@ const PrivacyPage = () => {
         <div className="space-y-8 text-gray-700">
           <section>
             <p className="mb-4">
-              Droomvriendjes, gevestigd aan De geer 2, is verantwoordelijk voor de verwerking 
+              Droomvriendjes, gevestigd aan SCHAESBERGERWEG 103
+                <p>6415 AD Heerlen, is verantwoordelijk voor de verwerking 
               van persoonsgegevens zoals weergegeven in deze privacyverklaring.
             </p>
           </section>
@@ -41,7 +42,8 @@ const PrivacyPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Contactgegevens</h2>
             <div className="bg-purple-50 rounded-xl p-6">
               <p><strong>Droomvriendjes</strong></p>
-              <p>De geer 2</p>
+              <p>SCHAESBERGERWEG 103
+                <p>6415 AD Heerlen</p>
               <p>KVK: 9921083</p>
               <p>Email: info@droomvriendjes.nl</p>
             </div>

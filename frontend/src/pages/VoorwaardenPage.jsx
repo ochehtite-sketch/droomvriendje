@@ -34,7 +34,8 @@ const VoorwaardenPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 1 - Definities</h2>
             <p className="mb-2">In deze voorwaarden wordt verstaan onder:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Ondernemer:</strong> Droomvriendjes, gevestigd aan De geer 2, KVK: 9921083</li>
+              <li><strong>Ondernemer:</strong> Droomvriendjes, gevestigd aan SCHAESBERGERWEG 103
+                <p>6415 AD Heerlen, KVK: 9921083</li>
               <li><strong>Consument:</strong> de natuurlijke persoon die niet handelt in de uitoefening van beroep of bedrijf</li>
               <li><strong>Overeenkomst:</strong> de overeenkomst tussen de ondernemer en de consument</li>
             </ul>
@@ -44,11 +45,12 @@ const VoorwaardenPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Artikel 2 - Identiteit van de ondernemer</h2>
             <div className="bg-purple-50 rounded-xl p-6">
               <p><strong>Droomvriendjes</strong></p>
-              <p>De geer 2</p>
+              <p>SCHAESBERGERWEG 103
+                <p>6415 AD Heerlen</p>
               <p>Nederland</p>
               <p className="mt-4">E-mailadres: info@droomvriendjes.nl</p>
               <p>KVK-nummer: 9921083</p>
-              <p>BTW-nummer: NL867833890B01</p>
+              <p></p>
             </div>
           </section>
 
@@ -149,7 +151,7 @@ const VoorwaardenPage = () => {
             <p><strong>Droomvriendjes</strong></p>
             <p>Email: info@droomvriendjes.nl</p>
             <p>KVK: 9921083</p>
-            <p>BTW: NL867833890B01</p>
+            <p></p>
           </section>
         </div>
       </div>

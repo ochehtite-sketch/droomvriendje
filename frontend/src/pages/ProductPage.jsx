@@ -308,9 +308,10 @@ const ProductPage = () => {
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
                 <p>Droomvriendjes</p>
-                <p>De geer 2</p>
+                <p>SCHAESBERGERWEG 103
+                <p>6415 AD Heerlen</p>
                 <p className="mt-3">KVK: 9921083</p>
-                <p>BTW: NL867833890B01</p>
+                <p></p>
                 
                 <div className="mt-4 pt-4 border-t border-purple-700">
                   <p className="font-semibold text-white mb-1">Retouradres:</p>
