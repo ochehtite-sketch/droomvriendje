@@ -607,11 +607,11 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Bedrijfsgegevens */}
             <div>
-              <div className="mb-4">
+              <div className="mb-4 bg-white/10 rounded-lg p-3 inline-block">
                 <img 
                   src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                   alt="Droomvriendjes" 
-                  className="h-16 w-auto brightness-0 invert opacity-90"
+                  className="h-12 w-auto"
                 />
               </div>
               <div className="text-purple-200 text-sm space-y-1">
