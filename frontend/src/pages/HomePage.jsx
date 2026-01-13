@@ -229,16 +229,127 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section id="producten" className="py-16 bg-white">
+      {/* Products Section - PREMIUM */}
+      <section id="producten" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Onze Knuffels
+          <div className="text-center mb-16">
+            <span className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              Onze Collectie
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Ontdek Onze <span className="text-blue-600">Droomvriendjes</span>
             </h2>
-            <p className="text-xl text-gray-600">Vanaf €49,95 - Winter Sale: 2e knuffel 50% korting!</p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Alle knuffels vanaf €49,95 • WINTER SALE: 2e knuffel 50% korting
+            </p>
           </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-blue-200 rounded-2xl bg-white">
+                <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-8 overflow-hidden">
+                  {product.badge && (
+                    <Badge className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg z-10 px-3 py-1">
+                      {product.badge}
+                    </Badge>
+                  )}
+                  
+                  {/* Discount Badge */}
+                  <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
+                    -50% op 2e
+                  </div>
+                  
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-72 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-2xl font-bold text-gray-900">{product.shortName}</h3>
+                    <div className="flex items-center space-x-1 bg-amber-50 px-2 py-1 rounded">
+                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      <span className="text-sm font-bold text-gray-900">{product.rating}</span>
+                      <span className="text-xs text-gray-500">({product.reviews})</span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                  
+                  {/* Features - Icons */}
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    <div className="flex items-center text-xs text-gray-600">
+                      <span className="mr-1">🌟</span> Projectie
+                    </div>
+                    <div className="flex items-center text-xs text-gray-600">
+                      <span className="mr-1">🎵</span> White Noise
+                    </div>
+                    <div className="flex items-center text-xs text-gray-600">
+                      <span className="mr-1">💡</span> LED Licht
+                    </div>
+                    <div className="flex items-center text-xs text-gray-600">
+                      <span className="mr-1">⏰</span> Timer
+                    </div>
+                  </div>
+                  
+                  <div className="border-t pt-4 mb-4">
+                    <div className="flex items-baseline justify-between mb-2">
+                      <div>
+                        <span className="text-3xl font-bold text-gray-900">€{product.price.toFixed(2)}</span>
+                        <span className="text-sm text-gray-500 ml-2">/ stuk</span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-green-600 font-semibold">✓ Op voorraad - Voor 23:00 besteld, morgen in huis</p>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Link to={`/product/${product.id}`}>
+                      <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all">
+                        Bekijk Details
+                      </Button>
+                    </Link>
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold"
+                      onClick={() => addToCart(product)}
+                    >
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      In Winkelwagen
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          {/* Trust Section Below Products */}
+          <div className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <p className="text-4xl font-bold text-blue-600 mb-2">100.000+</p>
+                <p className="text-sm text-gray-600 font-medium">Tevreden Klanten</p>
+              </div>
+              <div>
+                <p className="text-4xl font-bold text-purple-600 mb-2">86%</p>
+                <p className="text-sm text-gray-600 font-medium">Slaapt Beter</p>
+              </div>
+              <div>
+                <p className="text-4xl font-bold text-pink-600 mb-2">4.7/5</p>
+                <p className="text-sm text-gray-600 font-medium">Trustpilot Score</p>
+              </div>
+              <div>
+                <p className="text-4xl font-bold text-green-600 mb-2">30</p>
+                <p className="text-sm text-gray-600 font-medium">Dagen Garantie</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
             {products.map((product) => (
               <Card key={product.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-purple-100 hover:border-purple-300 group">
                 <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 p-8">
