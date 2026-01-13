@@ -33,12 +33,12 @@ const HomePage = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2">
-            <Link to="/" className="flex items-center overflow-hidden">
+          <div className="flex justify-between items-center h-20 md:h-24">
+            <Link to="/" className="flex items-center -ml-8 md:-ml-12">
               <img 
                 src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
                 alt="Droomvriendjes - Voor een zachte nachtrust" 
-                className="h-28 md:h-32 w-auto scale-150 origin-center"
+                className="h-32 md:h-40 w-auto"
               />
             </Link>
             <nav className="hidden md:flex space-x-8">
