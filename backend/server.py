@@ -44,6 +44,9 @@ SMTP_USER = os.environ.get('SMTP_USER', '')
 SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
 SMTP_FROM = os.environ.get('SMTP_FROM', 'info@droomvriendjes.nl')
 
+# Owner notification email
+OWNER_EMAIL = "info@droomvriendjes.nl"
+
 # Create the main app without a prefix
 app = FastAPI()
 
@@ -52,6 +55,348 @@ api_router = APIRouter(prefix="/api")
 
 
 # ============== EMAIL FUNCTIONS ==============
+
+def send_email(to_email: str, subject: str, html_content: str, text_content: str, reply_to: str = None):
+    """Generic email sending function with logging"""
+    try:
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = subject
+        msg['From'] = f'Droomvriendjes <{SMTP_FROM}>'
+        msg['To'] = to_email
+        
+        if reply_to:
+            msg['Reply-To'] = reply_to
+        
+        msg.attach(MIMEText(text_content, 'plain'))
+        msg.attach(MIMEText(html_content, 'html'))
+        
+        # Send email via SMTP SSL
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=context) as server:
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.sendmail(SMTP_FROM, to_email, msg.as_string())
+        
+        logger.info(f"✅ EMAIL SENT: To={to_email}, Subject={subject}")
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ EMAIL FAILED: To={to_email}, Subject={subject}, Error={str(e)}")
+        return False
+
+
+def send_contact_form_email(contact_data: dict):
+    """Send contact form submission to owner (info@droomvriendjes.nl)"""
+    naam = contact_data.get('naam', 'Onbekend')
+    email = contact_data.get('email', 'Onbekend')
+    telefoon = contact_data.get('telefoon', 'Niet opgegeven')
+    onderwerp = contact_data.get('onderwerp', 'Geen onderwerp')
+    bericht = contact_data.get('bericht', '')
+    page_url = contact_data.get('page_url', 'Onbekend')
+    timestamp = datetime.now(timezone.utc).strftime('%d-%m-%Y %H:%M:%S')
+    
+    subject = f"📬 Nieuw contactformulier: {onderwerp}"
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%); padding: 20px; border-radius: 10px 10px 0 0;">
+            <h1 style="color: white; margin: 0;">📬 Nieuw Contactformulier</h1>
+        </div>
+        
+        <div style="background: white; padding: 25px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; width: 120px;">Naam:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{naam}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <a href="mailto:{email}" style="color: #7c3aed;">{email}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Telefoon:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{telefoon}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Onderwerp:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{onderwerp}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Datum/tijd:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{timestamp} (UTC)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Pagina:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px;">{page_url}</td>
+                </tr>
+            </table>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f3f4f6; border-radius: 8px;">
+                <strong>Bericht:</strong>
+                <p style="margin: 10px 0 0 0; white-space: pre-wrap;">{bericht}</p>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #dbeafe; border-radius: 8px;">
+                <p style="margin: 0; font-size: 14px;">
+                    💡 <strong>Tip:</strong> Klik op "Beantwoorden" om direct te reageren naar {email}
+                </p>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    text_content = f"""
+    NIEUW CONTACTFORMULIER
+    ======================
+    
+    Naam: {naam}
+    Email: {email}
+    Telefoon: {telefoon}
+    Onderwerp: {onderwerp}
+    Datum/tijd: {timestamp} (UTC)
+    Pagina: {page_url}
+    
+    BERICHT:
+    {bericht}
+    """
+    
+    return send_email(OWNER_EMAIL, subject, html_content, text_content, reply_to=email)
+
+
+def send_checkout_started_email(checkout_data: dict):
+    """Send checkout started notification to owner"""
+    customer_email = checkout_data.get('customer_email', 'Onbekend')
+    cart_items = checkout_data.get('cart_items', [])
+    total_amount = checkout_data.get('total_amount', 0)
+    session_id = checkout_data.get('session_id', 'Onbekend')
+    timestamp = datetime.now(timezone.utc).strftime('%d-%m-%Y %H:%M:%S')
+    
+    # Build items HTML
+    items_html = ""
+    for item in cart_items:
+        items_html += f"""
+        <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #eee;">{item.get('name', 'Product')}</td>
+            <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center;">{item.get('quantity', 1)}x</td>
+            <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">€{item.get('price', 0):.2f}</td>
+        </tr>
+        """
+    
+    subject = f"🛒 Checkout gestart - {customer_email}"
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 20px; border-radius: 10px 10px 0 0;">
+            <h1 style="color: white; margin: 0;">🛒 Checkout Gestart!</h1>
+        </div>
+        
+        <div style="background: white; padding: 25px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+            <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p style="margin: 0; font-size: 16px;">
+                    <strong>⚡ Actie vereist:</strong> Een klant is begonnen met afrekenen!
+                </p>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; width: 140px;">Klant email:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <a href="mailto:{customer_email}" style="color: #7c3aed; font-weight: bold;">{customer_email}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Datum/tijd:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{timestamp} (UTC)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Session ID:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px;">{session_id}</td>
+                </tr>
+            </table>
+            
+            <h3 style="color: #333; margin-bottom: 10px;">Winkelwagen:</h3>
+            <table style="width: 100%; border-collapse: collapse; background: #f9fafb; border-radius: 8px;">
+                <thead>
+                    <tr style="background: #7c3aed; color: white;">
+                        <th style="padding: 10px; text-align: left;">Product</th>
+                        <th style="padding: 10px; text-align: center;">Aantal</th>
+                        <th style="padding: 10px; text-align: right;">Prijs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items_html}
+                </tbody>
+                <tfoot>
+                    <tr style="background: #f3f4f6;">
+                        <td colspan="2" style="padding: 12px; font-weight: bold; font-size: 16px;">Totaal</td>
+                        <td style="padding: 12px; font-weight: bold; font-size: 16px; text-align: right; color: #7c3aed;">
+                            €{total_amount:.2f}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #dbeafe; border-radius: 8px;">
+                <p style="margin: 0; font-size: 14px;">
+                    💬 <strong>Tip:</strong> Stuur een chat/email naar {customer_email} om te helpen met de bestelling!
+                </p>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    
+    text_content = f"""
+    CHECKOUT GESTART!
+    =================
+    
+    Klant email: {customer_email}
+    Datum/tijd: {timestamp} (UTC)
+    Session ID: {session_id}
+    
+    WINKELWAGEN:
+    """
+    for item in cart_items:
+        text_content += f"\n- {item.get('name', 'Product')} x{item.get('quantity', 1)} = €{item.get('price', 0):.2f}"
+    text_content += f"\n\nTOTAAL: €{total_amount:.2f}"
+    
+    return send_email(OWNER_EMAIL, subject, html_content, text_content, reply_to=customer_email)
+
+
+def send_order_notification_email(order_data: dict, event_type: str):
+    """Send order event notification to owner"""
+    order_id = str(order_data.get('_id', ''))[-8:].upper() if order_data.get('_id') else 'UNKNOWN'
+    customer_email = order_data.get('customer_email', 'Onbekend')
+    customer_name = order_data.get('customer_name', 'Onbekend')
+    total_amount = order_data.get('total_amount', 0)
+    items = order_data.get('items', [])
+    timestamp = datetime.now(timezone.utc).strftime('%d-%m-%Y %H:%M:%S')
+    
+    # Event-specific styling
+    event_config = {
+        'order_placed': {
+            'emoji': '📦',
+            'title': 'Nieuwe Bestelling',
+            'color': '#3b82f6',
+            'message': 'Een nieuwe bestelling is geplaatst en wacht op betaling.'
+        },
+        'payment_success': {
+            'emoji': '✅',
+            'title': 'Betaling Geslaagd',
+            'color': '#10b981',
+            'message': 'De betaling is succesvol ontvangen! Bestelling kan worden verzonden.'
+        },
+        'payment_failed': {
+            'emoji': '❌',
+            'title': 'Betaling Mislukt/Afgebroken',
+            'color': '#ef4444',
+            'message': 'De betaling is mislukt of afgebroken door de klant.'
+        }
+    }
+    
+    config = event_config.get(event_type, event_config['order_placed'])
+    
+    # Build items HTML
+    items_html = ""
+    for item in items:
+        items_html += f"""
+        <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #eee;">{item.get('product_name', 'Product')}</td>
+            <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: center;">{item.get('quantity', 1)}x</td>
+            <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">€{item.get('price', 0):.2f}</td>
+        </tr>
+        """
+    
+    subject = f"{config['emoji']} {config['title']} - #{order_id} ({customer_email})"
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: {config['color']}; padding: 20px; border-radius: 10px 10px 0 0;">
+            <h1 style="color: white; margin: 0;">{config['emoji']} {config['title']}</h1>
+        </div>
+        
+        <div style="background: white; padding: 25px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+            <div style="padding: 15px; background: #f3f4f6; border-radius: 8px; margin-bottom: 20px;">
+                <p style="margin: 0;">{config['message']}</p>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; width: 140px;">Order ID:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #7c3aed;">#{order_id}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Klant naam:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{customer_name}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Klant email:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <a href="mailto:{customer_email}" style="color: #7c3aed;">{customer_email}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold;">Datum/tijd:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee;">{timestamp} (UTC)</td>
+                </tr>
+            </table>
+            
+            <h3 style="color: #333; margin-bottom: 10px;">Bestelde producten:</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #7c3aed; color: white;">
+                        <th style="padding: 10px; text-align: left;">Product</th>
+                        <th style="padding: 10px; text-align: center;">Aantal</th>
+                        <th style="padding: 10px; text-align: right;">Prijs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items_html}
+                </tbody>
+                <tfoot>
+                    <tr style="background: #f3f4f6;">
+                        <td colspan="2" style="padding: 12px; font-weight: bold; font-size: 16px;">Totaal</td>
+                        <td style="padding: 12px; font-weight: bold; font-size: 16px; text-align: right; color: #7c3aed;">
+                            €{total_amount:.2f}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </body>
+    </html>
+    """
+    
+    text_content = f"""
+    {config['title'].upper()}
+    {'=' * len(config['title'])}
+    
+    {config['message']}
+    
+    Order ID: #{order_id}
+    Klant naam: {customer_name}
+    Klant email: {customer_email}
+    Datum/tijd: {timestamp} (UTC)
+    
+    BESTELDE PRODUCTEN:
+    """
+    for item in items:
+        text_content += f"\n- {item.get('product_name', 'Product')} x{item.get('quantity', 1)} = €{item.get('price', 0):.2f}"
+    text_content += f"\n\nTOTAAL: €{total_amount:.2f}"
+    
+    return send_email(OWNER_EMAIL, subject, html_content, text_content, reply_to=customer_email)
+
 
 def send_order_confirmation_email(order_data: dict):
     """Send order confirmation email to customer"""
@@ -185,11 +530,11 @@ def send_order_confirmation_email(order_data: dict):
             server.login(SMTP_USER, SMTP_PASSWORD)
             server.sendmail(SMTP_FROM, customer_email, msg.as_string())
         
-        logger.info(f"Order confirmation email sent to {customer_email}")
+        logger.info(f"✅ Order confirmation email sent to {customer_email}")
         return True
         
     except Exception as e:
-        logger.error(f"Failed to send order confirmation email: {str(e)}")
+        logger.error(f"❌ Failed to send order confirmation email: {str(e)}")
         return False
 
 
