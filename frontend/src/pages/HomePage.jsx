@@ -16,22 +16,40 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-white">
+      {/* Trustpilot Banner */}
+      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-b border-amber-200 py-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center space-x-2 text-sm">
+            <div className="flex items-center space-x-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star key={star} className="w-4 h-4 fill-green-600 text-green-600" />
+              ))}
+            </div>
+            <span className="font-semibold text-gray-800">4.7/5 Uitstekend!</span>
+            <span className="text-gray-600">1200+ reviews</span>
+            <span className="text-green-600 font-semibold">★★★★★</span>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
               <img 
                 src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
                 alt="Droomvriendjes Logo" 
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors">Producten</a>
-              <a href="#voordelen" className="text-gray-700 hover:text-purple-600 transition-colors">Voordelen</a>
-              <a href="#reviews" className="text-gray-700 hover:text-purple-600 transition-colors">Reviews</a>
-              <a href="#faq" className="text-gray-700 hover:text-purple-600 transition-colors">FAQ</a>
+              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Knuffels</a>
+              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Mini Knuffels</a>
+              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Winter Sale</a>
+              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Bundels</a>
+              <Link to="/over-ons" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Over Droomvriendjes</Link>
+              <Link to="/contact" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Contact</Link>
             </nav>
             <Button variant="outline" className="relative">
               <ShoppingCart className="w-5 h-5" />
@@ -43,11 +61,33 @@ const HomePage = () => {
             </Button>
           </div>
         </div>
+        
+        {/* Trust Badges Bar */}
+        <div className="bg-amber-50 border-t border-amber-100 py-3">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start space-x-2">
+                <span className="text-amber-600 text-xl">✓</span>
+                <span className="text-gray-700">Vertrouwd door 100.000+ klanten</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2">
+                <span className="text-amber-600 text-xl">✓</span>
+                <span className="text-gray-700">Binnen 30 dagen gratis retourneren</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2">
+                <span className="text-amber-600 text-xl">✓</span>
+                <span className="text-gray-700">Gratis verzending (twv. €5,95)</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Promo Banner */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 text-center">
-        <p className="text-sm md:text-base font-semibold">🎁 ACTIE: 2 KOPEN = 3E GRATIS! 🎁</p>
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 text-white py-4 text-center shadow-lg">
+        <p className="text-lg md:text-2xl font-bold tracking-wide">
+          WINTER SALE: 2E KNUFFEL 50% KORTING
+        </p>
       </div>
 
       {/* Hero Section */}
