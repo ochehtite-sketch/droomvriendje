@@ -87,95 +87,104 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* Hero Section - LOTGENOOTJE STIJL */}
-      <section className="relative py-12 md:py-20 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Meer dan alleen een knuffel
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-4 max-w-3xl mx-auto">
-              Helpt bij ontspannen, angst en beter slapen
-            </p>
-            <p className="text-lg text-gray-500 mb-8">
-              Voor kinderen én volwassenen
-            </p>
-            
-            <div className="flex flex-col items-center space-y-6 mb-12">
-              {/* Trustpilot Badge */}
-              <div className="flex items-center space-x-3 bg-white rounded-xl shadow-md px-6 py-4 border border-gray-100">
-                <div className="flex items-center space-x-1 bg-green-600 px-3 py-2 rounded">
-                  <Star className="w-5 h-5 fill-white text-white" />
-                  <span className="text-white font-bold text-sm">Trustpilot</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-6 h-6 fill-green-600 text-green-600" />
-                  ))}
-                </div>
-                <div className="text-left">
-                  <p className="font-bold text-gray-900 text-lg">4.7/5 Uitstekend!</p>
-                  <p className="text-sm text-gray-600">Gebaseerd op 1.200+ klant beoordelingen</p>
-                </div>
+      {/* Hero Section - Met achtergrondafbeelding */}
+      <section className="relative min-h-[600px] md:min-h-[700px] overflow-hidden">
+        {/* Achtergrondafbeelding */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/ab57nybn_ChatGPT%20Image%2012%20jan%202026%2C%2012_38_53.png')`
+          }}
+        >
+          {/* Overlay voor betere leesbaarheid */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6f1]/60 via-[#faf6f1]/40 to-[#faf6f1]/90"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12">
+          <div className="flex flex-col items-center">
+            {/* Hoofdtekst bovenaan */}
+            <div className="text-center mb-8">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
+                Rust in je armen,
+                <br />
+                wanneer je het nodig hebt
+              </h1>
+            </div>
+          </div>
+        </div>
+        
+        {/* Kenmerken onderaan */}
+        <div className="absolute bottom-0 left-0 right-0 bg-[#faf6f1]/95 py-8">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Drie kenmerken in rij */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-6">
+              <div className="flex flex-col items-center">
+                <span className="text-[#c9a55a] text-2xl mb-2">✦</span>
+                <p className="text-[#5a4a3a] font-medium text-sm md:text-base">Brengt ontspanning<br />en geborgenheid</p>
               </div>
-              
-              {/* Review Card */}
-              <Card className="max-w-md border-2 border-gray-100 shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                        A
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-bold text-gray-900">Anita N.</p>
-                        <div className="flex items-center space-x-1">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star key={star} className="w-4 h-4 fill-green-600 text-green-600" />
-                          ))}
-                          <span className="text-sm font-bold ml-1">5.0</span>
-                        </div>
-                      </div>
-                      <p className="text-gray-700 text-sm leading-relaxed italic">
-                        "Een aanrader! Want het is super fijn om een Droomvriendjes te hebben: de beschrijving op de site komt overeen met de werkelijkheid!"
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="flex flex-col items-center">
+                <span className="text-[#c9a55a] text-2xl mb-2">✦</span>
+                <p className="text-[#5a4a3a] font-medium text-sm md:text-base">Kalmerende lichtjes<br />en rustgevende geluiden</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-[#c9a55a] text-2xl mb-2">✦</span>
+                <p className="text-[#5a4a3a] font-medium text-sm md:text-base">Voor kinderen én<br />volwassenen</p>
+              </div>
+            </div>
+            
+            {/* Bullet points */}
+            <div className="flex flex-col items-center space-y-2 mb-6">
+              <div className="flex items-center space-x-2">
+                <span className="text-[#c9a55a]">✦</span>
+                <span className="text-[#5a4a3a] text-sm md:text-base">Brengt ontspanning en geborgenheid</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-[#c9a55a]">✦</span>
+                <span className="text-[#5a4a3a] text-sm md:text-base">Kalmerende lichtjes en rustgevende geluiden</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-[#c9a55a]">✦</span>
+                <span className="text-[#5a4a3a] text-sm md:text-base">Voor kinderen én volwassenen</span>
+              </div>
             </div>
             
             {/* CTA Button */}
             <div className="flex justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 text-lg shadow-lg hover:shadow-xl transition-all">
-                <a href="#producten">Bekijk Onze Knuffels</a>
+              <Button 
+                size="lg" 
+                className="bg-[#5a4a3a] hover:bg-[#4a3a2a] text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
+              >
+                <a href="#producten">Bekijk onze knuffels</a>
               </Button>
             </div>
           </div>
-          
-          {/* Trust Features */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-5xl mx-auto">
-            <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border border-blue-100">
-              <div className="text-4xl mb-3">🚚</div>
-              <p className="font-bold text-gray-900 mb-1">Gratis verzending</p>
-              <p className="text-sm text-gray-600">Voor 23:00 besteld, morgen in huis</p>
+        </div>
+      </section>
+      
+      {/* Trust Features onder hero */}
+      <section className="py-12 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">🚚</div>
+              <p className="font-bold text-gray-900 text-sm mb-1">Gratis verzending</p>
+              <p className="text-xs text-gray-600">Voor 23:00 besteld, morgen in huis</p>
             </div>
-            <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border border-purple-100">
-              <div className="text-4xl mb-3">↩️</div>
-              <p className="font-bold text-gray-900 mb-1">30 dagen retour</p>
-              <p className="text-sm text-gray-600">Niet goed = geld terug</p>
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">↩️</div>
+              <p className="font-bold text-gray-900 text-sm mb-1">30 dagen retour</p>
+              <p className="text-xs text-gray-600">Niet goed = geld terug</p>
             </div>
-            <div className="text-center p-6 bg-gradient-to-br from-pink-50 to-orange-50 rounded-2xl border border-pink-100">
-              <div className="text-4xl mb-3">✓</div>
-              <p className="font-bold text-gray-900 mb-1">100.000+ klanten</p>
-              <p className="text-sm text-gray-600">Gaan je voor</p>
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">👥</div>
+              <p className="font-bold text-gray-900 text-sm mb-1">100.000+ klanten</p>
+              <p className="text-xs text-gray-600">Gaan je voor</p>
             </div>
-            <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border border-green-100">
-              <div className="text-4xl mb-3">⭐</div>
-              <p className="font-bold text-gray-900 mb-1">CE gecertificeerd</p>
-              <p className="text-sm text-gray-600">Veilig voor alle leeftijden</p>
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">✅</div>
+              <p className="font-bold text-gray-900 text-sm mb-1">CE gecertificeerd</p>
+              <p className="text-xs text-gray-600">Veilig voor alle leeftijden</p>
             </div>
           </div>
         </div>
