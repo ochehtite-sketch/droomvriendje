@@ -34,9 +34,12 @@ const HomePage = () => {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <span className="text-3xl">🧸</span>
-              <span className="text-2xl font-bold text-purple-900">Droomvriendjes</span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                alt="Droomvriendjes - Voor een zachte nachtrust" 
+                className="h-10 md:h-12"
+              />
             </Link>
             <nav className="hidden md:flex space-x-8">
               <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Knuffels</a>
