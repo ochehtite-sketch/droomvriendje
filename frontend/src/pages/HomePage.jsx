@@ -370,8 +370,8 @@ const HomePage = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Link to={`/product/${product.id}`}>
-                      <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all">
+                    <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                      <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all" data-testid={`view-details-${product.id}`}>
                         Bekijk Details
                       </Button>
                     </Link>
@@ -379,6 +379,7 @@ const HomePage = () => {
                       variant="outline" 
                       className="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold"
                       onClick={() => addToCart(product)}
+                      data-testid={`add-to-cart-home-${product.id}`}
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       In Winkelwagen
