@@ -428,19 +428,16 @@ const HomePage = () => {
             {/* Bedrijfsgegevens */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <img 
-                  src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/nggirrob_Schermopname_12-1-2026_16586_chatgpt.com.jpeg" 
-                  alt="Droomvriendjes Logo" 
-                  className="h-8 w-auto"
-                />
+                <Moon className="w-8 h-8" />
+                <span className="text-2xl font-bold">Droomvriendjes</span>
               </div>
               <div className="text-purple-200 text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
                 <p>Droomvriendjes</p>
-                <p>SCHAESBERGERWEG 103
+                <p>SCHAESBERGERWEG 103</p>
                 <p>6415 AD Heerlen</p>
+                <p className="text-xs italic">(Dit is geen bezoekadres)</p>
                 <p className="mt-3">KVK: 9921083</p>
-                <p></p>
                 
                 <div className="mt-4 pt-4 border-t border-purple-700">
                   <p className="font-semibold text-white mb-1">Retouradres:</p>
