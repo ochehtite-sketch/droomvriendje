@@ -34,8 +34,8 @@ db = client[os.environ['DB_NAME']]
 # Mollie configuration
 MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
 MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
-FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendjes-clone.preview.emergentagent.com')
-API_URL = os.environ.get('API_URL', 'https://droomvriendjes-clone.preview.emergentagent.com')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://plushfriends.preview.emergentagent.com')
+API_URL = os.environ.get('API_URL', 'https://plushfriends.preview.emergentagent.com')
 
 # SMTP Email configuration
 SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.transip.email')
