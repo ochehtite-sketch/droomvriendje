@@ -58,27 +58,27 @@ const HomePage = () => {
             </Button>
           </div>
         </div>
-        
-        {/* Trust Badges Bar */}
-        <div className="bg-amber-50 border-t border-amber-100 py-3">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start space-x-2">
-                <span className="text-amber-600 text-xl">✓</span>
-                <span className="text-gray-700">Vertrouwd door 100.000+ klanten</span>
-              </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2">
-                <span className="text-amber-600 text-xl">✓</span>
-                <span className="text-gray-700">Binnen 30 dagen gratis retourneren</span>
-              </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2">
-                <span className="text-amber-600 text-xl">✓</span>
-                <span className="text-gray-700">Gratis verzending (twv. €5,95)</span>
-              </div>
+      </header>
+      
+      {/* Trust Badges Bar - Niet sticky, scrollt mee */}
+      <div className="bg-amber-50 border-b border-amber-100 py-3 hidden md:block">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-3 gap-4 text-sm text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-2">
+              <span className="text-amber-600 text-xl">✓</span>
+              <span className="text-gray-700">Vertrouwd door 100.000+ klanten</span>
+            </div>
+            <div className="flex items-center justify-center md:justify-start space-x-2">
+              <span className="text-amber-600 text-xl">✓</span>
+              <span className="text-gray-700">Binnen 30 dagen gratis retourneren</span>
+            </div>
+            <div className="flex items-center justify-center md:justify-start space-x-2">
+              <span className="text-amber-600 text-xl">✓</span>
+              <span className="text-gray-700">Gratis verzending (twv. €5,95)</span>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Promo Banner */}
       <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 text-white py-4 text-center shadow-lg">
