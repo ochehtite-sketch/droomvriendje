@@ -383,8 +383,17 @@ const CheckoutPage = () => {
                 <div className="space-y-2 pt-2">
                   <div className="flex justify-between text-sm">
                     <span>Subtotaal</span>
-                    <span>€{getTotal().toFixed(2).replace('.', ',')}</span>
+                    <span>€{getSubtotal().toFixed(2).replace('.', ',')}</span>
                   </div>
+                  {getDiscount() > 0 && (
+                    <div className="flex justify-between text-sm text-green-600">
+                      <span className="flex items-center gap-1">
+                        <Tag className="w-3 h-3" />
+                        2e knuffel 50% korting
+                      </span>
+                      <span>-€{getDiscount().toFixed(2).replace('.', ',')}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-sm text-green-600">
                     <span>Verzending</span>
                     <span>GRATIS</span>
@@ -403,7 +412,7 @@ const CheckoutPage = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-600">✓</span>
-                    <span>30 dagen retourrecht</span>
+                    <span>14 dagen retourrecht</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-600">✓</span>
