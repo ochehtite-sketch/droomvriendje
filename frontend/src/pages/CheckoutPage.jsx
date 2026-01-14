@@ -6,14 +6,14 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
-import { Moon, ShoppingCart, ArrowLeft, CreditCard, Loader2, Trash2, Plus, Minus } from 'lucide-react';
+import { Moon, ShoppingCart, ArrowLeft, CreditCard, Loader2, Trash2, Plus, Minus, Tag } from 'lucide-react';
 import { trackAddPaymentInfo, trackAddShippingInfo } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { cart, getTotal, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { cart, getSubtotal, getDiscount, getTotal, updateQuantity, removeFromCart, clearCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('ideal');
