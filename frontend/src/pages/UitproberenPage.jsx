@@ -24,7 +24,7 @@ const UitproberenPage = () => {
       <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Gift className="w-20 h-20 mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">30 Dagen Gratis Uitproberen</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">14 Dagen Gratis Uitproberen</h1>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
             Niet tevreden? Geld terug. Zo simpel is het.
           </p>
@@ -34,10 +34,10 @@ const UitproberenPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="space-y-8">
           <section className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Probeer Droomvriendjes 30 Dagen Risico vrij</h2>
+            <h2 className="text-3xl font-bold text-purple-900 mb-4">Probeer Droomvriendjes 14 Dagen Risicovrij</h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               We zijn er zo van overtuigd dat jouw kind beter zal slapen met Droomvriendjes, dat we je 
-              30 dagen de tijd geven om het zelf te ervaren. Werkt het niet? Dan krijg je je geld terug.
+              14 dagen de tijd geven om het zelf te ervaren. Werkt het niet? Dan krijg je je geld terug.
             </p>
           </section>
 
@@ -58,7 +58,7 @@ const UitproberenPage = () => {
                   <span className="text-3xl font-bold text-blue-600">2</span>
                 </div>
                 <h3 className="font-bold text-purple-900 mb-2">Probeer</h3>
-                <p className="text-gray-600 text-sm">Test de knuffel 30 dagen lang thuis bij jouw kind</p>
+                <p className="text-gray-600 text-sm">Test de knuffel 14 dagen lang thuis bij jouw kind</p>
               </CardContent>
             </Card>
 
@@ -74,13 +74,13 @@ const UitproberenPage = () => {
           </div>
 
           <section className="bg-purple-50 rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-purple-900 mb-6">Wat houdt 30 dagen uitproberen in?</h2>
+            <h2 className="text-2xl font-bold text-purple-900 mb-6">Wat houdt 14 dagen uitproberen in?</h2>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-gray-900">Volledige 30 dagen bedenktijd</h3>
-                  <p className="text-gray-600">Je hebt vanaf de ontvangstdatum 30 dagen de tijd om de knuffel uit te proberen</p>
+                  <h3 className="font-bold text-gray-900">Volledige 14 dagen bedenktijd</h3>
+                  <p className="text-gray-600">Je hebt vanaf de ontvangstdatum 14 dagen de tijd om de knuffel uit te proberen</p>
                 </div>
               </div>
 
