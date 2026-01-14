@@ -25,7 +25,7 @@ export const products = [
     reviews: 187,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 2,
@@ -51,7 +51,7 @@ export const products = [
     reviews: 143,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 3,
@@ -77,7 +77,7 @@ export const products = [
     reviews: 219,
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 4,
@@ -103,7 +103,7 @@ export const products = [
     reviews: 156,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 5,
@@ -129,7 +129,7 @@ export const products = [
     reviews: 198,
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 6,
@@ -155,7 +155,7 @@ export const products = [
     reviews: 234,
     badge: "VOORDEELSET",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 7,
@@ -181,7 +181,7 @@ export const products = [
     reviews: 178,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 8,
@@ -207,7 +207,7 @@ export const products = [
     reviews: 156,
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 9,
@@ -233,7 +233,7 @@ export const products = [
     reviews: 267,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 10,
@@ -259,7 +259,7 @@ export const products = [
     reviews: 312,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   },
   {
     id: 11,
@@ -285,7 +285,7 @@ export const products = [
     reviews: 287,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "30 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie"
   }
 ];
 
@@ -656,7 +656,7 @@ export const faqs = [
   },
   {
     question: "Kan ik mijn bestelling retourneren?",
-    answer: "Ja! Je hebt 30 dagen bedenktijd. Ben je niet tevreden? Dan kun je de knuffel gratis retourneren voor een volledige terugbetaling."
+    answer: "Ja! Je hebt 14 dagen bedenktijd. Ben je niet tevreden? Dan kun je de knuffel gratis retourneren voor een volledige terugbetaling."
   },
   {
     question: "Zijn de knuffels veilig voor baby's?",
@@ -721,8 +721,8 @@ export const benefits = [
 export const features = [
   {
     icon: "ShieldCheck",
-    title: "30 Dagen Retourneren",
-    description: "Niet tevreden? Gratis retour binnen 30 dagen"
+    title: "14 Dagen Retourneren",
+    description: "Niet tevreden? Gratis retour binnen 14 dagen"
   },
   {
     icon: "Truck",
