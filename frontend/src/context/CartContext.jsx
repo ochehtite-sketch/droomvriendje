@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { trackAddToCart, trackRemoveFromCart, trackViewCart } from '../utils/analytics';
 
 const CartContext = createContext();
 
@@ -27,7 +28,17 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('droomvriendjes_cart', JSON.stringify(cart));
   }, [cart]);
 
+  // Track view_cart when cart opens
+  useEffect(() => {
+    if (isCartOpen && cart.length > 0) {
+      trackViewCart(cart);
+    }
+  }, [isCartOpen, cart]);
+
   const addToCart = (product) => {
+    // GA4: Track add_to_cart
+    trackAddToCart(product, 1);
+    
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.id === product.id);
       if (existingItem) {
@@ -43,6 +54,12 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
+    // GA4: Track remove_from_cart
+    const product = cart.find(item => item.id === productId);
+    if (product) {
+      trackRemoveFromCart(product, product.quantity);
+    }
+    
     setCart(prevCart => prevCart.filter(item => item.id !== productId));
   };
 
