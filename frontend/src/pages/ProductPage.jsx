@@ -8,6 +8,7 @@ import { Badge } from '../components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { Star, ShoppingCart, Moon, Heart, Check, ArrowLeft, Sparkles, Shield } from 'lucide-react';
 import CartSidebar from '../components/CartSidebar';
+import { trackViewItem, trackSelectItem } from '../utils/analytics';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -25,6 +26,11 @@ const ProductPage = () => {
   useEffect(() => {
     const foundProduct = products.find(p => p.id === parseInt(id));
     setProduct(foundProduct);
+    
+    // GA4: Track view_item when product is loaded
+    if (foundProduct) {
+      trackViewItem(foundProduct);
+    }
   }, [id]);
 
   const handleAddToCart = () => {
