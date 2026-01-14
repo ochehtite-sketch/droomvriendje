@@ -90,7 +90,7 @@ const RetournerenPage = () => {
                 <Clock className="w-6 h-6 text-purple-600 mt-1" />
                 <div>
                   <h3 className="font-bold text-gray-900">Retourperiode</h3>
-                  <p className="text-gray-600">Je hebt 30 dagen na ontvangst om je product te retourneren.</p>
+                  <p className="text-gray-600">Je hebt 14 dagen na ontvangst om je product te retourneren.</p>
                 </div>
               </div>
 
