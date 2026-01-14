@@ -208,16 +208,62 @@ const CartSidebar = () => {
           
           {/* Footer */}
           {cart.length > 0 && (
-            <div className="border-t p-4 space-y-4">
+            <div className="border-t p-4 space-y-3">
+              {/* Kortingscode invoerveld */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                  <Ticket className="w-4 h-4" />
+                  Kortingscode invoeren
+                </label>
+                {!appliedCoupon ? (
+                  <div className="flex gap-2">
+                    <Input
+                      type="text"
+                      placeholder="Bijv. DV-ABC123"
+                      value={discountCode}
+                      onChange={(e) => {
+                        setDiscountCode(e.target.value.toUpperCase());
+                        setCodeError('');
+                      }}
+                      className={`flex-1 ${codeError ? 'border-red-500' : ''}`}
+                      data-testid="discount-code-input"
+                    />
+                    <Button 
+                      variant="outline"
+                      onClick={handleApplyDiscount}
+                      disabled={isValidatingCode}
+                      className="px-4"
+                    >
+                      {isValidatingCode ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Toepassen'}
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between bg-green-50 p-2 rounded-lg border border-green-200">
+                    <div className="flex items-center gap-2 text-green-700">
+                      <Check className="w-4 h-4" />
+                      <span className="font-medium">{appliedCoupon.code}</span>
+                    </div>
+                    <button 
+                      onClick={removeCoupon}
+                      className="text-red-500 text-sm hover:underline"
+                    >
+                      Verwijder
+                    </button>
+                  </div>
+                )}
+                {codeError && <p className="text-red-500 text-sm">{codeError}</p>}
+                {codeSuccess && <p className="text-green-600 text-sm">{codeSuccess}</p>}
+              </div>
+
               {/* Subtotaal */}
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-gray-600 text-sm">
                 <span>Subtotaal:</span>
                 <span>€{getSubtotal().toFixed(2).replace('.', ',')}</span>
               </div>
               
-              {/* Korting (alleen tonen als er korting is) */}
+              {/* 2e knuffel korting */}
               {getDiscount() > 0 && (
-                <div className="flex justify-between text-green-600">
+                <div className="flex justify-between text-green-600 text-sm">
                   <span className="flex items-center gap-2">
                     <Tag className="w-4 h-4" />
                     2e knuffel 50% korting:
@@ -226,10 +272,21 @@ const CartSidebar = () => {
                 </div>
               )}
               
+              {/* Coupon korting */}
+              {appliedCoupon && (
+                <div className="flex justify-between text-green-600 text-sm">
+                  <span className="flex items-center gap-2">
+                    <Ticket className="w-4 h-4" />
+                    Kortingscode ({appliedCoupon.code}):
+                  </span>
+                  <span>-€{appliedCoupon.discount_amount.toFixed(2).replace('.', ',')}</span>
+                </div>
+              )}
+              
               {/* Totaal */}
               <div className="flex justify-between text-lg font-bold border-t pt-2">
                 <span>Totaal:</span>
-                <span>€{getTotal().toFixed(2).replace('.', ',')}</span>
+                <span>€{getFinalTotal().toFixed(2).replace('.', ',')}</span>
               </div>
               
               <div className="text-sm text-green-600 flex items-center gap-2">
@@ -237,7 +294,7 @@ const CartSidebar = () => {
                 Gratis verzending!
               </div>
               
-              {/* Korting hint als er nog geen korting is */}
+              {/* Korting hint */}
               {getDiscount() === 0 && getItemCount() === 1 && (
                 <div className="text-sm text-blue-600 bg-blue-50 p-2 rounded-lg flex items-center gap-2">
                   <Tag className="w-4 h-4" />
