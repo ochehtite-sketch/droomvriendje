@@ -129,7 +129,7 @@ const HomePage = () => {
             </div>
             <div className="text-center p-4">
               <div className="text-3xl mb-2">👥</div>
-              <p className="font-bold text-gray-900 text-sm mb-1">100.000+ klanten</p>
+              <p className="font-bold text-gray-900 text-sm mb-1">10k+ klanten</p>
               <p className="text-xs text-gray-600">Gaan je voor</p>
             </div>
             <div className="text-center p-4">
