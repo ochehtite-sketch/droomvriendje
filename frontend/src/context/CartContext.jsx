@@ -126,7 +126,9 @@ export const CartProvider = ({ children }) => {
       getTotal,
       getItemCount,
       isCartOpen,
-      setIsCartOpen
+      setIsCartOpen,
+      appliedCoupon,
+      setAppliedCoupon
     }}>
       {children}
     </CartContext.Provider>
