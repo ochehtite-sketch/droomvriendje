@@ -713,6 +713,318 @@ async def checkout_started(checkout: CheckoutStartedCreate):
         return {"status": "success", "session_id": "UNKNOWN", "email_sent": False}
 
 
+# ============== DISCOUNT CODE ENDPOINTS ==============
+
+@api_router.post("/discount/validate")
+async def validate_discount_code(data: DiscountCodeValidate):
+    """Validate a discount code and return the discount amount"""
+    try:
+        code = data.code.strip().upper()
+        
+        # Check if it's a gift card code (starts with DV-)
+        if code.startswith("DV-"):
+            gift_card = await db.gift_cards.find_one({
+                "code": code,
+                "status": "active"
+            })
+            
+            if gift_card:
+                remaining = gift_card.get("remaining_amount", gift_card.get("amount", 0))
+                discount = min(remaining, data.cart_total)
+                return {
+                    "valid": True,
+                    "code": code,
+                    "type": "gift_card",
+                    "discount_amount": discount,
+                    "message": f"Cadeaubon toegepast: -€{discount:.2f}"
+                }
+            else:
+                return {
+                    "valid": False,
+                    "message": "Ongeldige of verlopen cadeaubon"
+                }
+        
+        # Check regular discount codes
+        discount_code = await db.discount_codes.find_one({
+            "code": code,
+            "active": True
+        })
+        
+        if discount_code:
+            # Check if code is expired
+            if discount_code.get("expires_at"):
+                expires = datetime.fromisoformat(discount_code["expires_at"])
+                if expires < datetime.now(timezone.utc):
+                    return {"valid": False, "message": "Deze kortingscode is verlopen"}
+            
+            # Check usage limit
+            if discount_code.get("max_uses"):
+                if discount_code.get("uses", 0) >= discount_code["max_uses"]:
+                    return {"valid": False, "message": "Deze kortingscode is niet meer geldig"}
+            
+            # Calculate discount
+            discount_type = discount_code.get("type", "percentage")
+            discount_value = discount_code.get("value", 0)
+            
+            if discount_type == "percentage":
+                discount_amount = data.cart_total * (discount_value / 100)
+                message = f"{discount_value}% korting toegepast"
+            else:  # fixed amount
+                discount_amount = min(discount_value, data.cart_total)
+                message = f"€{discount_amount:.2f} korting toegepast"
+            
+            return {
+                "valid": True,
+                "code": code,
+                "type": discount_type,
+                "discount_amount": round(discount_amount, 2),
+                "message": message
+            }
+        
+        return {"valid": False, "message": "Ongeldige kortingscode"}
+        
+    except Exception as e:
+        logger.error(f"Discount validation error: {str(e)}")
+        return {"valid": False, "message": "Er ging iets mis bij het valideren"}
+
+
+@api_router.post("/gift-card/purchase")
+async def purchase_gift_card(data: GiftCardPurchase):
+    """Create a gift card purchase and initiate payment"""
+    try:
+        # Generate unique gift card code
+        gift_card_code = f"DV-{uuid.uuid4().hex[:8].upper()}"
+        
+        # Create gift card record (inactive until paid)
+        gift_card = {
+            "code": gift_card_code,
+            "amount": data.amount,
+            "remaining_amount": data.amount,
+            "sender_name": data.sender_name,
+            "sender_email": data.sender_email,
+            "recipient_name": data.recipient_name,
+            "recipient_email": data.recipient_email,
+            "message": data.message,
+            "status": "pending",
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        
+        result = await db.gift_cards.insert_one(gift_card)
+        gift_card_id = str(result.inserted_id)
+        
+        # Create Mollie payment
+        mollie_client = MollieClient()
+        mollie_client.set_api_key(MOLLIE_API_KEY)
+        
+        payment = mollie_client.payments.create({
+            "amount": {
+                "currency": "EUR",
+                "value": f"{data.amount:.2f}"
+            },
+            "description": f"Droomvriendjes Cadeaubon €{data.amount:.2f}",
+            "redirectUrl": f"{FRONTEND_URL}/cadeaubon/succes?id={gift_card_id}",
+            "webhookUrl": f"{API_URL}/api/webhook/gift-card",
+            "metadata": {
+                "gift_card_id": gift_card_id,
+                "type": "gift_card"
+            }
+        })
+        
+        # Update gift card with payment ID
+        await db.gift_cards.update_one(
+            {"_id": result.inserted_id},
+            {"$set": {"mollie_payment_id": payment.id}}
+        )
+        
+        logger.info(f"Gift card purchase initiated: {gift_card_code} for €{data.amount}")
+        
+        return {
+            "success": True,
+            "gift_card_id": gift_card_id,
+            "checkout_url": payment.checkout_url
+        }
+        
+    except Exception as e:
+        logger.error(f"Gift card purchase error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.post("/webhook/gift-card")
+async def gift_card_webhook(request: Request):
+    """Handle Mollie webhook for gift card payments"""
+    try:
+        form_data = await request.form()
+        payment_id = form_data.get("id")
+        
+        if not payment_id:
+            return {"status": "ignored"}
+        
+        mollie_client = MollieClient()
+        mollie_client.set_api_key(MOLLIE_API_KEY)
+        payment = mollie_client.payments.get(payment_id)
+        
+        # Find the gift card
+        gift_card = await db.gift_cards.find_one({"mollie_payment_id": payment_id})
+        
+        if not gift_card:
+            logger.warning(f"Gift card not found for payment: {payment_id}")
+            return {"status": "not_found"}
+        
+        if payment.is_paid():
+            # Activate the gift card
+            await db.gift_cards.update_one(
+                {"mollie_payment_id": payment_id},
+                {"$set": {"status": "active", "paid_at": datetime.now(timezone.utc).isoformat()}}
+            )
+            
+            # Send gift card email to recipient
+            send_gift_card_email(gift_card)
+            
+            # Send confirmation to sender
+            send_gift_card_confirmation_email(gift_card)
+            
+            logger.info(f"Gift card activated and emailed: {gift_card['code']}")
+        
+        elif payment.is_failed() or payment.is_canceled() or payment.is_expired():
+            await db.gift_cards.update_one(
+                {"mollie_payment_id": payment_id},
+                {"$set": {"status": "failed"}}
+            )
+            logger.info(f"Gift card payment failed: {gift_card['code']}")
+        
+        return {"status": "processed"}
+        
+    except Exception as e:
+        logger.error(f"Gift card webhook error: {str(e)}")
+        return {"status": "error"}
+
+
+def send_gift_card_email(gift_card: dict):
+    """Send gift card code to recipient"""
+    try:
+        recipient_email = gift_card.get("recipient_email")
+        recipient_name = gift_card.get("recipient_name", "")
+        sender_name = gift_card.get("sender_name", "Iemand")
+        amount = gift_card.get("amount", 0)
+        code = gift_card.get("code")
+        message = gift_card.get("message", "")
+        
+        subject = f"🎁 Je hebt een Droomvriendjes cadeaubon ontvangen!"
+        
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="utf-8"></head>
+        <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f9f9f9;">
+            <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #7c3aed; margin: 0;">🎁 Cadeaubon</h1>
+                    <p style="color: #666; font-size: 18px;">Van {sender_name}</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%); color: white; padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 20px;">
+                    <p style="margin: 0; font-size: 16px;">Waarde</p>
+                    <p style="margin: 10px 0; font-size: 48px; font-weight: bold;">€{amount:.2f}</p>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin-top: 20px;">
+                        <p style="margin: 0; font-size: 14px;">Jouw kortingscode:</p>
+                        <p style="margin: 10px 0 0 0; font-size: 28px; font-weight: bold; letter-spacing: 2px;">{code}</p>
+                    </div>
+                </div>
+                
+                {f'<div style="background: #f3e8ff; padding: 20px; border-radius: 10px; margin-bottom: 20px;"><p style="margin: 0; color: #7c3aed; font-style: italic;">"{message}"</p></div>' if message else ''}
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="https://droomvriendjes.nl" style="display: inline-block; background: #7c3aed; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+                        Nu Besteden
+                    </a>
+                </div>
+                
+                <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #999; font-size: 14px;">
+                    <p>Voer de code in bij het afrekenen om je korting te gebruiken.</p>
+                    <p>Droomvriendjes - Slaapknuffels voor een betere nachtrust</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+        text_content = f"""
+        CADEAUBON VAN {sender_name.upper()}
+        
+        Hoi {recipient_name}!
+        
+        Je hebt een Droomvriendjes cadeaubon ontvangen ter waarde van €{amount:.2f}!
+        
+        Jouw kortingscode: {code}
+        
+        {f'Bericht: "{message}"' if message else ''}
+        
+        Gebruik deze code bij het afrekenen op droomvriendjes.nl
+        
+        Veel plezier met je nieuwe Droomvriendjes!
+        """
+        
+        return send_email(recipient_email, subject, html_content, text_content)
+        
+    except Exception as e:
+        logger.error(f"Failed to send gift card email: {str(e)}")
+        return False
+
+
+def send_gift_card_confirmation_email(gift_card: dict):
+    """Send confirmation to gift card purchaser"""
+    try:
+        sender_email = gift_card.get("sender_email")
+        sender_name = gift_card.get("sender_name", "")
+        recipient_name = gift_card.get("recipient_name", "")
+        recipient_email = gift_card.get("recipient_email")
+        amount = gift_card.get("amount", 0)
+        code = gift_card.get("code")
+        
+        subject = f"✅ Je cadeaubon is verzonden naar {recipient_name}!"
+        
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="utf-8"></head>
+        <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <div style="background: white; border-radius: 10px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <h1 style="color: #10b981; text-align: center;">✅ Cadeaubon Verzonden!</h1>
+                
+                <p>Beste {sender_name},</p>
+                
+                <p>Je cadeaubon ter waarde van <strong>€{amount:.2f}</strong> is succesvol verzonden naar {recipient_name} ({recipient_email}).</p>
+                
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                    <p style="margin: 0;"><strong>Code:</strong> {code}</p>
+                    <p style="margin: 5px 0 0 0;"><strong>Ontvanger:</strong> {recipient_email}</p>
+                </div>
+                
+                <p style="color: #666;">Bedankt voor je aankoop bij Droomvriendjes!</p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        text_content = f"""
+        CADEAUBON VERZONDEN!
+        
+        Beste {sender_name},
+        
+        Je cadeaubon ter waarde van €{amount:.2f} is verzonden naar {recipient_name} ({recipient_email}).
+        
+        Code: {code}
+        
+        Bedankt voor je aankoop bij Droomvriendjes!
+        """
+        
+        return send_email(sender_email, subject, html_content, text_content)
+        
+    except Exception as e:
+        logger.error(f"Failed to send gift card confirmation: {str(e)}")
+        return False
+
+
 # ============== ORDER & PAYMENT ENDPOINTS ==============
 
 @api_router.post("/orders")
