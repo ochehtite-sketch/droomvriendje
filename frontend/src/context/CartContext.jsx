@@ -81,8 +81,26 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  const getTotal = () => {
+  // Bereken subtotaal (zonder korting)
+  const getSubtotal = () => {
     return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  };
+
+  // Bereken korting: 2e knuffel 50% korting
+  // Per 2 items van hetzelfde product: 1x volle prijs + 1x 50% korting
+  const getDiscount = () => {
+    let discount = 0;
+    cart.forEach(item => {
+      // Voor elke 2 items krijg je 50% korting op 1 item
+      const discountedItems = Math.floor(item.quantity / 2);
+      discount += discountedItems * (item.price * 0.5);
+    });
+    return discount;
+  };
+
+  // Totaal na korting
+  const getTotal = () => {
+    return getSubtotal() - getDiscount();
   };
 
   const getItemCount = () => {
@@ -96,6 +114,8 @@ export const CartProvider = ({ children }) => {
       removeFromCart,
       updateQuantity,
       clearCart,
+      getSubtotal,
+      getDiscount,
       getTotal,
       getItemCount,
       isCartOpen,
