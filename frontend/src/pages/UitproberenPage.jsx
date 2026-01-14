@@ -114,7 +114,7 @@ const UitproberenPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Veelgestelde Vragen</h2>
             <div className="space-y-6">
               <div>
-                <h3 className="font-bold text-gray-900 mb-2">Wanneer begint de 30 dagen periode?</h3>
+                <h3 className="font-bold text-gray-900 mb-2">Wanneer begint de 14 dagen periode?</h3>
                 <p className="text-gray-600">De periode start op de dag dat je het product ontvangt.</p>
               </div>
 
@@ -138,7 +138,7 @@ const UitproberenPage = () => {
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
             <Clock className="w-16 h-16 mx-auto mb-4" />
             <h2 className="text-3xl font-bold mb-4">Klaar om het te Proberen?</h2>
-            <p className="text-xl mb-6">30 dagen risicovrij uitproberen. Wat heb je te verliezen?</p>
+            <p className="text-xl mb-6">14 dagen risicovrij uitproberen. Wat heb je te verliezen?</p>
             <Link to="/">
               <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
                 Bekijk Onze Knuffels
