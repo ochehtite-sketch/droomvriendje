@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail } from 'lucide-react';
+import { trackBeginCheckout, trackCheckoutClicked } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -32,6 +33,10 @@ const CartSidebar = () => {
     
     setEmailError('');
     setIsSubmitting(true);
+    
+    // GA4: Track begin_checkout (CONVERSION EVENT)
+    trackBeginCheckout(cart, checkoutEmail);
+    trackCheckoutClicked(cart, checkoutEmail);
     
     try {
       // Send checkout started notification
