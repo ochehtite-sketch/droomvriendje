@@ -3,21 +3,80 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail, Tag } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail, Tag, Ticket, Check } from 'lucide-react';
 import { trackBeginCheckout, trackCheckoutClicked } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CartSidebar = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart, updateQuantity, getSubtotal, getDiscount, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
+  const { cart, removeFromCart, updateQuantity, getSubtotal, getDiscount, getTotal, getItemCount, isCartOpen, setIsCartOpen, appliedCoupon, setAppliedCoupon } = useCart();
   const [checkoutEmail, setCheckoutEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState('');
+  
+  // Discount code state
+  const [discountCode, setDiscountCode] = useState('');
+  const [isValidatingCode, setIsValidatingCode] = useState(false);
+  const [codeError, setCodeError] = useState('');
+  const [codeSuccess, setCodeSuccess] = useState('');
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
+  };
+
+  const handleApplyDiscount = async () => {
+    if (!discountCode.trim()) {
+      setCodeError('Voer een kortingscode in');
+      return;
+    }
+    
+    setIsValidatingCode(true);
+    setCodeError('');
+    setCodeSuccess('');
+    
+    try {
+      const response = await fetch(`${API_URL}/api/discount/validate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: discountCode.trim(),
+          cart_total: getSubtotal()
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.valid) {
+        setCodeSuccess(data.message);
+        setAppliedCoupon({
+          code: data.code,
+          type: data.type,
+          discount_amount: data.discount_amount
+        });
+        localStorage.setItem('droomvriendjes_coupon', JSON.stringify({
+          code: data.code,
+          type: data.type,
+          discount_amount: data.discount_amount
+        }));
+      } else {
+        setCodeError(data.message);
+        setAppliedCoupon(null);
+      }
+    } catch (error) {
+      console.error('Discount validation error:', error);
+      setCodeError('Kon code niet valideren');
+    } finally {
+      setIsValidatingCode(false);
+    }
+  };
+
+  const removeCoupon = () => {
+    setAppliedCoupon(null);
+    setDiscountCode('');
+    setCodeSuccess('');
+    localStorage.removeItem('droomvriendjes_coupon');
   };
 
   const handleCheckout = async () => {
@@ -54,7 +113,7 @@ const CartSidebar = () => {
         body: JSON.stringify({
           customer_email: checkoutEmail,
           cart_items: cartItems,
-          total_amount: getTotal(),
+          total_amount: getFinalTotal(),
           session_id: localStorage.getItem('droomvriendjes_session') || null
         }),
       });
@@ -75,6 +134,15 @@ const CartSidebar = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Calculate final total with coupon
+  const getFinalTotal = () => {
+    let total = getTotal(); // Already includes 2e knuffel 50% korting
+    if (appliedCoupon) {
+      total -= appliedCoupon.discount_amount;
+    }
+    return Math.max(0, total);
   };
 
   if (!isCartOpen) return null;
