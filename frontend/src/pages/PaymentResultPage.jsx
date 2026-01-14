@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Moon, CheckCircle, XCircle, Clock, ArrowLeft, Package } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
+import { trackPurchase } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
@@ -11,6 +12,7 @@ const PaymentResultPage = () => {
   const [status, setStatus] = useState('checking');
   const [orderData, setOrderData] = useState(null);
   const [error, setError] = useState(null);
+  const purchaseTracked = useRef(false);
 
   useEffect(() => {
     const checkPaymentStatus = async () => {
@@ -22,6 +24,16 @@ const PaymentResultPage = () => {
         const data = await response.json();
         setOrderData(data);
         setStatus(data.status);
+        
+        // GA4: Track purchase when payment is successful (only once)
+        if (data.status === 'paid' && !purchaseTracked.current) {
+          purchaseTracked.current = true;
+          trackPurchase({
+            order_id: orderId,
+            total_amount: data.total_amount,
+            items: data.items || []
+          });
+        }
       } catch (err) {
         setError(err.message);
         setStatus('error');
