@@ -83,7 +83,7 @@ const OverOnsPage = () => {
               </li>
               <li className="flex items-start">
                 <span className="text-purple-600 mr-3">✓</span>
-                <span>30 dagen niet goed = geld terug garantie</span>
+                <span>14 dagen niet goed = geld terug garantie</span>
               </li>
               <li className="flex items-start">
                 <span className="text-purple-600 mr-3">✓</span>

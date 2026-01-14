@@ -477,7 +477,7 @@ const HomePage = () => {
           </Button>
           <div className="mt-6 flex items-center justify-center space-x-4 text-sm">
             <span>✓ Gratis verzending</span>
-            <span>✓ 30 dagen retour</span>
+            <span>✓ 14 dagen retour</span>
             <span>✓ Klarna beschikbaar</span>
           </div>
         </div>
@@ -521,7 +521,7 @@ const HomePage = () => {
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
                 <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
-                <li><Link to="/uitproberen" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
+                <li><Link to="/uitproberen" className="hover:text-white transition-colors">14 dagen gratis uitproberen</Link></li>
                 <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
                 <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
               </ul>

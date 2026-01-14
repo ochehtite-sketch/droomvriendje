@@ -197,7 +197,7 @@ const ProductPage = () => {
               <div className="grid grid-cols-3 gap-4 py-6 border-t border-purple-200">
                 <div className="text-center">
                   <Shield className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                  <p className="text-xs text-gray-600 font-semibold">30 dagen<br />retour</p>
+                  <p className="text-xs text-gray-600 font-semibold">14 dagen<br />retour</p>
                 </div>
                 <div className="text-center">
                   <Check className="w-8 h-8 text-blue-600 mx-auto mb-2" />
@@ -369,7 +369,7 @@ const ProductPage = () => {
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                 <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
                 <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
-                <li><Link to="/uitproberen" className="hover:text-white transition-colors">30 dagen gratis uitproberen</Link></li>
+                <li><Link to="/uitproberen" className="hover:text-white transition-colors">14 dagen gratis uitproberen</Link></li>
                 <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
                 <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
               </ul>
