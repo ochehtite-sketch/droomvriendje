@@ -141,14 +141,41 @@ const CartSidebar = () => {
           {/* Footer */}
           {cart.length > 0 && (
             <div className="border-t p-4 space-y-4">
-              <div className="flex justify-between text-lg font-bold">
+              {/* Subtotaal */}
+              <div className="flex justify-between text-gray-600">
+                <span>Subtotaal:</span>
+                <span>€{getSubtotal().toFixed(2).replace('.', ',')}</span>
+              </div>
+              
+              {/* Korting (alleen tonen als er korting is) */}
+              {getDiscount() > 0 && (
+                <div className="flex justify-between text-green-600">
+                  <span className="flex items-center gap-2">
+                    <Tag className="w-4 h-4" />
+                    2e knuffel 50% korting:
+                  </span>
+                  <span>-€{getDiscount().toFixed(2).replace('.', ',')}</span>
+                </div>
+              )}
+              
+              {/* Totaal */}
+              <div className="flex justify-between text-lg font-bold border-t pt-2">
                 <span>Totaal:</span>
                 <span>€{getTotal().toFixed(2).replace('.', ',')}</span>
               </div>
+              
               <div className="text-sm text-green-600 flex items-center gap-2">
                 <Truck className="w-4 h-4" />
                 Gratis verzending!
               </div>
+              
+              {/* Korting hint als er nog geen korting is */}
+              {getDiscount() === 0 && getItemCount() === 1 && (
+                <div className="text-sm text-blue-600 bg-blue-50 p-2 rounded-lg flex items-center gap-2">
+                  <Tag className="w-4 h-4" />
+                  Voeg nog 1 knuffel toe voor 50% korting!
+                </div>
+              )}
               
               {/* Email input for checkout */}
               <div className="space-y-2">
