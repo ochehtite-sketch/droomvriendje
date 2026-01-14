@@ -14,12 +14,19 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
 
   // Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('droomvriendjes_cart');
     if (savedCart) {
       setCart(JSON.parse(savedCart));
+    }
+    
+    // Load saved coupon
+    const savedCoupon = localStorage.getItem('droomvriendjes_coupon');
+    if (savedCoupon) {
+      setAppliedCoupon(JSON.parse(savedCoupon));
     }
   }, []);
 
