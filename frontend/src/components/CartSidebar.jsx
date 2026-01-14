@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail, Tag } from 'lucide-react';
 import { trackBeginCheckout, trackCheckoutClicked } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CartSidebar = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
+  const { cart, removeFromCart, updateQuantity, getSubtotal, getDiscount, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
   const [checkoutEmail, setCheckoutEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState('');
