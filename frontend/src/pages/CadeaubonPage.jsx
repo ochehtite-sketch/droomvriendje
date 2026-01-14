@@ -110,7 +110,7 @@ const CadeaubonPage = () => {
           <div className="flex justify-between items-center py-2">
             <Link to="/" className="flex items-center overflow-hidden">
               <img 
-                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" 
                 alt="Droomvriendjes - Voor een zachte nachtrust" 
                 className="h-20 md:h-24 w-auto scale-150 origin-center"
               />

@@ -119,7 +119,7 @@ const CheckoutPage = () => {
           <div className="max-w-7xl mx-auto px-4 py-4">
             <Link to="/" className="flex items-center">
               <img 
-                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" 
                 alt="Droomvriendjes" 
                 className="h-16 md:h-20 w-auto"
               />
@@ -150,7 +150,7 @@ const CheckoutPage = () => {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center">
               <img 
-                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vo9pb3ti_LOGO%20DROOMVRIENDJES.png" 
+                src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" 
                 alt="Droomvriendjes" 
                 className="h-16 md:h-20 w-auto"
               />
