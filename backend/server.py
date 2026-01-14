@@ -586,6 +586,8 @@ class OrderCreate(BaseModel):
     customer_zipcode: Optional[str] = None
     items: List[OrderItem]
     total_amount: float
+    discount_code: Optional[str] = None
+    discount_amount: Optional[float] = 0
 
 class PaymentCreate(BaseModel):
     order_id: str
@@ -597,6 +599,19 @@ class OrderResponse(BaseModel):
     total_amount: float
     customer_email: str
     payment_method: Optional[str] = None
+
+# Discount Code Models
+class DiscountCodeValidate(BaseModel):
+    code: str
+    cart_total: float
+
+class GiftCardPurchase(BaseModel):
+    amount: float
+    sender_name: str
+    sender_email: str
+    recipient_name: str
+    recipient_email: str
+    message: Optional[str] = ""
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
