@@ -6,6 +6,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Card, CardContent } from '../components/ui/card';
 import { Moon, ArrowLeft, Mail, Phone, MapPin, Clock, Loader2 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { trackContactFormSubmit } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -39,6 +40,12 @@ const ContactPage = () => {
       const data = await response.json();
       
       if (response.ok) {
+        // GA4: Track contact form submit
+        trackContactFormSubmit({
+          ...formData,
+          page_url: window.location.href
+        });
+        
         toast({
           title: "✅ Bericht verzonden!",
           description: "We nemen zo snel mogelijk contact met je op.",
