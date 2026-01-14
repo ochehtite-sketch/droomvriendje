@@ -49,9 +49,19 @@ export const trackViewItem = (product) => {
 export const trackAddToCart = (product, quantity = 1) => {
   if (!isGtagAvailable()) return;
   
+  const value = parseFloat(product.price) * quantity;
+  
+  // GA4: Standard e-commerce event
   window.gtag('event', 'add_to_cart', {
     currency: 'EUR',
-    value: parseFloat(product.price) * quantity,
+    value: value,
+    items: [formatProductForGA4(product, quantity)]
+  });
+  
+  // Google Ads: Conversion event
+  window.gtag('event', 'ads_conversion_Add_to_cart_1', {
+    currency: 'EUR',
+    value: value,
     items: [formatProductForGA4(product, quantity)]
   });
   
