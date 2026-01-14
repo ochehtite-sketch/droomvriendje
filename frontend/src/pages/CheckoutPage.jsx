@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
@@ -7,6 +7,7 @@ import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { Moon, ShoppingCart, ArrowLeft, CreditCard, Loader2, Trash2, Plus, Minus } from 'lucide-react';
+import { trackAddPaymentInfo, trackAddShippingInfo } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
@@ -26,15 +27,32 @@ const CheckoutPage = () => {
     zipCode: '',
   });
 
+  // Load saved email from cart sidebar
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('droomvriendjes_checkout_email');
+    if (savedEmail) {
+      setFormData(prev => ({ ...prev, email: savedEmail }));
+    }
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // GA4: Track when payment method changes
+  const handlePaymentMethodChange = (value) => {
+    setPaymentMethod(value);
+    trackAddPaymentInfo(cart, value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+
+    // GA4: Track add_shipping_info
+    trackAddShippingInfo(cart, 'gratis_verzending');
 
     try {
       // Create order
