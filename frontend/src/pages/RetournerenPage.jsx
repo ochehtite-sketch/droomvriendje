@@ -30,9 +30,9 @@ const RetournerenPage = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Retourneren & Ruilen</h1>
         
         <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl p-6 mb-8">
-          <h2 className="text-2xl font-bold text-green-900 mb-2">30 Dagen Niet Goed = Geld Terug!</h2>
+          <h2 className="text-2xl font-bold text-green-900 mb-2">14 Dagen Niet Goed = Geld Terug!</h2>
           <p className="text-gray-700">
-            Bij Droomvriendjes mag je je bestelling binnen 30 dagen retourneren. Zonder gedoe, gratis retour!
+            Bij Droomvriendjes mag je je bestelling binnen 14 dagen retourneren. Zonder gedoe, gratis retour!
           </p>
         </div>
 
