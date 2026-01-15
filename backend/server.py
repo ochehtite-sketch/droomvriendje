@@ -54,6 +54,14 @@ app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
 
+# ============== HEALTH CHECK ENDPOINT (Required for Kubernetes) ==============
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for Kubernetes liveness/readiness probes"""
+    return {"status": "healthy", "service": "droomvriendje-backend"}
+
+
 # ============== EMAIL FUNCTIONS ==============
 
 def send_email(to_email: str, subject: str, html_content: str, text_content: str, reply_to: str = None):
