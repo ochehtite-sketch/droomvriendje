@@ -2,25 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { Moon, ArrowLeft, Gift, CheckCircle, Clock } from 'lucide-react';
+import { Gift, CheckCircle, Clock } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const UitproberenPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
-            </Link>
-            <Link to="/">
-              <Button variant="outline"><ArrowLeft className="w-4 h-4 mr-2" />Terug naar Home</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <Layout backButtonText="Terug naar Home">
       <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Gift className="w-20 h-20 mx-auto mb-6" />
@@ -147,7 +134,7 @@ const UitproberenPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

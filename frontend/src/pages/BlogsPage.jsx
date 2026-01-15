@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Moon, ArrowLeft, Calendar, User, Clock } from 'lucide-react';
+import { Calendar, User, Clock } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const BlogsPage = () => {
   const blogs = [
     {
       id: 1,
       title: "5 Tips voor een Betere Nachtrust bij Kinderen",
-      excerpt: "Ontdek de beste tips om je kind te helpen beter te slapen. Van een vaste slaapro utine tot het creëren van een rustige slaapomgeving.",
+      excerpt: "Ontdek de beste tips om je kind te helpen beter te slapen. Van een vaste slaaproutine tot het creëren van een rustige slaapomgeving.",
       author: "Team Droomvriendjes",
       date: "10 januari 2025",
       readTime: "5 min",
@@ -50,7 +51,7 @@ const BlogsPage = () => {
     {
       id: 5,
       title: "Slaaprituals: Hoe Creëer Je Een Rustgevende Routine?",
-      excerpt: "Een goede slaaproutine is essentieel voor kinderen. Lees onze tips voor het creëren van een effectief slaaprit uaal.",
+      excerpt: "Een goede slaaproutine is essentieel voor kinderen. Lees onze tips voor het creëren van een effectief slaaprituaal.",
       author: "Lisa van Dam",
       date: "15 december 2024",
       readTime: "5 min",
@@ -70,25 +71,7 @@ const BlogsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
-            </Link>
-            <Link to="/">
-              <Button variant="outline">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Terug naar Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <Layout backButtonText="Terug naar Home">
       {/* Hero */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -165,7 +148,7 @@ const BlogsPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
