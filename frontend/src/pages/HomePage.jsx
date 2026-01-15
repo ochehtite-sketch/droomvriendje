@@ -360,7 +360,7 @@ const HomePage = () => {
                       <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                  <p className="text-gray-700 mb-4 italic">&ldquo;{testimonial.text}&rdquo;</p>
                   <div>
                     <p className="font-bold text-purple-900">{testimonial.name}</p>
                     <p className="text-sm text-gray-600">{testimonial.role}</p>
