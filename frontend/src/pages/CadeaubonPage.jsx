@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { ArrowLeft, Gift, Heart, Star, Check, Loader2, CreditCard } from 'lucide-react';
+import { Gift, Heart, Star, Loader2, CreditCard } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 const CadeaubonPage = () => {
-  const navigate = useNavigate();
   const [selectedAmount, setSelectedAmount] = useState(50);
   const [customAmount, setCustomAmount] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,28 +77,7 @@ const CadeaubonPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2">
-            <Link to="/" className="flex items-center overflow-hidden">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" 
-                alt="Droomvriendjes - Voor een zachte nachtrust" 
-                className="h-20 md:h-24 w-auto scale-150 origin-center"
-              />
-            </Link>
-            <Link to="/">
-              <Button variant="outline">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Terug naar Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <Layout backButtonText="Terug naar Home">
       {/* Hero */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -139,7 +118,7 @@ const CadeaubonPage = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-purple-900 mb-2">Vrije Keuze</h3>
-                      <p className="text-gray-600">De ontvanger kan zelf kiezen uit al onze kalmerende knuffels en producten. Iedereen krijgt wat hij of zij echt wil!</p>
+                      <p className="text-gray-600">De ontvanger kan zelf kiezen uit al onze kalmerende knuffels en producten. Iedereen krijgt wat gewenst wordt!</p>
                     </div>
                   </div>
                 </CardContent>
@@ -305,6 +284,7 @@ const CadeaubonPage = () => {
                     size="lg" 
                     disabled={isLoading}
                     className="w-full bg-green-600 hover:bg-green-700 text-white py-6"
+                    data-testid="cadeaubon-betalen-button"
                   >
                     {isLoading ? (
                       <>
@@ -330,7 +310,7 @@ const CadeaubonPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
