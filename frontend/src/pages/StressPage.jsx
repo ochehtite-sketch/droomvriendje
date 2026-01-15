@@ -70,7 +70,7 @@ const StressPage = () => {
               <Card className="border-2 border-pink-100">
                 <CardContent className="pt-6">
                   <h3 className="font-bold text-purple-900 mb-2">Fysiek Contact</h3>
-                  <p className="text-gray-600">Het knuffelen van een zachte knuffel stimuleert de productie van oxytocine, het 'knuffelhormoon'.</p>
+                  <p className="text-gray-600">Het knuffelen van een zachte knuffel stimuleert de productie van oxytocine, het knuffelhormoon.</p>
                 </CardContent>
               </Card>
 
@@ -88,7 +88,7 @@ const StressPage = () => {
             <ol className="space-y-3">
               <li><strong>1. Herken de signalen:</strong> Let op veranderingen in gedrag en slaappatronen</li>
               <li><strong>2. Creëer een rustig moment:</strong> Gebruik de Droomvriendjes knuffel in een vast avondritueel</li>
-              <li><strong>3. Praat erover:</strong> Laat je kind vertellen over zijn of haar dag en zorgen</li>
+              <li><strong>3. Praat erover:</strong> Laat je kind vertellen over de dag en zorgen</li>
               <li><strong>4. Beperk schermtijd:</strong> Vooral in de uren voor het slapengaan</li>
               <li><strong>5. Blijf consistent:</strong> Een vaste routine geeft rust en voorspelbaarheid</li>
             </ol>

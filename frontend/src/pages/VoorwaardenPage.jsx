@@ -112,7 +112,7 @@ const VoorwaardenPage = () => {
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Voor zover niet anders is bepaald in de overeenkomst of aanvullende voorwaarden, dienen de door de consument verschuldigde bedragen te worden voldaan binnen 14 dagen na het ingaan van de bedenktermijn.</li>
               <li>De consument heeft de plicht om onjuistheden in verstrekte of vermelde betaalgegevens onverwijld aan de ondernemer te melden.</li>
-              <li>Indien de consument niet tijdig aan zijn betalingsverplichting(en) voldoet, is deze, nadat hij door de ondernemer is gewezen op de te late betaling en de ondernemer de consument een termijn van 14 dagen heeft gegund om alsnog aan zijn betalingsverplichtingen te voldoen, na het uitblijven van betaling binnen deze 14-dagen-termijn, over het nog verschuldigde bedrag de wettelijke rente verschuldigd.</li>
+              <li>Indien de consument niet tijdig aan betalingsverplichting(en) voldoet, is deze, nadat door de ondernemer is gewezen op de te late betaling en de ondernemer de consument een termijn van 14 dagen heeft gegund om alsnog aan betalingsverplichtingen te voldoen, na het uitblijven van betaling binnen deze 14-dagen-termijn, over het nog verschuldigde bedrag de wettelijke rente verschuldigd.</li>
             </ul>
           </section>
 
