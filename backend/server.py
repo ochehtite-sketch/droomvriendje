@@ -808,6 +808,11 @@ async def validate_discount_code(data: DiscountCodeValidate):
 async def purchase_gift_card(data: GiftCardPurchase):
     """Create a gift card purchase and initiate payment"""
     try:
+        # Verify Mollie API key is available
+        if not MOLLIE_API_KEY or len(MOLLIE_API_KEY) < 10:
+            logger.error(f"Mollie API key not configured properly. Length: {len(MOLLIE_API_KEY) if MOLLIE_API_KEY else 0}")
+            raise HTTPException(status_code=500, detail="Betaalsysteem niet correct geconfigureerd")
+        
         # Generate unique gift card code
         gift_card_code = f"DV-{uuid.uuid4().hex[:8].upper()}"
         
@@ -829,6 +834,7 @@ async def purchase_gift_card(data: GiftCardPurchase):
         gift_card_id = str(result.inserted_id)
         
         # Create Mollie payment
+        logger.info(f"Creating gift card payment with API key: {MOLLIE_API_KEY[:15]}...")
         mollie_client = MollieClient()
         mollie_client.set_api_key(MOLLIE_API_KEY)
         
@@ -860,9 +866,11 @@ async def purchase_gift_card(data: GiftCardPurchase):
             "checkout_url": payment.checkout_url
         }
         
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Gift card purchase error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Betaling aanmaken mislukt: {str(e)}")
 
 
 @api_router.post("/webhook/gift-card")
