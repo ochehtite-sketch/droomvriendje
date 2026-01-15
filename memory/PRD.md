@@ -101,13 +101,55 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 ## Backlog
 
 ### P0 - Kritiek (Refactoring)
-- [ ] Header/Footer refactoren naar herbruikbare componenten (25+ pagina's hebben duplicatie)
+- [x] ✅ Header/Footer refactoren naar herbruikbare componenten (Voltooid 15 jan 2025)
+  - Nieuwe componenten: `Header.jsx`, `Footer.jsx`, `Layout.jsx`
+  - 18+ pagina's gerefactord naar de nieuwe Layout component
+  - HomePage behoudt eigen header/footer (speciale styling)
+  - Checkout pagina's intentioneel zonder footer (focused UX)
+
+### P1 - In Afwachting
+- [ ] Product galerij met 8 foto's per product (wacht op Google Drive link van gebruiker)
+- [ ] Product Tagging voor SEO/Google Shopping optimalisatie
+- [ ] Google Ads Setup assistentie (keyword lijsten, advertentieteksten)
 
 ### P2 - Nice to Have
 - [ ] Admin dashboard voor bestellingen
 - [ ] Voorraad beheer
 - [ ] WordPress export functionaliteit
 - [ ] Zoekfunctie voor producten
+
+## Refactoring Voltooid (15 januari 2025)
+### Header/Footer Componenten
+De duplicatie van header/footer code is opgelost door:
+1. **Header.jsx** - Herbruikbare header met logo, cart button, en configurable back button
+2. **Footer.jsx** - Volledige footer met navigatie, bedrijfsgegevens, en betaalmethodes
+3. **Layout.jsx** - Wrapper component die Header, Footer, en CartSidebar combineert
+
+**Configuratie opties Layout component:**
+- `showFullNav` - Toon volledige navigatie (alleen HomePage)
+- `showBackButton` - Toon terug knop
+- `showPromoBanner` - Toon promo banner
+- `hideFooter` - Verberg footer (voor checkout flows)
+- `hideHeader` - Verberg header (voor speciale pagina's)
+
+**Pagina's met Layout component:**
+- OverOnsPage, ProductPage, ContactPage, CadeaubonPage
+- StressPage, AngstPage, SlaapproblemenPage, HSPPage
+- DementiePage, TroostPage, OverprikkelingPage
+- BlogsPage, ReviewsPage, PrivacyPage, VoorwaardenPage
+- RetournerenPage, NaamBedenkerPage, UitproberenPage
+
+**Pagina's met eigen layout:**
+- HomePage (speciale hero sectie en styling)
+- CheckoutPage (focused checkout zonder footer)
+- PaymentResultPage (focused checkout zonder footer)
+
+## Test Resultaten
+- **Iteratie 1:** Backend 100%, Frontend 100%
+- **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
+- **Iteratie 3:** Backend 92% (11/12), Frontend 100% - Email notificaties
+- **Iteratie 4:** Frontend 100% - Header/Footer refactoring succesvol
+- **Test rapporten:** `/app/test_reports/iteration_*.json`
 
 ## Deployment
 - **Status:** Live met echte Mollie betalingen
