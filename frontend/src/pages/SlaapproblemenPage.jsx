@@ -17,7 +17,7 @@ const SlaapproblemenPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Veel Voorkomende Slaapproblemen</h2>
             <ul className="space-y-2 list-disc list-inside">
               <li>Moeite met in slaap vallen (meer dan 30 minuten)</li>
-              <li>Regelmatig wakker worden 's nachts</li>
+              <li>Regelmatig wakker worden in de nacht</li>
               <li>Nachtmerries of nachtangsten</li>
               <li>Te vroeg wakker worden</li>
               <li>Onrustige slaap</li>
