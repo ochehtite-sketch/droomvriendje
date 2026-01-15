@@ -17,8 +17,8 @@ const NaamBedenkerPage = () => {
           <section className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-8">
             <h2 className="text-3xl font-bold text-purple-900 mb-4">De Oorsprong van de Naam</h2>
             <p className="text-lg leading-relaxed">
-              De naam "Droomvriendjes" is ontstaan uit de combinatie van twee belangrijke elementen: 
-              "Ouji" (Japans voor 'prins') en "Kidz" (kinderen). Deze naam symboliseert dat elk 
+              De naam Droomvriendjes is ontstaan uit de combinatie van twee belangrijke elementen: 
+              Ouji (Japans voor prins) en Kidz (kinderen). Deze naam symboliseert dat elk 
               kind koninklijk behandeld moet worden, vooral als het gaat om rust en slaap.
             </p>
           </section>
