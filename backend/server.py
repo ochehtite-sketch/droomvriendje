@@ -26,10 +26,18 @@ logger = logging.getLogger(__name__)
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection - Support both local and Atlas MongoDB
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+db_name = os.environ.get('DB_NAME', 'droomvriendje')
+
+# Initialize MongoDB client
+try:
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[db_name]
+    logger.info(f"MongoDB connected to: {db_name}")
+except Exception as e:
+    logger.error(f"MongoDB connection error: {e}")
+    raise
 
 # Mollie configuration
 MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
