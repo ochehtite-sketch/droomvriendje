@@ -41,61 +41,35 @@ const CadeaubonPage = () => {
     }
 
     try {
-      // Create order for gift card
-      const orderResponse = await fetch(`${API_URL}/api/orders`, {
+      // Use the dedicated gift card purchase endpoint
+      const response = await fetch(`${API_URL}/api/gift-card/purchase`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          customer_email: formData.verzenderEmail,
-          customer_name: formData.verzender,
-          customer_address: '',
-          customer_city: '',
-          customer_zipcode: '',
-          items: [{
-            product_id: 'giftcard',
-            product_name: `Cadeaubon €${amount} voor ${formData.ontvanger}`,
-            price: amount,
-            quantity: 1,
-            image: ''
-          }],
-          total_amount: amount,
-          gift_card_data: {
-            recipient_name: formData.ontvanger,
-            recipient_email: formData.email,
-            message: formData.boodschap,
-            sender_name: formData.verzender
-          }
+          amount: amount,
+          sender_name: formData.verzender,
+          sender_email: formData.verzenderEmail,
+          recipient_name: formData.ontvanger,
+          recipient_email: formData.email,
+          message: formData.boodschap
         })
       });
 
-      if (!orderResponse.ok) {
-        throw new Error('Bestelling aanmaken mislukt');
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Betaling aanmaken mislukt');
       }
 
-      const { order_id } = await orderResponse.json();
-
-      // Create payment
-      const paymentResponse = await fetch(`${API_URL}/api/payments/create`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          order_id,
-          payment_method: 'ideal'
-        })
-      });
-
-      if (!paymentResponse.ok) {
-        const errorData = await paymentResponse.json();
-        throw new Error(errorData.detail || 'Betaling aanmaken mislukt');
+      if (data.checkout_url) {
+        // Redirect to Mollie checkout
+        window.location.href = data.checkout_url;
+      } else {
+        throw new Error('Geen checkout URL ontvangen');
       }
-
-      const { checkout_url } = await paymentResponse.json();
-
-      // Redirect to Mollie checkout
-      window.location.href = checkout_url;
 
     } catch (err) {
-      console.error('Checkout error:', err);
+      console.error('Gift card purchase error:', err);
       setError(err.message || 'Er is iets misgegaan. Probeer het opnieuw.');
     } finally {
       setIsLoading(false);
