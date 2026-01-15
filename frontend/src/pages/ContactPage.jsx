@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Card, CardContent } from '../components/ui/card';
-import { Moon, ArrowLeft, Mail, Phone, MapPin, Clock, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Clock, Loader2 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { trackContactFormSubmit } from '../utils/analytics';
+import Layout from '../components/Layout';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -40,7 +40,6 @@ const ContactPage = () => {
       const data = await response.json();
       
       if (response.ok) {
-        // GA4: Track contact form submit
         trackContactFormSubmit({
           ...formData,
           page_url: window.location.href
@@ -80,26 +79,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
-            </Link>
-            <Link to="/">
-              <Button variant="outline">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Terug naar Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Content */}
+    <Layout backButtonText="Terug naar Home">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8 text-center">Contact</h1>
         <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
@@ -235,7 +215,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

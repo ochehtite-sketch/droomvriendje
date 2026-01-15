@@ -1,28 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '../components/ui/button';
-import { Moon, ArrowLeft } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const VoorwaardenPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
-            </Link>
-            <Link to="/">
-              <Button variant="outline">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Terug naar Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <Layout backButtonText="Terug naar Home">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Algemene Voorwaarden</h1>
         
@@ -32,7 +13,7 @@ const VoorwaardenPage = () => {
             <p className="mb-2">In deze voorwaarden wordt verstaan onder:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li><strong>Ondernemer:</strong> Droomvriendjes, gevestigd aan SCHAESBERGERWEG 103, 6415 AD Heerlen, KVK: 9921083</li>
-              <li><strong>Consument:</strong> de natuurlijke persoon die niet handelt in de uitoefening van beroep or bedrijf</li>
+              <li><strong>Consument:</strong> de natuurlijke persoon die niet handelt in de uitoefening van beroep of bedrijf</li>
               <li><strong>Overeenkomst:</strong> de overeenkomst tussen de ondernemer en de consument</li>
             </ul>
           </section>
@@ -161,11 +142,10 @@ const VoorwaardenPage = () => {
             <p><strong>Droomvriendjes</strong></p>
             <p>Email: info@droomvriendjes.nl</p>
             <p>KVK: 9921083</p>
-            <p></p>
           </section>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
