@@ -58,8 +58,15 @@ export const trackAddToCart = (product, quantity = 1) => {
     items: [formatProductForGA4(product, quantity)]
   });
   
-  // Google Ads: Conversion event
+  // Google Ads: Conversion event (legacy)
   window.gtag('event', 'ads_conversion_Add_to_cart_1', {
+    currency: 'EUR',
+    value: value,
+    items: [formatProductForGA4(product, quantity)]
+  });
+  
+  // Google Ads: conversion_event_add_to_cart
+  window.gtag('event', 'conversion_event_add_to_cart', {
     currency: 'EUR',
     value: value,
     items: [formatProductForGA4(product, quantity)]
