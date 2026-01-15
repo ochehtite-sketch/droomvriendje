@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { products, reviews, faqs } from '../mockData';
 import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { Star, ShoppingCart, Moon, Heart, Check, ArrowLeft, Sparkles, Shield } from 'lucide-react';
-import CartSidebar from '../components/CartSidebar';
-import { trackViewItem, trackSelectItem } from '../utils/analytics';
+import { Star, ShoppingCart, Check, Sparkles, Shield } from 'lucide-react';
+import Layout from '../components/Layout';
+import { trackViewItem } from '../utils/analytics';
 
 const ProductPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const { addToCart, getItemCount, setIsCartOpen } = useCart();
+  const { addToCart, setIsCartOpen } = useCart();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(0);
 
-  // Scroll naar boven bij pagina laden
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -26,8 +22,6 @@ const ProductPage = () => {
   useEffect(() => {
     const foundProduct = products.find(p => p.id === parseInt(id));
     setProduct(foundProduct);
-    
-    // GA4: Track view_item when product is loaded
     if (foundProduct) {
       trackViewItem(foundProduct);
     }
@@ -40,57 +34,23 @@ const ProductPage = () => {
 
   const handleDirectOrder = () => {
     addToCart(product);
-    setIsCartOpen(true); // Open cart to enter email first
+    setIsCartOpen(true);
   };
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl">Product laden...</p>
-      </div>
+      <Layout backButtonText="Terug">
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-xl">Product laden...</p>
+        </div>
+      </Layout>
     );
   }
 
   const productReviews = reviews.filter(r => r.product === product.shortName);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      {/* Shopping Cart Sidebar */}
-      <CartSidebar />
-
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
-            </Link>
-            <div className="flex items-center gap-4">
-              <Button variant="outline" className="relative" onClick={() => setIsCartOpen(true)}>
-                <ShoppingCart className="w-5 h-5" />
-                {getItemCount() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                    {getItemCount()}
-                  </span>
-                )}
-              </Button>
-              <Link to="/">
-                <Button variant="outline">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Terug
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Promo Banner */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 text-center">
-        <p className="text-sm md:text-base font-semibold">🎁 ACTIE: 2 KOPEN = 3E GRATIS! 🎁</p>
-      </div>
-
+    <Layout backButtonText="Terug" showPromoBanner={true} promoBannerText="🎁 ACTIE: 2E KNUFFEL 50% KORTING! 🎁">
       {/* Product Detail */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,7 +102,7 @@ const ProductPage = () => {
                 <div className="flex items-baseline space-x-3 mb-2">
                   <span className="text-5xl font-bold text-purple-900">€{product.price.toFixed(2)}</span>
                 </div>
-                <p className="text-purple-700 font-semibold">🎁 2 KOPEN = 3E GRATIS!</p>
+                <p className="text-purple-700 font-semibold">🎁 2E KNUFFEL 50% KORTING!</p>
               </div>
 
               {/* Benefits */}
@@ -295,7 +255,7 @@ const ProductPage = () => {
             Andere Knuffels
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.filter(p => p.id !== product.id).map((relatedProduct) => (
+            {products.filter(p => p.id !== product.id).slice(0, 3).map((relatedProduct) => (
               <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all border-2 border-purple-100">
                 <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 p-6">
                   {relatedProduct.badge && (
@@ -330,103 +290,7 @@ const ProductPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-purple-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* Bedrijfsgegevens */}
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Moon className="w-8 h-8" />
-                <span className="text-2xl font-bold">Droomvriendjes</span>
-              </div>
-              <div className="text-purple-200 text-sm space-y-1">
-                <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
-                <p>Droomvriendjes</p>
-                <p>SCHAESBERGERWEG 103</p>
-                <p>6415 AD Heerlen</p>
-                <p className="text-xs italic">(Dit is geen bezoekadres)</p>
-                <p className="mt-3">KVK: 9921083</p>
-                
-                <div className="mt-4 pt-4 border-t border-purple-700">
-                  <p className="font-semibold text-white mb-1">Retouradres:</p>
-                  <p>Centerpoort-Nieuwgraaf</p>
-                  <p>Geograaf 16</p>
-                  <p>6921 EW Duiven</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Navigatie */}
-            <div>
-              <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
-              <ul className="space-y-2 text-purple-200 text-sm">
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
-                <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
-                <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
-                <li><Link to="/uitproberen" className="hover:text-white transition-colors">14 dagen gratis uitproberen</Link></li>
-                <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
-                <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
-              </ul>
-            </div>
-
-            {/* Droomvriendjes helpt bij */}
-            <div>
-              <h3 className="font-bold mb-4 text-lg">Droomvriendjes helpt bij</h3>
-              <ul className="space-y-2 text-purple-200 text-sm">
-                <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
-                <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
-                <li><Link to="/angst" className="hover:text-white transition-colors">Angstvermindering</Link></li>
-                <li><Link to="/slaapproblemen" className="hover:text-white transition-colors">Beter slapen</Link></li>
-                <li><Link to="/troost" className="hover:text-white transition-colors">Troost vinden</Link></li>
-                <li><Link to="/hsp" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
-                <li><Link to="/dementie" className="hover:text-white transition-colors">Dementie</Link></li>
-              </ul>
-            </div>
-
-            {/* Klantenservice */}
-            <div>
-              <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
-              <ul className="space-y-2 text-purple-200 text-sm">
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Zoeken</Link></li>
-                <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
-                <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
-                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Beleid</Link></li>
-                <li><a href="#faq" className="hover:text-white transition-colors">Veelgestelde Vragen</a></li>
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Verzending</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              </ul>
-              <div className="mt-6">
-                <p className="font-semibold text-white mb-2 text-sm">Betaalmethoden</p>
-                <div className="text-purple-200 text-sm">
-                  <p>iDEAL • Klarna</p>
-                  <p>PayPal • Creditcard</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Footer */}
-          <div className="border-t border-purple-800 pt-8 text-center">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-purple-200 text-sm">&copy; 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
-              <div className="flex items-center space-x-4 text-purple-200 text-sm">
-                <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
-                <span>•</span>
-                <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-                <span>•</span>
-                <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </Layout>
   );
 };
 
