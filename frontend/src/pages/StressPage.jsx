@@ -103,7 +103,7 @@ const StressPage = () => {
               activeert het parasympathische zenuwstelsel.
             </p>
             <p>
-              Dit zorgt ervoor dat het lichaam overgaat van de 'vechten-of-vluchten' modus naar een 
+              Dit zorgt ervoor dat het lichaam overgaat van de vecht-of-vlucht modus naar een 
               ontspannen staat, wat essentieel is voor een goede nachtrust en algemeen welzijn.
             </p>
           </section>
