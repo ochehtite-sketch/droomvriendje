@@ -83,7 +83,7 @@ const VoorwaardenPage = () => {
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>De geld-terug-garantie is van toepassing bij aantoonbare defecten of schade bij levering.</li>
               <li>Voor overige retouren geldt het wettelijke herroepingsrecht (14 dagen) zoals vermeld in Artikel 6.</li>
-              <li>Bij defecten neem je contact op via info@droomvriendjes.nl met foto's van het defect.</li>
+              <li>Bij defecten neem je contact op via info@droomvriendjes.nl met foto&apos;s van het defect.</li>
               <li>Na goedkeuring ontvang je een retourlabel en wordt het aankoopbedrag binnen 14 dagen teruggestort.</li>
             </ul>
           </section>
