@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { products, reviews, faqs } from '../mockData';
 import { useCart } from '../context/CartContext';
@@ -13,19 +13,20 @@ import { trackViewItem } from '../utils/analytics';
 const ProductPage = () => {
   const { id } = useParams();
   const { addToCart, setIsCartOpen } = useCart();
-  const [product, setProduct] = useState(null);
+  
+  const product = useMemo(() => {
+    return products.find(p => p.id === parseInt(id));
+  }, [id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
-    const foundProduct = products.find(p => p.id === parseInt(id));
-    setProduct(foundProduct);
-    if (foundProduct) {
-      trackViewItem(foundProduct);
+    if (product) {
+      trackViewItem(product);
     }
-  }, [id]);
+  }, [product]);
 
   const handleAddToCart = () => {
     addToCart(product);
