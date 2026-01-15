@@ -2,23 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { Moon, ArrowLeft, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import Layout from '../components/Layout';
 
 const HSPPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" alt="Droomvriendjes" className="h-20 md:h-24 w-auto" />
-                
-            </Link>
-            <Link to="/"><Button variant="outline"><ArrowLeft className="w-4 h-4 mr-2" />Terug</Button></Link>
-          </div>
-        </div>
-      </header>
-
+    <Layout backButtonText="Terug">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Hoogsensitiviteit (HSP)</h1>
         
@@ -29,7 +18,7 @@ const HSPPage = () => {
             <h2 className="text-2xl font-bold text-purple-900 mb-4">Kenmerken van Hoogsensitieve Kinderen</h2>
             <ul className="space-y-2 list-disc list-inside">
               <li>Diep nadenken over dingen</li>
-              <li>Snel overprik keld door drukte, geluid of licht</li>
+              <li>Snel overprikkeld door drukte, geluid of licht</li>
               <li>Sterk empathisch vermogen</li>
               <li>Gevoelig voor subtiele veranderingen in de omgeving</li>
               <li>Sterke emotionele reacties</li>
@@ -82,11 +71,13 @@ const HSPPage = () => {
             <Sparkles className="w-16 h-16 mx-auto mb-4" />
             <h2 className="text-2xl font-bold mb-4">Speciaal voor Hoogsensitieve Kinderen</h2>
             <p className="mb-6">Ontdek hoe Droomvriendjes kan helpen bij het verwerken van prikkels</p>
-            <Link to="/"><Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Bekijk Onze Knuffels</Button></Link>
+            <Link to="/">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Bekijk Onze Knuffels</Button>
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
