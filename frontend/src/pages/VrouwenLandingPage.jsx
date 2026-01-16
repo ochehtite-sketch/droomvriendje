@@ -1,48 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { Star, ChevronRight, Phone, Mail, Clock } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
 
 const VrouwenLandingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Products specifically for this landing page - using real product images
-  const products = [
-    {
-      id: 8,
-      name: "Slaapknuffel Beer",
-      shortName: "Beer",
-      subtitle: "Neutrale bruine kleur",
-      badge: "MEEST SUBTIEL",
-      description: "Voor vrouwen die iets willen dat niet op een speelgoed lijkt, maar gewoon een zachte knuffel.",
-      price: 59.95,
-      image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/a5v4z3yd_Baby%20Nachtlamp%20Beer%20%E2%80%93%20Sterrenprojector%20met%20Muziek.png"
-    },
-    {
-      id: 11,
-      name: "Slaapknuffel Panda",
-      shortName: "Panda",
-      subtitle: "Zacht wit/zwart, met sterrenprojectie",
-      badge: "VROUWEN 60+",
-      description: "Voor vrouwen die een heel zacht lichtpatroon op het plafond waarderen tijdens het inslapen.",
-      price: 59.95,
-      image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/y20nzqbb_Baby%20Slaapmaatje%20Panda%20%E2%80%93%20Nachtlamp%20met%20Geluiden.png"
-    },
-    {
-      id: 2,
-      name: "Slaapknuffel Schaap",
-      shortName: "Schaap",
-      subtitle: "Extra zachte stof, extra gedimd licht",
-      badge: "MEEST ZACHT",
-      description: "Voor zeer gevoelige slapers die bijna volledige duisternis willen met alleen een heel zachte gloed.",
-      price: 59.95,
-      image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/0p603lsa_Baby%20Nachtlamp%20Schaap%20%E2%80%93%20Projector%20%2B%20White%20Noise.png"
-    }
-  ];
+  // Select specific products for this landing page (Beer, Panda, Schaap)
+  const selectedProductIds = [8, 11, 2]; // Beer, Panda, Schaap
+  const landingProducts = allProducts
+    .filter(p => selectedProductIds.includes(p.id))
+    .map(p => ({
+      ...p,
+      subtitle: p.id === 8 ? "Neutrale bruine kleur" : p.id === 11 ? "Zacht wit/zwart, met sterrenprojectie" : "Extra zachte stof, extra gedimd licht",
+      landingBadge: p.id === 8 ? "MEEST SUBTIEL" : p.id === 11 ? "VROUWEN 60+" : "MEEST ZACHT",
+      landingDescription: p.id === 8 
+        ? "Voor vrouwen die iets willen dat niet op een speelgoed lijkt, maar gewoon een zachte knuffel."
+        : p.id === 11 
+        ? "Voor vrouwen die een heel zacht lichtpatroon op het plafond waarderen tijdens het inslapen."
+        : "Voor zeer gevoelige slapers die bijna volledige duisternis willen met alleen een heel zachte gloed."
+    }));
+
+  // Get the first product for the hero card
+  const heroProduct = allProducts.find(p => p.id === 8) || allProducts[0];
 
   // Reviews from women 60+
   const reviews = [
