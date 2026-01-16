@@ -12,14 +12,14 @@ const VrouwenLandingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
   // Select specific products for this landing page (Beer, Panda, Schaap)
-  const selectedProductIds = [8, 11, 2]; // Beer, Panda, Schaap
+  const selectedProductIds = [7, 11, 2]; // Beer Projector, Panda, Schaap
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id))
     .map(p => ({
       ...p,
-      subtitle: p.id === 8 ? "Neutrale bruine kleur" : p.id === 11 ? "Zacht wit/zwart, met sterrenprojectie" : "Extra zachte stof, extra gedimd licht",
-      landingBadge: p.id === 8 ? "MEEST SUBTIEL" : p.id === 11 ? "VROUWEN 60+" : "MEEST ZACHT",
-      landingDescription: p.id === 8 
+      subtitle: p.id === 7 ? "Neutrale bruine kleur" : p.id === 11 ? "Zacht wit/zwart, met sterrenprojectie" : "Extra zachte stof, extra gedimd licht",
+      landingBadge: p.id === 7 ? "MEEST SUBTIEL" : p.id === 11 ? "VROUWEN 60+" : "MEEST ZACHT",
+      landingDescription: p.id === 7 
         ? "Voor vrouwen die iets willen dat niet op een speelgoed lijkt, maar gewoon een zachte knuffel."
         : p.id === 11 
         ? "Voor vrouwen die een heel zacht lichtpatroon op het plafond waarderen tijdens het inslapen."
@@ -27,7 +27,7 @@ const VrouwenLandingPage = () => {
     }));
 
   // Get the first product for the hero card
-  const heroProduct = allProducts.find(p => p.id === 8) || allProducts[0];
+  const heroProduct = allProducts.find(p => p.id === 7) || allProducts[0];
 
   // Reviews from women 60+
   const reviews = [
