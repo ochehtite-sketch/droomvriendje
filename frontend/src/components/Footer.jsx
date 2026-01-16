@@ -46,6 +46,7 @@ const Footer = () => {
               <li><Link to="/uitproberen" className="hover:text-white transition-colors">14 dagen gratis uitproberen</Link></li>
               <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
               <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
+              <li><Link to="/vrouwen-60" className="hover:text-white transition-colors">Vrouwen 60+</Link></li>
             </ul>
           </div>
 
