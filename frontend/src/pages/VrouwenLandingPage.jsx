@@ -183,7 +183,7 @@ const VrouwenLandingPage = () => {
               <Card className="bg-white border-2 border-[#c5d9c8] rounded-3xl max-w-sm w-full overflow-hidden">
                 <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[300px]">
                   <img 
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400" 
+                    src="https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/a5v4z3yd_Baby%20Nachtlamp%20Beer%20%E2%80%93%20Sterrenprojector%20met%20Muziek.png" 
                     alt="Droomvriendjes Rustige Nachten Editie"
                     className="w-full h-auto object-contain max-h-[250px]"
                   />
