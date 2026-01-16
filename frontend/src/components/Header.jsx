@@ -27,8 +27,8 @@ const Header = ({
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="https://customer-assets.emergentagent.com/job_plushfriends/artifacts/v0amam8x_Gemini_Generated_Image_9zlx539zlx539zlx.png" 
-              alt="Droomvriendjes - Voor een zachte nachtrust" 
+              src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
+              alt="Droomvriendjes.nl - Voor een zachte nachtrust" 
               className="h-24 md:h-28 w-auto"
             />
           </Link>
