@@ -408,7 +408,7 @@ const VrouwenLandingPage = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {products.map((product) => (
+            {landingProducts.map((product) => (
               <Card key={product.id} className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
                 <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[200px]">
                   <img 
@@ -418,10 +418,10 @@ const VrouwenLandingPage = () => {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <p className="text-xs font-bold text-[#7a9a7a] mb-1">{product.badge}</p>
+                  <p className="text-xs font-bold text-[#7a9a7a] mb-1">{product.landingBadge}</p>
                   <h3 className="font-bold text-[#2d5a3d] text-xl mb-1">{product.shortName}</h3>
                   <p className="text-sm text-[#7a9a7a] mb-3">{product.subtitle}</p>
-                  <p className="text-[#5a7a5a] text-sm mb-4">{product.description}</p>
+                  <p className="text-[#5a7a5a] text-sm mb-4">{product.landingDescription}</p>
                   
                   <div className="flex items-baseline justify-between mb-4">
                     <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price.toFixed(2).replace('.', ',')}</span>
