@@ -10,37 +10,37 @@ import CartSidebar from '../components/CartSidebar';
 const VrouwenLandingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Products specifically for this landing page
+  // Products specifically for this landing page - using real product images
   const products = [
     {
-      id: 101,
-      name: "Calm Bear Droomvriendje",
-      shortName: "Calm Bear",
+      id: 8,
+      name: "Slaapknuffel Beer",
+      shortName: "Beer",
       subtitle: "Neutrale bruine kleur",
       badge: "MEEST SUBTIEL",
       description: "Voor vrouwen die iets willen dat niet op een speelgoed lijkt, maar gewoon een zachte knuffel.",
       price: 59.95,
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400"
+      image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/a5v4z3yd_Baby%20Nachtlamp%20Beer%20%E2%80%93%20Sterrenprojector%20met%20Muziek.png"
     },
     {
-      id: 102,
-      name: "Star Panda Droomvriendje",
-      shortName: "Star Panda",
+      id: 11,
+      name: "Slaapknuffel Panda",
+      shortName: "Panda",
       subtitle: "Zacht wit/zwart, met sterrenprojectie",
       badge: "VROUWEN 60+",
       description: "Voor vrouwen die een heel zacht lichtpatroon op het plafond waarderen tijdens het inslapen.",
-      price: 64.95,
-      image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=400"
+      price: 59.95,
+      image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/y20nzqbb_Baby%20Slaapmaatje%20Panda%20%E2%80%93%20Nachtlamp%20met%20Geluiden.png"
     },
     {
-      id: 103,
-      name: "Cloud Friend Droomvriendje",
-      shortName: "Cloud Friend",
+      id: 2,
+      name: "Slaapknuffel Schaap",
+      shortName: "Schaap",
       subtitle: "Extra zachte stof, extra gedimd licht",
       badge: "MEEST ZACHT",
       description: "Voor zeer gevoelige slapers die bijna volledige duisternis willen met alleen een heel zachte gloed.",
-      price: 62.95,
-      image: "https://images.unsplash.com/photo-1585155770913-6eb4e786e73c?w=400"
+      price: 59.95,
+      image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/0p603lsa_Baby%20Nachtlamp%20Schaap%20%E2%80%93%20Projector%20%2B%20White%20Noise.png"
     }
   ];
 
