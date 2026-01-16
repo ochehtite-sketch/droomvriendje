@@ -23,6 +23,7 @@ import DementiePage from "./pages/DementiePage";
 import ReviewsPage from "./pages/ReviewsPage";
 import NaamBedenkerPage from "./pages/NaamBedenkerPage";
 import UitproberenPage from "./pages/UitproberenPage";
+import VrouwenLandingPage from "./pages/VrouwenLandingPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
