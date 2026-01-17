@@ -393,113 +393,253 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Bestsellers Section */}
-      <section className="py-16 bg-[#faf8f5]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Bestsellers Section - Premium Design */}
+      <section className="py-20 bg-gradient-to-b from-[#fdfcfa] to-[#f5f0eb] relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-purple-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-3">
-              Welke wordt jouw held? ⭐
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-yellow-100 px-5 py-2 rounded-full mb-6 border border-amber-200/50">
+              <span className="text-amber-600 text-lg">🏆</span>
+              <span className="text-amber-800 font-semibold text-sm tracking-wide">MEEST VERKOCHT</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Kies jouw <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Droomvriendje</span>
             </h2>
-            <p className="text-gray-600">
-              Stoere dino, magische eenhoorn of vrolijke pinguïn?
+            <p className="text-lg text-gray-600 max-w-xl mx-auto">
+              Onze top 3 bestsellers, geliefd door meer dan 100.000 gezinnen in Nederland
             </p>
           </div>
           
           {/* Bestseller Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            
             {/* Schaap - Bestseller #2 */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-2 border-green-200" data-testid="bestseller-card-schaap">
-              <div className="p-4">
+            <div className="group relative" data-testid="bestseller-card-schaap">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
+              <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100/80 group-hover:border-emerald-200 group-hover:-translate-y-2">
+                {/* Rank Badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-emerald-500/30 flex items-center gap-1.5">
+                    <span className="text-base">🥈</span>
+                    <span>#2 BESTSELLER</span>
+                  </div>
+                </div>
+                
+                {/* Image Container */}
                 <Link to="/product/2" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="aspect-square bg-green-50 rounded-2xl flex items-center justify-center overflow-hidden mb-4">
-                    <img 
-                      src="https://i.imgur.com/vYpeb4c.jpeg" 
-                      alt="Schaap"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
+                  <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-emerald-50 via-teal-50/50 to-white">
+                    <div className="aspect-square relative">
+                      <img 
+                        src="https://i.imgur.com/vYpeb4c.jpeg" 
+                        alt="Schaap"
+                        className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
+                      />
+                      {/* Floating feature badges */}
+                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🌟 Projectie</span>
+                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🎵 White Noise</span>
+                      </div>
+                    </div>
                   </div>
                 </Link>
-                <div className="text-center">
-                  <span className="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-yellow-200">
-                    <span>⭐</span> BESTSELLER #2
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Schaap</h3>
-                  <p className="text-gray-500 text-sm mb-3">Zacht en knuffelbaar</p>
-                  <p className="text-2xl font-bold text-gray-900 mb-4">€59,95</p>
+                
+                {/* Content */}
+                <div className="p-6 pt-8 text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Schaap</h3>
+                  <p className="text-gray-500 text-sm mb-4">Zacht, knuffelbaar & rustgevend</p>
+                  
+                  {/* Rating */}
+                  <div className="flex items-center justify-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                    <span className="text-sm text-gray-600 ml-1">(143 reviews)</span>
+                  </div>
+                  
+                  {/* Price */}
+                  <div className="mb-5">
+                    <span className="text-3xl font-bold text-gray-900">€59,95</span>
+                  </div>
+                  
+                  {/* CTA Button */}
                   <Button 
-                    className="w-full bg-[#2d5a47] hover:bg-[#234839] text-white font-semibold py-5 rounded-full"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
                     onClick={() => addToCart(products.find(p => p.id === 2))}
                     data-testid="bestseller-add-schaap"
                   >
-                    In winkelwagen ⭐
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Toevoegen aan winkelwagen
                   </Button>
-                  <p className="text-xs text-gray-500 mt-3">Gratis verzending · 14 dagen retour</p>
+                  
+                  {/* Trust badges */}
+                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
+                    <span className="flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Gratis verzending</span>
+                    <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5" /> 14 dagen retour</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Teddy - Bestseller #1 */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-2 border-pink-200" data-testid="bestseller-card-teddy">
-              <div className="p-4">
+            {/* Teddy - Bestseller #1 (Featured) */}
+            <div className="group relative md:-mt-4 md:mb-4" data-testid="bestseller-card-teddy">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
+              <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_50px_rgba(147,51,234,0.15)] hover:shadow-[0_25px_70px_rgba(147,51,234,0.25)] transition-all duration-500 border-2 border-purple-200 group-hover:border-purple-300 group-hover:-translate-y-2 relative">
+                {/* Popular ribbon */}
+                <div className="absolute -right-12 top-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-12 py-1.5 rotate-45 shadow-lg z-30">
+                  POPULAIR
+                </div>
+                
+                {/* Rank Badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-purple-500/30 flex items-center gap-1.5">
+                    <span className="text-base">🥇</span>
+                    <span>#1 BESTSELLER</span>
+                  </div>
+                </div>
+                
+                {/* Image Container */}
                 <Link to="/product/3" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="aspect-square bg-pink-50 rounded-2xl flex items-center justify-center overflow-hidden mb-4">
-                    <img 
-                      src="https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png" 
-                      alt="Teddy"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
+                  <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
+                    <div className="aspect-square relative">
+                      <img 
+                        src="https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png" 
+                        alt="Teddy"
+                        className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
+                      />
+                      {/* Floating feature badges */}
+                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🌟 Projectie</span>
+                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🎵 Muziek</span>
+                      </div>
+                    </div>
                   </div>
                 </Link>
-                <div className="text-center">
-                  <span className="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-yellow-200">
-                    <span>⭐</span> BESTSELLER #1
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Teddy</h3>
-                  <p className="text-gray-500 text-sm mb-3">Meest gekozen</p>
-                  <p className="text-2xl font-bold text-gray-900 mb-4">€59,95</p>
+                
+                {/* Content */}
+                <div className="p-6 pt-8 text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Teddy</h3>
+                  <p className="text-gray-500 text-sm mb-4">Meest gekozen door ouders</p>
+                  
+                  {/* Rating */}
+                  <div className="flex items-center justify-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                    <span className="text-sm text-gray-600 ml-1">(219 reviews)</span>
+                  </div>
+                  
+                  {/* Price */}
+                  <div className="mb-5">
+                    <span className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">€59,95</span>
+                  </div>
+                  
+                  {/* CTA Button */}
                   <Button 
-                    className="w-full bg-[#2d5a47] hover:bg-[#234839] text-white font-semibold py-5 rounded-full"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300"
                     onClick={() => addToCart(products.find(p => p.id === 3))}
                     data-testid="bestseller-add-teddy"
                   >
-                    In winkelwagen ⭐
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Toevoegen aan winkelwagen
                   </Button>
-                  <p className="text-xs text-gray-500 mt-3">Gratis verzending · 14 dagen retour</p>
+                  
+                  {/* Trust badges */}
+                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
+                    <span className="flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Gratis verzending</span>
+                    <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5" /> 14 dagen retour</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Panda - Bestseller #3 */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-200" data-testid="bestseller-card-panda">
-              <div className="p-4">
+            <div className="group relative" data-testid="bestseller-card-panda">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
+              <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100/80 group-hover:border-blue-200 group-hover:-translate-y-2">
+                {/* Rank Badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-500/30 flex items-center gap-1.5">
+                    <span className="text-base">🥉</span>
+                    <span>#3 BESTSELLER</span>
+                  </div>
+                </div>
+                
+                {/* Best Value Badge */}
+                <div className="absolute top-4 right-4 z-20">
+                  <div className="bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                    BESTE PRIJS
+                  </div>
+                </div>
+                
+                {/* Image Container */}
                 <Link to="/product/11" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="aspect-square bg-blue-50 rounded-2xl flex items-center justify-center overflow-hidden mb-4">
-                    <img 
-                      src="https://i.imgur.com/fhVs30E.jpeg" 
-                      alt="Panda"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
+                  <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white">
+                    <div className="aspect-square relative">
+                      <img 
+                        src="https://i.imgur.com/fhVs30E.jpeg" 
+                        alt="Panda"
+                        className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
+                      />
+                      {/* Floating feature badges */}
+                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🌟 Projectie</span>
+                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">💤 Rustgevend</span>
+                      </div>
+                    </div>
                   </div>
                 </Link>
-                <div className="text-center">
-                  <span className="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-yellow-200">
-                    <span>⭐</span> BESTSELLER #3
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Panda</h3>
-                  <p className="text-gray-500 text-sm mb-3">Super rustgevend</p>
-                  <p className="text-2xl font-bold text-gray-900 mb-4">€49,95</p>
+                
+                {/* Content */}
+                <div className="p-6 pt-8 text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Panda</h3>
+                  <p className="text-gray-500 text-sm mb-4">Super rustgevend & schattig</p>
+                  
+                  {/* Rating */}
+                  <div className="flex items-center justify-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                    <span className="text-sm text-gray-600 ml-1">(287 reviews)</span>
+                  </div>
+                  
+                  {/* Price */}
+                  <div className="mb-5">
+                    <span className="text-sm text-gray-400 line-through mr-2">€59,95</span>
+                    <span className="text-3xl font-bold text-gray-900">€49,95</span>
+                  </div>
+                  
+                  {/* CTA Button */}
                   <Button 
-                    className="w-full bg-[#2d5a47] hover:bg-[#234839] text-white font-semibold py-5 rounded-full"
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
                     onClick={() => addToCart(products.find(p => p.id === 11))}
                     data-testid="bestseller-add-panda"
                   >
-                    In winkelwagen ⭐
+                    <ShoppingCart className="w-5 h-5 mr-2" />
+                    Toevoegen aan winkelwagen
                   </Button>
-                  <p className="text-xs text-gray-500 mt-3">Gratis verzending · 14 dagen retour</p>
+                  
+                  {/* Trust badges */}
+                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
+                    <span className="flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Gratis verzending</span>
+                    <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5" /> 14 dagen retour</span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+          
+          {/* Bottom CTA */}
+          <div className="text-center mt-14">
+            <Link to="/knuffels">
+              <Button variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg font-semibold rounded-full group">
+                Bekijk alle knuffels
+                <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
