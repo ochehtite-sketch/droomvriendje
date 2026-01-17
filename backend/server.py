@@ -1554,7 +1554,7 @@ app.include_router(api_router)
 
 from fastapi.responses import Response
 
-@app.get("/feed/google-shopping.xml")
+@app.get("/api/feed/google-shopping.xml")
 async def google_shopping_feed():
     """Generate Google Shopping Product Feed in XML format"""
     
