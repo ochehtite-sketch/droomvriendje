@@ -68,6 +68,7 @@ function App() {
             <Route path="/ouders-baby" element={<OudersBabyPage />} />
             <Route path="/ouders-peuters" element={<OudersPeutersPage />} />
             <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
+            <Route path="/admin/google-ads" element={<GoogleAdsPage />} />
           </Routes>
           <Toaster />
         </BrowserRouter>
