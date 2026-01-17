@@ -226,11 +226,11 @@ export const products = [
     shortName: "Beer Projector",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/d8fa8nc.jpeg",
+    image: "https://i.imgur.com/q2c7zsP.jpeg",
     gallery: [
+      "https://i.imgur.com/q2c7zsP.jpeg",
       "https://i.imgur.com/xyXHy7f.jpeg",
       "https://i.imgur.com/H5W6Q5h.jpeg",
-      "https://i.imgur.com/q2c7zsP.jpeg",
       "https://i.imgur.com/4BllnwS.jpeg",
       "https://i.imgur.com/4GiHWvE.jpeg",
       "https://i.imgur.com/0pPCNRt.jpeg",
@@ -263,14 +263,14 @@ export const products = [
     shortName: "Schaap Liggend",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/N1vjMHQ.jpeg",
+    image: "https://i.imgur.com/8mKVYOY.jpeg",
     gallery: [
+      "https://i.imgur.com/8mKVYOY.jpeg",
       "https://i.imgur.com/N1vjMHQ.jpeg",
       "https://i.imgur.com/ZDzpG7a.jpeg",
       "https://i.imgur.com/CPdB6WK.jpeg",
       "https://i.imgur.com/zORMue1.jpeg",
-      "https://i.imgur.com/9GUTTtP.jpeg",
-      "https://i.imgur.com/8mKVYOY.jpeg"
+      "https://i.imgur.com/9GUTTtP.jpeg"
     ],
     description: "Liggend schaapje met kalmerend licht en rustgevende geluiden. Super zacht!",
     features: [
