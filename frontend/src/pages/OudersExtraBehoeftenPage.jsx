@@ -233,9 +233,11 @@ const OudersExtraBehoeftenPage = () => {
       <section id="producten" className="py-20 bg-[#fafafa]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
-              Aanbevolen Droomvriendjes
-            </h2>
+            <a href="https://www.droomvriendjes.nl/#producten" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+              <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
+                Aanbevolen Droomvriendjes
+              </h2>
+            </a>
             <p className="text-[#5a7a5a]">Speciaal geselecteerd voor kinderen die extra rust nodig hebben</p>
           </div>
           
