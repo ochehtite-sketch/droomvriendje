@@ -207,17 +207,6 @@ const HomePage = () => {
             {products.map((product) => (
               <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-blue-200 rounded-2xl bg-white">
                 <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-8 overflow-hidden">
-                  {product.badge && (
-                    <Badge className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg z-10 px-3 py-1">
-                      {product.badge}
-                    </Badge>
-                  )}
-                  
-                  {/* Discount Badge */}
-                  <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
-                    -50% op 2e
-                  </div>
-                  
                   <img 
                     src={product.image} 
                     alt={product.name}
