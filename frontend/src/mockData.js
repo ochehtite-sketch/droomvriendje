@@ -98,7 +98,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png",
     gallery: [
-      "https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png",
       "https://i.imgur.com/jM6J4oV.jpeg",
       "https://i.imgur.com/bMpTi4F.jpeg",
       "https://i.imgur.com/LuZnyJN.jpeg",
