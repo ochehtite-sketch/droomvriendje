@@ -177,7 +177,34 @@ Watermerken ("BESTSELLER", "2E KNUFFEL 50% KORTING") verwijderd van alle product
 - **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
 - **Iteratie 3:** Backend 92% (11/12), Frontend 100% - Email notificaties
 - **Iteratie 4:** Frontend 100% - Header/Footer refactoring succesvol
+- **Iteratie 5:** Frontend 100% (10/10 tests geslaagd) - Product Slider volledig werkend
 - **Test rapporten:** `/app/test_reports/iteration_*.json`
+
+## Product Slider Feature (17 januari 2025)
+### Swiper.js Implementatie
+Een moderne product carousel geïmplementeerd op de homepage, vergelijkbaar met lotgenootje.com:
+
+**Technische Details:**
+- **Library:** Swiper.js v12.0.3
+- **Modules:** Navigation, Pagination, Autoplay
+- **Autoplay:** 4 seconden delay, pauzeert bij hover
+- **Loop:** Oneindig doorlopen
+
+**Responsive Breakpoints:**
+| Viewport | Items per View |
+|----------|----------------|
+| < 640px  | 1 item (mobiel) |
+| 640-1023px | 2 items (tablet) |
+| 1024-1279px | 3 items |
+| ≥ 1280px | 4 items (desktop) |
+
+**UI Elementen:**
+- Custom navigatie pijltjes (ronde witte knoppen)
+- Pagination dots (purple actief, grijs inactief)
+- Product badges met gradient kleuren
+- Rating sterren
+- "In Winkelmandje" buttons
+- Hover effects op product kaarten
 
 ## Deployment
 - **Status:** Live met echte Mollie betalingen
