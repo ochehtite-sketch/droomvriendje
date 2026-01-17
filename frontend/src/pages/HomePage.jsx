@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { products, reviews, benefits, features, testimonials, videos, faqs } from '../mockData';
@@ -10,6 +10,7 @@ import { Star, ShoppingCart, Moon, Heart, Sparkles, Monitor, ShieldCheck, Truck,
 import CartSidebar from '../components/CartSidebar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { trackViewItemList, trackSelectItem } from '../utils/analytics';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -17,6 +18,16 @@ import 'swiper/css/pagination';
 const HomePage = () => {
   const navigate = useNavigate();
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
+
+  // GA4: Track view_item_list when page loads
+  useEffect(() => {
+    trackViewItemList(products, 'homepage_products', 'Homepage Producten');
+  }, []);
+
+  // GA4: Track product click
+  const handleProductClick = (product, index) => {
+    trackSelectItem(product, index, 'homepage_products', 'Homepage Producten');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-white">
