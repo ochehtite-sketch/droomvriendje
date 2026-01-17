@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { Star, ChevronRight, Phone, Mail, Clock } from 'lucide-react';
+import { Star, ChevronRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
@@ -36,7 +36,7 @@ const VrouwenLandingPage = () => {
       age: 67,
       duration: "Gebruikt sinds 3 maanden",
       rating: 5,
-      text: "\"De opvliegers houden me vaak wakker. Nu zet ik mijn Droomvriendje aan als ik wakker word. Het zachte licht en het rustige geluid helpen me om niet direct weer te gaan piekeren. Ik val vaak binnen een half uur weer in slaap. Dat is een enorme verbetering.\"",
+      text: "De opvliegers houden me vaak wakker. Nu zet ik mijn Droomvriendje aan als ik wakker word. Het zachte licht en het rustige geluid helpen me om niet direct weer te gaan piekeren. Ik val vaak binnen een half uur weer in slaap. Dat is een enorme verbetering.",
       product: "Star Panda"
     },
     {
@@ -44,7 +44,7 @@ const VrouwenLandingPage = () => {
       age: 71,
       duration: "Gebruikt sinds 6 weken",
       rating: 5,
-      text: "\"Ik was sceptisch, maar mijn dochter had het voor me gekocht. De eerste week deed het niet veel, maar nu is het echt een fijn ritueel geworden. Ik houd de knuffel vast en het helpt me om mijn gedachten te stoppen met racen. Niet perfect, maar wel veel beter.\"",
+      text: "Ik was sceptisch, maar mijn dochter had het voor me gekocht. De eerste week deed het niet veel, maar nu is het echt een fijn ritueel geworden. Ik houd de knuffel vast en het helpt me om mijn gedachten te stoppen met racen. Niet perfect, maar wel veel beter.",
       product: "Calm Bear"
     },
     {
@@ -52,7 +52,7 @@ const VrouwenLandingPage = () => {
       age: 64,
       duration: "Gebruikt sinds 2 maanden",
       rating: 4,
-      text: "\"Na mijn scheiding sliep ik heel slecht. De nachten voelden zo lang. Deze knuffel met licht geeft me een veilig gevoel. Ik gebruik het elke avond. Soms slaap ik nog steeds niet direct, maar de nachten voelen minder eenzaam.\"",
+      text: "Na mijn scheiding sliep ik heel slecht. De nachten voelden zo lang. Deze knuffel met licht geeft me een veilig gevoel. Ik gebruik het elke avond. Soms slaap ik nog steeds niet direct, maar de nachten voelen minder eenzaam.",
       product: "Cloud Friend"
     }
   ];
@@ -94,15 +94,13 @@ const VrouwenLandingPage = () => {
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-[#2d5a3d] rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">D</span>
-              </div>
-              <div>
-                <p className="font-bold text-[#2d5a3d] text-lg">DROOMVRIENDJES</p>
-                <p className="text-[#5a8a6a] text-sm">Rustige Nachten voor Volwassen Vrouwen</p>
-              </div>
-            </div>
+            <Link to="/" className="flex items-center space-x-3">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
+                alt="Droomvriendjes.nl" 
+                className="h-16 w-auto"
+              />
+            </Link>
             <a href="#producten">
               <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
                 Kies je rustmaatje <ChevronRight className="w-4 h-4 ml-1" />
@@ -128,7 +126,7 @@ const VrouwenLandingPage = () => {
               </h1>
               
               <p className="text-lg text-[#5a7a5a] mb-8 leading-relaxed">
-                Als nachten langer voelen dan dagen — door opvliegers, piekeren, of gewoon omdat uw lichaam anders reageert dan vroeger. U bent niet kapot. U heeft alleen een zacht, veilig ritueel nodig dat zegt: <em>&quot;voor nu, we rusten.&quot;</em>
+                Als nachten langer voelen dan dagen — door opvliegers, piekeren, of gewoon omdat uw lichaam anders reageert dan vroeger. U bent niet kapot. U heeft alleen een zacht, veilig ritueel nodig dat zegt: &ldquo;voor nu, we rusten.&rdquo;
               </p>
               
               <ul className="space-y-4 mb-8">
@@ -203,7 +201,7 @@ const VrouwenLandingPage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">
-            &quot;Het ligt niet aan u. Het is heel normaal.&quot;
+            &ldquo;Het ligt niet aan u. Het is heel normaal.&rdquo;
           </h2>
           <p className="text-lg text-[#5a7a5a] mb-12 max-w-3xl">
             Bijna de helft van alle vrouwen van 65+ heeft slaapproblemen. Door hormonale veranderingen, opvliegers, of gewoon omdat uw lichaam anders reageert. U bent absoluut niet de enige die &apos;s nachts wakker ligt.
@@ -235,45 +233,63 @@ const VrouwenLandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section with Real Images */}
       <section className="py-16 border-t border-[#e0ebe0]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">
             Een zacht ritueel, geen ingewikkeld apparaat.
           </h2>
           <p className="text-lg text-[#5a7a5a] mb-12 max-w-3xl">
-            U heeft geen nieuwe technologie nodig die u moet leren kennen. U heeft een simpel, betrouwbaar ritueel nodig dat uw lichaam herkent als &quot;tijd om te rusten&quot;.
+            U heeft geen nieuwe technologie nodig die u moet leren kennen. U heeft een simpel, betrouwbaar ritueel nodig dat uw lichaam herkent als &ldquo;tijd om te rusten&rdquo;.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl p-6">
-              <div className="bg-[#e8f0e8] rounded-xl p-8 mb-4 min-h-[150px] flex items-center justify-center">
-                <p className="text-[#7a9a7a] text-sm">Afbeelding: Zachte knuffel met warm licht</p>
+            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
+                <img 
+                  src={allProducts[0]?.image} 
+                  alt="Warm licht"
+                  className="w-full h-auto object-contain max-h-[150px]"
+                />
               </div>
-              <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Warm licht</h3>
-              <p className="text-[#5a7a5a]">
-                Een zacht, gedimd schijnsel dat u uit de volledige duisternis houdt (als dat onrust geeft) zonder u wakker te maken zoals een telefoonscherm.
-              </p>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Warm licht</h3>
+                <p className="text-[#5a7a5a]">
+                  Een zacht, gedimd schijnsel dat u uit de volledige duisternis houdt (als dat onrust geeft) zonder u wakker te maken zoals een telefoonscherm.
+                </p>
+              </CardContent>
             </Card>
             
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl p-6">
-              <div className="bg-[#e8f0e8] rounded-xl p-8 mb-4 min-h-[150px] flex items-center justify-center">
-                <p className="text-[#7a9a7a] text-sm">Afbeelding: Rustige geluiden knoppen</p>
+            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
+                <img 
+                  src={allProducts[1]?.image} 
+                  alt="Rustige geluiden"
+                  className="w-full h-auto object-contain max-h-[150px]"
+                />
               </div>
-              <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Rustige geluiden</h3>
-              <p className="text-[#5a7a5a]">
-                Witte ruis en kalmerende geluiden maskeren plotselinge geluiden en geven uw hersenen iets voorspelbaars om op te focussen.
-              </p>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Rustige geluiden</h3>
+                <p className="text-[#5a7a5a]">
+                  Witte ruis en kalmerende geluiden maskeren plotselinge geluiden en geven uw hersenen iets voorspelbaars om op te focussen.
+                </p>
+              </CardContent>
             </Card>
             
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl p-6">
-              <div className="bg-[#e8f0e8] rounded-xl p-8 mb-4 min-h-[150px] flex items-center justify-center">
-                <p className="text-[#7a9a7a] text-sm">Afbeelding: Zachte knuffel textuur</p>
+            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
+                <img 
+                  src={allProducts[2]?.image} 
+                  alt="Iets om vast te houden"
+                  className="w-full h-auto object-contain max-h-[150px]"
+                />
               </div>
-              <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Iets om vast te houden</h3>
-              <p className="text-[#5a7a5a]">
-                De knuffel zelf geeft uw handen een contactpunt — veel vrouwen voelen zich rustiger met iets zachts vast te houden.
-              </p>
+              <CardContent className="p-6">
+                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Iets om vast te houden</h3>
+                <p className="text-[#5a7a5a]">
+                  De knuffel zelf geeft uw handen een contactpunt — veel vrouwen voelen zich rustiger met iets zachts vast te houden.
+                </p>
+              </CardContent>
             </Card>
           </div>
         </div>
@@ -286,10 +302,10 @@ const VrouwenLandingPage = () => {
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div>
                 <p className="text-xl font-bold text-[#2d5a3d] mb-2">
-                  &quot;Geen wonder, geen druk. Gewoon een zachte ondersteuning.&quot;
+                  &ldquo;Geen wonder, geen druk. Gewoon een zachte ondersteuning.&rdquo;
                 </p>
                 <p className="text-[#5a7a5a]">
-                  We beloven geen &quot;perfecte slaap in 3 dagen&quot;. We beloven wel een zachtere manier om de dag af te sluiten — een die veel vrouwen blijven gebruiken, ook na de eerste nacht.
+                  We beloven geen &ldquo;perfecte slaap in 3 dagen&rdquo;. We beloven wel een zachtere manier om de dag af te sluiten — een die veel vrouwen blijven gebruiken, ook na de eerste nacht.
                 </p>
               </div>
               <a href="#producten" className="mt-6 md:mt-0 md:ml-8 flex-shrink-0">
@@ -306,10 +322,10 @@ const VrouwenLandingPage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">
-            Uw 10-minuten &quot;tijd-voor-rust&quot; routine.
+            Uw 10-minuten &ldquo;tijd-voor-rust&rdquo; routine.
           </h2>
           <p className="text-lg text-[#5a7a5a] mb-12 max-w-3xl">
-            Eenvoudig genoeg voor de moeilijkste dagen. Zacht genoeg dat u zich niet &quot;fout&quot; voelt als het even niet lukt.
+            Eenvoudig genoeg voor de moeilijkste dagen. Zacht genoeg dat u zich niet &ldquo;fout&rdquo; voelt als het even niet lukt.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -317,7 +333,7 @@ const VrouwenLandingPage = () => {
               <p className="text-sm font-bold text-[#7a9a7a] mb-2">STAP 1</p>
               <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Zet de druk uit</h3>
               <p className="text-[#5a7a5a]">
-                Leg uw telefoon aan de kant. Zeg tegen uzelf: &quot;Voor de komende 20 minuten is niets dringend.&quot; Dit is uw moment.
+                Leg uw telefoon aan de kant. Zeg tegen uzelf: &ldquo;Voor de komende 20 minuten is niets dringend.&rdquo; Dit is uw moment.
               </p>
             </Card>
             
@@ -362,8 +378,8 @@ const VrouwenLandingPage = () => {
             {reviews.map((review, idx) => (
               <Card key={idx} className="bg-white border-2 border-[#c5d9c8] rounded-2xl p-6">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-[#e8f0e8] rounded-full flex items-center justify-center">
-                    <span className="text-xs text-[#7a9a7a]">Foto</span>
+                  <div className="w-12 h-12 bg-[#2d5a3d] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    {review.name.charAt(0)}
                   </div>
                   <div>
                     <p className="font-bold text-[#2d5a3d]">{review.name}, {review.age} jaar</p>
@@ -380,8 +396,8 @@ const VrouwenLandingPage = () => {
                   ))}
                 </div>
                 
-                <p className="text-[#4a6a4a] mb-4 text-sm leading-relaxed">
-                  {review.text}
+                <p className="text-[#4a6a4a] mb-4 text-sm leading-relaxed italic">
+                  &ldquo;{review.text}&rdquo;
                 </p>
                 
                 <p className="text-sm text-[#7a9a7a]">— Besteld: {review.product}</p>
@@ -410,16 +426,20 @@ const VrouwenLandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {landingProducts.map((product) => (
               <Card key={product.id} className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-                <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[200px]">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-auto object-contain max-h-[150px]"
-                  />
-                </div>
+                <Link to={`/product/${product.id}`}>
+                  <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[200px] cursor-pointer hover:bg-[#dce8dc] transition-colors">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-auto object-contain max-h-[150px]"
+                    />
+                  </div>
+                </Link>
                 <CardContent className="p-6">
                   <p className="text-xs font-bold text-[#7a9a7a] mb-1">{product.landingBadge}</p>
-                  <h3 className="font-bold text-[#2d5a3d] text-xl mb-1">{product.shortName}</h3>
+                  <Link to={`/product/${product.id}`}>
+                    <h3 className="font-bold text-[#2d5a3d] text-xl mb-1 hover:underline cursor-pointer">{product.shortName}</h3>
+                  </Link>
                   <p className="text-sm text-[#7a9a7a] mb-3">{product.subtitle}</p>
                   <p className="text-[#5a7a5a] text-sm mb-4">{product.landingDescription}</p>
                   
@@ -507,53 +527,98 @@ const VrouwenLandingPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#2d5a3d] text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      {/* Full Footer - Same as main site */}
+      <footer className="bg-purple-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            {/* Bedrijfsgegevens */}
             <div>
-              <h3 className="font-bold text-lg mb-4">Droomvriendjes</h3>
-              <p className="text-[#a8c8b0] text-sm">
-                Slaapknuffels met nachtlampje en rustgevende geluiden. Voor kinderen én volwassenen die behoefte hebben aan een zacht slaapritueel.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="font-bold text-lg mb-4">Klantenservice</h3>
-              <div className="space-y-2 text-[#a8c8b0] text-sm">
-                <p className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2" />
-                  085 - 123 45 67 (ma-vr 9:00-17:00)
-                </p>
-                <p className="flex items-center">
-                  <Mail className="w-4 h-4 mr-2" />
-                  info@droomvriendjes.nl
-                </p>
-                <p className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  30 dagen uitproeftijd
-                </p>
+              <div className="flex items-center space-x-2 mb-4">
+                <span className="text-3xl">🧸</span>
+                <span className="text-2xl font-bold">Droomvriendjes</span>
+              </div>
+              <div className="text-purple-200 text-sm space-y-1">
+                <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
+                <p>Droomvriendjes</p>
+                <p>Schaesbergerweg 103</p>
+                <p>6415 AD Heerlen</p>
+                <p className="text-xs italic">(Dit is geen bezoekadres)</p>
+                <p className="mt-3">KVK: 9921083</p>
+                
+                <div className="mt-4 pt-4 border-t border-purple-700">
+                  <p className="font-semibold text-white mb-1">Retouradres:</p>
+                  <p>Centerpoort-Nieuwgraaf</p>
+                  <p>Geograaf 16</p>
+                  <p>6921 EW Duiven</p>
+                </div>
               </div>
             </div>
-            
+
+            {/* Navigatie */}
             <div>
-              <h3 className="font-bold text-lg mb-4">Belangrijk</h3>
-              <ul className="space-y-2 text-[#a8c8b0] text-sm">
-                <li>• Geen medisch hulpmiddel</li>
-                <li>• Vervangt geen artsenbezoek</li>
-                <li>• Bij ernstige klachten: raadpleeg huisarts</li>
+              <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
+              <ul className="space-y-2 text-purple-200 text-sm">
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
+                <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
+                <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
+                <li><Link to="/uitproberen" className="hover:text-white transition-colors">14 dagen gratis uitproberen</Link></li>
+                <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
+                <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
+                <li><Link to="/vrouwen-60" className="hover:text-white transition-colors">Vrouwen 60+</Link></li>
               </ul>
             </div>
+
+            {/* Droomvriendjes helpt bij */}
+            <div>
+              <h3 className="font-bold mb-4 text-lg">Droomvriendjes helpt bij</h3>
+              <ul className="space-y-2 text-purple-200 text-sm">
+                <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
+                <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
+                <li><Link to="/angst" className="hover:text-white transition-colors">Angstvermindering</Link></li>
+                <li><Link to="/slaapproblemen" className="hover:text-white transition-colors">Beter slapen</Link></li>
+                <li><Link to="/troost" className="hover:text-white transition-colors">Troost vinden</Link></li>
+                <li><Link to="/hsp" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
+                <li><Link to="/dementie" className="hover:text-white transition-colors">Dementie</Link></li>
+              </ul>
+            </div>
+
+            {/* Klantenservice */}
+            <div>
+              <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
+              <ul className="space-y-2 text-purple-200 text-sm">
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Zoeken</Link></li>
+                <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
+                <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Beleid</Link></li>
+                <li><Link to="/#faq" className="hover:text-white transition-colors">Veelgestelde Vragen</Link></li>
+                <li><Link to="/#producten" className="hover:text-white transition-colors">Verzending</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+              <div className="mt-6">
+                <p className="font-semibold text-white mb-2 text-sm">Betaalmethoden</p>
+                <div className="text-purple-200 text-sm">
+                  <p>iDEAL • Klarna</p>
+                  <p>PayPal • Creditcard</p>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div className="border-t border-[#3d7a4d] pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-[#a8c8b0] text-sm">
-              © 2026 Droomvriendjes. Alle rechten voorbehouden.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0 text-sm text-[#a8c8b0]">
-              <Link to="/privacy" className="hover:text-white">Privacybeleid</Link>
-              <Link to="/voorwaarden" className="hover:text-white">Algemene Voorwaarden</Link>
-              <Link to="/contact" className="hover:text-white">Impressum</Link>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-purple-800 pt-8 text-center">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <p className="text-purple-200 text-sm">© 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
+              <div className="flex items-center space-x-4 text-purple-200 text-sm">
+                <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
+                <span>•</span>
+                <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+                <span>•</span>
+                <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+              </div>
             </div>
           </div>
         </div>
