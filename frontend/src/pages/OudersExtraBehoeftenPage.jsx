@@ -89,16 +89,18 @@ const OudersExtraBehoeftenPage = () => {
             </div>
             
             <div className="flex justify-center">
-              <Card className="rounded-lg border border-gray-200 shadow-sm overflow-hidden max-w-sm w-full">
-                <div className="bg-[#f5f9f5] p-8 flex items-center justify-center">
-                  <img src={landingProducts[0]?.image} alt="Panda" className="w-full h-auto object-contain max-h-[250px]" />
-                </div>
-                <CardContent className="p-6 bg-white">
-                  <p className="text-sm text-[#7a9a7a] mb-1">Aanbevolen bij ADHD</p>
-                  <h3 className="font-bold text-[#2d5a3d] text-xl mb-2">Panda Droomvriendje</h3>
-                  <p className="text-2xl font-bold text-[#2d5a3d]">€59,95</p>
-                </CardContent>
-              </Card>
+              <Link to={`/product/${landingProducts[0]?.id}`}>
+                <Card className="rounded-lg border border-gray-200 shadow-sm overflow-hidden max-w-sm w-full hover:shadow-lg hover:border-[#2d5a3d] transition-all cursor-pointer">
+                  <div className="bg-[#f5f9f5] p-4 aspect-square flex items-center justify-center">
+                    <img src={landingProducts[0]?.image} alt={landingProducts[0]?.shortName} className="w-full h-full object-cover rounded-lg" />
+                  </div>
+                  <CardContent className="p-6 bg-white">
+                    <p className="text-sm text-[#7a9a7a] mb-1">BESTSELLER #1</p>
+                    <h3 className="font-bold text-[#2d5a3d] text-xl mb-2">{landingProducts[0]?.shortName} Droomvriendje</h3>
+                    <p className="text-2xl font-bold text-[#2d5a3d]">€{landingProducts[0]?.price.toFixed(2).replace('.', ',')}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             </div>
           </div>
         </div>
