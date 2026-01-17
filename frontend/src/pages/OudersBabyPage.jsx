@@ -11,13 +11,13 @@ import CartSidebar from '../components/CartSidebar';
 const OudersBabyPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  const selectedProductIds = [2, 1, 8];
+  const selectedProductIds = [3, 2, 11]; // Teddy, Schaap, Panda - Bestsellers
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id))
     .map(p => ({
       ...p,
-      subtitle: p.id === 2 ? "Zacht en knuffelbaar" : p.id === 1 ? "Met sterrenprojectie" : "Extra zacht materiaal",
-      landingBadge: p.id === 2 ? "POPULAIR BIJ OUDERS" : p.id === 1 ? "BESTE KEUZE" : "EXTRA ZACHT",
+      subtitle: p.id === 3 ? "Meest gekozen" : p.id === 2 ? "Zacht en knuffelbaar" : "Super rustgevend",
+      landingBadge: p.id === 3 ? "BESTSELLER #1" : p.id === 2 ? "BESTSELLER #2" : "BESTSELLER #3",
     }));
 
   const reviews = [
