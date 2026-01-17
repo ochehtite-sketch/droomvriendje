@@ -62,6 +62,9 @@ function App() {
             <Route path="/naam-bedenker" element={<NaamBedenkerPage />} />
             <Route path="/uitproberen" element={<UitproberenPage />} />
             <Route path="/vrouwen-60" element={<VrouwenLandingPage />} />
+            <Route path="/ouders-baby" element={<OudersBabyPage />} />
+            <Route path="/ouders-peuters" element={<OudersPeutersPage />} />
+            <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
           </Routes>
           <Toaster />
         </BrowserRouter>
