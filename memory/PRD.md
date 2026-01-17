@@ -114,6 +114,12 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
   - /ouders-baby - Ouders van baby's (0-12 maanden)
   - /ouders-peuters - Ouders van peuters (1-4 jaar)
   - /ouders-extra-behoeften - Kinderen met ADHD, autisme, HSP
+- [x] ✅ Product Slider/Carousel op homepage (Voltooid 17 jan 2025)
+  - Swiper.js v12.0.3 geïntegreerd
+  - Autoplay met 4 seconden delay
+  - Navigatie pijltjes en pagination dots
+  - Responsive: 4 items (desktop), 2 items (tablet), 1 item (mobiel)
+  - Badges: BESTSELLER, NIEUW, POPULAIR, VOORDEELSET
 - [ ] Product Tagging voor SEO/Google Shopping optimalisatie
 - [ ] Google Ads Setup assistentie (keyword lijsten, advertentieteksten)
 
