@@ -193,111 +193,188 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Products Section - PREMIUM */}
-      <section id="producten" className="py-20 bg-white">
+      {/* Products Section - SLIDER */}
+      <section id="producten" className="py-20 bg-gradient-to-b from-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Onze Collectie
+          <div className="text-center mb-12">
+            <span className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              ✨ Onze Collectie
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Ontdek Onze <span className="text-blue-600">Droomvriendjes</span>
+              Jouw <span className="text-purple-600">Droomvriendje</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Alle knuffels vanaf €59,95 • Gratis verzending
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Speciale slaapknuffels met rustgevende lichtjes en geluiden voor een betere nachtrust
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <Card key={product.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-blue-200 rounded-2xl bg-white">
-                <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-8 overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-72 object-contain group-hover:scale-110 transition-transform duration-500"
-                  />
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-2xl font-bold text-gray-900">{product.shortName}</h3>
-                    <div className="flex items-center space-x-1 bg-amber-50 px-2 py-1 rounded">
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <span className="text-sm font-bold text-gray-900">{product.rating}</span>
-                      <span className="text-xs text-gray-500">({product.reviews})</span>
+          {/* Product Slider */}
+          <div className="relative px-4 md:px-12">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={24}
+              slidesPerView={1}
+              navigation={{
+                prevEl: '.swiper-button-prev-custom',
+                nextEl: '.swiper-button-next-custom',
+              }}
+              pagination={{ 
+                clickable: true,
+                dynamicBullets: true,
+              }}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop={true}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 24,
+                },
+              }}
+              className="product-slider !pb-14"
+              data-testid="product-slider"
+            >
+              {products.map((product) => (
+                <SwiperSlide key={product.id}>
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 h-full flex flex-col">
+                    {/* Badge */}
+                    <div className="relative">
+                      {product.badge && (
+                        <div className="absolute top-3 left-3 z-10">
+                          <span className={`px-3 py-1 text-xs font-bold rounded-full shadow-md ${
+                            product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white' :
+                            product.badge === 'NIEUW' ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white' :
+                            product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white' :
+                            'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                          }`}>
+                            {product.badge}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Product Image */}
+                      <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                        <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-6 cursor-pointer overflow-hidden">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
+                            data-testid={`product-image-${product.id}`}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                      </Link>
                     </div>
-                  </div>
-                  
-                  <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-                  
-                  {/* Features - Icons */}
-                  <div className="grid grid-cols-2 gap-2 mb-4">
-                    <div className="flex items-center text-xs text-gray-600">
-                      <span className="mr-1">🌟</span> Projectie
-                    </div>
-                    <div className="flex items-center text-xs text-gray-600">
-                      <span className="mr-1">🎵</span> White Noise
-                    </div>
-                    <div className="flex items-center text-xs text-gray-600">
-                      <span className="mr-1">💡</span> LED Licht
-                    </div>
-                    <div className="flex items-center text-xs text-gray-600">
-                      <span className="mr-1">⏰</span> Timer
-                    </div>
-                  </div>
-                  
-                  <div className="border-t pt-4 mb-4">
-                    <div className="flex items-baseline justify-between mb-2">
-                      <div>
-                        <span className="text-3xl font-bold text-gray-900">€{product.price.toFixed(2)}</span>
-                        <span className="text-sm text-gray-500 ml-2">/ stuk</span>
+                    
+                    {/* Product Info */}
+                    <div className="p-5 flex-1 flex flex-col">
+                      {/* Rating */}
+                      <div className="flex items-center gap-1 mb-2">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star 
+                              key={i} 
+                              className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'fill-gray-200 text-gray-200'}`} 
+                            />
+                          ))}
+                        </div>
+                        <span className="text-sm font-semibold text-gray-700">{product.rating}</span>
+                        <span className="text-xs text-gray-500">({product.reviews})</span>
                       </div>
-                    </div>
-                    <p className="text-sm text-green-600 font-semibold">✓ Op voorraad - Voor 23:00 besteld, morgen in huis</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
-                      <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all" data-testid={`view-details-${product.id}`}>
-                        Bekijk Details
+                      
+                      {/* Title */}
+                      <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors cursor-pointer">
+                          {product.name}
+                        </h3>
+                      </Link>
+                      
+                      {/* Short Description */}
+                      <p className="text-sm text-gray-500 mb-4 line-clamp-2 flex-1">
+                        {product.description}
+                      </p>
+                      
+                      {/* Price */}
+                      <div className="mb-4">
+                        {product.originalPrice > product.price ? (
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-sm text-gray-400 line-through">€{product.originalPrice.toFixed(2)}</span>
+                            <span className="text-2xl font-bold text-purple-600">€{product.price.toFixed(2)}</span>
+                          </div>
+                        ) : (
+                          <span className="text-2xl font-bold text-gray-900">€{product.price.toFixed(2)}</span>
+                        )}
+                      </div>
+                      
+                      {/* Add to Cart Button */}
+                      <Button 
+                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-5 rounded-xl shadow-md hover:shadow-lg transition-all"
+                        onClick={() => addToCart(product)}
+                        data-testid={`add-to-cart-slider-${product.id}`}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        In Winkelmandje
                       </Button>
-                    </Link>
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold"
-                      onClick={() => addToCart(product)}
-                      data-testid={`add-to-cart-home-${product.id}`}
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      In Winkelwagen
-                    </Button>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            
+            {/* Custom Navigation Buttons */}
+            <button 
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-purple-50 hover:shadow-xl transition-all border border-gray-200"
+              aria-label="Vorige"
+              data-testid="slider-prev-button"
+            >
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
+            </button>
+            <button 
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-purple-50 hover:shadow-xl transition-all border border-gray-200"
+              aria-label="Volgende"
+              data-testid="slider-next-button"
+            >
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
+            </button>
+          </div>
+          
+          {/* View All Products Link */}
+          <div className="text-center mt-10">
+            <Link to="/#producten">
+              <Button variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg font-semibold rounded-full">
+                Bekijk Alle Knuffels
+              </Button>
+            </Link>
           </div>
           
           {/* Trust Section Below Products */}
-          <div className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8">
+          <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg border border-purple-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
-                <p className="text-4xl font-bold text-blue-600 mb-2">100.000+</p>
+                <p className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">100.000+</p>
                 <p className="text-sm text-gray-600 font-medium">Tevreden Klanten</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-purple-600 mb-2">86%</p>
+                <p className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">86%</p>
                 <p className="text-sm text-gray-600 font-medium">Slaapt Beter</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-pink-600 mb-2">4.7/5</p>
+                <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">4.7/5</p>
                 <p className="text-sm text-gray-600 font-medium">Trustpilot Score</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-green-600 mb-2">30</p>
+                <p className="text-3xl md:text-4xl font-bold text-green-600 mb-2">30</p>
                 <p className="text-sm text-gray-600 font-medium">Dagen Garantie</p>
               </div>
             </div>
