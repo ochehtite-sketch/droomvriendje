@@ -97,11 +97,12 @@ const OudersBabyPage = () => {
           <div className="relative max-w-4xl mx-auto">
             <div className="grid grid-cols-3 gap-4 md:gap-8">
               {landingProducts.map((product, idx) => (
-                <div 
+                <Link 
+                  to={`/product/${product.id}`}
                   key={product.id} 
                   className={`transform transition-all duration-500 hover:scale-105 ${idx === 1 ? '-mt-8' : 'mt-4'}`}
                 >
-                  <Card className="bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(45,90,61,0.15)] border-0 overflow-hidden">
+                  <Card className="bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(45,90,61,0.15)] border-0 overflow-hidden cursor-pointer hover:shadow-[0_30px_80px_-15px_rgba(45,90,61,0.25)]">
                     <div className="bg-gradient-to-b from-[#f5f9f5] to-white p-4 flex items-center justify-center aspect-square">
                       <img src={product.image} alt={product.name} className="w-full h-full object-cover rounded-xl" />
                     </div>
@@ -110,7 +111,7 @@ const OudersBabyPage = () => {
                       <p className="text-[#2d5a3d] font-bold">€{product.price.toFixed(2).replace('.', ',')}</p>
                     </CardContent>
                   </Card>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
