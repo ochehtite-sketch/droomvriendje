@@ -24,6 +24,9 @@ import ReviewsPage from "./pages/ReviewsPage";
 import NaamBedenkerPage from "./pages/NaamBedenkerPage";
 import UitproberenPage from "./pages/UitproberenPage";
 import VrouwenLandingPage from "./pages/VrouwenLandingPage";
+import OudersBabyPage from "./pages/OudersBabyPage";
+import OudersPeutersPage from "./pages/OudersPeutersPage";
+import OudersExtraBehoeftenPage from "./pages/OudersExtraBehoeftenPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
