@@ -102,8 +102,8 @@ const OudersBabyPage = () => {
                   className={`transform transition-all duration-500 hover:scale-105 ${idx === 1 ? '-mt-8' : 'mt-4'}`}
                 >
                   <Card className="bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(45,90,61,0.15)] border-0 overflow-hidden">
-                    <div className="bg-gradient-to-b from-[#f5f9f5] to-white p-6 flex items-center justify-center aspect-square">
-                      <img src={product.image} alt={product.name} className="w-full h-auto object-contain max-h-[150px]" />
+                    <div className="bg-gradient-to-b from-[#f5f9f5] to-white p-4 flex items-center justify-center aspect-square">
+                      <img src={product.image} alt={product.name} className="w-full h-full object-cover rounded-xl" />
                     </div>
                     <CardContent className="p-4 text-center">
                       <p className="font-semibold text-[#2d5a3d] text-sm">{product.shortName}</p>
