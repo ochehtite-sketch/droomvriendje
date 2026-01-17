@@ -1336,6 +1336,19 @@ async def test_email(email: str = "info@droomvriendjes.nl"):
         return {"status": "error", "message": "Failed to send test email"}
 
 
+# Feed products JSON endpoint (moet voor include_router)
+@api_router.get("/feed/products")
+async def get_feed_products():
+    """Get all products formatted for Google Shopping feed (JSON)"""
+    return {
+        "merchant_center_id": MERCHANT_CENTER_ID,
+        "shop_url": SHOP_URL,
+        "products_count": len(PRODUCTS_DATA),
+        "products": PRODUCTS_DATA,
+        "feed_url": f"{SHOP_URL}/feed/google-shopping.xml"
+    }
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
