@@ -7,9 +7,8 @@ export const products = [
     shortName: "Leeuw",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/9h12x5d9_Baby%20Slaapmaatje%20Leeuw%20%E2%80%93%20Projector%20Nachtlamp%20%2B%20Sound.png",
+    image: "https://i.imgur.com/E4g3eOy.jpeg",
     gallery: [
-      "https://i.imgur.com/E4g3eOy.jpeg",
       "https://i.imgur.com/zYLuTAg.jpeg",
       "https://i.imgur.com/WfHQKKr.jpeg",
       "https://i.imgur.com/ZeirKxe.jpeg",
