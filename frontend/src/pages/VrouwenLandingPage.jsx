@@ -527,8 +527,8 @@ const VrouwenLandingPage = () => {
         </div>
       </section>
 
-      {/* Full Footer - Same as main site */}
-      <footer className="bg-purple-900 text-white py-12">
+      {/* Full Footer - Green theme for Vrouwen 60+ page */}
+      <footer className="bg-[#2d5a3d] text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Bedrijfsgegevens */}
@@ -537,7 +537,7 @@ const VrouwenLandingPage = () => {
                 <span className="text-3xl">🧸</span>
                 <span className="text-2xl font-bold">Droomvriendjes</span>
               </div>
-              <div className="text-purple-200 text-sm space-y-1">
+              <div className="text-[#a8d4a8] text-sm space-y-1">
                 <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
                 <p>Droomvriendjes</p>
                 <p>Schaesbergerweg 103</p>
@@ -545,7 +545,7 @@ const VrouwenLandingPage = () => {
                 <p className="text-xs italic">(Dit is geen bezoekadres)</p>
                 <p className="mt-3">KVK: 9921083</p>
                 
-                <div className="mt-4 pt-4 border-t border-purple-700">
+                <div className="mt-4 pt-4 border-t border-[#3d7a4d]">
                   <p className="font-semibold text-white mb-1">Retouradres:</p>
                   <p>Centerpoort-Nieuwgraaf</p>
                   <p>Geograaf 16</p>
@@ -557,7 +557,7 @@ const VrouwenLandingPage = () => {
             {/* Navigatie */}
             <div>
               <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
-              <ul className="space-y-2 text-purple-200 text-sm">
+              <ul className="space-y-2 text-[#a8d4a8] text-sm">
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
@@ -575,7 +575,7 @@ const VrouwenLandingPage = () => {
             {/* Droomvriendjes helpt bij */}
             <div>
               <h3 className="font-bold mb-4 text-lg">Droomvriendjes helpt bij</h3>
-              <ul className="space-y-2 text-purple-200 text-sm">
+              <ul className="space-y-2 text-[#a8d4a8] text-sm">
                 <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
                 <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
                 <li><Link to="/angst" className="hover:text-white transition-colors">Angstvermindering</Link></li>
@@ -589,7 +589,7 @@ const VrouwenLandingPage = () => {
             {/* Klantenservice */}
             <div>
               <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
-              <ul className="space-y-2 text-purple-200 text-sm">
+              <ul className="space-y-2 text-[#a8d4a8] text-sm">
                 <li><Link to="/#producten" className="hover:text-white transition-colors">Zoeken</Link></li>
                 <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
                 <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
@@ -600,7 +600,7 @@ const VrouwenLandingPage = () => {
               </ul>
               <div className="mt-6">
                 <p className="font-semibold text-white mb-2 text-sm">Betaalmethoden</p>
-                <div className="text-purple-200 text-sm">
+                <div className="text-[#a8d4a8] text-sm">
                   <p>iDEAL • Klarna</p>
                   <p>PayPal • Creditcard</p>
                 </div>
@@ -609,10 +609,10 @@ const VrouwenLandingPage = () => {
           </div>
 
           {/* Bottom Footer */}
-          <div className="border-t border-purple-800 pt-8 text-center">
+          <div className="border-t border-[#3d7a4d] pt-8 text-center">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-purple-200 text-sm">© 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
-              <div className="flex items-center space-x-4 text-purple-200 text-sm">
+              <p className="text-[#a8d4a8] text-sm">© 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
+              <div className="flex items-center space-x-4 text-[#a8d4a8] text-sm">
                 <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
                 <span>•</span>
                 <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
