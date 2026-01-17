@@ -1570,11 +1570,22 @@ async def google_ads_status():
     }
 
 @api_router.get("/google-ads/oauth-url")
-async def get_google_ads_oauth_url():
+async def get_google_ads_oauth_url(request: Request):
     """Get OAuth authorization URL for Google Ads"""
     from services.google_ads_service import google_ads_service
     
-    redirect_uri = f"{FRONTEND_URL}/admin/google-ads/callback"
+    # Use the request's origin for dynamic redirect URI
+    # This allows testing from both preview and production
+    origin = request.headers.get("origin") or request.headers.get("referer", "").rstrip("/")
+    if origin:
+        # Extract base URL from origin/referer
+        from urllib.parse import urlparse
+        parsed = urlparse(origin)
+        base_url = f"{parsed.scheme}://{parsed.netloc}"
+    else:
+        base_url = FRONTEND_URL
+    
+    redirect_uri = f"{base_url}/admin/google-ads/callback"
     try:
         auth_url = google_ads_service.get_oauth_url(redirect_uri)
         return {"auth_url": auth_url, "redirect_uri": redirect_uri}
