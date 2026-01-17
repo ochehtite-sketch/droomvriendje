@@ -207,9 +207,8 @@ export const products = [
     shortName: "Beer Projector",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vwsaoqd6_Beer%20Sterrenprojector%20Nachtlamp%20%E2%80%93%20Baby%20Slaaplicht%20met%20Geluiden%20liggend.png",
+    image: "https://i.imgur.com/d8fa8nc.jpeg",
     gallery: [
-      "https://i.imgur.com/d8fa8nc.jpeg",
       "https://i.imgur.com/xyXHy7f.jpeg",
       "https://i.imgur.com/H5W6Q5h.jpeg",
       "https://i.imgur.com/q2c7zsP.jpeg",
