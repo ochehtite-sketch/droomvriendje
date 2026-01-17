@@ -256,7 +256,7 @@ const HomePage = () => {
               className="product-slider !pb-14"
               data-testid="product-slider"
             >
-              {products.map((product) => (
+              {products.map((product, index) => (
                 <SwiperSlide key={product.id}>
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 h-full flex flex-col">
                     {/* Badge */}
@@ -275,7 +275,7 @@ const HomePage = () => {
                       )}
                       
                       {/* Product Image */}
-                      <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                      <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
                         <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-6 cursor-pointer overflow-hidden">
                           <img 
                             src={product.image} 
