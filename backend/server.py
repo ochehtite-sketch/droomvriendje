@@ -1550,14 +1550,73 @@ async def get_feed_products():
 # Include the router in the main app
 app.include_router(api_router)
 
-# ============== GOOGLE SHOPPING PRODUCT FEED ==============
+# ============== GOOGLE SHOPPING XML FEED ==============
 
-# Product data for Google Shopping Feed
-PRODUCTS_DATA = [
-    {
-        "id": "KNUF_001",
-        "title": "Baby Slaapmaatje Leeuw - Projector Nachtlamp met White Noise",
-        "description": "Projector nachtlamp met rustgevende geluiden. Perfect voor een betere nachtrust. Met sterrenhemel projectie, rustgevende white noise, zachte LED verlichting en timer functie.",
+from fastapi.responses import Response
+
+@app.get("/feed/google-shopping.xml")
+async def google_shopping_feed():
+    """Generate Google Shopping Product Feed in XML format"""
+    
+    xml_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Droomvriendjes - Slaapknuffels met Nachtlampje</title>
+    <link>{SHOP_URL}</link>
+    <description>Ontdek onze slaapknuffels met sterrenprojector en rustgevende geluiden. Gratis verzending en 14 dagen retour.</description>
+'''
+    
+    for product in PRODUCTS_DATA:
+        xml_content += f'''
+    <item>
+      <g:id>{product["id"]}</g:id>
+      <g:title><![CDATA[{product["title"]}]]></g:title>
+      <g:description><![CDATA[{product["description"]}]]></g:description>
+      <g:link>{SHOP_URL}{product["link"]}</g:link>
+      <g:image_link>{product["image_link"]}</g:image_link>
+'''
+        # Additional images
+        for img in product.get("additional_image_links", []):
+            xml_content += f'''      <g:additional_image_link>{img}</g:additional_image_link>
+'''
+        
+        xml_content += f'''      <g:availability>{product["availability"]}</g:availability>
+      <g:price>{product["price"]}</g:price>
+'''
+        if "sale_price" in product:
+            xml_content += f'''      <g:sale_price>{product["sale_price"]}</g:sale_price>
+'''
+        
+        xml_content += f'''      <g:brand>{product["brand"]}</g:brand>
+      <g:condition>{product["condition"]}</g:condition>
+      <g:google_product_category>{product["google_product_category"]}</g:google_product_category>
+      <g:product_type><![CDATA[{product["product_type"]}]]></g:product_type>
+      <g:identifier_exists>{product["identifier_exists"]}</g:identifier_exists>
+      <g:age_group>{product["age_group"]}</g:age_group>
+      <g:color>{product["color"]}</g:color>
+      <g:material>{product["material"]}</g:material>
+      <g:shipping>
+        <g:country>NL</g:country>
+        <g:service>Gratis Verzending</g:service>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>BE</g:country>
+        <g:service>Standaard Verzending</g:service>
+        <g:price>4.95 EUR</g:price>
+      </g:shipping>
+      <g:shipping_weight>{product["shipping_weight"]}</g:shipping_weight>
+      <g:return_policy_label>14_dagen_retour</g:return_policy_label>
+    </item>
+'''
+    
+    xml_content += '''  </channel>
+</rss>'''
+    
+    return Response(content=xml_content, media_type="application/xml")
+
+
+# NOTE: Duplicaat PRODUCTS_DATA verwijderd - de eerste definitie bovenaan (regel 69) wordt gebruikt
         "link": "/product/1",
         "image_link": "https://i.imgur.com/E4g3eOy.jpeg",
         "additional_image_links": [
