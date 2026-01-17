@@ -118,7 +118,7 @@ export const products = [
     shortName: "Pinguïn",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/TDYcz0q.jpeg",
+    image: "https://i.imgur.com/NICJrZM.jpeg",
     gallery: [
       "https://i.imgur.com/NICJrZM.jpeg",
       "https://i.imgur.com/bicxCOu.jpeg",
