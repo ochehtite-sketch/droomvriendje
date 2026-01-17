@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '..
 import { Star, ShoppingCart, Check, Sparkles, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 import Layout from '../components/Layout';
 import { trackViewItem } from '../utils/analytics';
+import { AdSquare, AdMultiplex } from '../components/AdSense';
 
 const ProductPage = () => {
   const { id } = useParams();
