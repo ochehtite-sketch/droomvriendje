@@ -1,0 +1,259 @@
+import React, { useState, useEffect } from 'react';
+import Layout from '../components/Layout';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { 
+  ShoppingBag, 
+  ExternalLink, 
+  Copy, 
+  Check, 
+  RefreshCw,
+  Package,
+  Tag,
+  Image as ImageIcon,
+  Truck
+} from 'lucide-react';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+
+const MerchantFeedPage = () => {
+  const [feedData, setFeedData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    fetchFeedData();
+  }, []);
+
+  const fetchFeedData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/api/feed/products`);
+      const data = await response.json();
+      setFeedData(data);
+    } catch (error) {
+      console.error('Error fetching feed data:', error);
+    }
+    setLoading(false);
+  };
+
+  const copyFeedUrl = () => {
+    if (feedData?.feed_url) {
+      navigator.clipboard.writeText(feedData.feed_url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const openFeed = () => {
+    window.open(`${API_URL}/feed/google-shopping.xml`, '_blank');
+  };
+
+  return (
+    <Layout>
+      <div className="min-h-screen bg-gray-50 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <ShoppingBag className="w-6 h-6 text-blue-600" />
+              </div>
+              <h1 className="text-3xl font-bold text-gray-900">Google Merchant Center Feed</h1>
+            </div>
+            <p className="text-gray-600">Beheer je Google Shopping product feed</p>
+          </div>
+
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <RefreshCw className="w-8 h-8 animate-spin text-blue-600" />
+            </div>
+          ) : feedData ? (
+            <>
+              {/* Feed Info Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-500">Merchant ID</p>
+                        <p className="text-xl font-bold text-gray-900">{feedData.merchant_center_id}</p>
+                      </div>
+                      <ShoppingBag className="h-8 w-8 text-blue-500" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-500">Producten</p>
+                        <p className="text-xl font-bold text-gray-900">{feedData.products_count}</p>
+                      </div>
+                      <Package className="h-8 w-8 text-green-500" />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-500">Feed Status</p>
+                        <p className="text-xl font-bold text-green-600">Actief</p>
+                      </div>
+                      <div className="h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-500">Verzending</p>
+                        <p className="text-xl font-bold text-gray-900">NL + BE</p>
+                      </div>
+                      <Truck className="h-8 w-8 text-purple-500" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Feed URL Section */}
+              <Card className="mb-8">
+                <CardHeader>
+                  <CardTitle className="text-lg">Feed URL voor Merchant Center</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-4">
+                    <div className="flex-1 bg-gray-100 rounded-lg px-4 py-3 font-mono text-sm overflow-x-auto">
+                      {feedData.feed_url}
+                    </div>
+                    <Button onClick={copyFeedUrl} variant="outline" className="shrink-0">
+                      {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                      {copied ? 'Gekopieerd!' : 'Kopieer'}
+                    </Button>
+                    <Button onClick={openFeed} className="bg-blue-600 hover:bg-blue-700 shrink-0">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Bekijk Feed
+                    </Button>
+                  </div>
+                  
+                  <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h4 className="font-semibold text-blue-900 mb-2">📋 Instructies voor Merchant Center:</h4>
+                    <ol className="list-decimal list-inside text-sm text-blue-800 space-y-1">
+                      <li>Ga naar <a href="https://merchants.google.com" target="_blank" rel="noopener noreferrer" className="underline">Google Merchant Center</a></li>
+                      <li>Klik op "Producten" → "Feeds" → "Primaire feed toevoegen"</li>
+                      <li>Selecteer "Geplande ophaalactie" als invoermethode</li>
+                      <li>Plak de bovenstaande Feed URL</li>
+                      <li>Stel de update frequentie in op "Dagelijks"</li>
+                    </ol>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Products Preview */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Package className="w-5 h-5" />
+                    Producten in Feed ({feedData.products_count})
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {feedData.products.map((product) => (
+                      <div key={product.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                        {/* Product Image */}
+                        <div className="w-20 h-20 rounded-lg overflow-hidden bg-white border shrink-0">
+                          <img 
+                            src={product.image_link} 
+                            alt={product.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        
+                        {/* Product Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <h3 className="font-semibold text-gray-900 line-clamp-1">{product.title}</h3>
+                              <p className="text-sm text-gray-500 mt-1 line-clamp-2">{product.description}</p>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <p className="font-bold text-lg text-gray-900">{product.price}</p>
+                              <Badge className={`mt-1 ${product.availability === 'in_stock' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                                {product.availability === 'in_stock' ? 'Op voorraad' : 'Uitverkocht'}
+                              </Badge>
+                            </div>
+                          </div>
+                          
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            <Badge variant="outline" className="text-xs">
+                              <Tag className="w-3 h-3 mr-1" />
+                              {product.id}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {product.brand}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {product.color}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              <ImageIcon className="w-3 h-3 mr-1" />
+                              {1 + (product.additional_image_links?.length || 0)} foto's
+                            </Badge>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Feed Attributes Info */}
+              <Card className="mt-8">
+                <CardHeader>
+                  <CardTitle className="text-lg">Feed Attributen</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="p-3 bg-green-50 rounded-lg">
+                      <p className="text-xs text-green-600 font-medium">✓ Vereist</p>
+                      <p className="font-semibold mt-1">ID, Titel, Beschrijving</p>
+                    </div>
+                    <div className="p-3 bg-green-50 rounded-lg">
+                      <p className="text-xs text-green-600 font-medium">✓ Vereist</p>
+                      <p className="font-semibold mt-1">Prijs, Link, Afbeelding</p>
+                    </div>
+                    <div className="p-3 bg-blue-50 rounded-lg">
+                      <p className="text-xs text-blue-600 font-medium">✓ Aanbevolen</p>
+                      <p className="font-semibold mt-1">Merk, Kleur, Materiaal</p>
+                    </div>
+                    <div className="p-3 bg-blue-50 rounded-lg">
+                      <p className="text-xs text-blue-600 font-medium">✓ Aanbevolen</p>
+                      <p className="font-semibold mt-1">Verzending, Retourbeleid</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </>
+          ) : (
+            <Card>
+              <CardContent className="py-12 text-center">
+                <p className="text-gray-500">Kon feed data niet laden</p>
+                <Button onClick={fetchFeedData} className="mt-4">
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Opnieuw proberen
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default MerchantFeedPage;
