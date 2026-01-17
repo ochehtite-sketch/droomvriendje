@@ -212,6 +212,18 @@ export const products = [
     price: 59.95,
     originalPrice: 59.95,
     image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/vwsaoqd6_Beer%20Sterrenprojector%20Nachtlamp%20%E2%80%93%20Baby%20Slaaplicht%20met%20Geluiden%20liggend.png",
+    gallery: [
+      "https://i.imgur.com/d8fa8nc.jpeg",
+      "https://i.imgur.com/xyXHy7f.jpeg",
+      "https://i.imgur.com/H5W6Q5h.jpeg",
+      "https://i.imgur.com/q2c7zsP.jpeg",
+      "https://i.imgur.com/4BllnwS.jpeg",
+      "https://i.imgur.com/4GiHWvE.jpeg",
+      "https://i.imgur.com/0pPCNRt.jpeg",
+      "https://i.imgur.com/G3Q2WBz.jpeg",
+      "https://i.imgur.com/8TN6Erw.jpeg",
+      "https://i.imgur.com/NiZGGmg.jpeg"
+    ],
     description: "Schattige beer met sterrenprojector en rustgevende slaapgeluiden voor je baby.",
     features: [
       "Sterrenhemel projectie",
