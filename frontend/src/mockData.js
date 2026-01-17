@@ -216,6 +216,17 @@ export const products = [
     price: 59.95,
     originalPrice: 59.95,
     image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/30kl3u34_Kalmerende%20Eenhoorn%20Knuffel%20%E2%80%93%20Baby%20Slaaphulp%20met%20Licht.png",
+    gallery: [
+      "https://i.imgur.com/AO5No1g.jpeg",
+      "https://i.imgur.com/x4PTZXD.png",
+      "https://i.imgur.com/HfEhYtW.png",
+      "https://i.imgur.com/U6jZN9j.png",
+      "https://i.imgur.com/hlK3PYx.png",
+      "https://i.imgur.com/I5SCJG1.png",
+      "https://i.imgur.com/QxrdidH.png",
+      "https://i.imgur.com/KcxOjMy.png",
+      "https://i.imgur.com/sapubN7.png"
+    ],
     description: "Magische eenhoorn met kalmerend licht. De perfecte slaaphulp voor je kleintje!",
     features: [
       "Roze eenhoorn design",
