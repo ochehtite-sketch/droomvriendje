@@ -80,8 +80,9 @@ export const products = [
     shortName: "Teddy",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/1ZLB7vx.jpeg",
+    image: "https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png",
     gallery: [
+      "https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png",
       "https://i.imgur.com/jM6J4oV.jpeg",
       "https://i.imgur.com/bMpTi4F.jpeg",
       "https://i.imgur.com/LuZnyJN.jpeg",
@@ -90,9 +91,7 @@ export const products = [
       "https://i.imgur.com/Cy86P4h.jpeg",
       "https://i.imgur.com/IvGsHSN.jpeg",
       "https://i.imgur.com/troxAMG.jpeg",
-      "https://i.imgur.com/rTPH83M.jpeg",
-      "https://i.imgur.com/msm0eMG.jpeg",
-      "https://i.imgur.com/2n4RCf1.jpeg"
+      "https://i.imgur.com/rTPH83M.jpeg"
     ],
     description: "Bruine teddy met nachtlicht en rustgevende geluiden. Voor een rustige nachtrust.",
     features: [
