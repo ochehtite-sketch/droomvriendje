@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { products, reviews, faqs } from '../mockData';
 import { useCart } from '../context/CartContext';
@@ -6,20 +6,32 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { Star, ShoppingCart, Check, Sparkles, Shield } from 'lucide-react';
+import { Star, ShoppingCart, Check, Sparkles, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 import Layout from '../components/Layout';
 import { trackViewItem } from '../utils/analytics';
 
 const ProductPage = () => {
   const { id } = useParams();
   const { addToCart, setIsCartOpen } = useCart();
+  const [selectedImage, setSelectedImage] = useState(0);
   
   const product = useMemo(() => {
     return products.find(p => p.id === parseInt(id));
   }, [id]);
 
+  // Create gallery array - main image + gallery images
+  const galleryImages = useMemo(() => {
+    if (!product) return [];
+    const images = [product.image];
+    if (product.gallery && product.gallery.length > 0) {
+      images.push(...product.gallery);
+    }
+    return images;
+  }, [product]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    setSelectedImage(0); // Reset to first image when product changes
   }, [id]);
 
   useEffect(() => {
