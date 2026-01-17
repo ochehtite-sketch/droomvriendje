@@ -60,8 +60,8 @@ const Footer = () => {
               <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
               <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
               <li><Link to="/angst" className="hover:text-white transition-colors">Angstvermindering</Link></li>
-              <li><Link to="/slaapproblemen" className="hover:text-white transition-colors">Beter slapen</Link></li>
-              <li><Link to="/troost" className="hover:text-white transition-colors">Troost vinden</Link></li>
+              <li><Link to="/tips-bedtijd" className="hover:text-white transition-colors">Tips voor bedtijd</Link></li>
+              <li><Link to="/rustmoment-ouders" className="hover:text-white transition-colors">Rustmoment voor ouders</Link></li>
               <li><Link to="/hsp" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
               <li><Link to="/dementie" className="hover:text-white transition-colors">Dementie</Link></li>
             </ul>
