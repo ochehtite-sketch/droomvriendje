@@ -1627,47 +1627,6 @@ app.add_middleware(
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
-        "color": "Bruin",
-        "material": "Pluche",
-        "shipping_weight": "0.5 kg"
-    },
-    {
-        "id": "KNUF_004",
-        "title": "Pinguïn Nachtlampje - Slaapknuffel met Projectie en Geluiden",
-        "description": "Schattige pinguïn met sterrenprojector en rustgevende geluiden. Perfect voor je kleintje om lekker te slapen.",
-        "link": "/product/4",
-        "image_link": "https://i.imgur.com/sYVb8K4.jpeg",
-        "additional_image_links": [
-            "https://i.imgur.com/RqYk1oe.jpeg",
-            "https://i.imgur.com/w9CXyTF.jpeg"
-        ],
-        "availability": "in_stock",
-        "price": "59.95 EUR",
-        "brand": "Droomvriendjes",
-        "condition": "new",
-        "google_product_category": "588 > 4186",
-        "product_type": "Knuffels > Slaapknuffels > Pooldieren",
-        "identifier_exists": "no",
-        "age_group": "infant",
-        "color": "Blauw/Wit",
-        "material": "Pluche",
-        "shipping_weight": "0.5 kg"
-    },
-    {
-        "id": "KNUF_005",
-        "title": "Dinosaurus Slaapknuffel - Stoere Dino met Nachtlamp en White Noise",
-        "description": "Stoere dinosaurus met nachtlamp en white noise. Perfect voor avonturiers! Met projector nachtlamp, white noise geluiden en veilig zacht materiaal.",
-        "link": "/product/5",
-        "image_link": "https://i.imgur.com/z4cyllw.jpeg",
-        "additional_image_links": [
-            "https://i.imgur.com/mWJSBxI.jpeg",
-            "https://i.imgur.com/kJG1UIK.jpeg"
-        ],
-        "availability": "in_stock",
-        "price": "59.95 EUR",
-        "brand": "Droomvriendjes",
-        "condition": "new",
-        "google_product_category": "588 > 4186",
         "product_type": "Knuffels > Slaapknuffels > Fantasiedieren",
         "identifier_exists": "no",
         "age_group": "infant",
