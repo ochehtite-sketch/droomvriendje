@@ -270,7 +270,7 @@ const CheckoutPage = () => {
                 </CardContent>
               </Card>
 
-              {/* Payment Method */}
+              {/* Payment Method - TIJDELIJK VERBORGEN TOT MOLLIE PROBLEEM IS OPGELOST
               <Card>
                 <CardHeader>
                   <CardTitle>Betaalmethode</CardTitle>
@@ -312,6 +312,7 @@ const CheckoutPage = () => {
                   </RadioGroup>
                 </CardContent>
               </Card>
+              */}
 
               <Button
                 type="submit"
