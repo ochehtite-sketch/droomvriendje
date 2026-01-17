@@ -36,7 +36,15 @@ export const products = [
     reviews: 187,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_001",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Wilde Dieren",
+    item_category4: "Medium",
+    item_category5: "Met Projectie",
+    item_variant: "geel-bruin"
   },
   {
     id: 2,
@@ -72,7 +80,15 @@ export const products = [
     reviews: 143,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_002",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Boerderijdieren",
+    item_category4: "Medium",
+    item_category5: "Met Projectie",
+    item_variant: "wit-crème"
   },
   {
     id: 3,
@@ -110,7 +126,15 @@ export const products = [
     reviews: 219,
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_003",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Beren",
+    item_category4: "Medium",
+    item_category5: "Met Projectie",
+    item_variant: "bruin"
   },
   {
     id: 4,
