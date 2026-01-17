@@ -351,7 +351,7 @@ const HomePage = () => {
           
           {/* View All Products Link */}
           <div className="text-center mt-10">
-            <Link to="/#producten">
+            <Link to="/knuffels">
               <Button variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg font-semibold rounded-full">
                 Bekijk Alle Knuffels
               </Button>
