@@ -1547,6 +1547,112 @@ async def get_feed_products():
     }
 
 
+# ============== GOOGLE ADS API ENDPOINTS ==============
+
+class CreateCampaignRequest(BaseModel):
+    campaign_name: str
+    daily_budget: float
+    merchant_id: Optional[int] = None
+
+@api_router.get("/google-ads/status")
+async def google_ads_status():
+    """Check Google Ads API configuration status"""
+    from services.google_ads_service import google_ads_service, GOOGLE_ADS_CONFIG, CUSTOMER_ID, MERCHANT_CENTER_ID
+    
+    return {
+        "configured": google_ads_service.is_configured,
+        "has_refresh_token": bool(GOOGLE_ADS_CONFIG.get("refresh_token")),
+        "customer_id": CUSTOMER_ID,
+        "merchant_center_id": MERCHANT_CENTER_ID,
+        "developer_token_set": bool(GOOGLE_ADS_CONFIG.get("developer_token")),
+        "client_id_set": bool(GOOGLE_ADS_CONFIG.get("client_id")),
+        "client_secret_set": bool(GOOGLE_ADS_CONFIG.get("client_secret")),
+    }
+
+@api_router.get("/google-ads/oauth-url")
+async def get_google_ads_oauth_url():
+    """Get OAuth authorization URL for Google Ads"""
+    from services.google_ads_service import google_ads_service
+    
+    redirect_uri = f"{FRONTEND_URL}/admin/google-ads/callback"
+    try:
+        auth_url = google_ads_service.get_oauth_url(redirect_uri)
+        return {"auth_url": auth_url, "redirect_uri": redirect_uri}
+    except Exception as e:
+        logger.error(f"Error generating OAuth URL: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/google-ads/oauth-callback")
+async def google_ads_oauth_callback(code: str):
+    """Exchange OAuth code for tokens"""
+    from services.google_ads_service import google_ads_service
+    
+    redirect_uri = f"{FRONTEND_URL}/admin/google-ads/callback"
+    try:
+        tokens = google_ads_service.exchange_code_for_tokens(code, redirect_uri)
+        
+        # Store refresh token in database for future use
+        await db.google_ads_tokens.update_one(
+            {"type": "google_ads"},
+            {"$set": {
+                "refresh_token": tokens.get("refresh_token"),
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }},
+            upsert=True
+        )
+        
+        return {"success": True, "message": "OAuth completed successfully"}
+    except Exception as e:
+        logger.error(f"OAuth callback error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/google-ads/campaigns")
+async def get_google_ads_campaigns():
+    """Get all Shopping campaigns from Google Ads"""
+    from services.google_ads_service import google_ads_service
+    
+    try:
+        campaigns = google_ads_service.get_shopping_campaigns()
+        return {"campaigns": campaigns, "count": len(campaigns)}
+    except Exception as e:
+        logger.error(f"Error fetching campaigns: {e}")
+        return {"campaigns": [], "count": 0, "error": str(e)}
+
+@api_router.post("/google-ads/campaigns/create")
+async def create_google_ads_campaign(request: CreateCampaignRequest):
+    """Create a new Shopping campaign"""
+    from services.google_ads_service import google_ads_service
+    
+    try:
+        result = google_ads_service.create_shopping_campaign(
+            campaign_name=request.campaign_name,
+            daily_budget=request.daily_budget,
+            merchant_id=request.merchant_id
+        )
+        
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result)
+            
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error creating campaign: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/google-ads/account")
+async def get_google_ads_account():
+    """Get Google Ads account information"""
+    from services.google_ads_service import google_ads_service
+    
+    try:
+        account_info = google_ads_service.get_account_info()
+        return account_info
+    except Exception as e:
+        logger.error(f"Error fetching account info: {e}")
+        return {"error": str(e)}
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
