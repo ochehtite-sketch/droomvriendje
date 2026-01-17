@@ -62,8 +62,8 @@ app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
 # ============== GOOGLE SHOPPING FEED CONSTANTS ==============
-SHOP_URL = "https://droomvriendjes.nl"
-MERCHANT_CENTER_ID = "5713316340"
+SHOP_URL = os.environ.get('SHOP_URL', 'https://droomvriendjes.nl')
+MERCHANT_CENTER_ID = os.environ.get('GOOGLE_MERCHANT_CENTER_ID', '5713316340')
 
 # Product data for Google Shopping Feed
 PRODUCTS_DATA = [
