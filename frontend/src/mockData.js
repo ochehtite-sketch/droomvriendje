@@ -109,9 +109,8 @@ export const products = [
     shortName: "Pinguïn",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/jhya5kre_Pingu%C3%AFn%20Nachtlampje%20%E2%80%93%20Sterrenprojector%20%2B%20White%20Noise.png",
+    image: "https://i.imgur.com/TDYcz0q.jpeg",
     gallery: [
-      "https://i.imgur.com/TDYcz0q.jpeg",
       "https://i.imgur.com/NICJrZM.jpeg",
       "https://i.imgur.com/bicxCOu.jpeg",
       "https://i.imgur.com/ovhoMza.jpeg",
