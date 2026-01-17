@@ -1,250 +1,84 @@
 # Droomvriendjes - Product Requirements Document
 
-## Oorspronkelijke Probleemstelling
-Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een webshop voor slaapknuffels met nachtlampjes en rustgevende geluiden.
+## Origineel Probleem
+Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack applicatie met React frontend, FastAPI backend, en MongoDB (data momenteel in mockData.js).
 
-## Kernvereisten
-- **Merk:** Droomvriendjes
-- **Producten:** 11 slaapknuffels (Leeuw, Schaap, Teddy, Pinguïn, Dinosaurus, Duo, Beer, Schaap Liggend, Eenhoorn, Teddy Zittend, Panda)
-- **Prijzen:** €59,95 per product (Duo set: €89,95)
-- **Taal:** Nederlands
-- **Betalingen:** Mollie integratie (iDEAL, Creditcard, PayPal, Bancontact)
-- **Email Notificaties:** Alle naar info@droomvriendjes.nl
+## Doelgroep
+- Ouders van baby's en peuters
+- Vrouwen 60+ die zoeken naar cadeau's
+- Ouders van kinderen met extra behoeften (angst, slaapproblemen, HSP)
 
-## Geïmplementeerde Features (Januari 2025)
+## Core Requirements
+1. E-commerce functionaliteit met Mollie betalingen (LIVE)
+2. Google Analytics 4 e-commerce tracking
+3. Google Merchant Center integratie voor Shopping Ads
+4. Responsieve, mobile-first design
 
-### ✅ Volledig Voltooid & Getest
-1. **Frontend Website**
-   - Homepage met hero sectie en achtergrondafbeelding
-   - 11 producten met afbeeldingen en prijzen
-   - Trust badges en Trustpilot styling
-   - Responsive design (desktop + mobiel)
-   - 20+ statische pagina's
+---
 
-2. **Winkelwagen & Checkout**
-   - Cart context met localStorage persistentie
-   - Sidebar winkelwagen met +/- knoppen
-   - **Email veld verplicht voor Afrekenen** (checkout-started notificatie)
-   - Checkout pagina met klantgegevens formulier
-   - Betaalmethode selectie (iDEAL, Creditcard, PayPal, Bancontact)
-   - Betaling resultaat pagina
+## Wat is Geïmplementeerd
 
-3. **Mollie Betalingen (LIVE)**
-   - Order creatie in MongoDB
-   - Mollie payment creatie met checkout URL
-   - Webhook handling voor status updates
-   - Email bevestiging via TransIP SMTP
+### 17 januari 2026
+- ✅ **Google Merchant Center Feed** - `/api/feed/products` (JSON) en `/api/feed/google-shopping.xml` (XML)
+- ✅ **GTM Code Update** - Vervangen naar `GTM-W9PZRP4B`
+- ✅ **Google Credentials** - Client Secret, Customer ID, Merchant Center ID opgeslagen
 
-4. **Email Notificatie Systeem (13 januari 2025)** 📧
-   - **Contactformulier:** Email naar info@droomvriendjes.nl met Reply-To klant email
-   - **Checkout gestart:** Email met klant email + winkelwagen items
-   - **Bestelling geplaatst:** Notificatie naar owner
-   - **Betaling geslaagd:** Orderbevestiging naar klant + notificatie owner
-   - **Betaling mislukt:** Notificatie naar owner
-   - SMTP via TransIP (SPF/DKIM geconfigureerd)
+### Eerdere Sessies
+- ✅ Product slider op homepage (Swiper.js)
+- ✅ `/knuffels` pagina met alle producten
+- ✅ Bestsellers sectie op homepage
+- ✅ Hero sectie redesign (mobile responsive)
+- ✅ GA4 E-commerce tracking (view_item, add_to_cart, checkout events)
+- ✅ Google Ads admin pagina (`/admin/google-ads`)
+- ✅ Merchant Feed admin pagina (`/admin/merchant-feed`)
+- ✅ Mollie betalingen (LIVE mode)
+- ✅ Email notificaties (SMTP via TransIP)
+- ✅ Cadeaubon functionaliteit (gift cards)
+- ✅ Contact formulier met email
 
-5. **SEO Optimalisatie**
-   - Meta title & description
-   - Keywords
-   - Open Graph tags (Facebook)
-   - Twitter Cards
-   - JSON-LD structured data (Organization, Website, Product)
+---
 
-6. **Branding**
-   - Custom logo afbeelding in header
-   - "Droomvriendjes" naam overal
-   - Professionele uitstraling
+## Prioritized Backlog
 
-7. **Product Reviews (13 januari 2025)**
-   - 33 gedetailleerde klantreviews toegevoegd
-   - Reviews gefilterd per product op shortName
-   - "Geverifieerd" badges bij alle reviews
-   - Elk product heeft 3 unieke reviews
+### P0 - Kritiek
+- [ ] **Developer Token** verkrijgen voor Google Ads API
+- [ ] **Cadeaubon flow verificatie** - End-to-end test door gebruiker
 
-8. **Verbeterde UX (13 januari 2025)**
-   - Scroll naar boven bij navigatie naar productpagina
-   - "In Winkelwagen" knop opent cart sidebar
-   - "Direct Bestellen" knop opent cart sidebar
-   - Cart icoon met badge in ProductPage header
+### P1 - Hoog
+- [ ] **Google Shopping Ads automatisering** - API koppeling na Developer Token
+- [ ] **Admin Dashboard** - Orders en producten beheer (vervangt mockData.js)
 
-### API Endpoints
-| Endpoint | Methode | Beschrijving |
-|----------|---------|--------------|
-| `/api/orders` | POST | Nieuwe bestelling aanmaken + email notificatie |
-| `/api/payments/create` | POST | Mollie betaling starten |
-| `/api/webhook/mollie` | POST | Betalingsstatus webhook + success/fail emails |
-| `/api/orders/{id}` | GET | Bestelstatus ophalen |
-| `/api/payment-methods` | GET | Beschikbare betaalmethodes |
-| `/api/contact` | POST | Contactformulier → email naar owner |
-| `/api/checkout-started` | POST | Checkout notificatie → email naar owner |
+### P2 - Medium
+- [ ] Admin panel voor kortingscodes
+- [ ] WordPress plugin export
+- [ ] Homepage refactoring - Gebruik globale Header/Footer componenten
 
-### Email Notificatie Configuratie
-- **Provider:** TransIP SMTP
-- **From:** info@droomvriendjes.nl
-- **To (alle notificaties):** info@droomvriendjes.nl
-- **Features:**
-  - Reply-To klant email bij contactformulier
-  - Checkout-started met winkelwagen items
-  - Order events (placed, success, fail)
-  - Klant bevestiging bij succesvolle betaling
+### P3 - Laag
+- [ ] Product reviews systeem
+- [ ] Wishlist functionaliteit
+- [ ] Email marketing integratie
 
-### Mollie Configuratie
-- **Live Key:** Actief in productie (backend/.env)
-- **Profile ID:** pfl_xeCrPvSH9y
+---
 
-## Test Resultaten
-- **Iteratie 1:** Backend 100%, Frontend 100%
-- **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
-- **Iteratie 3:** Backend 92% (11/12), Frontend 100% - Email notificaties
-- **Test rapporten:** `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`, `/app/test_reports/iteration_3.json`
+## Technische Stack
+- **Frontend:** React, TailwindCSS, Shadcn/UI, Swiper.js
+- **Backend:** FastAPI (Python)
+- **Database:** MongoDB (data in mockData.js)
+- **Betalingen:** Mollie (LIVE)
+- **Email:** SMTP via TransIP
+- **Analytics:** Google Analytics 4, Google Tag Manager
 
-## Backlog
+## Key Endpoints
+- `GET /api/feed/products` - JSON product feed
+- `GET /api/feed/google-shopping.xml` - XML feed voor Merchant Center
+- `POST /api/orders` - Nieuwe bestelling
+- `POST /api/payments/create` - Mollie betaling
+- `POST /api/gift-card/purchase` - Cadeaubon kopen
+- `POST /api/discount/validate` - Kortingscode valideren
 
-### P0 - Kritiek (Refactoring)
-- [x] ✅ Header/Footer refactoren naar herbruikbare componenten (Voltooid 15 jan 2025)
-  - Nieuwe componenten: `Header.jsx`, `Footer.jsx`, `Layout.jsx`
-  - 18+ pagina's gerefactord naar de nieuwe Layout component
-  - HomePage behoudt eigen header/footer (speciale styling)
-  - Checkout pagina's intentioneel zonder footer (focused UX)
-
-### P1 - In Afwachting
-- [x] ✅ Product galerijen met 8-10 foto's per product (Voltooid 17 jan 2025)
-- [x] ✅ Watermerken verwijderd van alle productafbeeldingen (Voltooid 17 jan 2025)
-- [x] ✅ 3 ouder landingspagina's aangemaakt (Voltooid 17 jan 2025)
-  - /ouders-baby - Ouders van baby's (0-12 maanden)
-  - /ouders-peuters - Ouders van peuters (1-4 jaar)
-  - /ouders-extra-behoeften - Kinderen met ADHD, autisme, HSP
-- [x] ✅ Product Slider/Carousel op homepage (Voltooid 17 jan 2025)
-  - Swiper.js v12.0.3 geïntegreerd
-  - Autoplay met 4 seconden delay
-  - Navigatie pijltjes en pagination dots
-  - Responsive: 4 items (desktop), 2 items (tablet), 1 item (mobiel)
-  - Badges: BESTSELLER, NIEUW, POPULAIR, VOORDEELSET
-- [ ] Product Tagging voor SEO/Google Shopping optimalisatie
-- [ ] Google Ads Setup assistentie (keyword lijsten, advertentieteksten)
-
-### P2 - Nice to Have
-- [ ] Admin dashboard voor bestellingen
-- [ ] Voorraad beheer
-- [ ] WordPress export functionaliteit
-- [ ] Zoekfunctie voor producten
-
-## Refactoring Voltooid (15 januari 2025)
-### Header/Footer Componenten
-De duplicatie van header/footer code is opgelost door:
-1. **Header.jsx** - Herbruikbare header met logo, cart button, en configurable back button
-2. **Footer.jsx** - Volledige footer met navigatie, bedrijfsgegevens, en betaalmethodes
-3. **Layout.jsx** - Wrapper component die Header, Footer, en CartSidebar combineert
-
-**Configuratie opties Layout component:**
-- `showFullNav` - Toon volledige navigatie (alleen HomePage)
-- `showBackButton` - Toon terug knop
-- `showPromoBanner` - Toon promo banner
-- `hideFooter` - Verberg footer (voor checkout flows)
-- `hideHeader` - Verberg header (voor speciale pagina's)
-
-**Pagina's met Layout component:**
-- OverOnsPage, ProductPage, ContactPage, CadeaubonPage
-- StressPage, AngstPage, SlaapproblemenPage, HSPPage
-- DementiePage, TroostPage, OverprikkelingPage
-- BlogsPage, ReviewsPage, PrivacyPage, VoorwaardenPage
-- RetournerenPage, NaamBedenkerPage, UitproberenPage
-
-**Pagina's met eigen layout:**
-- HomePage (speciale hero sectie en styling)
-- CheckoutPage (focused checkout zonder footer)
-- PaymentResultPage (focused checkout zonder footer)
-
-## Product Galerijen Voltooid (17 januari 2025)
-### Alle 11 producten hebben nu schone afbeeldingen
-Watermerken ("BESTSELLER", "2E KNUFFEL 50% KORTING") verwijderd van alle productafbeeldingen.
-
-**Producten met galleries (8-10 foto's elk):**
-1. Leeuw - 9 foto's
-2. Schaap - 8 foto's ✅ (nieuw)
-3. Teddy - 11 foto's
-4. Pinguïn - 8 foto's
-5. Dinosaurus - 8 foto's
-6. Duo Schaap & Teddy - 8 foto's ✅ (nieuw)
-7. Beer Projector - 9 foto's
-8. Schaap Liggend - 6 foto's ✅ (nieuw)
-9. Eenhoorn - 8 foto's
-10. Teddy Zittend - 10 foto's ✅ (nieuw)
-11. Panda - 5 foto's
-
-## Test Resultaten
-- **Iteratie 1:** Backend 100%, Frontend 100%
-- **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
-- **Iteratie 3:** Backend 92% (11/12), Frontend 100% - Email notificaties
-- **Iteratie 4:** Frontend 100% - Header/Footer refactoring succesvol
-- **Iteratie 5:** Frontend 100% (10/10 tests geslaagd) - Product Slider volledig werkend
-- **Test rapporten:** `/app/test_reports/iteration_*.json`
-
-## Product Slider Feature (17 januari 2025)
-### Swiper.js Implementatie
-Een moderne product carousel geïmplementeerd op de homepage, vergelijkbaar met lotgenootje.com:
-
-**Technische Details:**
-- **Library:** Swiper.js v12.0.3
-- **Modules:** Navigation, Pagination, Autoplay
-- **Autoplay:** 4 seconden delay, pauzeert bij hover
-- **Loop:** Oneindig doorlopen
-
-**Responsive Breakpoints:**
-| Viewport | Items per View |
-|----------|----------------|
-| < 640px  | 1 item (mobiel) |
-| 640-1023px | 2 items (tablet) |
-| 1024-1279px | 3 items |
-| ≥ 1280px | 4 items (desktop) |
-
-**UI Elementen:**
-- Custom navigatie pijltjes (ronde witte knoppen)
-- Pagination dots (purple actief, grijs inactief)
-- Product badges met gradient kleuren
-- Rating sterren
-- "In Winkelmandje" buttons
-- Hover effects op product kaarten
-
-## GA4 E-commerce Integratie (17 januari 2025)
-### Volledige Google Analytics 4 E-commerce Implementatie
-
-**Events Geïmplementeerd:**
-| Event | Trigger | Locatie |
-|-------|---------|---------|
-| `view_item_list` | Pagina laadt | HomePage, KnuffelsPage |
-| `select_item` | Product click | Product cards in slider/grid |
-| `view_item` | Product pagina | ProductPage |
-| `add_to_cart` | "In Winkelmandje" click | Alle add-to-cart buttons |
-| `remove_from_cart` | Product verwijderd | Cart sidebar |
-| `view_cart` | Winkelwagen opent | CartSidebar |
-| `begin_checkout` | Checkout pagina | CheckoutPage |
-| `add_shipping_info` | Bij betaling | CheckoutPage |
-| `add_payment_info` | Betaalmethode gekozen | CheckoutPage |
-| `purchase` | Bestelling voltooid | Na succesvolle betaling |
-
-**Product Data (GA4 Enhanced E-commerce):**
-```javascript
-{
-  item_id: "KNUF_001",
-  item_name: "Baby Slaapmaatje Leeuw",
-  affiliation: "Droomvriendjes",
-  item_brand: "Droomvriendjes",
-  item_category: "Knuffels",
-  item_category2: "Slaapknuffels",
-  item_category3: "Wilde Dieren",
-  item_category4: "Medium",
-  item_category5: "Met Projectie",
-  item_variant: "geel-bruin",
-  price: 49.95,
-  google_business_vertical: "retail"
-}
-```
-
-**Bestanden:**
-- `/app/frontend/src/utils/analytics.js` - GA4 tracking utilities
-- `/app/frontend/src/mockData.js` - Product data met GA4 tags
-
-## Deployment
-- **Status:** Live met echte Mollie betalingen
-- **Email:** TransIP SMTP geconfigureerd voor orderbevestigingen
+## Credentials (opgeslagen in backend/.env)
+- Mollie API Key (LIVE)
+- SMTP credentials (TransIP)
+- Google OAuth Client ID & Secret
+- Google Ads Customer ID: 932-209-5782
+- Google Merchant Center ID: 5713316340
