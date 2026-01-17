@@ -332,9 +332,8 @@ export const products = [
     shortName: "Panda",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/nn2ytna7_Panda%20Projector%20Knuffel%20%E2%80%93%20Rustgevende%20Muziek%20%26%20Nachtlicht.png",
+    image: "https://i.imgur.com/fhVs30E.jpeg",
     gallery: [
-      "https://i.imgur.com/fhVs30E.jpeg",
       "https://i.imgur.com/COWpWna.jpeg",
       "https://i.imgur.com/RJaOAJO.jpeg",
       "https://i.imgur.com/YKR0ywK.jpeg",
