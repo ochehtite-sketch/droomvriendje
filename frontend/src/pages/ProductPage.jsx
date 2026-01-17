@@ -63,7 +63,7 @@ const ProductPage = () => {
   const productReviews = reviews.filter(r => r.product === product.shortName);
 
   return (
-    <Layout backButtonText="Terug" showPromoBanner={true} promoBannerText="🎁 ACTIE: 2E KNUFFEL 50% KORTING! 🎁">
+    <Layout backButtonText="Terug" showPromoBanner={false}>
       {/* Product Detail */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,11 +72,6 @@ const ProductPage = () => {
             <div>
               {/* Main Image */}
               <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-8 mb-4">
-                {product.badge && (
-                  <Badge className="absolute top-6 left-6 bg-purple-600 text-white z-10">
-                    {product.badge}
-                  </Badge>
-                )}
                 <img 
                   src={galleryImages[selectedImage]} 
                   alt={product.name}
