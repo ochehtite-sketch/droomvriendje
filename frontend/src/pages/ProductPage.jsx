@@ -151,10 +151,9 @@ const ProductPage = () => {
 
               {/* Price */}
               <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6 mb-6">
-                <div className="flex items-baseline space-x-3 mb-2">
+                <div className="flex items-baseline space-x-3">
                   <span className="text-5xl font-bold text-purple-900">€{product.price.toFixed(2)}</span>
                 </div>
-                <p className="text-purple-700 font-semibold">🎁 2E KNUFFEL 50% KORTING!</p>
               </div>
 
               {/* Benefits */}
