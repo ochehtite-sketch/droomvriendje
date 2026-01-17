@@ -110,6 +110,10 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
 ### P1 - In Afwachting
 - [x] ✅ Product galerijen met 8-10 foto's per product (Voltooid 17 jan 2025)
 - [x] ✅ Watermerken verwijderd van alle productafbeeldingen (Voltooid 17 jan 2025)
+- [x] ✅ 3 ouder landingspagina's aangemaakt (Voltooid 17 jan 2025)
+  - /ouders-baby - Ouders van baby's (0-12 maanden)
+  - /ouders-peuters - Ouders van peuters (1-4 jaar)
+  - /ouders-extra-behoeften - Kinderen met ADHD, autisme, HSP
 - [ ] Product Tagging voor SEO/Google Shopping optimalisatie
 - [ ] Google Ads Setup assistentie (keyword lijsten, advertentieteksten)
 
