@@ -108,7 +108,8 @@ Een Nederlandse e-commerce website bouwen voor het merk "Droomvriendjes" - een w
   - Checkout pagina's intentioneel zonder footer (focused UX)
 
 ### P1 - In Afwachting
-- [ ] Product galerij met 8 foto's per product (wacht op Google Drive link van gebruiker)
+- [x] ✅ Product galerijen met 8-10 foto's per product (Voltooid 17 jan 2025)
+- [x] ✅ Watermerken verwijderd van alle productafbeeldingen (Voltooid 17 jan 2025)
 - [ ] Product Tagging voor SEO/Google Shopping optimalisatie
 - [ ] Google Ads Setup assistentie (keyword lijsten, advertentieteksten)
 
