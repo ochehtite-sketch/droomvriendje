@@ -74,7 +74,7 @@ const KnuffelsPage = () => {
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" data-testid="products-grid">
-            {products.map((product) => (
+            {products.map((product, index) => (
               <div 
                 key={product.id} 
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 flex flex-col"
@@ -96,7 +96,7 @@ const KnuffelsPage = () => {
                   )}
                   
                   {/* Product Image */}
-                  <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                  <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
                     <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-6 cursor-pointer overflow-hidden">
                       <img 
                         src={product.image} 
