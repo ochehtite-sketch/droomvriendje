@@ -44,7 +44,17 @@ export const products = [
     shortName: "Schaap",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/0p603lsa_Baby%20Nachtlamp%20Schaap%20%E2%80%93%20Projector%20%2B%20White%20Noise.png",
+    image: "https://i.imgur.com/vYpeb4c.jpeg",
+    gallery: [
+      "https://i.imgur.com/vYpeb4c.jpeg",
+      "https://i.imgur.com/62h7jyd.jpeg",
+      "https://i.imgur.com/JxKouOL.jpeg",
+      "https://i.imgur.com/CaicX7m.jpeg",
+      "https://i.imgur.com/fEVDpyo.jpeg",
+      "https://i.imgur.com/0FBd1nk.jpeg",
+      "https://i.imgur.com/cJVdR01.jpeg",
+      "https://i.imgur.com/mlRZBbe.jpeg"
+    ],
     description: "Slaapknuffel met projector en white noise. Helpt je kind tot rust te komen.",
     features: [
       "Sterrenprojector",
@@ -181,7 +191,17 @@ export const products = [
     shortName: "Duo Schaap & Teddy",
     price: 89.95,
     originalPrice: 99.90,
-    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/zhibllwa_Slaapknuffel%20Duo%20%E2%80%93%20Schaap%20%26%20Teddy%20met%20Nachtlampjes%20liggend.png",
+    image: "https://i.imgur.com/4blLAM7.jpeg",
+    gallery: [
+      "https://i.imgur.com/4blLAM7.jpeg",
+      "https://i.imgur.com/1JbBGgT.jpeg",
+      "https://i.imgur.com/LYNuDrG.jpeg",
+      "https://i.imgur.com/gtJ57SZ.jpeg",
+      "https://i.imgur.com/JAg2LWX.jpeg",
+      "https://i.imgur.com/UvU8h0Q.jpeg",
+      "https://i.imgur.com/4PfzfNg.jpeg",
+      "https://i.imgur.com/1YOYEQR.jpeg"
+    ],
     description: "Twee schattige slaapknuffels met nachtlampjes. Perfect voor broertjes en zusjes!",
     features: [
       "2 knuffels in 1 set",
@@ -244,7 +264,15 @@ export const products = [
     shortName: "Schaap Liggend",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/0h27cya5_Schaap%20Knuffel%20Nachtlampje%20%E2%80%93%20Kalmerend%20Licht%20%26%20Geluiden%20Liggend.png",
+    image: "https://i.imgur.com/N1vjMHQ.jpeg",
+    gallery: [
+      "https://i.imgur.com/N1vjMHQ.jpeg",
+      "https://i.imgur.com/ZDzpG7a.jpeg",
+      "https://i.imgur.com/CPdB6WK.jpeg",
+      "https://i.imgur.com/zORMue1.jpeg",
+      "https://i.imgur.com/9GUTTtP.jpeg",
+      "https://i.imgur.com/8mKVYOY.jpeg"
+    ],
     description: "Liggend schaapje met kalmerend licht en rustgevende geluiden. Super zacht!",
     features: [
       "Liggend design",
@@ -306,7 +334,19 @@ export const products = [
     shortName: "Teddy Zittend",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/bl25avet_Baby%20Nachtknuffel%20Teddy%20%E2%80%93%20Rustgevend%20Licht%20%26%20Muziek.png",
+    image: "https://i.imgur.com/q2c7zsP.jpeg",
+    gallery: [
+      "https://i.imgur.com/q2c7zsP.jpeg",
+      "https://i.imgur.com/G3Q2WBz.jpeg",
+      "https://i.imgur.com/H5W6Q5h.jpeg",
+      "https://i.imgur.com/xyXHy7f.jpeg",
+      "https://i.imgur.com/d8fa8nc.jpeg",
+      "https://i.imgur.com/4BllnwS.jpeg",
+      "https://i.imgur.com/4GiHWvE.jpeg",
+      "https://i.imgur.com/0pPCNRt.jpeg",
+      "https://i.imgur.com/8TN6Erw.jpeg",
+      "https://i.imgur.com/NiZGGmg.jpeg"
+    ],
     description: "Klassieke teddy beer met rustgevend licht en slaapliedjes. Een echte vriend!",
     features: [
       "Klassiek teddy design",
