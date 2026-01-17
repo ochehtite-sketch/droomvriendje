@@ -70,60 +70,114 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* Hero Section - Met achtergrondafbeelding */}
-      <section className="relative min-h-[600px] md:min-h-[700px] overflow-hidden">
-        {/* Achtergrondafbeelding */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('https://i.imgur.com/Mj57dGY.png')`
-          }}
-        >
-          {/* Overlay voor betere leesbaarheid */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6f1]/70 via-[#faf6f1]/50 to-[#faf6f1]/95"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12">
-          <div className="flex flex-col items-center">
-            {/* Hoofdtekst bovenaan */}
-            <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
-                Meer dan een knuffel,
-                <br />
-                <span className="text-purple-700">De beste vriend van je kind in het donker</span>
-              </h1>
-            </div>
-          </div>
-        </div>
-        
-        {/* Kenmerken onderaan */}
-        <div className="absolute bottom-0 left-0 right-0 bg-[#faf6f1]/95 py-8">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Drie kenmerken in rij */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-6">
-              <div className="flex flex-col items-center">
-                <span className="text-[#c9a55a] text-2xl mb-2">✦</span>
-                <p className="text-[#5a4a3a] font-medium text-sm md:text-base">Brengt ontspanning<br />en geborgenheid</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-[#c9a55a] text-2xl mb-2">✦</span>
-                <p className="text-[#5a4a3a] font-medium text-sm md:text-base">Kalmerende lichtjes<br />en rustgevende geluiden</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-[#c9a55a] text-2xl mb-2">✦</span>
-                <p className="text-[#5a4a3a] font-medium text-sm md:text-base">Voor kinderen én<br />volwassenen</p>
-              </div>
+      {/* Hero Section - Verbeterd voor mobiel */}
+      <section className="relative bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8] overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Mobile Layout - Image on top */}
+          <div className="md:hidden">
+            {/* Mobile Image */}
+            <div className="relative w-full h-[300px] overflow-hidden">
+              <img 
+                src="https://i.imgur.com/Mj57dGY.png" 
+                alt="Kind met Droomvriendje knuffel"
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fdf8f3]"></div>
             </div>
             
-            {/* CTA Button */}
-            <div className="flex justify-center">
+            {/* Mobile Content */}
+            <div className="px-4 pb-8 -mt-8 relative z-10">
+              <h1 className="text-2xl font-serif font-bold text-[#5a4a3a] mb-2 leading-tight text-center">
+                Meer dan een knuffel,
+              </h1>
+              <p className="text-xl font-serif font-bold text-purple-700 mb-6 leading-tight text-center">
+                De beste vriend van je kind in het donker
+              </p>
+              
+              {/* Mobile Features */}
+              <div className="grid grid-cols-3 gap-2 mb-6">
+                <div className="text-center">
+                  <span className="text-[#c9a55a] text-xl">✦</span>
+                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Ontspanning & geborgenheid</p>
+                </div>
+                <div className="text-center">
+                  <span className="text-[#c9a55a] text-xl">✦</span>
+                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Lichtjes & geluiden</p>
+                </div>
+                <div className="text-center">
+                  <span className="text-[#c9a55a] text-xl">✦</span>
+                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Kind & volwassenen</p>
+                </div>
+              </div>
+              
+              {/* Mobile CTA */}
               <Button 
                 size="lg" 
-                className="bg-[#5a4a3a] hover:bg-[#4a3a2a] text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-6 text-lg rounded-full shadow-lg"
               >
                 <a href="#producten">Bekijk onze knuffels</a>
               </Button>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Side by side */}
+          <div className="hidden md:flex items-center min-h-[600px] lg:min-h-[650px] px-6 lg:px-8">
+            {/* Left Content */}
+            <div className="w-1/2 pr-8 lg:pr-16">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
+                Meer dan een knuffel,
+              </h1>
+              <p className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-purple-700 mb-8 leading-tight">
+                De beste vriend van je kind in het donker
+              </p>
+              
+              {/* Features */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center gap-3">
+                  <span className="text-[#c9a55a] text-xl">✦</span>
+                  <p className="text-[#5a4a3a] font-medium">Brengt ontspanning en geborgenheid</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[#c9a55a] text-xl">✦</span>
+                  <p className="text-[#5a4a3a] font-medium">Kalmerende lichtjes en rustgevende geluiden</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[#c9a55a] text-xl">✦</span>
+                  <p className="text-[#5a4a3a] font-medium">Voor kinderen én volwassenen</p>
+                </div>
+              </div>
+              
+              {/* CTA */}
+              <Button 
+                size="lg" 
+                className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
+              >
+                <a href="#producten">Bekijk onze knuffels</a>
+              </Button>
+            </div>
+            
+            {/* Right Image */}
+            <div className="w-1/2 relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://i.imgur.com/Mj57dGY.png" 
+                  alt="Kind met Droomvriendje knuffel"
+                  className="w-full h-[500px] lg:h-[550px] object-cover object-center"
+                />
+                {/* Subtle overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+              </div>
+              
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
+                <div className="bg-amber-100 rounded-full p-2">
+                  <span className="text-2xl">⭐</span>
+                </div>
+                <div>
+                  <p className="font-bold text-gray-900">4.7/5 sterren</p>
+                  <p className="text-sm text-gray-600">100.000+ tevreden klanten</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
