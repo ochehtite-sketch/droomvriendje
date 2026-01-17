@@ -42,6 +42,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/knuffels" element={<KnuffelsPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/betaling-resultaat/:orderId" element={<PaymentResultPage />} />
