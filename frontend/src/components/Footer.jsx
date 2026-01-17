@@ -38,7 +38,7 @@ const Footer = () => {
             <ul className="space-y-2 text-purple-200 text-sm">
               <li><Link to="/#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
               <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
-              <li><Link to="/#producten" className="hover:text-white transition-colors">Voordeelbundels</Link></li>
+              <li><Link to="/ouders-slaaptips" className="hover:text-white transition-colors">Ouders slaaptips</Link></li>
               <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
@@ -47,6 +47,9 @@ const Footer = () => {
               <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
               <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
               <li><Link to="/vrouwen-60" className="hover:text-white transition-colors">Vrouwen 60+</Link></li>
+              <li><Link to="/ouders-baby" className="hover:text-white transition-colors">Ouders van baby's</Link></li>
+              <li><Link to="/ouders-peuters" className="hover:text-white transition-colors">Ouders van peuters</Link></li>
+              <li><Link to="/ouders-extra-behoeften" className="hover:text-white transition-colors">Extra behoeften</Link></li>
             </ul>
           </div>
 
