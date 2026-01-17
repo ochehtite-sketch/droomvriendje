@@ -206,6 +206,45 @@ Een moderne product carousel geïmplementeerd op de homepage, vergelijkbaar met 
 - "In Winkelmandje" buttons
 - Hover effects op product kaarten
 
+## GA4 E-commerce Integratie (17 januari 2025)
+### Volledige Google Analytics 4 E-commerce Implementatie
+
+**Events Geïmplementeerd:**
+| Event | Trigger | Locatie |
+|-------|---------|---------|
+| `view_item_list` | Pagina laadt | HomePage, KnuffelsPage |
+| `select_item` | Product click | Product cards in slider/grid |
+| `view_item` | Product pagina | ProductPage |
+| `add_to_cart` | "In Winkelmandje" click | Alle add-to-cart buttons |
+| `remove_from_cart` | Product verwijderd | Cart sidebar |
+| `view_cart` | Winkelwagen opent | CartSidebar |
+| `begin_checkout` | Checkout pagina | CheckoutPage |
+| `add_shipping_info` | Bij betaling | CheckoutPage |
+| `add_payment_info` | Betaalmethode gekozen | CheckoutPage |
+| `purchase` | Bestelling voltooid | Na succesvolle betaling |
+
+**Product Data (GA4 Enhanced E-commerce):**
+```javascript
+{
+  item_id: "KNUF_001",
+  item_name: "Baby Slaapmaatje Leeuw",
+  affiliation: "Droomvriendjes",
+  item_brand: "Droomvriendjes",
+  item_category: "Knuffels",
+  item_category2: "Slaapknuffels",
+  item_category3: "Wilde Dieren",
+  item_category4: "Medium",
+  item_category5: "Met Projectie",
+  item_variant: "geel-bruin",
+  price: 49.95,
+  google_business_vertical: "retail"
+}
+```
+
+**Bestanden:**
+- `/app/frontend/src/utils/analytics.js` - GA4 tracking utilities
+- `/app/frontend/src/mockData.js` - Product data met GA4 tags
+
 ## Deployment
 - **Status:** Live met echte Mollie betalingen
 - **Email:** TransIP SMTP geconfigureerd voor orderbevestigingen
