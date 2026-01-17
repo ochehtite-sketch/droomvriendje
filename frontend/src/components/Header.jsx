@@ -36,9 +36,9 @@ const Header = ({
           {/* Full Navigation (only for HomePage) */}
           {showFullNav && (
             <nav className="hidden md:flex space-x-8">
-              <a href="#producten" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
+              <Link to="/knuffels" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Knuffels
-              </a>
+              </Link>
               <Link to="/cadeaubon" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Cadeaubonnen
               </Link>
