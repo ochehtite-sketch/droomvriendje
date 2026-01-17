@@ -5,8 +5,8 @@ export const products = [
     id: 1,
     name: "Baby Slaapmaatje Leeuw",
     shortName: "Leeuw",
-    price: 59.95,
-    originalPrice: 59.95,
+    price: 49.95,
+    originalPrice: 49.95,
     image: "https://i.imgur.com/E4g3eOy.jpeg",
     gallery: [
       "https://i.imgur.com/zYLuTAg.jpeg",
