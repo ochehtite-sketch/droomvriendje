@@ -332,8 +332,8 @@ export const products = [
     id: 11,
     name: "Panda Projector Knuffel",
     shortName: "Panda",
-    price: 59.95,
-    originalPrice: 59.95,
+    price: 49.95,
+    originalPrice: 49.95,
     image: "https://i.imgur.com/fhVs30E.jpeg",
     gallery: [
       "https://i.imgur.com/COWpWna.jpeg",
