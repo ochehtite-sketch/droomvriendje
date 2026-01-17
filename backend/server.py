@@ -1616,68 +1616,17 @@ async def google_shopping_feed():
     return Response(content=xml_content, media_type="application/xml")
 
 
-# NOTE: Duplicaat PRODUCTS_DATA verwijderd - de eerste definitie bovenaan (regel 69) wordt gebruikt
-        "link": "/product/1",
-        "image_link": "https://i.imgur.com/E4g3eOy.jpeg",
-        "additional_image_links": [
-            "https://i.imgur.com/zYLuTAg.jpeg",
-            "https://i.imgur.com/WfHQKKr.jpeg",
-            "https://i.imgur.com/ZeirKxe.jpeg"
-        ],
-        "availability": "in_stock",
-        "price": "49.95 EUR",
-        "brand": "Droomvriendjes",
-        "condition": "new",
-        "google_product_category": "588 > 4186",  # Baby & Toddler > Baby Toys
-        "product_type": "Knuffels > Slaapknuffels > Wilde Dieren",
-        "identifier_exists": "no",
-        "age_group": "infant",
-        "color": "Geel/Bruin",
-        "material": "Pluche",
-        "shipping_weight": "0.5 kg"
-    },
-    {
-        "id": "KNUF_002",
-        "title": "Baby Nachtlamp Schaap - Slaapknuffel met Sterrenprojector",
-        "description": "Slaapknuffel met projector en white noise. Helpt je kind tot rust te komen. Met sterrenprojector, white noise geluiden, zacht en knuffelbaar materiaal en dimbare verlichting.",
-        "link": "/product/2",
-        "image_link": "https://i.imgur.com/vYpeb4c.jpeg",
-        "additional_image_links": [
-            "https://i.imgur.com/62h7jyd.jpeg",
-            "https://i.imgur.com/JxKouOL.jpeg",
-            "https://i.imgur.com/CaicX7m.jpeg"
-        ],
-        "availability": "in_stock",
-        "price": "59.95 EUR",
-        "brand": "Droomvriendjes",
-        "condition": "new",
-        "google_product_category": "588 > 4186",
-        "product_type": "Knuffels > Slaapknuffels > Boerderijdieren",
-        "identifier_exists": "no",
-        "age_group": "infant",
-        "color": "Wit/Crème",
-        "material": "Pluche",
-        "shipping_weight": "0.5 kg"
-    },
-    {
-        "id": "KNUF_003",
-        "title": "Teddy Projector Knuffel - Bruine Beer met Nachtlicht en Muziek",
-        "description": "Bruine teddy met nachtlicht en rustgevende geluiden. Voor een rustige nachtrust. Met rustgevend nachtlampje, sterrenhemel projectie, kalmerende muziek en super zacht materiaal.",
-        "link": "/product/3",
-        "image_link": "https://i.imgur.com/jM6J4oV.jpeg",
-        "additional_image_links": [
-            "https://i.imgur.com/bMpTi4F.jpeg",
-            "https://i.imgur.com/LuZnyJN.jpeg",
-            "https://i.imgur.com/EcPPP93.jpeg"
-        ],
-        "availability": "in_stock",
-        "price": "59.95 EUR",
-        "brand": "Droomvriendjes",
-        "condition": "new",
-        "google_product_category": "588 > 4186",
-        "product_type": "Knuffels > Slaapknuffels > Beren",
-        "identifier_exists": "no",
-        "age_group": "infant",
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    client.close()
         "color": "Bruin",
         "material": "Pluche",
         "shipping_weight": "0.5 kg"
