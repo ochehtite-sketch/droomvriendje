@@ -7,7 +7,7 @@ import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { Moon, ShoppingCart, ArrowLeft, CreditCard, Loader2, Trash2, Plus, Minus, Tag } from 'lucide-react';
-import { trackAddPaymentInfo, trackAddShippingInfo } from '../utils/analytics';
+import { trackBeginCheckout, trackAddPaymentInfo, trackAddShippingInfo } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
@@ -26,6 +26,13 @@ const CheckoutPage = () => {
     city: '',
     zipCode: '',
   });
+
+  // GA4: Track begin_checkout when page loads
+  useEffect(() => {
+    if (cart.length > 0) {
+      trackBeginCheckout(cart);
+    }
+  }, []);
 
   // Load saved email from cart sidebar
   useEffect(() => {
