@@ -76,11 +76,11 @@ const HomePage = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/ab57nybn_ChatGPT%20Image%2012%20jan%202026%2C%2012_38_53.png')`
+            backgroundImage: `url('https://i.imgur.com/Mj57dGY.png')`
           }}
         >
           {/* Overlay voor betere leesbaarheid */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6f1]/60 via-[#faf6f1]/40 to-[#faf6f1]/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6f1]/70 via-[#faf6f1]/50 to-[#faf6f1]/95"></div>
         </div>
         
         {/* Content */}
@@ -89,9 +89,9 @@ const HomePage = () => {
             {/* Hoofdtekst bovenaan */}
             <div className="text-center mb-8">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
-                Rust in je armen,
+                Meer dan een knuffel,
                 <br />
-                wanneer je het nodig hebt
+                <span className="text-purple-700">De beste vriend van je kind in het donker</span>
               </h1>
             </div>
           </div>
