@@ -135,6 +135,17 @@ export const products = [
     price: 59.95,
     originalPrice: 59.95,
     image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/vbsw8kjy_Dinosaurus%20Slaapknuffel%20met%20Projector%20%E2%80%93%20Nachtlamp%20%26%20White%20Noise.png",
+    gallery: [
+      "https://i.imgur.com/z4cyllw.jpeg",
+      "https://i.imgur.com/mWJSBxI.jpeg",
+      "https://i.imgur.com/kJG1UIK.jpeg",
+      "https://i.imgur.com/7kTE4kL.jpeg",
+      "https://i.imgur.com/BigOdHS.jpeg",
+      "https://i.imgur.com/kksrsNR.jpeg",
+      "https://i.imgur.com/Z6hpUTM.jpeg",
+      "https://i.imgur.com/6iuH7HT.jpeg",
+      "https://i.imgur.com/GcYonv2.jpeg"
+    ],
     description: "Stoere dinosaurus met nachtlamp en white noise. Perfect voor avonturiers!",
     features: [
       "Projector nachtlamp",
