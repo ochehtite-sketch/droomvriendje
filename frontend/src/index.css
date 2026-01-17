@@ -113,3 +113,33 @@ code {
         border-bottom-color: inherit;
     }
 }
+
+/* Product Slider Custom Styles */
+.product-slider .swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.product-slider .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #d1d5db;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.product-slider .swiper-pagination-bullet-active {
+    background: #9333ea;
+    width: 24px;
+    border-radius: 5px;
+}
+
+.product-slider .swiper-slide {
+    height: auto;
+}
+
+/* Hide default Swiper navigation */
+.product-slider .swiper-button-next,
+.product-slider .swiper-button-prev {
+    display: none;
+}
