@@ -27,6 +27,7 @@ import VrouwenLandingPage from "./pages/VrouwenLandingPage";
 import OudersBabyPage from "./pages/OudersBabyPage";
 import OudersPeutersPage from "./pages/OudersPeutersPage";
 import OudersExtraBehoeftenPage from "./pages/OudersExtraBehoeftenPage";
+import KnuffelsPage from "./pages/KnuffelsPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
