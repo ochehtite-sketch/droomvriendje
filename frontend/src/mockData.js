@@ -170,7 +170,15 @@ export const products = [
     reviews: 156,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_004",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Pooldieren",
+    item_category4: "Medium",
+    item_category5: "Met Projectie",
+    item_variant: "blauw-wit"
   },
   {
     id: 5,
@@ -206,7 +214,15 @@ export const products = [
     reviews: 198,
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_005",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Fantasiedieren",
+    item_category4: "Medium",
+    item_category5: "Met Projectie",
+    item_variant: "groen"
   },
   {
     id: 6,
