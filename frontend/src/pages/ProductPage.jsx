@@ -68,8 +68,9 @@ const ProductPage = () => {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Product Image */}
+            {/* Product Image Gallery */}
             <div>
+              {/* Main Image */}
               <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-8 mb-4">
                 {product.badge && (
                   <Badge className="absolute top-6 left-6 bg-purple-600 text-white z-10">
@@ -77,11 +78,54 @@ const ProductPage = () => {
                   </Badge>
                 )}
                 <img 
-                  src={product.image} 
+                  src={galleryImages[selectedImage]} 
                   alt={product.name}
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto object-contain max-h-[500px]"
                 />
+                
+                {/* Navigation Arrows */}
+                {galleryImages.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setSelectedImage(prev => prev === 0 ? galleryImages.length - 1 : prev - 1)}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all"
+                      aria-label="Vorige foto"
+                    >
+                      <ChevronLeft className="w-6 h-6 text-purple-600" />
+                    </button>
+                    <button
+                      onClick={() => setSelectedImage(prev => prev === galleryImages.length - 1 ? 0 : prev + 1)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all"
+                      aria-label="Volgende foto"
+                    >
+                      <ChevronRight className="w-6 h-6 text-purple-600" />
+                    </button>
+                  </>
+                )}
               </div>
+              
+              {/* Thumbnail Gallery */}
+              {galleryImages.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto pb-2">
+                  {galleryImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImage(idx)}
+                      className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                        selectedImage === idx 
+                          ? 'border-purple-600 ring-2 ring-purple-300' 
+                          : 'border-gray-200 hover:border-purple-300'
+                      }`}
+                    >
+                      <img 
+                        src={img} 
+                        alt={`${product.name} foto ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Product Info */}
