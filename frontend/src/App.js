@@ -70,6 +70,7 @@ function App() {
             <Route path="/ouders-peuters" element={<OudersPeutersPage />} />
             <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
             <Route path="/admin/google-ads" element={<GoogleAdsPage />} />
+            <Route path="/admin/merchant-feed" element={<MerchantFeedPage />} />
           </Routes>
           <Toaster />
         </BrowserRouter>
