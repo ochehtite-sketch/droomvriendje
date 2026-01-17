@@ -72,6 +72,20 @@ export const products = [
     price: 59.95,
     originalPrice: 59.95,
     image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/ldt5r1t7_Teddy%20Projector%20Knuffel%20%E2%80%93%20Rustgevende%20Geluiden%20%26%20Nachtlicht%20bruin.png",
+    gallery: [
+      "https://i.imgur.com/1ZLB7vx.jpeg",
+      "https://i.imgur.com/jM6J4oV.jpeg",
+      "https://i.imgur.com/bMpTi4F.jpeg",
+      "https://i.imgur.com/LuZnyJN.jpeg",
+      "https://i.imgur.com/EcPPP93.jpeg",
+      "https://i.imgur.com/CDuaStL.jpeg",
+      "https://i.imgur.com/Cy86P4h.jpeg",
+      "https://i.imgur.com/IvGsHSN.jpeg",
+      "https://i.imgur.com/troxAMG.jpeg",
+      "https://i.imgur.com/rTPH83M.jpeg",
+      "https://i.imgur.com/msm0eMG.jpeg",
+      "https://i.imgur.com/2n4RCf1.jpeg"
+    ],
     description: "Bruine teddy met nachtlicht en rustgevende geluiden. Voor een rustige nachtrust.",
     features: [
       "Rustgevend nachtlampje",
