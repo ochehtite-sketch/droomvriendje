@@ -96,7 +96,7 @@ export const products = [
     shortName: "Teddy",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png",
+    image: "https://i.imgur.com/jM6J4oV.jpeg",
     gallery: [
       "https://i.imgur.com/jM6J4oV.jpeg",
       "https://i.imgur.com/bMpTi4F.jpeg",
