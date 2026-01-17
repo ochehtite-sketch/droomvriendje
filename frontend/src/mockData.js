@@ -297,8 +297,9 @@ export const products = [
     shortName: "Eenhoorn",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/AO5No1g.jpeg",
+    image: "https://i.imgur.com/KRNfDsV.jpeg",
     gallery: [
+      "https://i.imgur.com/KRNfDsV.jpeg",
       "https://i.imgur.com/x4PTZXD.png",
       "https://i.imgur.com/HfEhYtW.png",
       "https://i.imgur.com/U6jZN9j.png",
