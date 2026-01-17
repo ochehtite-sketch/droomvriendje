@@ -117,33 +117,33 @@ const OudersPeutersPage = () => {
             <div className="order-1 lg:order-2 relative">
               <div className="relative h-[400px] md:h-[500px]">
                 {/* Main product */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                  <Card className="w-56 md:w-64 rounded-2xl border-b-4 border-[#2d5a3d] shadow-2xl rotate-[-3deg] hover:rotate-0 transition-transform">
-                    <div className="bg-gradient-to-b from-yellow-50 to-white p-6 rounded-t-2xl">
-                      <img src={landingProducts[0]?.image} alt="Dinosaurus" className="w-full h-auto" />
+                <Link to={`/product/${landingProducts[0]?.id}`} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                  <Card className="w-56 md:w-64 rounded-2xl border-b-4 border-[#2d5a3d] shadow-2xl rotate-[-3deg] hover:rotate-0 hover:shadow-3xl transition-all cursor-pointer">
+                    <div className="bg-gradient-to-b from-yellow-50 to-white p-4 rounded-t-2xl aspect-square flex items-center justify-center">
+                      <img src={landingProducts[0]?.image} alt={landingProducts[0]?.shortName} className="w-full h-full object-cover rounded-xl" />
                     </div>
                     <CardContent className="p-4 text-center bg-white rounded-b-2xl">
-                      <p className="font-bold text-[#2d5a3d]">Dinosaurus</p>
+                      <p className="font-bold text-[#2d5a3d]">{landingProducts[0]?.shortName}</p>
                     </CardContent>
                   </Card>
-                </div>
+                </Link>
                 
                 {/* Side products */}
-                <div className="absolute top-8 left-4 z-10">
-                  <Card className="w-36 md:w-44 rounded-xl border-b-4 border-[#2d5a3d] shadow-lg rotate-[8deg] hover:rotate-[12deg] transition-transform">
-                    <div className="bg-pink-50 p-4 rounded-t-xl">
-                      <img src={landingProducts[1]?.image} alt="Eenhoorn" className="w-full h-auto" />
+                <Link to={`/product/${landingProducts[1]?.id}`} className="absolute top-8 left-4 z-10">
+                  <Card className="w-36 md:w-44 rounded-xl border-b-4 border-[#2d5a3d] shadow-lg rotate-[8deg] hover:rotate-[12deg] hover:shadow-xl transition-all cursor-pointer">
+                    <div className="bg-pink-50 p-3 rounded-t-xl aspect-square flex items-center justify-center">
+                      <img src={landingProducts[1]?.image} alt={landingProducts[1]?.shortName} className="w-full h-full object-cover rounded-lg" />
                     </div>
                   </Card>
-                </div>
+                </Link>
                 
-                <div className="absolute bottom-8 right-4 z-10">
-                  <Card className="w-36 md:w-44 rounded-xl border-b-4 border-[#2d5a3d] shadow-lg rotate-[-8deg] hover:rotate-[-12deg] transition-transform">
-                    <div className="bg-blue-50 p-4 rounded-t-xl">
-                      <img src={landingProducts[2]?.image} alt="Pinguïn" className="w-full h-auto" />
+                <Link to={`/product/${landingProducts[2]?.id}`} className="absolute bottom-8 right-4 z-10">
+                  <Card className="w-36 md:w-44 rounded-xl border-b-4 border-[#2d5a3d] shadow-lg rotate-[-8deg] hover:rotate-[-12deg] hover:shadow-xl transition-all cursor-pointer">
+                    <div className="bg-blue-50 p-3 rounded-t-xl aspect-square flex items-center justify-center">
+                      <img src={landingProducts[2]?.image} alt={landingProducts[2]?.shortName} className="w-full h-full object-cover rounded-lg" />
                     </div>
                   </Card>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
