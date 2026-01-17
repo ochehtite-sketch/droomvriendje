@@ -5,6 +5,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Calendar, User, Clock } from 'lucide-react';
 import Layout from '../components/Layout';
+import { AdBanner, AdInArticle } from '../components/AdSense';
 
 const BlogsPage = () => {
   const blogs = [
@@ -84,8 +85,58 @@ const BlogsPage = () => {
 
       {/* Blog Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Ad Banner Top */}
+        <AdBanner className="mb-8" />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
+          {blogs.slice(0, 3).map((blog) => (
+            <Card key={blog.id} className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-100 group">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={blog.image} 
+                  alt={blog.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
+                  {blog.category}
+                </Badge>
+              </div>
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
+                  <div className="flex items-center space-x-1">
+                    <Calendar className="w-4 h-4" />
+                    <span>{blog.date}</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <Clock className="w-4 h-4" />
+                    <span>{blog.readTime}</span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-purple-900 mb-3 line-clamp-2">
+                  {blog.title}
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  {blog.excerpt}
+                </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2 text-sm text-gray-500">
+                    <User className="w-4 h-4" />
+                    <span>{blog.author}</span>
+                  </div>
+                  <Button variant="outline" className="text-purple-600 border-purple-600 hover:bg-purple-50">
+                    Lees Meer
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* In-Article Ad */}
+        <AdInArticle />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.slice(3).map((blog) => (
             <Card key={blog.id} className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-100 group">
               <div className="relative h-48 overflow-hidden">
                 <img 
