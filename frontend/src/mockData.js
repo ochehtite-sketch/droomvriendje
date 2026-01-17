@@ -258,7 +258,15 @@ export const products = [
     reviews: 234,
     badge: "VOORDEELSET",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_006",
+    item_category: "Knuffels",
+    item_category2: "Voordeelsets",
+    item_category3: "Duo Sets",
+    item_category4: "Large",
+    item_category5: "Met Projectie",
+    item_variant: "wit-bruin"
   },
   {
     id: 7,
@@ -295,7 +303,15 @@ export const products = [
     reviews: 178,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_007",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Beren",
+    item_category4: "Compact",
+    item_category5: "Met Projectie",
+    item_variant: "beige"
   },
   {
     id: 8,
@@ -329,7 +345,15 @@ export const products = [
     reviews: 156,
     badge: "NIEUW",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_008",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Boerderijdieren",
+    item_category4: "Medium",
+    item_category5: "Liggend Design",
+    item_variant: "wit-crème"
   },
   {
     id: 9,
@@ -366,7 +390,15 @@ export const products = [
     reviews: 267,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_009",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Fantasiedieren",
+    item_category4: "Medium",
+    item_category5: "Met Nachtlicht",
+    item_variant: "roze-regenboog"
   },
   {
     id: 11,
