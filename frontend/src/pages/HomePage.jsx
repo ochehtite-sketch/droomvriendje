@@ -560,7 +560,7 @@ const HomePage = () => {
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
                     <div className="aspect-square relative">
                       <img 
-                        src="https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png" 
+                        src="https://i.imgur.com/jM6J4oV.jpeg" 
                         alt="Teddy"
                         className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
                       />
