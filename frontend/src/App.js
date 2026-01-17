@@ -28,6 +28,7 @@ import OudersBabyPage from "./pages/OudersBabyPage";
 import OudersPeutersPage from "./pages/OudersPeutersPage";
 import OudersExtraBehoeftenPage from "./pages/OudersExtraBehoeftenPage";
 import KnuffelsPage from "./pages/KnuffelsPage";
+import GoogleAdsPage from "./pages/GoogleAdsPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
