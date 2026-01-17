@@ -30,6 +30,7 @@ import OudersExtraBehoeftenPage from "./pages/OudersExtraBehoeftenPage";
 import KnuffelsPage from "./pages/KnuffelsPage";
 import GoogleAdsPage from "./pages/GoogleAdsPage";
 import MerchantFeedPage from "./pages/MerchantFeedPage";
+import ShoppingCampaignsPage from "./pages/ShoppingCampaignsPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
             <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
             <Route path="/admin/google-ads" element={<GoogleAdsPage />} />
             <Route path="/admin/merchant-feed" element={<MerchantFeedPage />} />
+            <Route path="/admin/shopping-campaigns" element={<ShoppingCampaignsPage />} />
           </Routes>
           <Toaster />
         </BrowserRouter>
