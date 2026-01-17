@@ -585,8 +585,8 @@ const HomePage = () => {
             <div>
               <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
               <ul className="space-y-2 text-purple-200 text-sm">
-                <li><a href="#producten" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</a></li>
-                <li><a href="#producten" className="hover:text-white transition-colors">Alle producten</a></li>
+                <li><Link to="/knuffels" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
+                <li><Link to="/knuffels" className="hover:text-white transition-colors">Alle producten</Link></li>
                 <li><Link to="/ouders-slaaptips" className="hover:text-white transition-colors">Ouders slaaptips</Link></li>
                 <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
