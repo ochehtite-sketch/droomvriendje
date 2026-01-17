@@ -145,6 +145,23 @@ De duplicatie van header/footer code is opgelost door:
 - CheckoutPage (focused checkout zonder footer)
 - PaymentResultPage (focused checkout zonder footer)
 
+## Product Galerijen Voltooid (17 januari 2025)
+### Alle 11 producten hebben nu schone afbeeldingen
+Watermerken ("BESTSELLER", "2E KNUFFEL 50% KORTING") verwijderd van alle productafbeeldingen.
+
+**Producten met galleries (8-10 foto's elk):**
+1. Leeuw - 9 foto's
+2. Schaap - 8 foto's ✅ (nieuw)
+3. Teddy - 11 foto's
+4. Pinguïn - 8 foto's
+5. Dinosaurus - 8 foto's
+6. Duo Schaap & Teddy - 8 foto's ✅ (nieuw)
+7. Beer Projector - 9 foto's
+8. Schaap Liggend - 6 foto's ✅ (nieuw)
+9. Eenhoorn - 8 foto's
+10. Teddy Zittend - 10 foto's ✅ (nieuw)
+11. Panda - 5 foto's
+
 ## Test Resultaten
 - **Iteratie 1:** Backend 100%, Frontend 100%
 - **Iteratie 2:** Frontend 100% (8/8 tests geslaagd) - Reviews, Scroll, Knoppen
