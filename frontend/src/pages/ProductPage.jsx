@@ -342,6 +342,14 @@ const ProductPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Sponsored Content / Ads */}
+      <section className="bg-gray-50 py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs text-gray-400 mb-2 text-center">Advertentie</p>
+          <AdMultiplex />
+        </div>
+      </section>
     </Layout>
   );
 };
