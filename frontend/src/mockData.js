@@ -44,8 +44,7 @@ export const products = [
     shortName: "Schaap",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/schaap_clean.jpeg",
-    needsCleanImage: true,
+    image: "https://customer-assets.emergentagent.com/job_kidssleepaid/artifacts/0p603lsa_Baby%20Nachtlamp%20Schaap%20%E2%80%93%20Projector%20%2B%20White%20Noise.png",
     description: "Slaapknuffel met projector en white noise. Helpt je kind tot rust te komen.",
     features: [
       "Sterrenprojector",
