@@ -1543,7 +1543,7 @@ async def get_feed_products():
         "shop_url": SHOP_URL,
         "products_count": len(PRODUCTS_DATA),
         "products": PRODUCTS_DATA,
-        "feed_url": f"{SHOP_URL}/feed/google-shopping.xml"
+        "feed_url": f"{SHOP_URL}/api/feed/google-shopping.xml"
     }
 
 
