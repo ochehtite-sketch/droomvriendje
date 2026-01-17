@@ -329,44 +329,6 @@ export const products = [
     warranty: "14 dagen geld-terug-garantie"
   },
   {
-    id: 10,
-    name: "Baby Nachtknuffel Teddy",
-    shortName: "Teddy Zittend",
-    price: 59.95,
-    originalPrice: 59.95,
-    image: "https://i.imgur.com/q2c7zsP.jpeg",
-    gallery: [
-      "https://i.imgur.com/q2c7zsP.jpeg",
-      "https://i.imgur.com/G3Q2WBz.jpeg",
-      "https://i.imgur.com/H5W6Q5h.jpeg",
-      "https://i.imgur.com/xyXHy7f.jpeg",
-      "https://i.imgur.com/d8fa8nc.jpeg",
-      "https://i.imgur.com/4BllnwS.jpeg",
-      "https://i.imgur.com/4GiHWvE.jpeg",
-      "https://i.imgur.com/0pPCNRt.jpeg",
-      "https://i.imgur.com/8TN6Erw.jpeg",
-      "https://i.imgur.com/NiZGGmg.jpeg"
-    ],
-    description: "Klassieke teddy beer met rustgevend licht en slaapliedjes. Een echte vriend!",
-    features: [
-      "Klassiek teddy design",
-      "Rustgevend nachtlicht",
-      "Slaapliedjes",
-      "Premium pluche"
-    ],
-    benefits: [
-      "🧸 Klassieke teddy",
-      "🎵 Slaapliedjes",
-      "💡 Warm licht",
-      "💤 Diepe slaap"
-    ],
-    rating: 4.8,
-    reviews: 312,
-    badge: "BESTSELLER",
-    ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
-  },
-  {
     id: 11,
     name: "Panda Projector Knuffel",
     shortName: "Panda",
