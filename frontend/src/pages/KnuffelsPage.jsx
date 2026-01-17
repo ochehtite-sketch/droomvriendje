@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { products } from '../mockData';
 import Layout from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Star, ShoppingCart, Filter } from 'lucide-react';
+import { trackViewItemList, trackSelectItem } from '../utils/analytics';
 
 const KnuffelsPage = () => {
   const { addToCart } = useCart();
+
+  // GA4: Track view_item_list when page loads
+  useEffect(() => {
+    trackViewItemList(products, 'alle_knuffels', 'Alle Knuffels');
+  }, []);
+
+  // GA4: Track product click
+  const handleProductClick = (product, index) => {
+    trackSelectItem(product, index, 'alle_knuffels', 'Alle Knuffels');
+  };
 
   return (
     <Layout showBackButton={true}>
