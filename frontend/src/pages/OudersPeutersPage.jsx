@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { Star, ChevronRight } from 'lucide-react';
+import { Star, Sparkles, Moon, Sun, Clock, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
@@ -11,67 +11,33 @@ import CartSidebar from '../components/CartSidebar';
 const OudersPeutersPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Select specific products for toddlers
-  const selectedProductIds = [5, 9, 4]; // Dinosaurus, Eenhoorn, Pinguïn
+  const selectedProductIds = [5, 9, 4];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id))
     .map(p => ({
       ...p,
-      subtitle: p.id === 5 ? "Stoer voor jongens" : p.id === 9 ? "Magisch voor meisjes" : "Schattig en neutraal",
-      landingBadge: p.id === 5 ? "FAVORIET JONGENS" : p.id === 9 ? "FAVORIET MEISJES" : "UNISEX KEUZE",
-      landingDescription: p.id === 5 
-        ? "Stoere dino voor kleine avonturiers die bang zijn in het donker. De sterrenprojectie maakt het spannend én rustgevend."
-        : p.id === 9 
-        ? "Magische eenhoorn voor kleine droomsters. Het zachte roze licht creëert een sprookjesachtige slaapkamer."
-        : "Vrolijke pinguïn die zowel jongens als meisjes aanspreken. Perfect voor kinderen die van dieren houden."
+      subtitle: p.id === 5 ? "Stoer voor kleine avonturiers" : p.id === 9 ? "Magisch en dromerig" : "Vrolijk en neutraal",
+      landingBadge: p.id === 5 ? "⭐ FAVORIET JONGENS" : p.id === 9 ? "⭐ FAVORIET MEISJES" : "⭐ UNISEX",
     }));
 
-  const heroProduct = allProducts.find(p => p.id === 5) || allProducts[0];
-
   const reviews = [
-    {
-      name: "Sanne",
-      context: "Moeder van Daan (3 jaar)",
-      duration: "Gebruikt sinds 4 maanden",
-      rating: 5,
-      text: "Daan had elke nacht nachtmerries en wilde niet alleen slapen. Zijn dinosaurus is nu zijn 'beschermer'. Hij vertelt de dino over zijn dag en valt veel rustiger in slaap. De nachtmerries zijn bijna helemaal weg!",
-      product: "Dinosaurus"
-    },
-    {
-      name: "Peter",
-      context: "Vader van Sophie (2,5 jaar)",
-      duration: "Gebruikt sinds 2 maanden",
-      rating: 5,
-      text: "Het bedtijdritueel was altijd een strijd. Nu vraagt Sophie zelf om haar eenhoorn en het 'sterrenfeestje'. Ze kijkt naar de projectie en is binnen 20 minuten in slaap. Een wereld van verschil!",
-      product: "Eenhoorn"
-    },
-    {
-      name: "Linda",
-      context: "Moeder van Lucas (4 jaar)",
-      duration: "Gebruikt sinds 3 maanden",
-      rating: 5,
-      text: "Lucas werd altijd wakker als wij naar bed gingen. Nu blijft hij liggen met zijn pinguïn en de white noise. Hij zegt dat de pinguïn op hem past. Wij hebben eindelijk weer een avond samen!",
-      product: "Pinguïn"
-    }
+    { name: "Sanne", context: "Moeder van Daan (3 jaar)", rating: 5, text: "Daan had elke nacht nachtmerries. Zijn dinosaurus is nu zijn 'beschermer'. De nachtmerries zijn bijna helemaal weg!", product: "Dinosaurus" },
+    { name: "Peter", context: "Vader van Sophie (2,5 jaar)", rating: 5, text: "Het bedtijdritueel was altijd een strijd. Nu vraagt Sophie zelf om haar eenhoorn en het 'sterrenfeestje'!", product: "Eenhoorn" },
+    { name: "Linda", context: "Moeder van Lucas (4 jaar)", rating: 5, text: "Lucas werd altijd wakker als wij naar bed gingen. Nu blijft hij liggen met zijn pinguïn. Eindelijk een avond voor onszelf!", product: "Pinguïn" }
   ];
 
   const faqs = [
-    {
-      question: "Mijn peuter wil niet alleen slapen. Helpt dit?",
-      answer: "Veel ouders melden dat hun peuter zich veiliger voelt met een Droomvriendje. De combinatie van een knuffelmaatje, zacht licht en rustgevend geluid geeft kinderen het gevoel dat ze niet alleen zijn. Het vervangt niet de nabijheid van ouders, maar kan helpen bij de overgang naar zelfstandig slapen."
-    },
-    {
-      question: "Mijn kind heeft nachtmerries. Kan dit helpen?",
-      answer: "Het zachte licht van een Droomvriendje kan kinderen helpen om zich veiliger te voelen in het donker. Veel kinderen met nachtmerries vinden troost in de aanwezigheid van hun knuffel en het licht. Het is geen wondermiddel, maar veel ouders melden een vermindering van nachtmerries."
-    },
-    {
-      question: "Is dit geschikt voor een kind van 2-4 jaar?",
-      answer: "Ja, Droomvriendjes zijn perfect voor peuters. In deze leeftijd ontwikkelen kinderen vaak angst voor het donker of hebben ze moeite met alleen slapen. De knuffels zijn stevig genoeg om mee te spelen en zacht genoeg om mee te knuffelen."
-    },
-    {
-      question: "Hoe voorkom ik dat mijn kind de hele nacht het licht aan laat?",
-      answer: "Alle Droomvriendjes hebben een timer functie. Je kunt kiezen voor 30 of 60 minuten, waarna het licht en geluid automatisch uitgaan. Zo leert je kind om in te slapen met het licht, maar slaapt het de rest van de nacht in het donker."
-    }
+    { question: "Mijn peuter wil niet alleen slapen. Helpt dit?", answer: "Veel ouders melden dat hun peuter zich veiliger voelt met een Droomvriendje. De combinatie van een knuffelmaatje, zacht licht en rustgevend geluid geeft kinderen het gevoel dat ze niet alleen zijn." },
+    { question: "Mijn kind heeft nachtmerries. Kan dit helpen?", answer: "Het zachte licht van een Droomvriendje kan kinderen helpen om zich veiliger te voelen in het donker. Veel ouders melden een vermindering van nachtmerries." },
+    { question: "Is dit geschikt voor een kind van 2-4 jaar?", answer: "Ja! In deze leeftijd ontwikkelen kinderen vaak angst voor het donker. De knuffels zijn stevig genoeg om mee te spelen en zacht genoeg om mee te knuffelen." },
+    { question: "Hoe voorkom ik dat het licht de hele nacht aan blijft?", answer: "Alle Droomvriendjes hebben een timer functie (30 of 60 minuten). Zo leert je kind om in te slapen met het licht, maar slaapt het de rest van de nacht in het donker." }
+  ];
+
+  const bedtimeSteps = [
+    { icon: Sun, title: "18:30 - Afronden", desc: "Laatste speeltijd, tv uit, rustiger worden" },
+    { icon: Clock, title: "19:00 - Bad tijd", desc: "Warm bad, tandenpoetsen, pyjama aan" },
+    { icon: Moon, title: "19:30 - Verhaal", desc: "Lekker samen lezen in bed" },
+    { icon: Sparkles, title: "19:45 - Droomvriendje", desc: "Licht aan, knuffel vast, welterusten!" }
   ];
 
   const handleAddToCart = (product) => {
@@ -80,230 +46,183 @@ const OudersPeutersPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f9f5]">
+    <div className="min-h-screen bg-[#fffef5]">
       <CartSidebar />
+      
+      {/* Decorative stars */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <Sparkles className="absolute top-32 left-[10%] w-6 h-6 text-yellow-300 animate-pulse" />
+        <Sparkles className="absolute top-48 right-[15%] w-4 h-4 text-yellow-400 animate-pulse" style={{animationDelay: '0.5s'}} />
+        <Moon className="absolute top-24 right-[25%] w-8 h-8 text-[#2d5a3d]/20" />
+        <Sparkles className="absolute bottom-32 left-[20%] w-5 h-5 text-yellow-300 animate-pulse" style={{animationDelay: '1s'}} />
+      </div>
 
       {/* Header */}
-      <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+      <header className="bg-white border-b-4 border-[#2d5a3d] sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center space-x-3">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
-                alt="Droomvriendjes.nl" 
-                className="h-16 w-auto"
-              />
+              <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-14 w-auto" />
             </Link>
             <a href="#producten">
-              <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
-                Bekijk knuffels <ChevronRight className="w-4 h-4 ml-1" />
+              <Button className="bg-yellow-400 hover:bg-yellow-500 text-[#2d5a3d] font-bold rounded-full px-6 py-2 shadow-lg transition-all hover:scale-105 hover:-rotate-1">
+                ⭐ Bekijk knuffels
               </Button>
             </a>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section - Split Screen Playful */}
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block bg-white border border-[#c5d9c8] rounded-full px-4 py-2 text-sm text-[#2d5a3d] mb-6">
-                Speciaal voor ouders van peuters (1-4 jaar)
-              </span>
+            {/* Left - Text */}
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center gap-2 bg-yellow-100 border-2 border-dashed border-yellow-400 rounded-full px-4 py-2 text-sm text-[#2d5a3d] mb-6 rotate-[-2deg]">
+                <Sparkles className="w-4 h-4 text-yellow-500" />
+                Voor peuters van 1-4 jaar
+              </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold text-[#2d5a3d] mb-6 leading-tight">
-                Bedtijd zonder strijd.<br />
-                <span className="text-[#3d7a4d]">Een ritueel dat werkt.</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2d5a3d] mb-6 leading-tight" style={{fontFamily: 'Quicksand, sans-serif'}}>
+                Geen monsters<br />
+                <span className="relative inline-block">
+                  meer onder het bed
+                  <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
+                    <path d="M2 8C50 2 150 2 198 8" stroke="#FDFD96" strokeWidth="6" strokeLinecap="round"/>
+                  </svg>
+                </span>
               </h1>
               
-              <p className="text-lg text-[#5a7a5a] mb-8 leading-relaxed">
-                &ldquo;Ik wil niet slapen!&rdquo; &ldquo;Nog één verhaaltje!&rdquo; &ldquo;Ik ben bang!&rdquo; Herkenbaar? Peuters testen grenzen, ook rond bedtijd. Een vast slaapritueel met een speciaal vriendje kan het verschil maken tussen een uur strijd en een rustige avond.
+              <p className="text-xl text-[#5a7a5a] mb-8 leading-relaxed">
+                Maak van bedtijd een fijn avontuur! Met een Droomvriendje wordt de kamer magisch en voelt je peuter zich veilig.
               </p>
               
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#2d5a3d] mt-1">•</span>
-                  <span className="text-[#4a6a4a]">Sterrenprojectie die angst voor het donker vermindert</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#2d5a3d] mt-1">•</span>
-                  <span className="text-[#4a6a4a]">Een &ldquo;vriendje&rdquo; dat meegaat naar bed en beschermt</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#2d5a3d] mt-1">•</span>
-                  <span className="text-[#4a6a4a]">Timer functie zodat het licht vanzelf uitgaat</span>
-                </li>
-              </ul>
+              <div className="flex flex-wrap gap-4 mb-8">
+                {["✨ Sterrenprojectie", "🛡️ Beschermer", "⏰ Timer functie"].map((item, idx) => (
+                  <span key={idx} className="bg-white border-2 border-[#2d5a3d] rounded-full px-4 py-2 text-sm font-medium text-[#2d5a3d]">
+                    {item}
+                  </span>
+                ))}
+              </div>
               
-              <div className="flex items-center space-x-6">
-                <a href="#producten">
-                  <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-8 py-6 text-lg">
-                    Ontdek Droomvriendjes
-                  </Button>
-                </a>
-                <div className="text-sm text-[#5a7a5a]">
-                  <p className="font-semibold">Favoriet bij 50.000+ peuters</p>
-                  <p>Bedtijd wordt een feestje</p>
+              <a href="#producten">
+                <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-10 py-6 text-lg shadow-xl transition-all hover:scale-105 hover:rotate-1">
+                  Ontdek de magie ✨
+                </Button>
+              </a>
+            </div>
+            
+            {/* Right - Floating Products */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="relative h-[400px] md:h-[500px]">
+                {/* Main product */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                  <Card className="w-56 md:w-64 rounded-2xl border-b-4 border-[#2d5a3d] shadow-2xl rotate-[-3deg] hover:rotate-0 transition-transform">
+                    <div className="bg-gradient-to-b from-yellow-50 to-white p-6 rounded-t-2xl">
+                      <img src={landingProducts[0]?.image} alt="Dinosaurus" className="w-full h-auto" />
+                    </div>
+                    <CardContent className="p-4 text-center bg-white rounded-b-2xl">
+                      <p className="font-bold text-[#2d5a3d]">Dinosaurus</p>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                {/* Side products */}
+                <div className="absolute top-8 left-4 z-10">
+                  <Card className="w-36 md:w-44 rounded-xl border-b-4 border-[#2d5a3d] shadow-lg rotate-[8deg] hover:rotate-[12deg] transition-transform">
+                    <div className="bg-pink-50 p-4 rounded-t-xl">
+                      <img src={landingProducts[1]?.image} alt="Eenhoorn" className="w-full h-auto" />
+                    </div>
+                  </Card>
+                </div>
+                
+                <div className="absolute bottom-8 right-4 z-10">
+                  <Card className="w-36 md:w-44 rounded-xl border-b-4 border-[#2d5a3d] shadow-lg rotate-[-8deg] hover:rotate-[-12deg] transition-transform">
+                    <div className="bg-blue-50 p-4 rounded-t-xl">
+                      <img src={landingProducts[2]?.image} alt="Pinguïn" className="w-full h-auto" />
+                    </div>
+                  </Card>
                 </div>
               </div>
             </div>
-            
-            <div className="flex justify-center">
-              <Card className="bg-white border-2 border-[#c5d9c8] rounded-3xl max-w-sm w-full overflow-hidden">
-                <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[300px]">
-                  <img 
-                    src={heroProduct.image}
-                    alt="Droomvriendjes voor Peuters"
-                    className="w-full h-auto object-contain max-h-[250px]"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-bold text-[#2d5a3d] text-xl mb-1">Droomvriendjes Peuter Editie</h3>
-                  <p className="text-[#5a8a6a] text-sm mb-4">Perfect voor kleine avonturiers</p>
-                  
-                  <div className="flex items-baseline justify-between mb-6">
-                    <span className="text-3xl font-bold text-[#2d5a3d]">€59,95</span>
-                    <span className="text-sm text-[#5a8a6a]">incl. btw · 14 dagen retour</span>
-                  </div>
-                  
-                  <a href="#producten">
-                    <Button className="w-full bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full py-6 text-lg">
-                      Bekijk alle opties
-                    </Button>
-                  </a>
-                  
-                  <div className="flex justify-between mt-4 text-sm text-[#5a8a6a]">
-                    <span>Gratis verzending</span>
-                    <span>Met sterrenprojectie</span>
-                  </div>
-                </CardContent>
+          </div>
+        </div>
+      </section>
+
+      {/* Challenges Section - Zig Zag */}
+      <section className="py-16 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAgMEwyMCA0MCIgc3Ryb2tlPSIjZjBmNGYwIiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJNMCAyMEw0MCAyMCIgc3Ryb2tlPSIjZjBmNGYwIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] opacity-50"></div>
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
+              Herken je dit? 🙋
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { emoji: "😰", title: "Angst voor donker", desc: "Rond 2-3 jaar heel normaal" },
+              { emoji: "🛏️", title: "Niet alleen slapen", desc: "Wil bij papa of mama" },
+              { emoji: "⏰", title: "Eindeloze bedtijd", desc: "'Nog één verhaaltje!'" },
+              { emoji: "😱", title: "Nachtmerries", desc: "Enge dromen" }
+            ].map((item, idx) => (
+              <Card key={idx} className={`rounded-xl border-2 border-dashed border-[#2d5a3d]/30 p-6 text-center hover:border-[#2d5a3d] hover:shadow-lg transition-all ${idx % 2 === 1 ? 'mt-4' : ''}`}>
+                <span className="text-4xl mb-3 block">{item.emoji}</span>
+                <p className="font-bold text-[#2d5a3d] mb-1">{item.title}</p>
+                <p className="text-sm text-[#7a9a7a]">{item.desc}</p>
               </Card>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Common Challenges Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">
-            Herken je dit?
-          </h2>
-          <p className="text-lg text-[#5a7a5a] mb-12 max-w-3xl">
-            Peuters en slaap: het is een combinatie die veel ouders grijze haren bezorgt. Je bent niet alleen.
-          </p>
+      {/* Bedtime Routine Timeline */}
+      <section className="py-20 bg-[#f8fdf8]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
+              Het perfecte bedtijdritueel 🌙
+            </h2>
+            <p className="text-[#5a7a5a]">Een vast ritueel geeft rust en voorspelbaarheid</p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <Card className="bg-[#f5f9f5] border-0 p-6">
-              <p className="text-2xl mb-3">😰</p>
-              <p className="text-[#2d5a3d] font-bold mb-2">Angst voor het donker</p>
-              <p className="text-sm text-[#5a7a5a]">Rond 2-3 jaar ontwikkelen veel kinderen plotseling angst voor het donker.</p>
-            </Card>
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400 via-[#2d5a3d] to-[#2d5a3d] rounded-full hidden md:block"></div>
             
-            <Card className="bg-[#f5f9f5] border-0 p-6">
-              <p className="text-2xl mb-3">🛏️</p>
-              <p className="text-[#2d5a3d] font-bold mb-2">Niet alleen willen slapen</p>
-              <p className="text-sm text-[#5a7a5a]">Peuters willen bij papa of mama zijn. Alleen in bed voelt onveilig.</p>
-            </Card>
-            
-            <Card className="bg-[#f5f9f5] border-0 p-6">
-              <p className="text-2xl mb-3">⏰</p>
-              <p className="text-[#2d5a3d] font-bold mb-2">Eindeloze bedtijd</p>
-              <p className="text-sm text-[#5a7a5a]">&ldquo;Nog één verhaaltje&rdquo;, &ldquo;nog wat water&rdquo;, &ldquo;nog een knuffel&rdquo;...</p>
-            </Card>
-            
-            <Card className="bg-[#f5f9f5] border-0 p-6">
-              <p className="text-2xl mb-3">😱</p>
-              <p className="text-[#2d5a3d] font-bold mb-2">Nachtmerries</p>
-              <p className="text-sm text-[#5a7a5a]">De fantasie van peuters is groot, en dat kan leiden tot enge dromen.</p>
-            </Card>
+            <div className="space-y-6">
+              {bedtimeSteps.map((step, idx) => (
+                <div key={idx} className={`flex items-start gap-6 ${idx % 2 === 1 ? 'md:flex-row-reverse md:text-right' : ''}`}>
+                  <div className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg ${idx === 3 ? 'bg-yellow-400' : 'bg-[#2d5a3d]'}`}>
+                    <step.icon className={`w-8 h-8 ${idx === 3 ? 'text-[#2d5a3d]' : 'text-white'}`} />
+                  </div>
+                  <Card className={`flex-1 rounded-xl p-6 border-2 ${idx === 3 ? 'border-yellow-400 bg-yellow-50' : 'border-[#e0ebe0] bg-white'}`}>
+                    <p className="font-bold text-[#2d5a3d] text-lg mb-1">{step.title}</p>
+                    <p className="text-[#5a7a5a]">{step.desc}</p>
+                  </Card>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* How It Helps Section */}
-      <section className="py-16 border-t border-[#e0ebe0]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">
-            Zo helpt een Droomvriendje je peuter.
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
-                <img 
-                  src={allProducts[4]?.image} 
-                  alt="Sterrenprojectie"
-                  className="w-full h-auto object-contain max-h-[150px]"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Magische Sterrenhemel</h3>
-                <p className="text-[#5a7a5a]">
-                  De sterrenprojectie transformeert de kamer in een magische ruimte. Angst voor het donker wordt verwondering voor de sterren.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
-                <img 
-                  src={allProducts[3]?.image} 
-                  alt="Slaapvriendje"
-                  className="w-full h-auto object-contain max-h-[150px]"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Een Vriendje Dat Beschermt</h3>
-                <p className="text-[#5a7a5a]">
-                  Je peuter is niet alleen. Het Droomvriendje &ldquo;past op&rdquo; terwijl papa en mama even weg zijn. Een geruststellend idee voor kleine kinderen.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
-                <img 
-                  src={allProducts[8]?.image} 
-                  alt="Slaapritueel"
-                  className="w-full h-auto object-contain max-h-[150px]"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Een Vast Ritueel</h3>
-                <p className="text-[#5a7a5a]">
-                  Peuters houden van voorspelbaarheid. Het Droomvriendje aanzetten wordt onderdeel van het bedtijdritueel dat rust en structuur geeft.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Reviews Section */}
-      <section className="py-16 border-t border-[#e0ebe0]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-2">
-                Wat andere ouders van peuters zeggen.
-              </h2>
-              <p className="text-[#5a7a5a]">
-                Eerlijke ervaringen van ouders met kinderen van 1-4 jaar.
-              </p>
-            </div>
-            <div className="mt-4 md:mt-0 text-right">
-              <p className="text-[#5a7a5a]">Gemiddelde beoordeling: <span className="font-bold text-[#2d5a3d] text-2xl">4.8 / 5</span></p>
-              <p className="text-sm text-[#7a9a7a]">Gebaseerd op 300+ reviews</p>
-            </div>
+      {/* Reviews */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
+              Andere ouders vertellen 💬
+            </h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {reviews.map((review, idx) => (
-              <Card key={idx} className="bg-white border-2 border-[#c5d9c8] rounded-2xl p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-[#2d5a3d] rounded-full flex items-center justify-center text-white font-bold text-lg">
+              <Card key={idx} className={`rounded-2xl p-6 border-b-4 border-[#2d5a3d] ${idx === 1 ? 'md:-mt-4 bg-yellow-50' : 'bg-white'}`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[#2d5a3d] flex items-center justify-center text-white font-bold text-lg">
                     {review.name.charAt(0)}
                   </div>
                   <div>
@@ -311,21 +230,11 @@ const OudersPeutersPage = () => {
                     <p className="text-sm text-[#7a9a7a]">{review.context}</p>
                   </div>
                 </div>
-                
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
-                    />
-                  ))}
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
                 </div>
-                
-                <p className="text-[#4a6a4a] mb-4 text-sm leading-relaxed italic">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-                
-                <p className="text-sm text-[#7a9a7a]">Besteld: {review.product}</p>
+                <p className="text-[#4a6a4a] italic">"{review.text}"</p>
+                <p className="text-sm text-[#7a9a7a] mt-3">✨ {review.product}</p>
               </Card>
             ))}
           </div>
@@ -333,50 +242,33 @@ const OudersPeutersPage = () => {
       </section>
 
       {/* Products Section */}
-      <section id="producten" className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">
-            Kies het perfecte Droomvriendje voor je peuter.
-          </h2>
-          <p className="text-lg text-[#5a7a5a] mb-12 max-w-3xl">
-            Welk karakter spreekt je kind aan? Stoere dino, magische eenhoorn of vrolijke pinguïn?
-          </p>
+      <section id="producten" className="py-24 bg-[#fffef5]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
+              Welke wordt jouw held? ⭐
+            </h2>
+            <p className="text-[#5a7a5a] text-lg">Stoere dino, magische eenhoorn of vrolijke pinguïn?</p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {landingProducts.map((product) => (
-              <Card key={product.id} className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {landingProducts.map((product, idx) => (
+              <Card key={product.id} className={`rounded-2xl border-b-4 border-[#2d5a3d] overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 ${idx === 0 ? 'bg-green-50' : idx === 1 ? 'bg-pink-50' : 'bg-blue-50'}`}>
                 <Link to={`/product/${product.id}`}>
-                  <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[200px] cursor-pointer hover:bg-[#dce8dc] transition-colors">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-auto object-contain max-h-[150px]"
-                    />
+                  <div className="p-8 flex items-center justify-center aspect-square">
+                    <img src={product.image} alt={product.name} className="w-full h-auto object-contain max-h-[180px] hover:scale-110 transition-transform" />
                   </div>
                 </Link>
-                <CardContent className="p-6">
-                  <p className="text-xs font-bold text-[#7a9a7a] mb-1">{product.landingBadge}</p>
+                <CardContent className="p-6 text-center bg-white">
+                  <span className="inline-block bg-yellow-100 text-[#2d5a3d] text-xs font-bold px-3 py-1 rounded-full mb-3">{product.landingBadge}</span>
                   <Link to={`/product/${product.id}`}>
-                    <h3 className="font-bold text-[#2d5a3d] text-xl mb-1 hover:underline cursor-pointer">{product.shortName}</h3>
+                    <h3 className="font-bold text-[#2d5a3d] text-xl mb-1 hover:text-[#4a8a5a]">{product.shortName}</h3>
                   </Link>
-                  <p className="text-sm text-[#7a9a7a] mb-3">{product.subtitle}</p>
-                  <p className="text-[#5a7a5a] text-sm mb-4">{product.landingDescription}</p>
-                  
-                  <div className="flex items-baseline justify-between mb-4">
-                    <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price.toFixed(2).replace('.', ',')}</span>
-                    <span className="text-sm text-[#7a9a7a]">incl. btw</span>
-                  </div>
-                  
-                  <Button 
-                    onClick={() => handleAddToCart(product)}
-                    className="w-full bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full py-4"
-                  >
-                    In winkelwagen
+                  <p className="text-sm text-[#7a9a7a] mb-4">{product.subtitle}</p>
+                  <p className="text-2xl font-bold text-[#2d5a3d] mb-4">€{product.price.toFixed(2).replace('.', ',')}</p>
+                  <Button onClick={() => handleAddToCart(product)} className="w-full bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full py-5 shadow-lg transition-all hover:scale-[1.02]">
+                    In winkelwagen ⭐
                   </Button>
-                  
-                  <p className="text-center text-xs text-[#7a9a7a] mt-3">
-                    14 dagen retour · Gratis verzending
-                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -384,86 +276,55 @@ const OudersPeutersPage = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 border-t border-[#e0ebe0]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-12">
-            Veelgestelde vragen van ouders met peuters.
+      {/* FAQ */}
+      <section className="py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-[#2d5a3d] mb-12 text-center" style={{fontFamily: 'Quicksand, sans-serif'}}>
+            Vragen? 🤔
           </h2>
-          
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, idx) => (
-              <AccordionItem 
-                key={idx} 
-                value={`item-${idx}`}
-                className="bg-white border-2 border-[#c5d9c8] rounded-2xl px-6"
-              >
-                <AccordionTrigger className="text-left font-semibold text-[#2d5a3d] hover:text-[#3d7a4d] py-6">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-[#5a7a5a] pb-6">
-                  {faq.answer}
-                </AccordionContent>
+              <AccordionItem key={idx} value={`item-${idx}`} className="bg-[#f8fdf8] rounded-xl px-6 border-2 border-dashed border-[#2d5a3d]/20">
+                <AccordionTrigger className="text-left font-semibold text-[#2d5a3d] hover:text-[#4a8a5a] py-5">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-[#5a7a5a] pb-5">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
       </section>
 
-      {/* Green Footer */}
+      {/* Footer */}
       <footer className="bg-[#2d5a3d] text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-3xl">🧸</span>
-                <span className="text-2xl font-bold">Droomvriendjes</span>
-              </div>
-              <div className="text-[#a8d4a8] text-sm space-y-1">
-                <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
-                <p>Droomvriendjes</p>
-                <p>Schaesbergerweg 103</p>
-                <p>6415 AD Heerlen</p>
-                <p className="mt-3">KVK: 9921083</p>
-              </div>
+              <span className="text-2xl font-bold mb-4 block" style={{fontFamily: 'Quicksand, sans-serif'}}>🧸 Droomvriendjes</span>
+              <p className="text-[#a8d4a8] text-sm">Schaesbergerweg 103<br/>6415 AD Heerlen<br/>KVK: 9921083</p>
             </div>
-
             <div>
-              <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
+              <h3 className="font-bold mb-4">Navigatie</h3>
               <ul className="space-y-2 text-[#a8d4a8] text-sm">
-                <li><Link to="/#producten" className="hover:text-white transition-colors">Alle producten</Link></li>
-                <li><Link to="/ouders-slaaptips" className="hover:text-white transition-colors">Ouders slaaptips</Link></li>
-                <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link to="/ouders-baby" className="hover:text-white transition-colors">Ouders van baby's</Link></li>
-                <li><Link to="/ouders-peuters" className="hover:text-white transition-colors">Ouders van peuters</Link></li>
-                <li><Link to="/ouders-extra-behoeften" className="hover:text-white transition-colors">Extra behoeften</Link></li>
+                <li><Link to="/#producten" className="hover:text-white">Alle producten</Link></li>
+                <li><Link to="/ouders-baby" className="hover:text-white">Ouders van baby's</Link></li>
+                <li><Link to="/ouders-peuters" className="hover:text-white">Ouders van peuters</Link></li>
+                <li><Link to="/ouders-extra-behoeften" className="hover:text-white">Extra behoeften</Link></li>
               </ul>
             </div>
-
             <div>
-              <h3 className="font-bold mb-4 text-lg">Hulp & Tips</h3>
+              <h3 className="font-bold mb-4">Hulp</h3>
               <ul className="space-y-2 text-[#a8d4a8] text-sm">
-                <li><Link to="/tips-bedtijd" className="hover:text-white transition-colors">Tips voor bedtijd</Link></li>
-                <li><Link to="/rustmoment-ouders" className="hover:text-white transition-colors">Rustmoment voor ouders</Link></li>
-                <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
-                <li><Link to="/slaapproblemen" className="hover:text-white transition-colors">Slaapproblemen</Link></li>
+                <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
+                <li><Link to="/retourneren" className="hover:text-white">Retourneren</Link></li>
+                <li><Link to="/privacy" className="hover:text-white">Privacy</Link></li>
               </ul>
             </div>
-
             <div>
-              <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
-              <ul className="space-y-2 text-[#a8d4a8] text-sm">
-                <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
-                <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
-                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Beleid</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              </ul>
+              <h3 className="font-bold mb-4">Betalen</h3>
+              <p className="text-[#a8d4a8] text-sm">iDEAL • Klarna<br/>PayPal • Creditcard</p>
             </div>
           </div>
-
           <div className="border-t border-[#3d7a4d] pt-8 text-center">
-            <p className="text-[#a8d4a8] text-sm">© 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
+            <p className="text-[#a8d4a8] text-sm">© 2025 Droomvriendjes</p>
           </div>
         </div>
       </footer>
