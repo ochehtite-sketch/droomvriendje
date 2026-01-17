@@ -47,7 +47,7 @@ const MerchantFeedPage = () => {
   };
 
   const openFeed = () => {
-    window.open(`${API_URL}/feed/google-shopping.xml`, '_blank');
+    window.open(`${API_URL}/api/feed/google-shopping.xml`, '_blank');
   };
 
   return (
