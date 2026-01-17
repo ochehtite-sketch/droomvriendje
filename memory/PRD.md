@@ -18,7 +18,15 @@ Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack a
 
 ## Wat is Geïmplementeerd
 
-### 17 januari 2026
+### 17 januari 2026 - Sessie 2
+- ✅ **Google Ads API Integratie** - Volledige backend service met OAuth flow
+- ✅ **Shopping Campaigns Admin** - Nieuwe pagina `/admin/shopping-campaigns`
+- ✅ **OAuth Callback** - `/admin/google-ads/callback` voor account koppeling
+- ✅ **Google AdSense** - Advertenties op knuffels, blogs en product pagina's
+- ✅ **Developer Token** opgeslagen: `Gy0ry8CVqgm7Dar4dXhHkg`
+- ✅ **Manager Account ID** opgeslagen: `362-584-3742`
+
+### 17 januari 2026 - Sessie 1
 - ✅ **Google Merchant Center Feed** - `/api/feed/products` (JSON) en `/api/feed/google-shopping.xml` (XML)
 - ✅ **GTM Code Update** - Vervangen naar `GTM-W9PZRP4B`
 - ✅ **Google Credentials** - Client Secret, Customer ID, Merchant Center ID opgeslagen
@@ -41,11 +49,11 @@ Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack a
 ## Prioritized Backlog
 
 ### P0 - Kritiek
-- [ ] **Developer Token** verkrijgen voor Google Ads API
+- [ ] **OAuth Autorisatie** - Verbind Google Ads account via `/admin/shopping-campaigns`
 - [ ] **Cadeaubon flow verificatie** - End-to-end test door gebruiker
 
 ### P1 - Hoog
-- [ ] **Google Shopping Ads automatisering** - API koppeling na Developer Token
+- [ ] **Shopping Campagne Aanmaken** - Na OAuth koppeling
 - [ ] **Admin Dashboard** - Orders en producten beheer (vervangt mockData.js)
 
 ### P2 - Medium
@@ -66,19 +74,32 @@ Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack a
 - **Database:** MongoDB (data in mockData.js)
 - **Betalingen:** Mollie (LIVE)
 - **Email:** SMTP via TransIP
-- **Analytics:** Google Analytics 4, Google Tag Manager
+- **Analytics:** Google Analytics 4 (G-HGF9SEQG7Q), Google Tag Manager (GTM-W9PZRP4B)
+- **Ads:** Google AdSense (ca-pub-3408254396794902)
 
 ## Key Endpoints
 - `GET /api/feed/products` - JSON product feed
 - `GET /api/feed/google-shopping.xml` - XML feed voor Merchant Center
+- `GET /api/google-ads/status` - API configuratie status
+- `GET /api/google-ads/oauth-url` - Start OAuth flow
+- `POST /api/google-ads/oauth-callback` - OAuth callback handler
+- `GET /api/google-ads/campaigns` - Ophalen Shopping campagnes
+- `POST /api/google-ads/campaigns/create` - Nieuwe campagne aanmaken
 - `POST /api/orders` - Nieuwe bestelling
 - `POST /api/payments/create` - Mollie betaling
 - `POST /api/gift-card/purchase` - Cadeaubon kopen
-- `POST /api/discount/validate` - Kortingscode valideren
+
+## Admin Pagina's
+- `/admin/google-ads` - Keywords, advertentieteksten, campagne data
+- `/admin/google-ads/callback` - OAuth callback handler
+- `/admin/merchant-feed` - Product feed voor Merchant Center
+- `/admin/shopping-campaigns` - Shopping campagnes beheer
 
 ## Credentials (opgeslagen in backend/.env)
 - Mollie API Key (LIVE)
 - SMTP credentials (TransIP)
 - Google OAuth Client ID & Secret
-- Google Ads Customer ID: 932-209-5782
-- Google Merchant Center ID: 5713316340
+- Google Ads Developer Token: `Gy0ry8CVqgm7Dar4dXhHkg`
+- Google Ads Customer ID: `932-209-5782`
+- Google Ads Manager ID: `362-584-3742`
+- Google Merchant Center ID: `5713316340`
