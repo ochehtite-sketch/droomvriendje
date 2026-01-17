@@ -643,37 +643,6 @@ export const reviews = [
     verified: true,
     product: "Eenhoorn"
   },
-  // Teddy Zittend reviews
-  {
-    id: 28,
-    name: "Jan-Willem D.",
-    rating: 5,
-    date: "3 dagen geleden",
-    title: "Klassieke teddy, moderne functies",
-    text: "Mooie klassieke teddy beer met alle moderne functies. De slaapliedjes zijn prachtig. Onze zoon is er dol op!",
-    verified: true,
-    product: "Teddy Zittend"
-  },
-  {
-    id: 29,
-    name: "Bianca L.",
-    rating: 5,
-    date: "1 week geleden",
-    title: "Nostalgisch en effectief",
-    text: "Doet me denken aan mijn eigen teddybeer maar dan met coole functies! Mijn kinderen slapen nu veel beter.",
-    verified: true,
-    product: "Teddy Zittend"
-  },
-  {
-    id: 30,
-    name: "Marco V.",
-    rating: 4,
-    date: "3 weken geleden",
-    title: "Heel tevreden",
-    text: "Premium kwaliteit teddy. Het licht is warm en de muziek rustgevend. Goede aankoop!",
-    verified: true,
-    product: "Teddy Zittend"
-  },
   // Panda reviews
   {
     id: 31,
