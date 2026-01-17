@@ -431,7 +431,15 @@ export const products = [
     reviews: 287,
     badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie"
+    warranty: "14 dagen geld-terug-garantie",
+    // GA4 E-commerce tags
+    item_id: "KNUF_011",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Wilde Dieren",
+    item_category4: "Medium",
+    item_category5: "Met Projectie",
+    item_variant: "zwart-wit"
   }
 ];
 
