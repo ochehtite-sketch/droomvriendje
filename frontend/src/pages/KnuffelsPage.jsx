@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Star, ShoppingCart, Filter } from 'lucide-react';
 import { trackViewItemList, trackSelectItem } from '../utils/analytics';
+import { AdBanner } from '../components/AdSense';
 
 const KnuffelsPage = () => {
   const { addToCart } = useCart();
@@ -61,6 +62,11 @@ const KnuffelsPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Ad Banner */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AdBanner />
+      </div>
 
       {/* Products Grid */}
       <section className="py-12 bg-gray-50">
