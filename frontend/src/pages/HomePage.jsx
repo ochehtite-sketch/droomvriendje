@@ -382,6 +382,120 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Bestsellers Section */}
+      <section className="py-16 bg-[#faf8f5]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-3">
+              Kies het perfecte Droomvriendje
+            </h2>
+            <p className="text-gray-600">
+              Alle knuffels zijn veilig vanaf 0 maanden
+            </p>
+          </div>
+          
+          {/* Bestseller Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Schaap - Bestseller #2 */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" data-testid="bestseller-card-schaap">
+              <div className="bg-gradient-to-r from-teal-100 to-teal-50 h-3"></div>
+              <div className="p-6">
+                <Link to="/product/2" onClick={() => window.scrollTo(0, 0)}>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://i.imgur.com/vYpeb4c.jpeg" 
+                      alt="Schaap"
+                      className="h-56 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
+                <div className="text-center">
+                  <span className="inline-block bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                    BESTSELLER #2
+                  </span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Schaap</h3>
+                  <p className="text-gray-500 text-sm mb-3">Zacht en knuffelbaar</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-4">€59,95</p>
+                  <Button 
+                    className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-5 rounded-full"
+                    onClick={() => addToCart(products.find(p => p.id === 2))}
+                    data-testid="bestseller-add-schaap"
+                  >
+                    In winkelwagen
+                  </Button>
+                  <p className="text-xs text-gray-500 mt-3">Gratis verzending · 14 dagen retour</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Teddy - Bestseller #1 */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow md:-mt-4 md:mb-4" data-testid="bestseller-card-teddy">
+              <div className="bg-gradient-to-r from-teal-100 to-teal-50 h-3"></div>
+              <div className="p-6">
+                <Link to="/product/3" onClick={() => window.scrollTo(0, 0)}>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://customer-assets.emergentagent.com/job_bb5b58b9-cb3e-4b45-863f-d854d8773ec0/artifacts/pm1mjx73_image.png" 
+                      alt="Teddy"
+                      className="h-56 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
+                <div className="text-center">
+                  <span className="inline-block bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                    BESTSELLER #1
+                  </span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Teddy</h3>
+                  <p className="text-gray-500 text-sm mb-3">Meest gekozen</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-4">€59,95</p>
+                  <Button 
+                    className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-5 rounded-full"
+                    onClick={() => addToCart(products.find(p => p.id === 3))}
+                    data-testid="bestseller-add-teddy"
+                  >
+                    In winkelwagen
+                  </Button>
+                  <p className="text-xs text-gray-500 mt-3">Gratis verzending · 14 dagen retour</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Panda - Bestseller #3 */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow" data-testid="bestseller-card-panda">
+              <div className="bg-gradient-to-r from-teal-100 to-teal-50 h-3"></div>
+              <div className="p-6">
+                <Link to="/product/11" onClick={() => window.scrollTo(0, 0)}>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="https://i.imgur.com/fhVs30E.jpeg" 
+                      alt="Panda"
+                      className="h-56 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
+                <div className="text-center">
+                  <span className="inline-block bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                    BESTSELLER #3
+                  </span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Panda</h3>
+                  <p className="text-gray-500 text-sm mb-3">Super rustgevend</p>
+                  <p className="text-2xl font-bold text-gray-900 mb-4">€49,95</p>
+                  <Button 
+                    className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-5 rounded-full"
+                    onClick={() => addToCart(products.find(p => p.id === 11))}
+                    data-testid="bestseller-add-panda"
+                  >
+                    In winkelwagen
+                  </Button>
+                  <p className="text-xs text-gray-500 mt-3">Gratis verzending · 14 dagen retour</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Video Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
