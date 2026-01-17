@@ -64,7 +64,7 @@ const OudersPeutersPage = () => {
             <Link to="/" className="flex items-center space-x-3">
               <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-14 w-auto" />
             </Link>
-            <a href="#producten">
+            <a href="https://www.droomvriendjes.nl/#producten" target="_blank" rel="noopener noreferrer">
               <Button className="bg-yellow-400 hover:bg-yellow-500 text-[#2d5a3d] font-bold rounded-full px-6 py-2 shadow-lg transition-all hover:scale-105 hover:-rotate-1">
                 ⭐ Bekijk knuffels
               </Button>

@@ -56,7 +56,7 @@ const OudersBabyPage = () => {
             <Link to="/" className="flex items-center space-x-3">
               <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-14 w-auto" />
             </Link>
-            <a href="#producten">
+            <a href="https://www.droomvriendjes.nl/#producten" target="_blank" rel="noopener noreferrer">
               <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-6 py-2 shadow-lg shadow-[#2d5a3d]/20 transition-all hover:scale-105">
                 Bekijk knuffels
               </Button>
