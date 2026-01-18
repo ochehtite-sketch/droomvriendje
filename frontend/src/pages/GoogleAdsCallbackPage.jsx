@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { Card, CardContent } from '../components/ui/card';
@@ -9,8 +9,9 @@ const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 const GoogleAdsCallbackPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [status, setStatus] = useState('processing'); // processing, success, error
+  const [status, setStatus] = useState('processing');
   const [message, setMessage] = useState('Bezig met verwerken...');
+  const hasExchanged = useRef(false); // Prevent double exchange
 
   useEffect(() => {
     const code = searchParams.get('code');
@@ -22,9 +23,10 @@ const GoogleAdsCallbackPage = () => {
       return;
     }
 
-    if (code) {
+    if (code && !hasExchanged.current) {
+      hasExchanged.current = true; // Mark as exchanged
       exchangeCode(code);
-    } else {
+    } else if (!code) {
       setStatus('error');
       setMessage('Geen autorisatiecode ontvangen');
     }
@@ -32,7 +34,6 @@ const GoogleAdsCallbackPage = () => {
 
   const exchangeCode = async (code) => {
     try {
-      // Send the current origin so backend uses matching redirect_uri
       const currentOrigin = window.location.origin;
       const response = await fetch(`${API_URL}/api/google-ads/oauth-callback?code=${encodeURIComponent(code)}&origin=${encodeURIComponent(currentOrigin)}`, {
         method: 'POST',
@@ -44,10 +45,9 @@ const GoogleAdsCallbackPage = () => {
         setStatus('success');
         setMessage('Google Ads account succesvol verbonden!');
         
-        // Redirect na 3 seconden
         setTimeout(() => {
           navigate('/admin/shopping-campaigns');
-        }, 3000);
+        }, 2000);
       } else {
         setStatus('error');
         setMessage(data.detail || 'Er ging iets mis bij het verbinden');
