@@ -33,6 +33,7 @@ import MerchantFeedPage from "./pages/MerchantFeedPage";
 import ShoppingCampaignsPage from "./pages/ShoppingCampaignsPage";
 import ShoppingCampaignsDataPage from "./pages/ShoppingCampaignsDataPage";
 import GoogleAdsCallbackPage from "./pages/GoogleAdsCallbackPage";
+import KeywordsPage from "./pages/KeywordsPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
