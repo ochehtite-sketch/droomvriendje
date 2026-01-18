@@ -31,6 +31,7 @@ import KnuffelsPage from "./pages/KnuffelsPage";
 import GoogleAdsPage from "./pages/GoogleAdsPage";
 import MerchantFeedPage from "./pages/MerchantFeedPage";
 import ShoppingCampaignsPage from "./pages/ShoppingCampaignsPage";
+import ShoppingCampaignsDataPage from "./pages/ShoppingCampaignsDataPage";
 import GoogleAdsCallbackPage from "./pages/GoogleAdsCallbackPage";
 import { Toaster } from "./components/ui/toaster";
 
