@@ -1594,11 +1594,20 @@ async def get_google_ads_oauth_url(request: Request):
         raise HTTPException(status_code=500, detail=str(e))
 
 @api_router.post("/google-ads/oauth-callback")
-async def google_ads_oauth_callback(code: str):
+async def google_ads_oauth_callback(request: Request, code: str):
     """Exchange OAuth code for tokens"""
     from services.google_ads_service import google_ads_service
     
-    redirect_uri = f"{FRONTEND_URL}/admin/google-ads/callback"
+    # Use the same origin as the request to match the initial OAuth request
+    origin = request.headers.get("origin") or request.headers.get("referer", "").rstrip("/")
+    if origin:
+        from urllib.parse import urlparse
+        parsed = urlparse(origin)
+        base_url = f"{parsed.scheme}://{parsed.netloc}"
+    else:
+        base_url = FRONTEND_URL
+    
+    redirect_uri = f"{base_url}/admin/google-ads/callback"
     try:
         tokens = google_ads_service.exchange_code_for_tokens(code, redirect_uri)
         
