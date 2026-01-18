@@ -32,7 +32,9 @@ const GoogleAdsCallbackPage = () => {
 
   const exchangeCode = async (code) => {
     try {
-      const response = await fetch(`${API_URL}/api/google-ads/oauth-callback?code=${encodeURIComponent(code)}`, {
+      // Send the current origin so backend uses matching redirect_uri
+      const currentOrigin = window.location.origin;
+      const response = await fetch(`${API_URL}/api/google-ads/oauth-callback?code=${encodeURIComponent(code)}&origin=${encodeURIComponent(currentOrigin)}`, {
         method: 'POST',
       });
       
