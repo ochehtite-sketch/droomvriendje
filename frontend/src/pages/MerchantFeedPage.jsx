@@ -105,6 +105,75 @@ const MerchantFeedPage = () => {
             </div>
           ) : feedData ? (
             <>
+              {/* Upload Section - NEW! */}
+              <Card className="mb-8 border-2 border-green-200 bg-gradient-to-r from-green-50 to-emerald-50">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Rocket className="w-5 h-5 text-green-600" />
+                    Direct Uploaden naar Google Merchant Center
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+                    <div className="flex-1">
+                      <p className="text-gray-700 mb-2">
+                        Upload je product feed direct naar Google Merchant Center via SFTP. 
+                        Je producten zijn binnen 15-30 minuten zichtbaar in Google Shopping!
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                        <Package className="w-4 h-4" />
+                        <span>{feedData?.products_count || 0} producten klaar voor upload</span>
+                      </div>
+                    </div>
+                    <Button 
+                      onClick={uploadToMerchantCenter} 
+                      disabled={uploading}
+                      className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg shrink-0"
+                      size="lg"
+                    >
+                      {uploading ? (
+                        <>
+                          <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
+                          Uploaden...
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="w-5 h-5 mr-2" />
+                          🚀 Upload Feed Nu!
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  
+                  {/* Upload Status Message */}
+                  {uploadStatus && (
+                    <div className={`mt-4 p-4 rounded-lg flex items-center gap-3 ${
+                      uploadStatus === 'success' 
+                        ? 'bg-green-100 border border-green-300' 
+                        : 'bg-red-100 border border-red-300'
+                    }`}>
+                      {uploadStatus === 'success' ? (
+                        <CheckCircle className="w-6 h-6 text-green-600" />
+                      ) : (
+                        <AlertCircle className="w-6 h-6 text-red-600" />
+                      )}
+                      <div>
+                        <p className={`font-semibold ${
+                          uploadStatus === 'success' ? 'text-green-800' : 'text-red-800'
+                        }`}>
+                          {uploadMessage}
+                        </p>
+                        {uploadStatus === 'success' && (
+                          <p className="text-sm text-green-700 mt-1">
+                            Ga naar <a href="https://merchants.google.com" target="_blank" rel="noopener noreferrer" className="underline font-medium">Google Merchant Center</a> om je producten te bekijken.
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
               {/* Feed Info Cards */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                 <Card>
