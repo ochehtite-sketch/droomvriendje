@@ -12,7 +12,11 @@ import {
   Package,
   Tag,
   Image as ImageIcon,
-  Truck
+  Truck,
+  Upload,
+  CheckCircle,
+  AlertCircle,
+  Rocket
 } from 'lucide-react';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
@@ -21,6 +25,9 @@ const MerchantFeedPage = () => {
   const [feedData, setFeedData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState(null); // null, 'success', 'error'
+  const [uploadMessage, setUploadMessage] = useState('');
 
   useEffect(() => {
     fetchFeedData();
@@ -48,6 +55,33 @@ const MerchantFeedPage = () => {
 
   const openFeed = () => {
     window.open(`${API_URL}/api/feed/google-shopping.xml`, '_blank');
+  };
+
+  const uploadToMerchantCenter = async () => {
+    setUploading(true);
+    setUploadStatus(null);
+    setUploadMessage('');
+    
+    try {
+      const response = await fetch(`${API_URL}/api/feed/upload-to-merchant-center`, {
+        method: 'POST',
+      });
+      const data = await response.json();
+      
+      if (data.success) {
+        setUploadStatus('success');
+        setUploadMessage(`✅ ${data.products_count} producten succesvol geüpload!`);
+      } else {
+        setUploadStatus('error');
+        setUploadMessage(data.detail || 'Upload mislukt');
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      setUploadStatus('error');
+      setUploadMessage('Er ging iets mis bij het uploaden');
+    }
+    
+    setUploading(false);
   };
 
   return (
