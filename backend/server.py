@@ -1679,6 +1679,93 @@ async def get_google_ads_account():
         return {"error": str(e)}
 
 
+# ============== MERCHANT CENTER SFTP UPLOAD ==============
+
+@api_router.post("/feed/upload-to-merchant-center")
+async def upload_feed_to_merchant_center():
+    """Upload product feed to Google Merchant Center via SFTP"""
+    import paramiko
+    import io
+    
+    # SFTP credentials from environment
+    sftp_server = os.environ.get("MERCHANT_SFTP_SERVER", "partnerupload.google.com")
+    sftp_port = int(os.environ.get("MERCHANT_SFTP_PORT", "19321"))
+    sftp_username = os.environ.get("MERCHANT_SFTP_USERNAME", "")
+    sftp_password = os.environ.get("MERCHANT_SFTP_PASSWORD", "")
+    
+    if not sftp_username or not sftp_password:
+        raise HTTPException(status_code=500, detail="SFTP credentials niet geconfigureerd")
+    
+    # Generate XML feed content
+    xml_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Droomvriendjes - Slaapknuffels met Nachtlampje</title>
+    <link>{SHOP_URL}</link>
+    <description>Ontdek onze slaapknuffels met sterrenprojector en rustgevende geluiden.</description>
+'''
+    
+    for product in PRODUCTS_DATA:
+        xml_content += f'''
+    <item>
+      <g:id>{product["id"]}</g:id>
+      <g:title><![CDATA[{product["title"]}]]></g:title>
+      <g:description><![CDATA[{product["description"]}]]></g:description>
+      <g:link>{SHOP_URL}{product["link"]}</g:link>
+      <g:image_link>{product["image_link"]}</g:image_link>
+      <g:availability>{product["availability"]}</g:availability>
+      <g:price>{product["price"]}</g:price>
+      <g:brand>{product["brand"]}</g:brand>
+      <g:condition>{product["condition"]}</g:condition>
+      <g:google_product_category>{product["google_product_category"]}</g:google_product_category>
+      <g:product_type><![CDATA[{product["product_type"]}]]></g:product_type>
+      <g:identifier_exists>{product["identifier_exists"]}</g:identifier_exists>
+      <g:age_group>{product["age_group"]}</g:age_group>
+      <g:color>{product["color"]}</g:color>
+      <g:material>{product["material"]}</g:material>
+      <g:shipping>
+        <g:country>NL</g:country>
+        <g:price>0.00 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>BE</g:country>
+        <g:price>4.95 EUR</g:price>
+      </g:shipping>
+    </item>
+'''
+    
+    xml_content += '''  </channel>
+</rss>'''
+    
+    try:
+        # Connect to SFTP
+        transport = paramiko.Transport((sftp_server, sftp_port))
+        transport.connect(username=sftp_username, password=sftp_password)
+        sftp = paramiko.SFTPClient.from_transport(transport)
+        
+        # Upload the file
+        file_obj = io.BytesIO(xml_content.encode('utf-8'))
+        remote_path = "/droomvriendjes_products.xml"
+        sftp.putfo(file_obj, remote_path)
+        
+        # Close connections
+        sftp.close()
+        transport.close()
+        
+        logger.info(f"Product feed uploaded to Merchant Center: {remote_path}")
+        
+        return {
+            "success": True,
+            "message": "Product feed succesvol geüpload naar Google Merchant Center!",
+            "file": remote_path,
+            "products_count": len(PRODUCTS_DATA)
+        }
+        
+    except Exception as e:
+        logger.error(f"SFTP upload error: {e}")
+        raise HTTPException(status_code=500, detail=f"Upload mislukt: {str(e)}")
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
