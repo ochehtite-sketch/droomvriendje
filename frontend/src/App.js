@@ -78,6 +78,7 @@ function App() {
             <Route path="/admin/merchant-feed" element={<MerchantFeedPage />} />
             <Route path="/admin/shopping-campaigns" element={<ShoppingCampaignsPage />} />
             <Route path="/admin/shopping-campaigns/data" element={<ShoppingCampaignsDataPage />} />
+            <Route path="/admin/keywords" element={<KeywordsPage />} />
           </Routes>
           <Toaster />
         </BrowserRouter>
