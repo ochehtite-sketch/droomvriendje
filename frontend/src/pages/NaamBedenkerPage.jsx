@@ -28,7 +28,7 @@ const NaamBedenkerPage = () => {
       context: "Moeder van Emma (8 maanden)",
       rating: 5,
       text: "Onze dochter sliep nooit langer dan 2 uur achter elkaar. Na een week met de Droomvriendjes slaapt ze nu 5-6 uur! Wij zijn zo dankbaar dat we dit hebben ontdekt.",
-      product: "Baby Nachtlamp Schaap"
+      product: "Beer Sterrenprojector"
     },
     {
       name: "Mark",
@@ -42,7 +42,7 @@ const NaamBedenkerPage = () => {
       context: "Moeder van Lucas (3 jaar)",
       rating: 5,
       text: "Lucas was bang in het donker en wilde elke nacht bij ons slapen. Met zijn Droomvriendje voelt hij zich veilig en slaapt hij nu trots in zijn eigen bed!",
-      product: "Teddy Projector Knuffel"
+      product: "Panda Projector Knuffel"
     }
   ];
 
