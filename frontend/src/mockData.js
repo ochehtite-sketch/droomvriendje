@@ -97,7 +97,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/jM6J4oV.jpeg",
     gallery: [
-      "https://i.imgur.com/jM6J4oV.jpeg",
       "https://i.imgur.com/bMpTi4F.jpeg",
       "https://i.imgur.com/LuZnyJN.jpeg",
       "https://i.imgur.com/EcPPP93.jpeg",
@@ -142,7 +141,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/NICJrZM.jpeg",
     gallery: [
-      "https://i.imgur.com/NICJrZM.jpeg",
       "https://i.imgur.com/bicxCOu.jpeg",
       "https://i.imgur.com/ovhoMza.jpeg",
       "https://i.imgur.com/VfY0HrH.jpeg",
@@ -230,7 +228,6 @@ export const products = [
     originalPrice: 99.90,
     image: "https://i.imgur.com/4blLAM7.jpeg",
     gallery: [
-      "https://i.imgur.com/4blLAM7.jpeg",
       "https://i.imgur.com/1JbBGgT.jpeg",
       "https://i.imgur.com/LYNuDrG.jpeg",
       "https://i.imgur.com/gtJ57SZ.jpeg",
@@ -274,7 +271,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/q2c7zsP.jpeg",
     gallery: [
-      "https://i.imgur.com/q2c7zsP.jpeg",
       "https://i.imgur.com/xyXHy7f.jpeg",
       "https://i.imgur.com/H5W6Q5h.jpeg",
       "https://i.imgur.com/4BllnwS.jpeg",
@@ -319,7 +315,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/8mKVYOY.jpeg",
     gallery: [
-      "https://i.imgur.com/8mKVYOY.jpeg",
       "https://i.imgur.com/N1vjMHQ.jpeg",
       "https://i.imgur.com/ZDzpG7a.jpeg",
       "https://i.imgur.com/CPdB6WK.jpeg",
@@ -361,7 +356,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/KRNfDsV.jpeg",
     gallery: [
-      "https://i.imgur.com/KRNfDsV.jpeg",
       "https://i.imgur.com/x4PTZXD.png",
       "https://i.imgur.com/HfEhYtW.png",
       "https://i.imgur.com/U6jZN9j.png",
