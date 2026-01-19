@@ -55,6 +55,7 @@ function App() {
     <div className="App">
       <CartProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <AdminAuthProvider>
             <Routes>
               {/* Public Routes */}
