@@ -11,19 +11,19 @@ import CartSidebar from '../components/CartSidebar';
 const StressPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Only show IN STOCK products - 7=Beer, 1=Leeuw, 11=Panda
-  const selectedProductIds = [7, 1, 11];
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 7 ? "MEEST KALMEREND" : p.id === 1 ? "POPULAIR" : "FAVORIET",
+      landingBadge: p.id === 7 ? "MEEST KALMEREND" : p.id === 11 ? "POPULAIR" : "FAVORIET",
     }));
 
   const reviews = [
     { name: "Marieke", context: "Moeder van Sven (5 jaar)", rating: 5, text: "Sven had veel last van stress op school. Sinds hij zijn Droomvriendje heeft, is het avondritueel veel rustiger geworden. Hij ontspant echt met het zachte licht.", product: "Beer Sterrenprojector" },
     { name: "Peter", context: "Vader van Emma (4 jaar)", rating: 5, text: "Emma piekte veel over van alles. De kalmerende geluiden helpen haar om los te laten. Ze slaapt nu veel beter door.", product: "Panda Projector" },
-    { name: "Linda", context: "Moeder van Bram (6 jaar)", rating: 5, text: "Bram is een gevoelig kind met veel stress. Het Droomvriendje geeft hem iets om vast te houden en op te focussen. Echt een verschil!", product: "Leeuw Slaapmaatje" }
+    { name: "Linda", context: "Moeder van Bram (6 jaar)", rating: 5, text: "Bram is een gevoelig kind met veel stress. Het Droomvriendje geeft hem iets om vast te houden en op te focussen. Echt een verschil!", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [

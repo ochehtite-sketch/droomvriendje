@@ -12,13 +12,13 @@ const NaamBedenkerPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
   // Select bestseller products - only show IN STOCK products
-  // Product IDs: 1=Leeuw, 7=Beer, 11=Panda (all in stock)
-  const selectedProductIds = [1, 7, 11];
+  // Product IDs: 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap (all in stock)
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 1 ? "BESTSELLER" : p.id === 7 ? "POPULAIR" : "FAVORIET",
+      landingBadge: p.id === 7 ? "BESTSELLER" : p.id === 11 ? "POPULAIR" : "FAVORIET",
     }));
 
   // Reviews from satisfied customers

@@ -11,19 +11,19 @@ import CartSidebar from '../components/CartSidebar';
 const SlaapproblemenPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Only show IN STOCK products - 1=Leeuw, 7=Beer, 11=Panda
-  const selectedProductIds = [1, 7, 11];
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 1 ? "BESTSELLER" : p.id === 7 ? "POPULAIR" : "FAVORIET",
+      landingBadge: p.id === 7 ? "BESTSELLER" : p.id === 11 ? "POPULAIR" : "FAVORIET",
     }));
 
   const reviews = [
-    { name: "Marloes", context: "Moeder van Sem (2 jaar)", rating: 5, text: "Sem deed er soms 2 uur over om in slaap te vallen. Met het vaste ritueel van zijn Droomvriendje is dit teruggebracht naar 20 minuten. Echt ongelofelijk!", product: "Leeuw Slaapmaatje" },
-    { name: "Rick", context: "Vader van Lotte (3 jaar)", rating: 5, text: "Lotte werd elke nacht 3-4 keer wakker. Nu zet ze zelf haar knuffel aan als ze wakker wordt en valt ze weer in slaap. Wij slapen eindelijk door!", product: "Beer Sterrenprojector" },
-    { name: "Denise", context: "Moeder van Thomas (4 jaar)", rating: 5, text: "Het bedtijdritueel was altijd een strijd. Nu vraagt Thomas zelf om naar bed te gaan om met zijn Droomvriendje te knuffelen. Wat een verandering!", product: "Panda Projector" }
+    { name: "Marloes", context: "Moeder van Sem (2 jaar)", rating: 5, text: "Sem deed er soms 2 uur over om in slaap te vallen. Met het vaste ritueel van zijn Droomvriendje is dit teruggebracht naar 20 minuten. Echt ongelofelijk!", product: "Beer Sterrenprojector" },
+    { name: "Rick", context: "Vader van Lotte (3 jaar)", rating: 5, text: "Lotte werd elke nacht 3-4 keer wakker. Nu zet ze zelf haar knuffel aan als ze wakker wordt en valt ze weer in slaap. Wij slapen eindelijk door!", product: "Panda Projector" },
+    { name: "Denise", context: "Moeder van Thomas (4 jaar)", rating: 5, text: "Het bedtijdritueel was altijd een strijd. Nu vraagt Thomas zelf om naar bed te gaan om met zijn Droomvriendje te knuffelen. Wat een verandering!", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [

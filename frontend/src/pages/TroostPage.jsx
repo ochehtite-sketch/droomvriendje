@@ -11,19 +11,19 @@ import CartSidebar from '../components/CartSidebar';
 const TroostPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Only show IN STOCK products - 7=Beer, 1=Leeuw, 11=Panda
-  const selectedProductIds = [7, 1, 11];
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 7 ? "VOOR OUDERS" : p.id === 1 ? "RUSTGEVEND" : "POPULAIR",
+      landingBadge: p.id === 7 ? "VOOR OUDERS" : p.id === 11 ? "RUSTGEVEND" : "POPULAIR",
     }));
 
   const reviews = [
     { name: "Marieke", context: "Moeder van twee (3 en 5 jaar)", rating: 5, text: "Als de kinderen eindelijk slapen, zet ik hun Droomvriendje ook even voor mezelf aan. Dat zachte licht en geluid... het is ook voor mij een moment van rust na een drukke dag.", product: "Beer Projector" },
-    { name: "Jessica", context: "Moeder van Mila (2 jaar)", rating: 5, text: "Het Droomvriendje heeft niet alleen Mila geholpen, maar ook mij. Als zij rustig inslaapt, heb ik eindelijk even tijd voor mezelf. Dat is goud waard als moeder.", product: "Leeuw Slaapmaatje" },
-    { name: "Caroline", context: "Moeder van drieling (1 jaar)", rating: 5, text: "Met drie baby's tegelijk is rust een zeldzaamheid. Als ze allemaal liggen met hun Droomvriendjes, heb ik eindelijk even een moment om op adem te komen.", product: "Panda Projector" }
+    { name: "Jessica", context: "Moeder van Mila (2 jaar)", rating: 5, text: "Het Droomvriendje heeft niet alleen Mila geholpen, maar ook mij. Als zij rustig inslaapt, heb ik eindelijk even tijd voor mezelf. Dat is goud waard als moeder.", product: "Panda Projector" },
+    { name: "Caroline", context: "Moeder van drieling (1 jaar)", rating: 5, text: "Met drie baby's tegelijk is rust een zeldzaamheid. Als ze allemaal liggen met hun Droomvriendjes, heb ik eindelijk even een moment om op adem te komen.", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [
