@@ -58,11 +58,11 @@ const OudersBabyPage = () => {
             <Link to="/" className="flex items-center space-x-3">
               <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-14 w-auto" />
             </Link>
-            <a href="https://www.droomvriendjes.nl/#producten" target="_blank" rel="noopener noreferrer">
+            <Link to="/knuffels">
               <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-6 py-2 shadow-lg shadow-[#2d5a3d]/20 transition-all hover:scale-105">
                 Bekijk knuffels
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -86,11 +86,11 @@ const OudersBabyPage = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <a href="#producten">
+              <Link to="/knuffels">
                 <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-10 py-6 text-lg shadow-xl shadow-[#2d5a3d]/30 transition-all hover:scale-105 hover:shadow-2xl">
                   Ontdek Droomvriendjes
                 </Button>
-              </a>
+              </Link>
               <span className="text-sm text-[#7a9a7a]">14 dagen retourgarantie</span>
             </div>
           </div>
