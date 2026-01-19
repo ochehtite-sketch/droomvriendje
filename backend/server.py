@@ -1327,9 +1327,11 @@ async def create_payment(payment: PaymentCreate):
         # Initialize Mollie client with fresh API key
         mollie_client = get_mollie_client()
         
-        # Build redirect and webhook URLs
-        redirect_url = f"{FRONTEND_URL}/betaling-resultaat/{payment.order_id}"
-        webhook_url = f"{API_URL}/api/webhook/mollie"
+        # Build redirect and webhook URLs - use dynamic getters for production
+        frontend_url = get_frontend_url()
+        api_url = get_api_url()
+        redirect_url = f"{frontend_url}/betaling-resultaat/{payment.order_id}"
+        webhook_url = f"{api_url}/api/webhook/mollie"
         
         logger.info(f"Creating payment - Redirect: {redirect_url}, Webhook: {webhook_url}")
         logger.info(f"Order total: {order['total_amount']}, Method: {payment.payment_method}")
