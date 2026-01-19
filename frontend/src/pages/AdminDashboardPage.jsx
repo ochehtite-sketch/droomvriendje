@@ -6,7 +6,8 @@ import { Button } from '../components/ui/button';
 import { 
   Package, Users, Euro, TrendingUp, ShoppingCart, Truck, 
   Settings, LogOut, ExternalLink, RefreshCw, Calendar,
-  ArrowUpRight, ArrowDownRight, Clock, CheckCircle, XCircle
+  ArrowUpRight, ArrowDownRight, Clock, CheckCircle, XCircle,
+  AlertTriangle, BarChart3, Target, ShoppingBag, Mail
 } from 'lucide-react';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -15,6 +16,9 @@ const AdminDashboardPage = () => {
   const { admin, logout } = useAdminAuth();
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
+  const [funnel, setFunnel] = useState(null);
+  const [popularProducts, setPopularProducts] = useState([]);
+  const [abandonedCarts, setAbandonedCarts] = useState([]);
   const [recentOrders, setRecentOrders] = useState([]);
   const [topCustomers, setTopCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,6 +39,9 @@ const AdminDashboardPage = () => {
       if (response.ok) {
         const data = await response.json();
         setStats(data.stats);
+        setFunnel(data.funnel || null);
+        setPopularProducts(data.popular_products || []);
+        setAbandonedCarts(data.abandoned_carts || []);
         setRecentOrders(data.recent_orders || []);
         setTopCustomers(data.top_customers || []);
       }
@@ -67,6 +74,12 @@ const AdminDashboardPage = () => {
     );
   };
 
+  const getFunnelColor = (rate) => {
+    if (rate >= 70) return 'text-green-600';
+    if (rate >= 40) return 'text-yellow-600';
+    return 'text-red-600';
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -82,17 +95,17 @@ const AdminDashboardPage = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold text-gray-900">🧸 Admin Dashboard</h1>
+              <h1 className="text-2xl font-bold text-gray-900" data-testid="admin-dashboard-title">Admin Dashboard</h1>
               <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
                 {admin?.username || 'Admin'}
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <Button onClick={fetchDashboardData} variant="outline" size="sm">
+              <Button onClick={fetchDashboardData} variant="outline" size="sm" data-testid="refresh-btn">
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Vernieuwen
               </Button>
-              <Button onClick={handleLogout} variant="outline" size="sm" className="text-red-600 hover:bg-red-50">
+              <Button onClick={handleLogout} variant="outline" size="sm" className="text-red-600 hover:bg-red-50" data-testid="logout-btn">
                 <LogOut className="w-4 h-4 mr-2" />
                 Uitloggen
               </Button>
@@ -104,7 +117,7 @@ const AdminDashboardPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white" data-testid="revenue-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -122,7 +135,7 @@ const AdminDashboardPage = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white" data-testid="orders-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -139,7 +152,7 @@ const AdminDashboardPage = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
+          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white" data-testid="customers-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -156,15 +169,15 @@ const AdminDashboardPage = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+          <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white" data-testid="conversion-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-orange-100 text-sm">Gem. Orderwaarde</p>
-                  <p className="text-3xl font-bold mt-1">€{stats?.avg_order_value?.toFixed(2) || '0.00'}</p>
+                  <p className="text-orange-100 text-sm">Conversie</p>
+                  <p className="text-3xl font-bold mt-1">{stats?.conversion_rate || 0}%</p>
                   <p className="text-orange-200 text-sm mt-2 flex items-center gap-1">
-                    <TrendingUp className="w-4 h-4" />
-                    {stats?.conversion_rate || 0}% conversie
+                    <Target className="w-4 h-4" />
+                    Checkout → Betaald
                   </p>
                 </div>
                 <div className="bg-white/20 p-3 rounded-full">
@@ -174,6 +187,110 @@ const AdminDashboardPage = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Funnel Analytics */}
+        {funnel && (
+          <Card className="mb-8" data-testid="funnel-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-purple-600" />
+                Conversietrechter - Waar Mensen Afhaken
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {/* Funnel Visualization */}
+                <div className="relative">
+                  {/* Step 1: Checkout Started */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-full bg-purple-100 rounded-lg p-4 relative">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="font-semibold text-gray-900">1. Checkout Gestart</p>
+                          <p className="text-sm text-gray-600">Klanten die naar checkout gingen</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-purple-600">{funnel.checkout_started}</p>
+                          <p className="text-sm text-gray-500">100%</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Drop-off indicator */}
+                  <div className="flex items-center gap-2 ml-4 mb-2">
+                    <ArrowDownRight className="w-4 h-4 text-red-500" />
+                    <span className="text-sm text-red-600 font-medium">
+                      {funnel.abandoned_checkouts} afgehaakt ({funnel.abandoned_rate}%)
+                    </span>
+                  </div>
+
+                  {/* Step 2: Order Created */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-11/12 bg-blue-100 rounded-lg p-4 ml-auto">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="font-semibold text-gray-900">2. Bestelling Aangemaakt</p>
+                          <p className="text-sm text-gray-600">Klanten die op 'Betalen' klikten</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-blue-600">{funnel.orders_created}</p>
+                          <p className={`text-sm ${getFunnelColor(funnel.checkout_to_order_rate)}`}>
+                            {funnel.checkout_to_order_rate}% van checkout
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Drop-off indicator */}
+                  <div className="flex items-center gap-2 ml-8 mb-2">
+                    <ArrowDownRight className="w-4 h-4 text-red-500" />
+                    <span className="text-sm text-red-600 font-medium">
+                      {funnel.payment_failures} mislukt/afgebroken ({funnel.payment_failure_rate}%)
+                    </span>
+                  </div>
+
+                  {/* Step 3: Payment Completed */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-10/12 bg-green-100 rounded-lg p-4 ml-auto">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="font-semibold text-gray-900">3. Betaling Voltooid</p>
+                          <p className="text-sm text-gray-600">Succesvolle betalingen</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-green-600">{funnel.payments_completed}</p>
+                          <p className={`text-sm ${getFunnelColor(funnel.order_to_payment_rate)}`}>
+                            {funnel.order_to_payment_rate}% van bestellingen
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Summary Stats */}
+                <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <p className="text-sm text-gray-600">Totale Conversie</p>
+                    <p className={`text-2xl font-bold ${getFunnelColor(funnel.overall_conversion)}`}>
+                      {funnel.overall_conversion}%
+                    </p>
+                  </div>
+                  <div className="text-center p-4 bg-red-50 rounded-lg">
+                    <p className="text-sm text-gray-600">Verlaten Winkelwagens</p>
+                    <p className="text-2xl font-bold text-red-600">{funnel.abandoned_checkouts}</p>
+                  </div>
+                  <div className="text-center p-4 bg-yellow-50 rounded-lg">
+                    <p className="text-sm text-gray-600">Mislukte Betalingen</p>
+                    <p className="text-2xl font-bold text-yellow-600">{funnel.payment_failures}</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Order Status Overview */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
@@ -211,7 +328,7 @@ const AdminDashboardPage = () => {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Link to="/admin/orders">
+          <Link to="/admin/orders" data-testid="orders-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-purple-200">
               <CardContent className="p-6 text-center">
                 <Package className="w-10 h-10 mx-auto text-purple-600 mb-3" />
@@ -221,7 +338,7 @@ const AdminDashboardPage = () => {
             </Card>
           </Link>
           
-          <Link to="/admin/merchant-feed">
+          <Link to="/admin/merchant-feed" data-testid="merchant-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-blue-200">
               <CardContent className="p-6 text-center">
                 <ShoppingCart className="w-10 h-10 mx-auto text-blue-600 mb-3" />
@@ -231,7 +348,7 @@ const AdminDashboardPage = () => {
             </Card>
           </Link>
           
-          <Link to="/admin/shopping-campaigns">
+          <Link to="/admin/shopping-campaigns" data-testid="ads-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-green-200">
               <CardContent className="p-6 text-center">
                 <TrendingUp className="w-10 h-10 mx-auto text-green-600 mb-3" />
@@ -241,7 +358,7 @@ const AdminDashboardPage = () => {
             </Card>
           </Link>
           
-          <Link to="/admin/keywords">
+          <Link to="/admin/keywords" data-testid="keywords-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-orange-200">
               <CardContent className="p-6 text-center">
                 <Settings className="w-10 h-10 mx-auto text-orange-600 mb-3" />
@@ -255,7 +372,7 @@ const AdminDashboardPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Recent Orders */}
           <div className="lg:col-span-2">
-            <Card>
+            <Card data-testid="recent-orders-card">
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center gap-2">
                   <Package className="w-5 h-5" />
@@ -291,11 +408,79 @@ const AdminDashboardPage = () => {
                 )}
               </CardContent>
             </Card>
+
+            {/* Popular Products */}
+            <Card className="mt-6" data-testid="popular-products-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ShoppingBag className="w-5 h-5 text-green-600" />
+                  Populaire Producten
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {popularProducts.length === 0 ? (
+                  <p className="text-gray-500 text-center py-8">Nog geen verkopen</p>
+                ) : (
+                  <div className="space-y-4">
+                    {popularProducts.map((product, index) => (
+                      <div key={product.name} className="flex items-center gap-3">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                          index === 0 ? 'bg-yellow-500' : index === 1 ? 'bg-gray-400' : index === 2 ? 'bg-orange-400' : 'bg-gray-300'
+                        }`}>
+                          {index + 1}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-gray-900 truncate">{product.name}</p>
+                          <p className="text-sm text-gray-500">{product.count}x verkocht</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-semibold text-green-600">€{product.revenue?.toFixed(2)}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Top Customers */}
+          {/* Sidebar */}
           <div>
-            <Card>
+            {/* Abandoned Carts */}
+            <Card data-testid="abandoned-carts-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-red-500" />
+                  Verlaten Winkelwagens
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {abandonedCarts.length === 0 ? (
+                  <p className="text-gray-500 text-center py-8">Geen verlaten winkelwagens</p>
+                ) : (
+                  <div className="space-y-4">
+                    {abandonedCarts.map((cart, index) => (
+                      <div key={index} className="p-3 bg-red-50 rounded-lg border border-red-100">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Mail className="w-4 h-4 text-red-500" />
+                          <p className="text-sm font-medium text-gray-900 truncate">{cart.email}</p>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">{cart.items_count} items</span>
+                          <span className="font-semibold text-red-600">€{cart.total_amount?.toFixed(2)}</span>
+                        </div>
+                      </div>
+                    ))}
+                    <p className="text-xs text-gray-500 text-center mt-4">
+                      Tip: Stuur een herinnering naar deze klanten!
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Top Customers */}
+            <Card className="mt-6" data-testid="top-customers-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="w-5 h-5" />
@@ -330,7 +515,7 @@ const AdminDashboardPage = () => {
             </Card>
 
             {/* Quick Stats Card */}
-            <Card className="mt-6">
+            <Card className="mt-6" data-testid="today-stats-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
