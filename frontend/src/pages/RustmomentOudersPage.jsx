@@ -4,9 +4,15 @@ import { ShoppingCart, Heart, Clock, Star, CheckCircle, Moon, Sparkles } from 'l
 import { useCart } from '../context/CartContext';
 import { products } from '../mockData';
 import Footer from '../components/Footer';
+import ProductSlider from '../components/ProductSlider';
 
 const RustmomentOudersPage = () => {
-  const { addToCart } = useCart();
+  const { addToCart, setIsCartOpen } = useCart();
+  
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setIsCartOpen(true);
+  };
   
   // Filter in-stock products and select featured ones
   const inStockProducts = products.filter(p => !p.outOfStock);
