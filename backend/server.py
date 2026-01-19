@@ -1840,6 +1840,12 @@ async def get_admin_dashboard(
                 abandoned_emails.discard(email)  # Only show each email once
         
         return {
+            'date_range': {
+                'start': filter_start.isoformat(),
+                'end': filter_end.isoformat(),
+                'days': days,
+                'label': f"Laatste {days} dagen" if days > 0 else "Alle tijd"
+            },
             'stats': {
                 'total_revenue': total_revenue,
                 'total_orders': total_orders,
@@ -1853,11 +1859,12 @@ async def get_admin_dashboard(
                 'orders_today': orders_today,
                 'revenue_today': revenue_today,
                 'to_ship': to_ship,
-                'revenue_growth': 12.5,
+                'revenue_growth': revenue_growth,
                 'conversion_rate': round(overall_conversion, 1),
                 'new_customers_week': 5,
                 'new_customers_today': 1
             },
+            'daily_breakdown': daily_breakdown,
             'funnel': {
                 'checkout_started': checkout_started,
                 'orders_created': orders_created,
