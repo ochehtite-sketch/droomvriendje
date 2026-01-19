@@ -35,6 +35,7 @@ import ShoppingCampaignsDataPage from "./pages/ShoppingCampaignsDataPage";
 import GoogleAdsCallbackPage from "./pages/GoogleAdsCallbackPage";
 import KeywordsPage from "./pages/KeywordsPage";
 import AdsStrategyPage from "./pages/AdsStrategyPage";
+import AdminOrdersPage from "./pages/AdminOrdersPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
