@@ -7,6 +7,7 @@ import { Star, Sparkles, Moon, Sun, Clock, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
+import Footer from '../components/Footer';
 
 const OudersPeutersPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
@@ -296,41 +297,7 @@ const OudersPeutersPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#2d5a3d] text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <span className="text-2xl font-bold mb-4 block" style={{fontFamily: 'Quicksand, sans-serif'}}>🧸 Droomvriendjes</span>
-              <p className="text-[#a8d4a8] text-sm">Schaesbergerweg 103<br/>6415 AD Heerlen<br/>KVK: 9921083</p>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4">Navigatie</h3>
-              <ul className="space-y-2 text-[#a8d4a8] text-sm">
-                <li><Link to="/#producten" className="hover:text-white">Alle producten</Link></li>
-                <li><Link to="/ouders-baby" className="hover:text-white">Ouders van baby's</Link></li>
-                <li><Link to="/ouders-peuters" className="hover:text-white">Ouders van peuters</Link></li>
-                <li><Link to="/ouders-extra-behoeften" className="hover:text-white">Extra behoeften</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4">Hulp</h3>
-              <ul className="space-y-2 text-[#a8d4a8] text-sm">
-                <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-                <li><Link to="/retourneren" className="hover:text-white">Retourneren</Link></li>
-                <li><Link to="/privacy" className="hover:text-white">Privacy</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4">Betalen</h3>
-              <p className="text-[#a8d4a8] text-sm">iDEAL • Klarna<br/>PayPal • Creditcard</p>
-            </div>
-          </div>
-          <div className="border-t border-[#3d7a4d] pt-8 text-center">
-            <p className="text-[#a8d4a8] text-sm">© 2025 Droomvriendjes</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
