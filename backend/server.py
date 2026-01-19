@@ -1754,6 +1754,226 @@ def send_tracking_email(order: dict, tracking_code: str, carrier: str):
         return False
 
 
+# ============== SENDCLOUD API INTEGRATION ==============
+
+def get_sendcloud_auth():
+    """Get Sendcloud Basic Auth header"""
+    if not SENDCLOUD_PUBLIC_KEY or not SENDCLOUD_SECRET_KEY:
+        return None
+    credentials = f"{SENDCLOUD_PUBLIC_KEY}:{SENDCLOUD_SECRET_KEY}"
+    encoded = base64.b64encode(credentials.encode()).decode()
+    return f"Basic {encoded}"
+
+
+@api_router.get("/sendcloud/shipping-methods")
+async def get_sendcloud_shipping_methods():
+    """Get available shipping methods from Sendcloud"""
+    try:
+        auth = get_sendcloud_auth()
+        if not auth:
+            raise HTTPException(status_code=500, detail="Sendcloud niet geconfigureerd")
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"{SENDCLOUD_API_URL}/shipping_methods",
+                headers={"Authorization": auth}
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                methods = []
+                for method in data.get("shipping_methods", []):
+                    methods.append({
+                        "id": method.get("id"),
+                        "name": method.get("name"),
+                        "carrier": method.get("carrier"),
+                        "min_weight": method.get("min_weight"),
+                        "max_weight": method.get("max_weight"),
+                        "countries": [c.get("iso_2") for c in method.get("countries", [])]
+                    })
+                return {"shipping_methods": methods}
+            else:
+                logger.error(f"Sendcloud API error: {response.status_code} - {response.text}")
+                raise HTTPException(status_code=response.status_code, detail="Sendcloud API fout")
+                
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Sendcloud shipping methods error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class SendcloudParcelCreate(BaseModel):
+    order_id: str
+    shipping_method_id: int
+    weight: float = 0.5  # Default weight in kg
+    request_label: bool = True
+
+
+@api_router.post("/sendcloud/create-parcel")
+async def create_sendcloud_parcel(data: SendcloudParcelCreate):
+    """Create a parcel/shipment in Sendcloud for an order"""
+    try:
+        auth = get_sendcloud_auth()
+        if not auth:
+            raise HTTPException(status_code=500, detail="Sendcloud niet geconfigureerd")
+        
+        # Get order details
+        order = await db.orders.find_one({"_id": ObjectId(data.order_id)})
+        if not order:
+            raise HTTPException(status_code=404, detail="Bestelling niet gevonden")
+        
+        # Parse customer address
+        address_parts = (order.get("customer_address") or "").split()
+        house_number = ""
+        street = order.get("customer_address", "")
+        
+        # Try to extract house number from end of address
+        if address_parts:
+            last_part = address_parts[-1]
+            if any(c.isdigit() for c in last_part):
+                house_number = last_part
+                street = " ".join(address_parts[:-1])
+        
+        # Prepare parcel data for Sendcloud
+        parcel_data = {
+            "parcel": {
+                "name": order.get("customer_name", "Klant"),
+                "company_name": "",
+                "address": street or "Adres onbekend",
+                "house_number": house_number or "1",
+                "city": order.get("customer_city", ""),
+                "postal_code": order.get("customer_zipcode", ""),
+                "country": "NL",  # Default to Netherlands
+                "email": order.get("customer_email", ""),
+                "telephone": order.get("customer_phone", ""),
+                "order_number": str(order["_id"])[-8:].upper(),
+                "weight": str(int(data.weight * 1000)),  # Convert kg to grams
+                "shipment": {
+                    "id": data.shipping_method_id
+                },
+                "request_label": data.request_label
+            }
+        }
+        
+        logger.info(f"Creating Sendcloud parcel for order {data.order_id}")
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{SENDCLOUD_API_URL}/parcels",
+                headers={
+                    "Authorization": auth,
+                    "Content-Type": "application/json"
+                },
+                json=parcel_data
+            )
+            
+            if response.status_code in [200, 201]:
+                result = response.json()
+                parcel = result.get("parcel", {})
+                
+                tracking_number = parcel.get("tracking_number", "")
+                tracking_url = parcel.get("tracking_url", "")
+                carrier = parcel.get("carrier", {}).get("code", "sendcloud")
+                label_url = None
+                
+                # Get label URL if available
+                if parcel.get("label"):
+                    label_url = parcel["label"].get("normal_printer", [None])[0]
+                
+                # Update order with tracking info
+                await db.orders.update_one(
+                    {"_id": ObjectId(data.order_id)},
+                    {"$set": {
+                        "tracking_code": tracking_number,
+                        "tracking_url": tracking_url,
+                        "carrier": carrier,
+                        "sendcloud_parcel_id": parcel.get("id"),
+                        "label_url": label_url,
+                        "status": "shipped",
+                        "shipped_at": datetime.now(timezone.utc).isoformat(),
+                        "updated_at": datetime.now(timezone.utc).isoformat()
+                    }}
+                )
+                
+                # Send tracking email to customer
+                if tracking_number:
+                    send_tracking_email(order, tracking_number, carrier)
+                
+                logger.info(f"Sendcloud parcel created: {parcel.get('id')} - Tracking: {tracking_number}")
+                
+                return {
+                    "success": True,
+                    "parcel_id": parcel.get("id"),
+                    "tracking_number": tracking_number,
+                    "tracking_url": tracking_url,
+                    "label_url": label_url,
+                    "carrier": carrier
+                }
+            else:
+                error_msg = response.json() if response.text else response.status_code
+                logger.error(f"Sendcloud create parcel error: {error_msg}")
+                raise HTTPException(status_code=response.status_code, detail=f"Sendcloud fout: {error_msg}")
+                
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Create Sendcloud parcel error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.get("/sendcloud/parcel/{parcel_id}")
+async def get_sendcloud_parcel(parcel_id: int):
+    """Get parcel details from Sendcloud"""
+    try:
+        auth = get_sendcloud_auth()
+        if not auth:
+            raise HTTPException(status_code=500, detail="Sendcloud niet geconfigureerd")
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"{SENDCLOUD_API_URL}/parcels/{parcel_id}",
+                headers={"Authorization": auth}
+            )
+            
+            if response.status_code == 200:
+                return response.json()
+            else:
+                raise HTTPException(status_code=response.status_code, detail="Parcel niet gevonden")
+                
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Get Sendcloud parcel error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.get("/sendcloud/label/{parcel_id}")
+async def get_sendcloud_label(parcel_id: int):
+    """Get shipping label URL from Sendcloud"""
+    try:
+        auth = get_sendcloud_auth()
+        if not auth:
+            raise HTTPException(status_code=500, detail="Sendcloud niet geconfigureerd")
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"{SENDCLOUD_API_URL}/labels/{parcel_id}",
+                headers={"Authorization": auth}
+            )
+            
+            if response.status_code == 200:
+                return response.json()
+            else:
+                raise HTTPException(status_code=response.status_code, detail="Label niet gevonden")
+                
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Get Sendcloud label error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @api_router.get("/payment-methods")
 async def get_payment_methods():
     """Get available payment methods from Mollie"""
