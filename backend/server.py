@@ -15,6 +15,8 @@ import smtplib
 import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import httpx
+import base64
 
 # Configure logging FIRST (before any usage)
 logging.basicConfig(
