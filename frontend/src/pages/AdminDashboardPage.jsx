@@ -7,7 +7,7 @@ import {
   Package, Users, Euro, TrendingUp, ShoppingCart, Truck, 
   Settings, LogOut, ExternalLink, RefreshCw, Calendar,
   ArrowUpRight, ArrowDownRight, Clock, CheckCircle, XCircle,
-  AlertTriangle, BarChart3, Target, ShoppingBag, Mail
+  AlertTriangle, BarChart3, Target, ShoppingBag, Mail, Filter
 } from 'lucide-react';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -17,22 +17,25 @@ const AdminDashboardPage = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [funnel, setFunnel] = useState(null);
+  const [dailyBreakdown, setDailyBreakdown] = useState([]);
+  const [dateRange, setDateRange] = useState(null);
   const [popularProducts, setPopularProducts] = useState([]);
   const [abandonedCarts, setAbandonedCarts] = useState([]);
   const [recentOrders, setRecentOrders] = useState([]);
   const [topCustomers, setTopCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDays, setSelectedDays] = useState(30);
 
   useEffect(() => {
-    fetchDashboardData();
-  }, []);
+    fetchDashboardData(selectedDays);
+  }, [selectedDays]);
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = async (days) => {
     setLoading(true);
     const token = localStorage.getItem('admin_token');
     
     try {
-      const response = await fetch(`${API_URL}/api/admin/dashboard`, {
+      const response = await fetch(`${API_URL}/api/admin/dashboard?days=${days}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -40,6 +43,8 @@ const AdminDashboardPage = () => {
         const data = await response.json();
         setStats(data.stats);
         setFunnel(data.funnel || null);
+        setDailyBreakdown(data.daily_breakdown || []);
+        setDateRange(data.date_range || null);
         setPopularProducts(data.popular_products || []);
         setAbandonedCarts(data.abandoned_carts || []);
         setRecentOrders(data.recent_orders || []);
@@ -80,6 +85,42 @@ const AdminDashboardPage = () => {
     return 'text-red-600';
   };
 
+  const getGrowthColor = (growth) => {
+    if (growth > 0) return 'text-green-500';
+    if (growth < 0) return 'text-red-500';
+    return 'text-gray-500';
+  };
+
+  // Simple bar chart component
+  const SimpleBarChart = ({ data }) => {
+    if (!data || data.length === 0) return null;
+    const maxRevenue = Math.max(...data.map(d => d.revenue), 1);
+    
+    return (
+      <div className="space-y-2">
+        <div className="flex items-end gap-1 h-32">
+          {data.slice(-14).map((day, index) => (
+            <div key={day.date} className="flex-1 flex flex-col items-center group relative">
+              <div 
+                className="w-full bg-purple-500 rounded-t hover:bg-purple-600 transition-colors cursor-pointer"
+                style={{ height: `${(day.revenue / maxRevenue) * 100}%`, minHeight: day.revenue > 0 ? '4px' : '2px' }}
+              />
+              {/* Tooltip */}
+              <div className="absolute bottom-full mb-2 hidden group-hover:block bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10">
+                {new Date(day.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}<br/>
+                €{day.revenue.toFixed(2)} | {day.orders} orders
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-between text-xs text-gray-500">
+          <span>{data.length > 0 && new Date(data[Math.max(0, data.length - 14)].date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}</span>
+          <span>{data.length > 0 && new Date(data[data.length - 1].date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' })}</span>
+        </div>
+      </div>
+    );
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -101,7 +142,30 @@ const AdminDashboardPage = () => {
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <Button onClick={fetchDashboardData} variant="outline" size="sm" data-testid="refresh-btn">
+              {/* Date Filter */}
+              <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1" data-testid="date-filter">
+                <Filter className="w-4 h-4 text-gray-500 ml-2" />
+                {[
+                  { days: 1, label: 'Vandaag' },
+                  { days: 7, label: '7 dagen' },
+                  { days: 30, label: '30 dagen' },
+                  { days: 90, label: '90 dagen' },
+                  { days: 0, label: 'Alles' }
+                ].map(({ days, label }) => (
+                  <button
+                    key={days}
+                    onClick={() => setSelectedDays(days)}
+                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                      selectedDays === days 
+                        ? 'bg-white text-purple-600 shadow-sm' 
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <Button onClick={() => fetchDashboardData(selectedDays)} variant="outline" size="sm" data-testid="refresh-btn">
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Vernieuwen
               </Button>
@@ -115,17 +179,36 @@ const AdminDashboardPage = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Date Range Indicator */}
+        {dateRange && (
+          <div className="mb-4 text-sm text-gray-600 flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            <span>
+              {selectedDays === 1 ? 'Vandaag' : 
+               selectedDays === 0 ? 'Alle data' :
+               `${dateRange.label}`} 
+              {selectedDays > 1 && ` (${new Date(dateRange.start).toLocaleDateString('nl-NL')} - ${new Date(dateRange.end).toLocaleDateString('nl-NL')})`}
+            </span>
+            {stats?.revenue_growth !== undefined && stats.revenue_growth !== 0 && (
+              <span className={`ml-2 flex items-center gap-1 ${getGrowthColor(stats.revenue_growth)}`}>
+                {stats.revenue_growth > 0 ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                {stats.revenue_growth > 0 ? '+' : ''}{stats.revenue_growth}% vs vorige periode
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white" data-testid="revenue-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-purple-100 text-sm">Totale Omzet</p>
+                  <p className="text-purple-100 text-sm">Omzet ({selectedDays === 0 ? 'Totaal' : selectedDays === 1 ? 'Vandaag' : `${selectedDays}d`})</p>
                   <p className="text-3xl font-bold mt-1">€{stats?.total_revenue?.toFixed(2) || '0.00'}</p>
-                  <p className="text-purple-200 text-sm mt-2 flex items-center gap-1">
-                    <ArrowUpRight className="w-4 h-4" />
-                    +{stats?.revenue_growth || 0}% deze maand
+                  <p className={`text-sm mt-2 flex items-center gap-1 ${stats?.revenue_growth >= 0 ? 'text-purple-200' : 'text-red-200'}`}>
+                    {stats?.revenue_growth >= 0 ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                    {stats?.revenue_growth >= 0 ? '+' : ''}{stats?.revenue_growth || 0}% vs vorige periode
                   </p>
                 </div>
                 <div className="bg-white/20 p-3 rounded-full">
@@ -159,7 +242,7 @@ const AdminDashboardPage = () => {
                   <p className="text-green-100 text-sm">Klanten</p>
                   <p className="text-3xl font-bold mt-1">{stats?.total_customers || 0}</p>
                   <p className="text-green-200 text-sm mt-2">
-                    {stats?.new_customers_week || 0} deze week nieuw
+                    Gem. €{stats?.avg_order_value?.toFixed(2) || '0.00'} per order
                   </p>
                 </div>
                 <div className="bg-white/20 p-3 rounded-full">
@@ -187,6 +270,35 @@ const AdminDashboardPage = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Revenue Chart */}
+        {dailyBreakdown && dailyBreakdown.length > 0 && (
+          <Card className="mb-8" data-testid="revenue-chart">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-purple-600" />
+                Omzet per dag
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SimpleBarChart data={dailyBreakdown} />
+              <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-sm text-gray-600">Totaal periode</p>
+                  <p className="text-xl font-bold text-purple-600">€{dailyBreakdown.reduce((sum, d) => sum + d.revenue, 0).toFixed(2)}</p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-sm text-gray-600">Gem. per dag</p>
+                  <p className="text-xl font-bold text-blue-600">€{(dailyBreakdown.reduce((sum, d) => sum + d.revenue, 0) / (dailyBreakdown.length || 1)).toFixed(2)}</p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-sm text-gray-600">Totaal orders</p>
+                  <p className="text-xl font-bold text-green-600">{dailyBreakdown.reduce((sum, d) => sum + d.orders, 0)}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Funnel Analytics */}
         {funnel && (
@@ -218,12 +330,14 @@ const AdminDashboardPage = () => {
                   </div>
                   
                   {/* Drop-off indicator */}
-                  <div className="flex items-center gap-2 ml-4 mb-2">
-                    <ArrowDownRight className="w-4 h-4 text-red-500" />
-                    <span className="text-sm text-red-600 font-medium">
-                      {funnel.abandoned_checkouts} afgehaakt ({funnel.abandoned_rate}%)
-                    </span>
-                  </div>
+                  {funnel.abandoned_checkouts > 0 && (
+                    <div className="flex items-center gap-2 ml-4 mb-2">
+                      <ArrowDownRight className="w-4 h-4 text-red-500" />
+                      <span className="text-sm text-red-600 font-medium">
+                        {funnel.abandoned_checkouts} afgehaakt ({funnel.abandoned_rate}%)
+                      </span>
+                    </div>
+                  )}
 
                   {/* Step 2: Order Created */}
                   <div className="flex items-center gap-4 mb-4">
@@ -244,12 +358,14 @@ const AdminDashboardPage = () => {
                   </div>
 
                   {/* Drop-off indicator */}
-                  <div className="flex items-center gap-2 ml-8 mb-2">
-                    <ArrowDownRight className="w-4 h-4 text-red-500" />
-                    <span className="text-sm text-red-600 font-medium">
-                      {funnel.payment_failures} mislukt/afgebroken ({funnel.payment_failure_rate}%)
-                    </span>
-                  </div>
+                  {funnel.payment_failures > 0 && (
+                    <div className="flex items-center gap-2 ml-8 mb-2">
+                      <ArrowDownRight className="w-4 h-4 text-red-500" />
+                      <span className="text-sm text-red-600 font-medium">
+                        {funnel.payment_failures} mislukt/afgebroken ({funnel.payment_failure_rate}%)
+                      </span>
+                    </div>
+                  )}
 
                   {/* Step 3: Payment Completed */}
                   <div className="flex items-center gap-4">
@@ -280,7 +396,7 @@ const AdminDashboardPage = () => {
                   </div>
                   <div className="text-center p-4 bg-red-50 rounded-lg">
                     <p className="text-sm text-gray-600">Verlaten Winkelwagens</p>
-                    <p className="text-2xl font-bold text-red-600">{funnel.abandoned_checkouts}</p>
+                    <p className="text-2xl font-bold text-red-600">{Math.max(0, funnel.abandoned_checkouts)}</p>
                   </div>
                   <div className="text-center p-4 bg-yellow-50 rounded-lg">
                     <p className="text-sm text-gray-600">Mislukte Betalingen</p>
@@ -384,7 +500,7 @@ const AdminDashboardPage = () => {
               </CardHeader>
               <CardContent>
                 {recentOrders.length === 0 ? (
-                  <p className="text-gray-500 text-center py-8">Geen recente bestellingen</p>
+                  <p className="text-gray-500 text-center py-8">Geen recente bestellingen in deze periode</p>
                 ) : (
                   <div className="space-y-4">
                     {recentOrders.map((order) => (
@@ -419,7 +535,7 @@ const AdminDashboardPage = () => {
               </CardHeader>
               <CardContent>
                 {popularProducts.length === 0 ? (
-                  <p className="text-gray-500 text-center py-8">Nog geen verkopen</p>
+                  <p className="text-gray-500 text-center py-8">Nog geen verkopen in deze periode</p>
                 ) : (
                   <div className="space-y-4">
                     {popularProducts.map((product, index) => (
@@ -489,7 +605,7 @@ const AdminDashboardPage = () => {
               </CardHeader>
               <CardContent>
                 {topCustomers.length === 0 ? (
-                  <p className="text-gray-500 text-center py-8">Geen klantgegevens</p>
+                  <p className="text-gray-500 text-center py-8">Geen klantgegevens in deze periode</p>
                 ) : (
                   <div className="space-y-4">
                     {topCustomers.map((customer, index) => (
