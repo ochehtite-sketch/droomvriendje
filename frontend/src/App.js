@@ -81,6 +81,7 @@ function App() {
             <Route path="/admin/shopping-campaigns" element={<ShoppingCampaignsPage />} />
             <Route path="/admin/shopping-campaigns/data" element={<ShoppingCampaignsDataPage />} />
             <Route path="/admin/keywords" element={<KeywordsPage />} />
+            <Route path="/admin/orders" element={<AdminOrdersPage />} />
           </Routes>
           <Toaster />
         </BrowserRouter>
