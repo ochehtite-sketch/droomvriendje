@@ -36,33 +36,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-white">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-28 md:h-32">
-            <Link to="/" className="flex items-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
-                alt="Droomvriendjes.nl - Voor een zachte nachtrust" 
-                className="h-24 md:h-28 w-auto"
-              />
-            </Link>
-            <nav className="hidden md:flex space-x-8">
-              <Link to="/knuffels" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Knuffels</Link>
-              <Link to="/cadeaubon" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Cadeaubonnen</Link>
-              <Link to="/over-ons" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Over Droomvriendjes</Link>
-              <Link to="/contact" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Contact</Link>
-            </nav>
-            <Button variant="outline" className="relative" onClick={() => setIsCartOpen(true)}>
-              <ShoppingCart className="w-5 h-5" />
-              {getItemCount() > 0 && (
-                <span className="absolute -top-2 -right-2 bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                  {getItemCount()}
-                </span>
-              )}
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Shopping Cart Sidebar */}
       <CartSidebar />
