@@ -35,7 +35,7 @@ export const products = [
     ],
     rating: 4.5,
     reviews: 187,
-    badge: "BESTSELLER",
+    badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
     warranty: "14 dagen geld-terug-garantie",
     // GA4 E-commerce tags
@@ -198,7 +198,7 @@ export const products = [
     ],
     rating: 4.5,
     reviews: 198,
-    badge: "NIEUW",
+    badge: null,
     ageRange: "Vanaf 0 maanden",
     warranty: "14 dagen geld-terug-garantie",
     // GA4 E-commerce tags
@@ -285,7 +285,7 @@ export const products = [
     ],
     rating: 4.6,
     reviews: 178,
-    badge: "POPULAIR",
+    badge: "BESTSELLER",
     ageRange: "Vanaf 0 maanden",
     warranty: "14 dagen geld-terug-garantie",
     // GA4 E-commerce tags
@@ -370,7 +370,7 @@ export const products = [
     ],
     rating: 4.9,
     reviews: 267,
-    badge: "BESTSELLER",
+    badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
     warranty: "14 dagen geld-terug-garantie",
     // GA4 E-commerce tags
@@ -500,7 +500,7 @@ export const products = [
     ],
     rating: 4.9,
     reviews: 76,
-    badge: "POPULAIR",
+    badge: "BESTSELLER",
     inStock: true,
     ageRange: "Vanaf 0 maanden",
     warranty: "14 dagen geld-terug-garantie",
