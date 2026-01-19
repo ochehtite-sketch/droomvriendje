@@ -1076,7 +1076,7 @@ async def purchase_gift_card(data: GiftCardPurchase):
             },
             "description": f"Droomvriendjes Cadeaubon €{data.amount:.2f}",
             "redirectUrl": f"{frontend_url}/cadeaubon/succes?id={gift_card_id}",
-            "webhookUrl": f"{api_url}/api/webhook/gift-card}",
+            "webhookUrl": f"{api_url}/api/webhook/gift-card",
             "metadata": {
                 "gift_card_id": gift_card_id,
                 "type": "gift_card"
