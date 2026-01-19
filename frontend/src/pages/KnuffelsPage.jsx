@@ -84,13 +84,13 @@ const KnuffelsPage = () => {
           {/* Results Count */}
           <div className="flex items-center justify-between mb-8">
             <p className="text-gray-600">
-              <span className="font-semibold text-gray-900">{products.length}</span> producten gevonden
+              <span className="font-semibold text-gray-900">{sortedProducts.length}</span> producten gevonden
             </p>
           </div>
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" data-testid="products-grid">
-            {products.map((product, index) => (
+            {sortedProducts.map((product, index) => (
               <div 
                 key={product.id} 
                 className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 flex flex-col ${product.inStock === false ? 'opacity-75' : ''}`}
