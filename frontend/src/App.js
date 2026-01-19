@@ -85,6 +85,7 @@ function App() {
               <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
               <Route path="/tips-bedtijd" element={<TipsBedtijdPage />} />
               <Route path="/ouders-slaaptips" element={<OudersSlaaptipsPage />} />
+              <Route path="/rustmoment-ouders" element={<RustmomentOudersPage />} />
               
               {/* Admin Login (Public) */}
               <Route path="/admin/login" element={<AdminLoginPage />} />
