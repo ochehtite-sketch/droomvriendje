@@ -301,6 +301,14 @@ const CheckoutPage = () => {
                       <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-8" />
                     </div>
                     <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <RadioGroupItem value="applepay" id="applepay" />
+                      <Label htmlFor="applepay" className="flex-1 cursor-pointer">
+                        <span className="font-medium">Apple Pay</span>
+                        <span className="block text-sm text-gray-500">Betaal snel en veilig met Apple Pay</span>
+                      </Label>
+                      <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-8" />
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
                       <RadioGroupItem value="paypal" id="paypal" />
                       <Label htmlFor="paypal" className="flex-1 cursor-pointer">
                         <span className="font-medium">PayPal</span>
@@ -315,6 +323,14 @@ const CheckoutPage = () => {
                         <span className="block text-sm text-gray-500">Belgische betaalmethode</span>
                       </Label>
                       <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-8" />
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <RadioGroupItem value="klarna" id="klarna" />
+                      <Label htmlFor="klarna" className="flex-1 cursor-pointer">
+                        <span className="font-medium">Klarna</span>
+                        <span className="block text-sm text-gray-500">Betaal later of in termijnen</span>
+                      </Label>
+                      <img src="https://www.mollie.com/external/icons/payment-methods/klarna.svg" alt="Klarna" className="h-8" />
                     </div>
                   </RadioGroup>
                 </CardContent>
