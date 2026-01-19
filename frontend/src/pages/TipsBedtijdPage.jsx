@@ -314,6 +314,13 @@ const TipsBedtijdPage = () => {
           </div>
         </section>
 
+        {/* Product Slider Section */}
+        <ProductSlider 
+          onAddToCart={handleAddToCart}
+          title="Onze Droomvriendjes"
+          subtitle="Perfect voor een rustiger bedtijdritueel"
+        />
+
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-[#2d5a3d] to-[#3d7a4d] rounded-2xl p-8 md:p-12 text-center text-white">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Klaar voor Betere Nachtrust? 🌙</h2>
