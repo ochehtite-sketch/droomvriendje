@@ -58,6 +58,16 @@ def get_mollie_client():
 
 MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
 MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
+
+# URL configuration - load from environment for production support
+def get_frontend_url():
+    """Get frontend URL from environment"""
+    return os.environ.get('FRONTEND_URL', 'https://droomvriendjes.nl')
+
+def get_api_url():
+    """Get API URL from environment"""
+    return os.environ.get('API_URL', 'https://droomvriendjes.nl')
+
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendjes.nl')
 API_URL = os.environ.get('API_URL', 'https://droomvriendjes.nl')
 
