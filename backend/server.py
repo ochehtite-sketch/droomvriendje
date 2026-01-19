@@ -1543,12 +1543,203 @@ async def get_order(order_id: str):
             "customer_email": order["customer_email"],
             "customer_name": order["customer_name"],
             "payment_method": order.get("payment_method"),
-            "items": order.get("items", [])
+            "items": order.get("items", []),
+            "tracking_code": order.get("tracking_code"),
+            "carrier": order.get("carrier")
         }
         
     except Exception as e:
         logger.error(f"Get order error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============== ADMIN ENDPOINTS ==============
+
+# Carrier tracking URL configurations
+CARRIERS = {
+    "postnl": {
+        "name": "PostNL",
+        "tracking_url": "https://postnl.nl/tracktrace/?B={code}&P=&D=NL&T=C"
+    },
+    "dhl": {
+        "name": "DHL",
+        "tracking_url": "https://www.dhl.com/nl-nl/home/tracking/tracking-parcel.html?submit=1&tracking-id={code}"
+    },
+    "dpd": {
+        "name": "DPD",
+        "tracking_url": "https://tracking.dpd.de/parcelstatus?locale=nl_NL&query={code}"
+    },
+    "gls": {
+        "name": "GLS",
+        "tracking_url": "https://gls-group.eu/NL/nl/volg-je-pakket?match={code}"
+    },
+    "bpost": {
+        "name": "bpost",
+        "tracking_url": "https://track.bpost.cloud/btr/web/#/search?itemCode={code}"
+    }
+}
+
+class TrackingUpdate(BaseModel):
+    tracking_code: str
+    carrier: str = "postnl"
+    send_email: bool = True
+
+
+@api_router.get("/admin/orders")
+async def get_admin_orders():
+    """Get all orders for admin panel"""
+    try:
+        orders = await db.orders.find({}).sort("created_at", -1).to_list(500)
+        
+        result = []
+        for order in orders:
+            result.append({
+                "order_id": str(order["_id"]),
+                "customer_email": order.get("customer_email", ""),
+                "customer_name": order.get("customer_name", ""),
+                "total_amount": order.get("total_amount", 0),
+                "status": order.get("status", "pending"),
+                "tracking_code": order.get("tracking_code"),
+                "carrier": order.get("carrier"),
+                "created_at": order.get("created_at", ""),
+                "items": order.get("items", [])
+            })
+        
+        return {"orders": result, "count": len(result)}
+        
+    except Exception as e:
+        logger.error(f"Get admin orders error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.post("/admin/orders/{order_id}/tracking")
+async def update_order_tracking(order_id: str, tracking: TrackingUpdate):
+    """Add or update tracking code for an order"""
+    try:
+        order = await db.orders.find_one({"_id": ObjectId(order_id)})
+        if not order:
+            raise HTTPException(status_code=404, detail="Bestelling niet gevonden")
+        
+        # Update order with tracking info
+        await db.orders.update_one(
+            {"_id": ObjectId(order_id)},
+            {"$set": {
+                "tracking_code": tracking.tracking_code,
+                "carrier": tracking.carrier,
+                "status": "shipped",
+                "shipped_at": datetime.now(timezone.utc).isoformat(),
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }}
+        )
+        
+        logger.info(f"Tracking added to order {order_id}: {tracking.carrier} - {tracking.tracking_code}")
+        
+        # Send tracking email to customer
+        if tracking.send_email:
+            email_sent = send_tracking_email(order, tracking.tracking_code, tracking.carrier)
+        else:
+            email_sent = False
+        
+        return {
+            "success": True,
+            "message": "Tracking code toegevoegd",
+            "email_sent": email_sent
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Update tracking error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+def send_tracking_email(order: dict, tracking_code: str, carrier: str):
+    """Send tracking information email to customer"""
+    try:
+        customer_email = order.get("customer_email")
+        customer_name = order.get("customer_name", "Klant")
+        order_id = str(order.get("_id", ""))[-8:].upper()
+        
+        carrier_info = CARRIERS.get(carrier, CARRIERS["postnl"])
+        tracking_url = carrier_info["tracking_url"].replace("{code}", tracking_code)
+        carrier_name = carrier_info["name"]
+        
+        subject = f"🚚 Je bestelling is onderweg! - #{order_id}"
+        
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head><meta charset="utf-8"></head>
+        <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f9f9f9;">
+            <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #7c3aed; margin: 0;">🚚 Je pakket is onderweg!</h1>
+                </div>
+                
+                <p>Beste {customer_name},</p>
+                
+                <p>Goed nieuws! Je bestelling <strong>#{order_id}</strong> is verzonden en is onderweg naar jou.</p>
+                
+                <div style="background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%); color: white; padding: 25px; border-radius: 12px; text-align: center; margin: 25px 0;">
+                    <p style="margin: 0 0 10px 0; font-size: 14px; opacity: 0.9;">TRACK & TRACE CODE</p>
+                    <p style="margin: 0; font-size: 24px; font-weight: bold; letter-spacing: 1px; font-family: monospace;">{tracking_code}</p>
+                    <p style="margin: 15px 0 0 0; font-size: 14px; opacity: 0.9;">Verzonden via {carrier_name}</p>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="{tracking_url}" 
+                       style="display: inline-block; background: #7c3aed; color: white; padding: 15px 40px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px;">
+                        📍 Volg je pakket
+                    </a>
+                </div>
+                
+                <div style="background: #f3f4f6; padding: 20px; border-radius: 10px; margin: 25px 0;">
+                    <h3 style="margin: 0 0 15px 0; color: #333;">📦 Wat kun je verwachten?</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #666;">
+                        <li>Je pakket wordt meestal binnen 1-2 werkdagen bezorgd</li>
+                        <li>Je ontvangt een melding wanneer de bezorger onderweg is</li>
+                        <li>Niet thuis? Het pakket wordt bij de buren of afhaalpunt afgeleverd</li>
+                    </ul>
+                </div>
+                
+                <div style="border-top: 1px solid #eee; margin-top: 30px; padding-top: 20px; text-align: center; color: #999; font-size: 14px;">
+                    <p>Vragen over je bestelling?<br>
+                    Neem contact op via <a href="mailto:info@droomvriendjes.nl" style="color: #7c3aed;">info@droomvriendjes.nl</a></p>
+                    
+                    <p style="margin-top: 20px;">
+                        Droomvriendjes 🧸<br>
+                        <span style="font-size: 12px;">Slaapknuffels voor een betere nachtrust</span>
+                    </p>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+        text_content = f"""
+        JE PAKKET IS ONDERWEG!
+        
+        Beste {customer_name},
+        
+        Goed nieuws! Je bestelling #{order_id} is verzonden.
+        
+        Track & Trace Code: {tracking_code}
+        Verzonden via: {carrier_name}
+        
+        Volg je pakket: {tracking_url}
+        
+        Je pakket wordt meestal binnen 1-2 werkdagen bezorgd.
+        
+        Vragen? Mail naar info@droomvriendjes.nl
+        
+        Droomvriendjes
+        """
+        
+        return send_email(customer_email, subject, html_content, text_content)
+        
+    except Exception as e:
+        logger.error(f"Failed to send tracking email: {str(e)}")
+        return False
 
 
 @api_router.get("/payment-methods")
