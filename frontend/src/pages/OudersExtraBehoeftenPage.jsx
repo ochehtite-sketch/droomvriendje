@@ -11,19 +11,20 @@ import CartSidebar from '../components/CartSidebar';
 const OudersExtraBehoeftenPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  const selectedProductIds = [3, 2, 11]; // Teddy, Schaap, Panda - Bestsellers
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
-    .filter(p => selectedProductIds.includes(p.id))
+    .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      subtitle: p.id === 3 ? "Meest gekozen" : p.id === 2 ? "Zacht en knuffelbaar" : "Super rustgevend",
-      landingBadge: p.id === 3 ? "BESTSELLER #1" : p.id === 2 ? "BESTSELLER #2" : "BESTSELLER #3",
+      subtitle: p.id === 7 ? "Meest gekozen" : p.id === 11 ? "Super rustgevend" : "Zacht en knuffelbaar",
+      landingBadge: p.id === 7 ? "BESTSELLER #1" : p.id === 11 ? "BESTSELLER #2" : "BESTSELLER #3",
     }));
 
   const reviews = [
     { name: "Marloes", context: "Moeder van Thijs (6 jaar, ADHD)", rating: 5, text: "Thijs kon nooit stoppen met bewegen, ook in bed niet. Het Droomvriendje helpt hem om te focussen op het licht en de geluiden. Hij valt nu veel sneller in slaap.", product: "Panda" },
     { name: "Johan", context: "Vader van Emma (5 jaar, autisme)", rating: 5, text: "Emma heeft veel structuur nodig. Het Droomvriendje is nu onderdeel van haar vaste routine. Dezelfde geluiden, hetzelfde licht. Dat geeft haar rust.", product: "Beer Projector" },
-    { name: "Annemiek", context: "Moeder van Lotte (4 jaar, HSP)", rating: 5, text: "Lotte voelt alles zo intens. Nu knuffelt ze haar schaapje en het zachte materiaal kalmeert haar. Het is alsof het schaapje al haar zorgen absorbeert.", product: "Schaap" }
+    { name: "Annemiek", context: "Moeder van Lotte (4 jaar, HSP)", rating: 5, text: "Lotte voelt alles zo intens. Nu knuffelt ze haar slaapmaatje en het zachte materiaal kalmeert haar. Het is alsof het slaapmaatje al haar zorgen absorbeert.", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [

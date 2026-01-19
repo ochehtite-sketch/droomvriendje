@@ -11,19 +11,20 @@ import CartSidebar from '../components/CartSidebar';
 const OudersBabyPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  const selectedProductIds = [3, 2, 11]; // Teddy, Schaap, Panda - Bestsellers
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
-    .filter(p => selectedProductIds.includes(p.id))
+    .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      subtitle: p.id === 3 ? "Meest gekozen" : p.id === 2 ? "Zacht en knuffelbaar" : "Super rustgevend",
-      landingBadge: p.id === 3 ? "BESTSELLER #1" : p.id === 2 ? "BESTSELLER #2" : "BESTSELLER #3",
+      subtitle: p.id === 7 ? "Meest gekozen" : p.id === 11 ? "Super rustgevend" : "Zacht en knuffelbaar",
+      landingBadge: p.id === 7 ? "BESTSELLER #1" : p.id === 11 ? "BESTSELLER #2" : "BESTSELLER #3",
     }));
 
   const reviews = [
-    { name: "Lisa", context: "Moeder van Sem (8 maanden)", rating: 5, text: "Sem sliep nooit langer dan 2 uur achter elkaar. Sinds we het Droomvriendje gebruiken, slaapt hij regelmatig 5-6 uur door.", product: "Schaap" },
-    { name: "Mark", context: "Vader van tweeling (6 maanden)", rating: 5, text: "Met een tweeling is slapen een uitdaging. De Droomvriendjes helpen enorm bij het creëren van een vast slaapritueel.", product: "Leeuw (2x)" },
-    { name: "Emma", context: "Moeder van Olivia (4 maanden)", rating: 5, text: "Als eerste-keer-moeder was ik wanhopig door slaapgebrek. Olivia valt nu binnen 15 minuten in slaap.", product: "Schaap Liggend" }
+    { name: "Lisa", context: "Moeder van Sem (8 maanden)", rating: 5, text: "Sem sliep nooit langer dan 2 uur achter elkaar. Sinds we het Droomvriendje gebruiken, slaapt hij regelmatig 5-6 uur door.", product: "Beer Sterrenprojector" },
+    { name: "Mark", context: "Vader van tweeling (6 maanden)", rating: 5, text: "Met een tweeling is slapen een uitdaging. De Droomvriendjes helpen enorm bij het creëren van een vast slaapritueel.", product: "Panda (2x)" },
+    { name: "Emma", context: "Moeder van Olivia (4 maanden)", rating: 5, text: "Als eerste-keer-moeder was ik wanhopig door slaapgebrek. Olivia valt nu binnen 15 minuten in slaap.", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [
