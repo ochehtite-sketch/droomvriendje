@@ -51,11 +51,11 @@ const OudersExtraBehoeftenPage = () => {
             <Link to="/" className="flex items-center space-x-3">
               <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-14 w-auto" />
             </Link>
-            <a href="https://www.droomvriendjes.nl/#producten" target="_blank" rel="noopener noreferrer">
+            <Link to="/knuffels">
               <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-md px-6 py-2 transition-colors">
                 Bekijk producten
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -79,11 +79,11 @@ const OudersExtraBehoeftenPage = () => {
               </p>
               
               <div className="flex flex-wrap gap-3 mb-8">
-                <a href="#producten">
+                <Link to="/knuffels">
                   <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-md px-8 py-6 text-lg transition-colors">
                     Ontdek Droomvriendjes
                   </Button>
-                </a>
+                </Link>
                 <Button variant="outline" className="border-[#2d5a3d] text-[#2d5a3d] rounded-md px-8 py-6 text-lg hover:bg-[#f5f9f5]">
                   14 dagen proberen
                 </Button>
