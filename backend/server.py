@@ -1494,21 +1494,34 @@ async def get_payment_methods():
         mollie_client.set_api_key(MOLLIE_API_KEY)
         methods = mollie_client.methods.list()
         
-        return {
-            "methods": [
-                {"id": m.id, "description": m.description, "image": m.image.get("svg", "")}
-                for m in methods
-            ]
-        }
+        result_methods = []
+        for m in methods:
+            # Handle image attribute safely
+            image_url = ""
+            if hasattr(m, 'image') and m.image:
+                if isinstance(m.image, dict):
+                    image_url = m.image.get("svg", m.image.get("size2x", ""))
+                elif hasattr(m.image, 'svg'):
+                    image_url = m.image.svg
+            
+            result_methods.append({
+                "id": m.id, 
+                "description": m.description, 
+                "image": image_url
+            })
+        
+        return {"methods": result_methods}
     except Exception as e:
         logger.error(f"Get payment methods error: {str(e)}")
-        # Return default methods if API fails
+        # Return default methods including Apple Pay if API fails
         return {
             "methods": [
                 {"id": "ideal", "description": "iDEAL", "image": ""},
                 {"id": "creditcard", "description": "Creditcard", "image": ""},
+                {"id": "applepay", "description": "Apple Pay", "image": ""},
                 {"id": "paypal", "description": "PayPal", "image": ""},
-                {"id": "klarna", "description": "Klarna", "image": ""}
+                {"id": "klarna", "description": "Klarna", "image": ""},
+                {"id": "bancontact", "description": "Bancontact", "image": ""}
             ]
         }
 
