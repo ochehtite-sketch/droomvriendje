@@ -1571,9 +1571,11 @@ import hashlib
 import secrets
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-# Admin credentials (in production, use environment variables)
+# Admin credentials from environment variables
 ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
-ADMIN_PASSWORD_HASH = os.environ.get('ADMIN_PASSWORD_HASH', hashlib.sha256('Droomvriendjes2024!'.encode()).hexdigest())
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'Droomvriendjes2024!')
+# Hash the password for comparison
+ADMIN_PASSWORD_HASH = hashlib.sha256(ADMIN_PASSWORD.encode()).hexdigest()
 
 # Simple token store (in production, use Redis or database)
 admin_tokens = {}
