@@ -238,61 +238,12 @@ const RustmomentOudersPage = () => {
       </section>
 
       {/* Producten Sectie */}
-      <section className="py-16 bg-purple-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">
-              Onze Favorieten voor Rustmomenten
-            </h2>
-            <p className="text-lg text-gray-600">
-              Deze Droomvriendjes zijn het meest geliefd bij ouders
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-64 object-cover"
-                  />
-                  {product.badge && (
-                    <span className="absolute top-4 left-4 px-3 py-1 bg-yellow-400 text-purple-900 text-sm font-bold rounded-full">
-                      {product.badge}
-                    </span>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-purple-900 mb-2">{product.name}</h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-purple-600">€{product.price}</span>
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors"
-                    >
-                      <ShoppingCart className="w-4 h-4" />
-                      <span>Toevoegen</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link 
-              to="/knuffels" 
-              className="inline-flex items-center px-8 py-4 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-colors"
-            >
-              Bekijk Alle Producten
-              <span className="ml-2">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+            {/* Products Slider Section */}
+      <ProductSlider 
+        onAddToCart={handleAddToCart}
+        title="Onze Favorieten voor Rustmomenten"
+        subtitle="Deze Droomvriendjes zijn het meest geliefd bij ouders"
+      />
 
       {/* CTA Sectie */}
       <section className="py-16 bg-gradient-to-r from-purple-600 to-indigo-700">
