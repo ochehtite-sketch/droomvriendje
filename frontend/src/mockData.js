@@ -76,15 +76,10 @@ export const products = [
     shortName: "Schaap",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/vYpeb4c.jpeg",
+    image: "https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/9c0069868eaddfa298d7a4577a694f616febd07682d8a642d150726feca96ed7.png",
     gallery: [
-      "https://i.imgur.com/62h7jyd.jpeg",
-      "https://i.imgur.com/JxKouOL.jpeg",
-      "https://i.imgur.com/CaicX7m.jpeg",
-      "https://i.imgur.com/fEVDpyo.jpeg",
-      "https://i.imgur.com/0FBd1nk.jpeg",
-      "https://i.imgur.com/cJVdR01.jpeg",
-      "https://i.imgur.com/mlRZBbe.jpeg"
+      "https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/405ce339052197cd41eeff60a236daf6feb2a995c50023c9e09a545f46ece952.png",
+      "https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/828fda5834154a470ad60b4584a1130ece462386bc331e70aafcd95069ad8078.png"
     ],
     description: "Slaapknuffel met projector en white noise. Helpt je kind tot rust te komen.",
     features: [
@@ -119,16 +114,10 @@ export const products = [
     shortName: "Teddy",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/jM6J4oV.jpeg",
+    image: "https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/c202aec2f88a3ccb4045ca3a70d4ba35df223c927209411482b5df272e6800e8.png",
     gallery: [
-      "https://i.imgur.com/bMpTi4F.jpeg",
-      "https://i.imgur.com/LuZnyJN.jpeg",
-      "https://i.imgur.com/EcPPP93.jpeg",
-      "https://i.imgur.com/CDuaStL.jpeg",
-      "https://i.imgur.com/Cy86P4h.jpeg",
-      "https://i.imgur.com/IvGsHSN.jpeg",
-      "https://i.imgur.com/troxAMG.jpeg",
-      "https://i.imgur.com/rTPH83M.jpeg"
+      "https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/cfe4075e05ded1d8387ab601be52a730f4a06fc5e746c2c0452e828aa2f35fc4.png",
+      "https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/37b4a05b8093c6346c1e779fbb815f08ac3326ff9402ef69b7be26c392e764bb.png"
     ],
     description: "Bruine teddy met nachtlicht en rustgevende geluiden. Voor een rustige nachtrust.",
     features: [
