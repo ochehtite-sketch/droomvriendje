@@ -39,11 +39,22 @@ else:
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
 db_name = os.environ.get('DB_NAME', 'droomvriendje')
 
-# Initialize MongoDB client
+# Initialize MongoDB client with SSL certificate handling for Atlas
 try:
-    client = AsyncIOMotorClient(mongo_url)
+    import certifi
+    # Use certifi for proper SSL certificate verification
+    client = AsyncIOMotorClient(
+        mongo_url,
+        tlsCAFile=certifi.where(),
+        serverSelectionTimeoutMS=10000
+    )
     db = client[db_name]
     logger.info(f"MongoDB connected to: {db_name}")
+except ImportError:
+    # Fallback without certifi
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[db_name]
+    logger.info(f"MongoDB connected to: {db_name} (without certifi)")
 except Exception as e:
     logger.error(f"MongoDB connection error: {e}")
     raise
