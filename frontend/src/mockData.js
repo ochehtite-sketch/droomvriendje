@@ -1,30 +1,7 @@
 // Mock data voor Droomvriendjes website
 
 export const products = [
-  {
-    id: 99,
-    name: "TEST PRODUCT - 1 CENT",
-    shortName: "Test",
-    price: 0.01,
-    originalPrice: 0.01,
-    image: "https://i.imgur.com/E4g3eOy.jpeg",
-    gallery: [],
-    description: "Test product voor betalingen - NIET KOPEN",
-    features: ["Test product"],
-    benefits: ["Test"],
-    rating: 5,
-    reviews: 0,
-    badge: "TEST",
-    ageRange: "Test",
-    warranty: "Test",
-    item_id: "TEST_001",
-    item_category: "Test",
-    item_category2: "Test",
-    item_category3: "Test",
-    item_category4: "Test",
-    item_category5: "Test",
-    item_variant: "test"
-  },
+  // Test product 99 verborgen voor klanten - alleen beschikbaar via directe URL voor betalingstests
   {
     id: 1,
     name: "Baby Slaapmaatje Leeuw",
