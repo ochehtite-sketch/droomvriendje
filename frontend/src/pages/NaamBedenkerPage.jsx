@@ -7,6 +7,7 @@ import { Star, ChevronRight, Heart, Shield, Moon, Users, CheckCircle } from 'luc
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
+import Footer from '../components/Footer';
 
 const NaamBedenkerPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
@@ -376,28 +377,7 @@ const NaamBedenkerPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#2d5a3d] text-white py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
-                alt="Droomvriendjes.nl" 
-                className="h-12 w-auto brightness-0 invert"
-              />
-            </div>
-            <div className="flex space-x-6 text-sm">
-              <Link to="/privacy" className="hover:text-[#a5d6a7]">Privacy</Link>
-              <Link to="/voorwaarden" className="hover:text-[#a5d6a7]">Voorwaarden</Link>
-              <Link to="/contact" className="hover:text-[#a5d6a7]">Contact</Link>
-            </div>
-          </div>
-          <div className="text-center mt-6 text-sm text-[#a5d6a7]">
-            © 2024 Droomvriendjes.nl - Alle rechten voorbehouden
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
