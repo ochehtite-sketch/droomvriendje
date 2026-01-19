@@ -12,6 +12,7 @@ import Footer from '../components/Footer';
 const VrouwenLandingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
   const [featureSlide, setFeatureSlide] = useState(0);
+  const [productSlide, setProductSlide] = useState(0);
 
   // Feature slider data
   const featureCards = [
@@ -38,6 +39,14 @@ const VrouwenLandingPage = () => {
 
   const prevFeatureSlide = () => {
     setFeatureSlide((prev) => (prev - 1 + featureCards.length) % featureCards.length);
+  };
+
+  const nextProductSlide = () => {
+    setProductSlide((prev) => (prev + 1) % 3);
+  };
+
+  const prevProductSlide = () => {
+    setProductSlide((prev) => (prev - 1 + 3) % 3);
   };
 
   // Select specific products for this landing page (Beer, Panda, Baby Slaapmaatje Schaap)
