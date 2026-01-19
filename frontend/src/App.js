@@ -43,6 +43,7 @@ import TipsBedtijdPage from "./pages/TipsBedtijdPage";
 import OudersSlaaptipsPage from "./pages/OudersSlaaptipsPage";
 import RustmomentOudersPage from "./pages/RustmomentOudersPage";
 import { Toaster } from "./components/ui/toaster";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   // Force correct page title
