@@ -190,24 +190,44 @@ const ProductPage = () => {
 
               {/* CTA Buttons */}
               <div className="space-y-3 mb-8">
-                <Button 
-                  size="lg" 
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white text-lg py-6"
-                  onClick={handleAddToCart}
-                  data-testid="add-to-cart-button"
-                >
-                  <ShoppingCart className="w-5 h-5 mr-2" />
-                  In Winkelwagen - €{product.price.toFixed(2)}
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="w-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 text-lg py-6"
-                  onClick={handleDirectOrder}
-                  data-testid="direct-order-button"
-                >
-                  Direct Bestellen
-                </Button>
+                {product.inStock === false ? (
+                  <>
+                    {/* Out of Stock Message */}
+                    <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 text-center">
+                      <p className="text-red-600 font-bold text-lg">❌ Dit product is momenteel uitverkocht</p>
+                      <p className="text-red-500 text-sm mt-1">Neem contact op voor beschikbaarheid</p>
+                    </div>
+                    <Button 
+                      size="lg" 
+                      className="w-full bg-gray-400 text-white text-lg py-6 cursor-not-allowed"
+                      disabled
+                      data-testid="add-to-cart-button"
+                    >
+                      Uitverkocht
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button 
+                      size="lg" 
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white text-lg py-6"
+                      onClick={handleAddToCart}
+                      data-testid="add-to-cart-button"
+                    >
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      In Winkelwagen - €{product.price.toFixed(2)}
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="w-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 text-lg py-6"
+                      onClick={handleDirectOrder}
+                      data-testid="direct-order-button"
+                    >
+                      Direct Bestellen
+                    </Button>
+                  </>
+                )}
               </div>
 
               {/* Trust Badges */}
