@@ -24,7 +24,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+# Load .env file but DON'T override existing environment variables (important for production)
+# In production, env vars are set via Kubernetes, so we should not override them
+env_path = ROOT_DIR / '.env'
+if env_path.exists():
+    load_dotenv(env_path, override=False)
+else:
+    logger.info("No .env file found, using system environment variables")
 
 # MongoDB connection - Support both local and Atlas MongoDB
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
@@ -42,21 +48,30 @@ except Exception as e:
 # Mollie configuration - load dynamically for production
 def get_mollie_api_key():
     """Get Mollie API key from environment, with proper fallback"""
+    # Always read fresh from environment for production support
     key = os.environ.get('MOLLIE_API_KEY', '')
     if not key:
-        logger.warning("MOLLIE_API_KEY not set in environment!")
+        logger.error("MOLLIE_API_KEY not set in environment!")
+    else:
+        logger.debug(f"Mollie API key loaded: {key[:15]}...")
     return key
 
 def get_mollie_client():
     """Create a new Mollie client with current API key"""
     api_key = get_mollie_api_key()
     if not api_key:
-        raise ValueError("MOLLIE_API_KEY not configured")
+        raise ValueError("MOLLIE_API_KEY not configured - please set environment variable")
     mollie_client = MollieClient()
     mollie_client.set_api_key(api_key)
     return mollie_client
 
-MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
+# Log current Mollie configuration at startup
+_startup_mollie_key = os.environ.get('MOLLIE_API_KEY', '')
+if _startup_mollie_key:
+    logger.info(f"Mollie API key configured at startup: {_startup_mollie_key[:20]}...")
+else:
+    logger.warning("⚠️ MOLLIE_API_KEY not found at startup - payments will fail!")
+
 MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
 
 # URL configuration - load from environment for production support
