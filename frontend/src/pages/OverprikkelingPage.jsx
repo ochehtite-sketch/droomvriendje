@@ -206,6 +206,7 @@ const OverprikkelingPage = () => {
           </div>
         </div>
       </section>
+      <Footer variant="green" />
     </div>
   );
 };

@@ -206,6 +206,7 @@ const HSPPage = () => {
           </div>
         </div>
       </section>
+      <Footer variant="green" />
     </div>
   );
 };

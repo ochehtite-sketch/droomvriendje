@@ -206,6 +206,7 @@ const DementiePage = () => {
           </div>
         </div>
       </section>
+      <Footer variant="green" />
     </div>
   );
 };

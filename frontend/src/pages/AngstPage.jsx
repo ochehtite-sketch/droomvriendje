@@ -206,6 +206,7 @@ const AngstPage = () => {
           </div>
         </div>
       </section>
+      <Footer variant="green" />
     </div>
   );
 };
