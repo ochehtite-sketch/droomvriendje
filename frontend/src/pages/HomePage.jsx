@@ -19,9 +19,12 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
 
+  // Filter out of stock products from homepage
+  const availableProducts = products.filter(p => p.inStock !== false);
+
   // GA4: Track view_item_list when page loads
   useEffect(() => {
-    trackViewItemList(products, 'homepage_products', 'Homepage Producten');
+    trackViewItemList(availableProducts, 'homepage_products', 'Homepage Producten');
   }, []);
 
   // GA4: Track product click
