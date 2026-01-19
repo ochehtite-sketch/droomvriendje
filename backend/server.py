@@ -1600,6 +1600,22 @@ async def test_email(email: str = "info@droomvriendjes.nl"):
         return {"status": "error", "message": "Failed to send test email"}
 
 
+@api_router.get("/debug/env")
+async def debug_env():
+    """Debug endpoint to check environment configuration - REMOVE IN PRODUCTION"""
+    mollie_key = os.environ.get('MOLLIE_API_KEY', '')
+    return {
+        "mollie_key_set": bool(mollie_key),
+        "mollie_key_length": len(mollie_key) if mollie_key else 0,
+        "mollie_key_prefix": mollie_key[:10] + "..." if mollie_key and len(mollie_key) > 10 else "NOT SET",
+        "profile_id": os.environ.get('MOLLIE_PROFILE_ID', 'NOT SET'),
+        "frontend_url": os.environ.get('FRONTEND_URL', 'NOT SET'),
+        "api_url": os.environ.get('API_URL', 'NOT SET'),
+        "env_file_exists": (ROOT_DIR / '.env').exists(),
+        "db_name": os.environ.get('DB_NAME', 'NOT SET')
+    }
+
+
 # Feed products JSON endpoint (moet voor include_router)
 @api_router.get("/feed/products")
 async def get_feed_products():
