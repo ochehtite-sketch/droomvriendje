@@ -11,13 +11,14 @@ import CartSidebar from '../components/CartSidebar';
 const OudersPeutersPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  const selectedProductIds = [3, 2, 11]; // Teddy, Schaap, Panda - Bestsellers
+  // Only show IN STOCK products - 7=Beer, 1=Leeuw, 11=Panda
+  const selectedProductIds = [7, 1, 11];
   const landingProducts = allProducts
-    .filter(p => selectedProductIds.includes(p.id))
+    .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      subtitle: p.id === 3 ? "Meest gekozen" : p.id === 2 ? "Zacht en knuffelbaar" : "Super rustgevend",
-      landingBadge: p.id === 3 ? "⭐ BESTSELLER #1" : p.id === 2 ? "⭐ BESTSELLER #2" : "⭐ BESTSELLER #3",
+      subtitle: p.id === 7 ? "Meest gekozen" : p.id === 1 ? "Zacht en knuffelbaar" : "Super rustgevend",
+      landingBadge: p.id === 7 ? "⭐ BESTSELLER #1" : p.id === 1 ? "⭐ BESTSELLER #2" : "⭐ BESTSELLER #3",
     }));
 
   const reviews = [
