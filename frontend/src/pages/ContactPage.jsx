@@ -101,7 +101,7 @@ const ContactPage = () => {
             <CardContent className="pt-6 text-center">
               <MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-purple-900 mb-2">Adres</h3>
-              <p className="text-gray-600">SCHAESBERGERWEG 103</p>
+              <p className="text-gray-600">Schaesbergerweg 103</p>
               <p className="text-gray-600">6415 AD Heerlen</p>
               <p className="text-sm text-gray-500 italic mt-2">(Dit is geen bezoekadres)</p>
             </CardContent>
@@ -209,7 +209,7 @@ const ContactPage = () => {
             <div className="text-gray-700 space-y-1">
               <p><strong>Bedrijfsnaam:</strong> Droomvriendjes</p>
               <p><strong>KVK-nummer:</strong> 9921083</p>
-              <p><strong>Adres:</strong> SCHAESBERGERWEG 103, 6415 AD Heerlen</p>
+              <p><strong>Adres:</strong> Schaesbergerweg 103, 6415 AD Heerlen</p>
               <p className="text-sm italic">(Dit is geen bezoekadres)</p>
             </div>
           </div>
