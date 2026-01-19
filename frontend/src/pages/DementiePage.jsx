@@ -8,6 +8,7 @@ import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
 import Footer from '../components/Footer';
+import ProductSlider from '../components/ProductSlider';
 
 const DementiePage = () => {
   const { addToCart, setIsCartOpen } = useCart();
