@@ -486,11 +486,11 @@ const HomePage = () => {
                 {/* Image Container */}
                 <Link to="/product/2" onClick={() => window.scrollTo(0, 0)}>
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-emerald-50 via-teal-50/50 to-white">
-                    <div className="aspect-square relative">
+                    <div className="aspect-square relative flex items-center justify-center">
                       <img 
                         src="https://i.imgur.com/vYpeb4c.jpeg" 
                         alt="Schaap"
-                        className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
@@ -558,11 +558,11 @@ const HomePage = () => {
                 {/* Image Container */}
                 <Link to="/product/3" onClick={() => window.scrollTo(0, 0)}>
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
-                    <div className="aspect-square relative">
+                    <div className="aspect-square relative flex items-center justify-center">
                       <img 
                         src="https://i.imgur.com/jM6J4oV.jpeg" 
                         alt="Teddy"
-                        className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
@@ -632,11 +632,11 @@ const HomePage = () => {
                 {/* Image Container */}
                 <Link to="/product/11" onClick={() => window.scrollTo(0, 0)}>
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white">
-                    <div className="aspect-square relative">
+                    <div className="aspect-square relative flex items-center justify-center">
                       <img 
                         src="https://i.imgur.com/fhVs30E.jpeg" 
                         alt="Panda"
-                        className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
