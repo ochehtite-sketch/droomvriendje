@@ -92,8 +92,8 @@ const ContactPage = () => {
             <CardContent className="pt-6 text-center">
               <Mail className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h3 className="font-bold text-purple-900 mb-2">Email</h3>
+              <p className="text-gray-600">Klantenservice@droomvriendjes.nl</p>
               <p className="text-gray-600">info@droomvriendjes.nl</p>
-              <p className="text-gray-600">support@droomvriendjes.nl</p>
             </CardContent>
           </Card>
 
