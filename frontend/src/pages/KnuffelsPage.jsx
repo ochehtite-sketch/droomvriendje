@@ -11,9 +11,19 @@ import { AdBanner } from '../components/AdSense';
 const KnuffelsPage = () => {
   const { addToCart } = useCart();
 
+  // Sort products: in-stock first, out-of-stock at the end
+  const sortedProducts = [...products].sort((a, b) => {
+    // If both are in stock or both are out of stock, maintain original order
+    const aInStock = a.inStock !== false;
+    const bInStock = b.inStock !== false;
+    if (aInStock === bInStock) return 0;
+    // In stock items come first
+    return aInStock ? -1 : 1;
+  });
+
   // GA4: Track view_item_list when page loads
   useEffect(() => {
-    trackViewItemList(products, 'alle_knuffels', 'Alle Knuffels');
+    trackViewItemList(sortedProducts, 'alle_knuffels', 'Alle Knuffels');
   }, []);
 
   // GA4: Track product click
