@@ -41,6 +41,7 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import TipsBedtijdPage from "./pages/TipsBedtijdPage";
 import OudersSlaaptipsPage from "./pages/OudersSlaaptipsPage";
+import RustmomentOudersPage from "./pages/RustmomentOudersPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
