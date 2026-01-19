@@ -23,11 +23,12 @@ const BlogsPage = () => {
     },
     {
       id: 1,
+      slug: "5-tips-betere-nachtrust-kinderen",
       title: "5 Tips voor een Betere Nachtrust bij Kinderen",
       excerpt: "Ontdek de beste tips om je kind te helpen beter te slapen. Van een vaste slaaproutine tot het creëren van een rustige slaapomgeving.",
       author: "Team Droomvriendjes",
       date: "10 januari 2025",
-      readTime: "5 min",
+      readTime: "7 min",
       category: "Slaaptips",
       image: "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=800"
     },
