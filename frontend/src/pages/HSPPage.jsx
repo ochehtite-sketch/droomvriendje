@@ -50,11 +50,11 @@ const HSPPage = () => {
             <Link to="/" className="flex items-center space-x-3">
               <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-16 w-auto" />
             </Link>
-            <a href="#producten">
+            <Link to="/knuffels">
               <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
                 Bekijk knuffels <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -92,11 +92,11 @@ const HSPPage = () => {
               </ul>
               
               <div className="flex items-center space-x-6">
-                <a href="#producten">
+                <Link to="/knuffels">
                   <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-8 py-6 text-lg">
                     Bekijk Slaapknuffels
                   </Button>
-                </a>
+                </Link>
                 <span className="text-sm text-[#5a7a5a]">14 dagen retourgarantie</span>
               </div>
             </div>
