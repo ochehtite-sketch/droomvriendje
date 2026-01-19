@@ -427,11 +427,11 @@ const VrouwenLandingPage = () => {
             {landingProducts.map((product) => (
               <Card key={product.id} className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
                 <Link to={`/product/${product.id}`}>
-                  <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[200px] cursor-pointer hover:bg-[#dce8dc] transition-colors">
+                  <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[280px] cursor-pointer hover:bg-[#dce8dc] transition-colors">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-auto object-contain max-h-[150px]"
+                      className="w-full h-auto object-contain max-h-[220px] max-w-[220px]"
                     />
                   </div>
                 </Link>
