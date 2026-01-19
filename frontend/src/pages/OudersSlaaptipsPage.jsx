@@ -491,7 +491,7 @@ const OudersSlaaptipsPage = () => {
         </div>
       </div>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };

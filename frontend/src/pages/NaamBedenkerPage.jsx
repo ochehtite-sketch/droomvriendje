@@ -377,7 +377,7 @@ const NaamBedenkerPage = () => {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };

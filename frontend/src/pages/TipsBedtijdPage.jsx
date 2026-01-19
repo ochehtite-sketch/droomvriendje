@@ -319,7 +319,7 @@ const TipsBedtijdPage = () => {
         </section>
       </div>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };

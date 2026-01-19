@@ -529,7 +529,7 @@ const VrouwenLandingPage = () => {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };

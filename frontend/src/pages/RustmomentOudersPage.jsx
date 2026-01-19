@@ -311,7 +311,7 @@ const RustmomentOudersPage = () => {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };

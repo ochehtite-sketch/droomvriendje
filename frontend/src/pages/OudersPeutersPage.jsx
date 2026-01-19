@@ -297,7 +297,7 @@ const OudersPeutersPage = () => {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };

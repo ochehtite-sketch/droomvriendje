@@ -292,7 +292,7 @@ const OudersExtraBehoeftenPage = () => {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="green" />
     </div>
   );
 };
