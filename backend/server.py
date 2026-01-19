@@ -1635,7 +1635,7 @@ async def get_google_ads_oauth_url(request: Request):
         parsed = urlparse(origin)
         base_url = f"{parsed.scheme}://{parsed.netloc}"
     else:
-        base_url = FRONTEND_URL
+        base_url = get_frontend_url()
     
     redirect_uri = f"{base_url}/admin/google-ads/callback"
     try:
