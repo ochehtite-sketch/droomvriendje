@@ -1,133 +1,100 @@
 # Droomvriendjes - Product Requirements Document
 
-## Origineel Probleem
-Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack applicatie met React frontend, FastAPI backend, en MongoDB Atlas (productie database).
+## Project Overview
+E-commerce website for Droomvriendjes selling plush sleep toys with night lights and soothing sounds.
 
-## Doelgroep
-- Ouders van baby's en peuters
-- Vrouwen 60+ die zoeken naar cadeau's
-- Ouders van kinderen met extra behoeften (angst, slaapproblemen, HSP)
-
-## Core Requirements
-1. E-commerce functionaliteit met Mollie betalingen (LIVE)
-2. Google Analytics 4 e-commerce tracking
-3. Google Merchant Center integratie voor Shopping Ads
-4. Responsieve, mobile-first design
-5. Admin dashboard met funnel analytics
+**Tech Stack:** React + FastAPI + MongoDB Atlas
+**Live URL:** https://dream-plushies.preview.emergentagent.com
 
 ---
 
-## Wat is Geïmplementeerd
+## What's Been Implemented (January 2025)
 
-### 19 januari 2026 - Admin Dashboard
-- ✅ **Wachtwoord-beveiligd Admin Dashboard** - `/admin/login` en `/admin/dashboard`
-- ✅ **Funnel Analytics** - Conversietrechter met afhaal-percentages
-  - Checkout Gestart → Bestelling Aangemaakt → Betaling Voltooid
-  - Drop-off rates en verlaten winkelwagens
-- ✅ **Dashboard Statistieken:**
-  - Totale omzet, bestellingen, klanten
-  - Order status overzicht (in afwachting, betaald, verzonden, etc.)
-  - Gemiddelde orderwaarde en conversiepercentage
-- ✅ **Populaire Producten** - Top 5 best verkochte producten
-- ✅ **Verlaten Winkelwagens** - Abandoned cart tracking met email adressen
-- ✅ **Top Klanten** - Ranking op basis van bestedingen
-- ✅ **Protected Routes** - Alle admin pagina's beveiligd
-- ✅ **Admin wachtwoord in .env** - Veiliger configuratie
+### Core E-commerce
+- ✅ Product catalog with 13 products
+- ✅ Shopping cart functionality
+- ✅ Mollie payment integration (LIVE)
+- ✅ Order management system
+- ✅ Gift card system (test code: DV-TEST0001)
 
-### 18 januari 2026 - Sendcloud & Order Management
-- ✅ **Admin Orders Pagina** - `/admin/orders` voor bestellingenbeheer
-- ✅ **Track & Trace** - Handmatig tracking code toevoegen met email notificatie
-- ✅ **Sendcloud API Integratie** - Verzendlabels aanmaken vanuit admin panel
-- ✅ **MongoDB Atlas** - Productie database verbinding gefixt
+### Admin Dashboard
+- ✅ Password-protected admin panel (/admin)
+- ✅ Revenue, orders, and customer statistics
+- ✅ Conversion funnel analysis
+- ✅ Date-range filters (7, 30, 90 days)
+- ✅ Top products and abandoned cart tracking
 
-### 17 januari 2026 - Google Marketing Suite
-- ✅ **Google Ads API Integratie** - Volledige backend service met OAuth flow
-- ✅ **Shopping Campaigns Admin** - `/admin/shopping-campaigns`
-- ✅ **OAuth Callback** - `/admin/google-ads/callback`
-- ✅ **Google AdSense** - Advertenties op website
-- ✅ **Google Merchant Center Feed** - XML en JSON feeds
+### Product Management (This Session)
+- ✅ Out-of-stock functionality (products 2 & 3 marked as UITVERKOCHT)
+- ✅ Out-of-stock products moved to end of product list
+- ✅ Out-of-stock products hidden from all landing pages
+- ✅ Product pages block checkout for out-of-stock items
+- ✅ Bestseller badges updated: #1 Beer (7), #2 Panda (11), #3 Baby Slaapmaatje Schaap (12)
 
-### Eerdere Sessies
-- ✅ Product slider op homepage (Swiper.js)
-- ✅ `/knuffels` pagina met alle producten
-- ✅ Mollie betalingen (LIVE mode)
-- ✅ Email notificaties (SMTP via TransIP)
-- ✅ Cadeaubon functionaliteit (gift cards)
-- ✅ Contact formulier met email
+### Landing Pages Updated
+- ✅ All landing pages now use products 7, 11, 12 (in-stock only)
+- ✅ Unified Footer component across all pages (purple theme)
+- ✅ NEW: /tips-bedtijd page added
+
+### Deployment Fixes (This Session)
+- ✅ Fixed `load_dotenv(override=True)` → `override=False` for Kubernetes
+- ✅ Removed hardcoded admin password fallback
+- ✅ Optimized MongoDB queries with projections and filters
+- ✅ Updated ">10.000+" customer count text
 
 ---
 
-## Prioritized Backlog
-
-### P0 - Kritiek
-- [x] **Admin Dashboard** - Compleet met funnel analytics ✅
-- [ ] **Deployment naar Productie** - Alle blockers zijn opgelost
-
-### P1 - Hoog
-- [ ] **BOOST Google Ads Campagne** - Programmatisch aanmaken via API
-- [ ] **Cadeaubon flow verificatie** - End-to-end test door gebruiker
-- [ ] **Sendcloud Label Test** - Full E2E test van label creatie
-
-### P2 - Medium
-- [ ] Admin panel voor kortingscodes
-- [ ] Gemini logo verwijderen uit product afbeeldingen
-- [ ] Homepage refactoring - Gebruik globale Header/Footer
-
-### P3 - Laag
-- [ ] WordPress plugin export
-- [ ] Product reviews systeem
-- [ ] Wishlist functionaliteit
-- [ ] Abandoned cart email sequences (FOMO)
+## Pages Updated This Session
+| Page | Changes |
+|------|---------|
+| HomePage.jsx | Bestseller section: Beer #1, Panda #2, Slaapmaatje #12. Product slider filters out-of-stock. |
+| KnuffelsPage.jsx | Out-of-stock products sorted to end |
+| ProductPage.jsx | Disabled checkout for out-of-stock products |
+| NaamBedenkerPage.jsx | Products: 7, 11, 12 + Unified Footer |
+| VrouwenLandingPage.jsx | Products: 7, 11, 12 + Unified Footer |
+| OudersBabyPage.jsx | Products: 7, 11, 12 + Unified Footer |
+| OudersPeutersPage.jsx | Products: 7, 11, 12 + Unified Footer |
+| OudersExtraBehoeftenPage.jsx | Products: 7, 11, 12 + Unified Footer |
+| StressPage.jsx | Products: 7, 11, 12 |
+| HSPPage.jsx | Products: 7, 11, 12 |
+| AngstPage.jsx | Products: 7, 11, 12 |
+| SlaapproblemenPage.jsx | Products: 7, 11, 12 |
+| TroostPage.jsx | Products: 7, 11, 12 |
+| OverprikkelingPage.jsx | Products: 7, 11, 12 |
+| DementiePage.jsx | Products: 7, 11, 12 |
+| TipsBedtijdPage.jsx | NEW - Complete bedtime tips page |
 
 ---
 
-## Technische Stack
-- **Frontend:** React, TailwindCSS, Shadcn/UI, Swiper.js
-- **Backend:** FastAPI (Python), Motor (async MongoDB)
-- **Database:** MongoDB Atlas (productie)
-- **Betalingen:** Mollie (LIVE)
-- **Verzending:** Sendcloud API
-- **Email:** SMTP via TransIP
-- **Analytics:** Google Analytics 4, Google Tag Manager
-- **Ads:** Google AdSense, Google Ads API
+## Remaining Tasks (Backlog)
 
-## Key API Endpoints
-- **Orders & Payments:**
-  - `POST /api/orders` - Nieuwe bestelling
-  - `POST /api/payments/create` - Mollie betaling
-  - `POST /api/webhook/mollie` - Payment webhook
-  
-- **Admin (Protected):**
-  - `POST /api/admin/login` - Admin login
-  - `GET /api/admin/verify` - Token verificatie
-  - `GET /api/admin/dashboard` - Dashboard data met funnel
-  - `GET /api/admin/orders` - Alle bestellingen
-  - `POST /api/admin/orders/{id}/tracking` - Tracking toevoegen
-  
-- **Sendcloud:**
-  - `GET /api/sendcloud/shipping-methods` - Verzendmethodes
-  - `POST /api/sendcloud/create-parcel` - Label aanmaken
+### P0 - High Priority
+- [ ] Verify cadeaubon flow with test code DV-TEST0001
+- [ ] Complete Sendcloud integration testing
+- [ ] Production deployment
 
-- **Google:**
-  - `GET /api/feed/google-shopping.xml` - Merchant feed
-  - `GET /api/google-ads/oauth-url` - OAuth start
-  - `POST /api/google-ads/campaigns/create` - Campagne maken
+### P1 - Medium Priority
+- [ ] Google Ads BOOST campaign creation (requires re-authentication)
+- [ ] Undefined image URLs need clarification from user
+- [ ] Admin panel for discount code management
 
-## Admin Pagina's
-- `/admin/login` - Admin inloggen
-- `/admin/dashboard` - Hoofddashboard met statistieken
-- `/admin/orders` - Bestellingenbeheer
-- `/admin/google-ads` - Keywords en advertenties
-- `/admin/merchant-feed` - Product feed beheer
-- `/admin/shopping-campaigns` - Shopping campagnes
-
-## Credentials (in backend/.env)
-- Mollie API Key (LIVE): `live_snNwpUSRqr2mPhPh6CCcUDJUnaSzr9`
-- MongoDB Atlas: Verbonden
-- Sendcloud API: Geconfigureerd
-- Admin: `admin` / `Droomvriendjes2024!`
+### P2 - Future Enhancements
+- [ ] Abandoned cart email sequences
+- [ ] Calendar date range picker for dashboard
+- [ ] Migrate products from mockData.js to MongoDB
+- [ ] Refactor server.py into smaller route files
 
 ---
 
-## Test Rapporten
-- `/app/test_reports/iteration_6.json` - Admin Dashboard tests (100% passed)
+## Credentials
+- **Admin Login:** admin / Droomvriendjes2024!
+- **Test Gift Card:** DV-TEST0001 (€0.01)
+
+## 3rd Party Integrations
+| Service | Status |
+|---------|--------|
+| Mollie Payments | ✅ LIVE |
+| MongoDB Atlas | ✅ LIVE |
+| Sendcloud | ⚠️ Integrated, needs testing |
+| Google Ads API | ⚠️ Connected, campaign creation pending |
+| Google Merchant Center | ✅ Working |
