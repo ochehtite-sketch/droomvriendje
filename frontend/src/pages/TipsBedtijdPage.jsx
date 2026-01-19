@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import ProductSlider from '../components/ProductSlider';
+import { useCart } from '../context/CartContext';
 
 const TipsBedtijdPage = () => {
   const tips = [
