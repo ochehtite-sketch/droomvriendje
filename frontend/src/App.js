@@ -71,6 +71,7 @@ function App() {
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/voorwaarden" element={<VoorwaardenPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
+              <Route path="/blog/droomvriendjes-mondriaan-samenwerking" element={<BlogMondriaanPage />} />
               <Route path="/cadeaubon" element={<CadeaubonPage />} />
               <Route path="/stress" element={<StressPage />} />
               <Route path="/overprikkeling" element={<OverprikkelingPage />} />
