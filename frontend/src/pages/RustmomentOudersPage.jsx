@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Heart, Clock, Star, CheckCircle, Moon, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { products } from '../data/mockData';
+import { products } from '../mockData';
 import Footer from '../components/Footer';
 
 const RustmomentOudersPage = () => {
