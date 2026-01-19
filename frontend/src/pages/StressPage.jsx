@@ -2,125 +2,209 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { Heart, CheckCircle } from 'lucide-react';
-import Layout from '../components/Layout';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
+import { Star, ChevronRight, Heart, Brain, Smile } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { products as allProducts } from '../mockData';
+import CartSidebar from '../components/CartSidebar';
 
 const StressPage = () => {
+  const { addToCart, setIsCartOpen } = useCart();
+
+  const selectedProductIds = [2, 7, 11];
+  const landingProducts = allProducts
+    .filter(p => selectedProductIds.includes(p.id))
+    .map(p => ({
+      ...p,
+      landingBadge: p.id === 2 ? "MEEST KALMEREND" : p.id === 7 ? "POPULAIR" : "FAVORIET",
+    }));
+
+  const reviews = [
+    { name: "Marieke", context: "Moeder van Sven (5 jaar)", rating: 5, text: "Sven had veel last van stress op school. Sinds hij zijn Droomvriendje heeft, is het avondritueel veel rustiger geworden. Hij ontspant echt met het zachte licht.", product: "Baby Nachtlamp Schaap" },
+    { name: "Peter", context: "Vader van Emma (4 jaar)", rating: 5, text: "Emma piekte veel over van alles. De kalmerende geluiden helpen haar om los te laten. Ze slaapt nu veel beter door.", product: "Teddy Projector" },
+    { name: "Linda", context: "Moeder van Bram (6 jaar)", rating: 5, text: "Bram is een gevoelig kind met veel stress. Het Droomvriendje geeft hem iets om vast te houden en op te focussen. Echt een verschil!", product: "Panda Projector" }
+  ];
+
+  const faqs = [
+    { question: "Helpt dit echt bij stress?", answer: "Ja, de combinatie van zacht licht, kalmerende geluiden en een knuffelbaar object helpt kinderen om te ontspannen. Dit is gebaseerd op bewezen ontspanningstechnieken." },
+    { question: "Vanaf welke leeftijd geschikt?", answer: "Droomvriendjes zijn geschikt vanaf 0 maanden. Voor stressvermindering zien we de beste resultaten bij kinderen vanaf 2 jaar die bewust kunnen focussen op het licht en geluid." },
+    { question: "Hoe snel zie ik resultaat?", answer: "De meeste ouders merken binnen 1-2 weken een verschil. Het belangrijkste is om het consequent te gebruiken als onderdeel van het bedtijdritueel." },
+    { question: "Kan dit overdag ook gebruikt worden?", answer: "Absoluut! Droomvriendjes kunnen ook overdag worden gebruikt voor rustmomenten, na school, of wanneer je kind even tot rust moet komen." }
+  ];
+
+  const handleAddToCart = (product) => {
+    addToCart({ ...product, quantity: 1 });
+    setIsCartOpen(true);
+  };
+
   return (
-    <Layout backButtonText="Terug naar Home">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Stressvermindering bij Kinderen</h1>
-        
-        <div className="space-y-8 text-gray-700">
-          <section>
-            <p className="text-lg leading-relaxed">
-              Stress bij kinderen is steeds vaker voorkomend. Of het nu gaat om schoolprestaties, 
-              sociale druk of gewoon een overvolle agenda - kinderen ervaren stress net als volwassenen, 
-              maar kunnen dit vaak niet goed uiten.
-            </p>
-          </section>
+    <div className="min-h-screen bg-[#f5f9f5]">
+      <CartSidebar />
 
-          <section className="bg-purple-50 rounded-2xl p-6">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Signalen van Stress bij Kinderen</h2>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Slaapproblemen of nachtmerries</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Buikpijn of hoofdpijn zonder duidelijke oorzaak</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Prikkelbaar gedrag of huilbuien</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Terugtrekken uit sociale situaties</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-purple-600 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Concentratieproblemen</span>
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Hoe Helpen Droomvriendjes Knuffels?</h2>
-            <p className="mb-4">
-              Onze kalmerende knuffels zijn speciaal ontworpen om stress bij kinderen te verminderen:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="border-2 border-purple-100">
-                <CardContent className="pt-6">
-                  <h3 className="font-bold text-purple-900 mb-2">Rustgevend Licht</h3>
-                  <p className="text-gray-600">Zachte, warme lichtjes helpen het lichaam te ontspannen en signaleren dat het tijd is om tot rust te komen.</p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-blue-100">
-                <CardContent className="pt-6">
-                  <h3 className="font-bold text-purple-900 mb-2">Kalmerende Muziek</h3>
-                  <p className="text-gray-600">Speciaal geselecteerde geluiden en melodieën die wetenschappelijk bewezen het stressniveau verlagen.</p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-pink-100">
-                <CardContent className="pt-6">
-                  <h3 className="font-bold text-purple-900 mb-2">Fysiek Contact</h3>
-                  <p className="text-gray-600">Het knuffelen van een zachte knuffel stimuleert de productie van oxytocine, het knuffelhormoon.</p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-green-100">
-                <CardContent className="pt-6">
-                  <h3 className="font-bold text-purple-900 mb-2">Veiligheidsgevoel</h3>
-                  <p className="text-gray-600">Een vertrouwde knuffel geeft kinderen een gevoel van veiligheid en geborgenheid, vooral in stressvolle momenten.</p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          <section className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Tips voor Ouders</h2>
-            <ol className="space-y-3">
-              <li><strong>1. Herken de signalen:</strong> Let op veranderingen in gedrag en slaappatronen</li>
-              <li><strong>2. Creëer een rustig moment:</strong> Gebruik de Droomvriendjes knuffel in een vast avondritueel</li>
-              <li><strong>3. Praat erover:</strong> Laat je kind vertellen over de dag en zorgen</li>
-              <li><strong>4. Beperk schermtijd:</strong> Vooral in de uren voor het slapengaan</li>
-              <li><strong>5. Blijf consistent:</strong> Een vaste routine geeft rust en voorspelbaarheid</li>
-            </ol>
-          </section>
-
-          <section>
-            <h2 className="text-3xl font-bold text-purple-900 mb-4">Wetenschappelijke Onderbouwing</h2>
-            <p className="mb-4">
-              Onderzoek toont aan dat het gebruik van multi-sensorische hulpmiddelen zoals onze kalmerende 
-              knuffels significant bijdraagt aan stressvermindering bij kinderen. De combinatie van tactiele 
-              stimulatie (knuffelen), visuele rust (zacht licht) en auditieve kalmte (rustgevende geluiden) 
-              activeert het parasympathische zenuwstelsel.
-            </p>
-            <p>
-              Dit zorgt ervoor dat het lichaam overgaat van de vecht-of-vlucht modus naar een 
-              ontspannen staat, wat essentieel is voor een goede nachtrust en algemeen welzijn.
-            </p>
-          </section>
-
-          <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
-            <Heart className="w-16 h-16 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-4">Klaar om Stress te Verminderen?</h2>
-            <p className="text-lg mb-6">Ontdek hoe onze kalmerende knuffels jouw kind kunnen helpen</p>
-            <Link to="/">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
-                Bekijk Onze Knuffels
+      <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <Link to="/" className="flex items-center space-x-3">
+              <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-16 w-auto" />
+            </Link>
+            <a href="#producten">
+              <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
+                Bekijk knuffels <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <section className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block bg-white border border-[#c5d9c8] rounded-full px-4 py-2 text-sm text-[#2d5a3d] mb-6">
+                Speciaal voor kinderen met stress
+              </span>
+              
+              <h1 className="text-4xl md:text-5xl font-bold text-[#2d5a3d] mb-6 leading-tight">
+                Help je kind<br />
+                <span className="text-[#3d7a4d]">stress los te laten</span>
+              </h1>
+              
+              <p className="text-lg text-[#5a7a5a] mb-8 leading-relaxed">
+                Stress bij kinderen uit zich vaak in slaapproblemen, buikpijn of onrust. Een Droomvriendje biedt een veilig rustpunt: zacht licht om op te focussen, kalmerende geluiden om gedachten te stoppen, en iets warms om vast te houden.
+              </p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start space-x-3">
+                  <Brain className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Helpt gedachten stoppen</strong> — Focus op licht en geluid in plaats van zorgen</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Heart className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Geeft veiligheid</strong> — Iets vertrouwds om vast te houden</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Smile className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Creëert een ritueel</strong> — Voorspelbaarheid vermindert stress</span>
+                </li>
+              </ul>
+              
+              <div className="flex items-center space-x-6">
+                <a href="#producten">
+                  <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-8 py-6 text-lg">
+                    Bekijk Slaapknuffels
+                  </Button>
+                </a>
+                <span className="text-sm text-[#5a7a5a]">14 dagen retourgarantie</span>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="bg-white rounded-3xl p-8 shadow-xl">
+                <img src={landingProducts[0]?.image} alt="Droomvriendjes" className="w-full h-auto max-h-96 object-contain mx-auto" />
+                <div className="text-center mt-6">
+                  <p className="text-[#2d5a3d] font-semibold text-lg">Kalmerende slaapknuffel</p>
+                  <p className="text-[#5a7a5a]">Helpt je kind ontspannen</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="producten" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Aanbevolen bij Stress</h2>
+            <p className="text-lg text-[#5a7a5a]">Deze knuffels zijn het meest kalmerend</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {landingProducts.map((product) => (
+              <Card key={product.id} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="relative">
+                  <span className="absolute top-4 left-4 bg-[#2d5a3d] text-white px-3 py-1 rounded-full text-sm font-semibold">{product.landingBadge}</span>
+                  <div className="p-6 bg-gradient-to-b from-[#f5f9f5] to-white">
+                    <img src={product.image} alt={product.name} className="w-full h-48 object-contain mx-auto" />
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-[#2d5a3d] mb-2">{product.name}</h3>
+                  <div className="flex items-center mb-3">
+                    {[...Array(5)].map((_, i) => (<Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />))}
+                    <span className="text-sm text-gray-500 ml-2">({product.reviews})</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price}</span>
+                    <Button onClick={() => handleAddToCart(product)} className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-6">Bestel nu</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f5f9f5]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Ervaringen van Ouders</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {reviews.map((review, index) => (
+              <Card key={index} className="bg-white rounded-2xl p-6 border-0 shadow-md">
+                <div className="flex items-center mb-4">
+                  {[...Array(review.rating)].map((_, i) => (<Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />))}
+                </div>
+                <p className="text-[#4a6a4a] mb-4 italic">"{review.text}"</p>
+                <div className="border-t border-[#c5d9c8] pt-4">
+                  <p className="font-semibold text-[#2d5a3d]">{review.name}</p>
+                  <p className="text-sm text-[#5a7a5a]">{review.context}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#2d5a3d]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+            <div><p className="text-4xl font-bold mb-2">86%</p><p className="text-[#a5d6a7]">minder stress</p></div>
+            <div><p className="text-4xl font-bold mb-2">1000+</p><p className="text-[#a5d6a7]">tevreden gezinnen</p></div>
+            <div><p className="text-4xl font-bold mb-2">4.8★</p><p className="text-[#a5d6a7]">gemiddelde score</p></div>
+            <div><p className="text-4xl font-bold mb-2">14</p><p className="text-[#a5d6a7]">dagen proberen</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4">Veelgestelde Vragen</h2>
+          </div>
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="bg-[#f5f9f5] rounded-xl px-6 border-0">
+                <AccordionTrigger className="text-left text-[#2d5a3d] font-semibold hover:no-underline py-6">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-[#5a7a5a] pb-6">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f5f9f5]">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="bg-gradient-to-r from-[#e8f5e9] to-[#c8e6c9] rounded-3xl p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4">Geef je kind rust</h2>
+            <p className="text-lg text-[#5a7a5a] mb-8">Probeer een Droomvriendje 14 dagen. Niet tevreden? Geld terug.</p>
+            <Link to="/knuffels">
+              <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-10 py-6 text-lg">Bekijk Alle Slaapknuffels</Button>
             </Link>
           </div>
         </div>
-      </div>
-    </Layout>
+      </section>
+    </div>
   );
 };
 

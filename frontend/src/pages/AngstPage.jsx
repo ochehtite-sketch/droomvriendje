@@ -1,49 +1,210 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { Shield } from 'lucide-react';
-import Layout from '../components/Layout';
+import { Card, CardContent } from '../components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
+import { Star, ChevronRight, Shield, Heart, Moon } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { products as allProducts } from '../mockData';
+import CartSidebar from '../components/CartSidebar';
 
 const AngstPage = () => {
+  const { addToCart, setIsCartOpen } = useCart();
+
+  const selectedProductIds = [3, 2, 1];
+  const landingProducts = allProducts
+    .filter(p => selectedProductIds.includes(p.id))
+    .map(p => ({
+      ...p,
+      landingBadge: p.id === 3 ? "MEEST TROOSTEND" : p.id === 2 ? "POPULAIR" : "FAVORIET",
+    }));
+
+  const reviews = [
+    { name: "Sandra", context: "Moeder van Lucas (5 jaar)", rating: 5, text: "Lucas was doodsbang in het donker. Elke nacht huilen en bij ons in bed. Sinds zijn Droomvriendje slaapt hij trots in zijn eigen kamer. Het zachte licht geeft hem moed.", product: "Teddy Projector" },
+    { name: "Bart", context: "Vader van Sophie (4 jaar)", rating: 5, text: "Sophie had nachtmerries en durfde niet alleen te slapen. Nu houdt ze haar knuffel vast en kijkt naar de sterren op het plafond. Ze voelt zich veilig.", product: "Baby Nachtlamp Schaap" },
+    { name: "Ellen", context: "Moeder van Tim (6 jaar)", rating: 5, text: "Tim had veel angst, ook overdag. Het Droomvriendje is zijn maatje geworden. Als hij bang is, pakt hij het en wordt hij rustig. Een echte steun.", product: "Leeuw Slaapmaatje" }
+  ];
+
+  const faqs = [
+    { question: "Hoe helpt dit tegen angst in het donker?", answer: "Het zachte nachtlicht geeft net genoeg verlichting om het donker minder eng te maken, zonder de slaap te verstoren. De sterrenprojectie geeft iets moois om naar te kijken in plaats van het 'enge' donker." },
+    { question: "Mijn kind is ook overdag angstig. Helpt dit dan ook?", answer: "Ja, een Droomvriendje kan ook overdag worden gebruikt. Het vasthouden van iets vertrouwds en zachts kan troost bieden bij angstgevoelens, ongeacht het tijdstip." },
+    { question: "Wordt mijn kind niet afhankelijk van de knuffel?", answer: "Een overgangs- of troostobject is normaal en gezond voor kinderen. Naarmate ze ouder worden en meer zelfvertrouwen krijgen, hebben ze het vanzelf minder nodig." },
+    { question: "Wat als mijn kind nog steeds bang is?", answer: "Een Droomvriendje is een hulpmiddel, geen wondermiddel. Bij ernstige angstklachten raden we altijd aan om ook professionele hulp te zoeken. Maar voor veel kinderen maakt het een groot verschil." }
+  ];
+
+  const handleAddToCart = (product) => {
+    addToCart({ ...product, quantity: 1 });
+    setIsCartOpen(true);
+  };
+
   return (
-    <Layout backButtonText="Terug">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Angstvermindering bij Kinderen</h1>
-        
-        <div className="space-y-8 text-gray-700">
-          <p className="text-lg">Angst bij kinderen kan zich op verschillende manieren uiten. Van nachtmerries tot separatieangst - het is belangrijk om je kind te helpen zich veilig te voelen.</p>
+    <div className="min-h-screen bg-[#f5f9f5]">
+      <CartSidebar />
 
-          <section className="bg-purple-50 rounded-2xl p-6">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Vormen van Angst bij Kinderen</h2>
-            <ul className="space-y-2 list-disc list-inside">
-              <li>Angst voor het donker</li>
-              <li>Separatieangst (angst om van ouders gescheiden te zijn)</li>
-              <li>Sociale angst</li>
-              <li>Specifieke fobieën (spinnen, onweer, etc.)</li>
-              <li>Algemene ongerustheid</li>
-            </ul>
-          </section>
+      <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <Link to="/" className="flex items-center space-x-3">
+              <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-16 w-auto" />
+            </Link>
+            <a href="#producten">
+              <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
+                Bekijk knuffels <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            </a>
+          </div>
+        </div>
+      </header>
 
-          <h2 className="text-3xl font-bold text-purple-900">Hoe Droomvriendjes Helpt bij Angst</h2>
-          <p className="mb-4">Onze kalmerende knuffels bieden een fysiek ankerpunt voor angstige kinderen:</p>
-          <ul className="space-y-3 list-disc list-inside">
-            <li><strong>Zacht licht</strong> neemt de angst voor het donker weg</li>
-            <li><strong>Rustgevende geluiden</strong> leiden de aandacht af van angstige gedachten</li>
-            <li><strong>Fysieke troost</strong> door het zachte, knuffelbare materiaal</li>
-            <li><strong>Voorspelbaarheid</strong> door een vast avondritueel met de knuffel</li>
-          </ul>
+      <section className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block bg-white border border-[#c5d9c8] rounded-full px-4 py-2 text-sm text-[#2d5a3d] mb-6">
+                Hulp bij angst en bangheid
+              </span>
+              
+              <h1 className="text-4xl md:text-5xl font-bold text-[#2d5a3d] mb-6 leading-tight">
+                Een maatje tegen<br />
+                <span className="text-[#3d7a4d]">angst in het donker</span>
+              </h1>
+              
+              <p className="text-lg text-[#5a7a5a] mb-8 leading-relaxed">
+                Bang in het donker. Nachtmerries. Niet alleen durven slapen. Zoveel kinderen worstelen hiermee. Een Droomvriendje biedt een veilig, zacht maatje dat waakt in de nacht — met licht en geluid als geruststelling.
+              </p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start space-x-3">
+                  <Moon className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Zacht nachtlicht</strong> — Maakt het donker minder eng</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Shield className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Veilig maatje</strong> — Iets vertrouwds om vast te houden</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Heart className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Geeft moed</strong> — Kinderen voelen zich minder alleen</span>
+                </li>
+              </ul>
+              
+              <div className="flex items-center space-x-6">
+                <a href="#producten">
+                  <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-8 py-6 text-lg">
+                    Bekijk Slaapknuffels
+                  </Button>
+                </a>
+                <span className="text-sm text-[#5a7a5a]">14 dagen retourgarantie</span>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="bg-white rounded-3xl p-8 shadow-xl">
+                <img src={landingProducts[0]?.image} alt="Droomvriendjes" className="w-full h-auto max-h-96 object-contain mx-auto" />
+                <div className="text-center mt-6">
+                  <p className="text-[#2d5a3d] font-semibold text-lg">Troostend maatje</p>
+                  <p className="text-[#5a7a5a]">Waakt over je kind in de nacht</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className="mt-8 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center">
-            <Shield className="w-16 h-16 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-4">Veiligheid & Geborgenheid</h2>
-            <p className="mb-6">Help je kind angst te overwinnen met onze kalmerende knuffels</p>
-            <Link to="/">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Bekijk Producten</Button>
+      <section id="producten" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Aanbevolen bij Angst</h2>
+            <p className="text-lg text-[#5a7a5a]">Deze knuffels geven het meeste gevoel van veiligheid</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {landingProducts.map((product) => (
+              <Card key={product.id} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="relative">
+                  <span className="absolute top-4 left-4 bg-[#2d5a3d] text-white px-3 py-1 rounded-full text-sm font-semibold">{product.landingBadge}</span>
+                  <div className="p-6 bg-gradient-to-b from-[#f5f9f5] to-white">
+                    <img src={product.image} alt={product.name} className="w-full h-48 object-contain mx-auto" />
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-[#2d5a3d] mb-2">{product.name}</h3>
+                  <div className="flex items-center mb-3">
+                    {[...Array(5)].map((_, i) => (<Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />))}
+                    <span className="text-sm text-gray-500 ml-2">({product.reviews})</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price}</span>
+                    <Button onClick={() => handleAddToCart(product)} className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-6">Bestel nu</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f5f9f5]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Ervaringen van Ouders</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {reviews.map((review, index) => (
+              <Card key={index} className="bg-white rounded-2xl p-6 border-0 shadow-md">
+                <div className="flex items-center mb-4">
+                  {[...Array(review.rating)].map((_, i) => (<Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />))}
+                </div>
+                <p className="text-[#4a6a4a] mb-4 italic">"{review.text}"</p>
+                <div className="border-t border-[#c5d9c8] pt-4">
+                  <p className="font-semibold text-[#2d5a3d]">{review.name}</p>
+                  <p className="text-sm text-[#5a7a5a]">{review.context}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#2d5a3d]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+            <div><p className="text-4xl font-bold mb-2">89%</p><p className="text-[#a5d6a7]">minder angst</p></div>
+            <div><p className="text-4xl font-bold mb-2">1000+</p><p className="text-[#a5d6a7]">tevreden gezinnen</p></div>
+            <div><p className="text-4xl font-bold mb-2">4.8★</p><p className="text-[#a5d6a7]">gemiddelde score</p></div>
+            <div><p className="text-4xl font-bold mb-2">14</p><p className="text-[#a5d6a7]">dagen proberen</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4">Veelgestelde Vragen</h2>
+          </div>
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="bg-[#f5f9f5] rounded-xl px-6 border-0">
+                <AccordionTrigger className="text-left text-[#2d5a3d] font-semibold hover:no-underline py-6">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-[#5a7a5a] pb-6">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f5f9f5]">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="bg-gradient-to-r from-[#e8f5e9] to-[#c8e6c9] rounded-3xl p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4">Geef je kind een veilig maatje</h2>
+            <p className="text-lg text-[#5a7a5a] mb-8">14 dagen proberen. Niet tevreden? Geld terug.</p>
+            <Link to="/knuffels">
+              <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-10 py-6 text-lg">Bekijk Alle Slaapknuffels</Button>
             </Link>
           </div>
         </div>
-      </div>
-    </Layout>
+      </section>
+    </div>
   );
 };
 
