@@ -18,7 +18,7 @@ const BlogsPage = () => {
       date: "19 januari 2025",
       readTime: "8 min",
       category: "Samenwerking",
-      image: "https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800",
+      image: "https://i.imgur.com/rjvMgGO.png",
       featured: true
     },
     {
@@ -34,6 +34,7 @@ const BlogsPage = () => {
     },
     {
       id: 2,
+      slug: "hoe-helpen-kalmerende-knuffels-bij-stress",
       title: "Hoe Helpen Kalmerende Knuffels bij Stress?",
       excerpt: "Leer hoe onze kalmerende knuffels met licht en muziek wetenschappelijk bewezen helpen bij het verminderen van stress en angst bij kinderen.",
       author: "Dr. Sarah de Vries",
