@@ -1,7 +1,7 @@
 # Droomvriendjes - Product Requirements Document
 
 ## Origineel Probleem
-Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack applicatie met React frontend, FastAPI backend, en MongoDB (data momenteel in mockData.js).
+Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack applicatie met React frontend, FastAPI backend, en MongoDB Atlas (productie database).
 
 ## Doelgroep
 - Ouders van baby's en peuters
@@ -13,32 +13,43 @@ Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack a
 2. Google Analytics 4 e-commerce tracking
 3. Google Merchant Center integratie voor Shopping Ads
 4. Responsieve, mobile-first design
+5. Admin dashboard met funnel analytics
 
 ---
 
 ## Wat is Geïmplementeerd
 
-### 17 januari 2026 - Sessie 2
-- ✅ **Google Ads API Integratie** - Volledige backend service met OAuth flow
-- ✅ **Shopping Campaigns Admin** - Nieuwe pagina `/admin/shopping-campaigns`
-- ✅ **OAuth Callback** - `/admin/google-ads/callback` voor account koppeling
-- ✅ **Google AdSense** - Advertenties op knuffels, blogs en product pagina's
-- ✅ **Developer Token** opgeslagen: `Gy0ry8CVqgm7Dar4dXhHkg`
-- ✅ **Manager Account ID** opgeslagen: `362-584-3742`
+### 19 januari 2026 - Admin Dashboard
+- ✅ **Wachtwoord-beveiligd Admin Dashboard** - `/admin/login` en `/admin/dashboard`
+- ✅ **Funnel Analytics** - Conversietrechter met afhaal-percentages
+  - Checkout Gestart → Bestelling Aangemaakt → Betaling Voltooid
+  - Drop-off rates en verlaten winkelwagens
+- ✅ **Dashboard Statistieken:**
+  - Totale omzet, bestellingen, klanten
+  - Order status overzicht (in afwachting, betaald, verzonden, etc.)
+  - Gemiddelde orderwaarde en conversiepercentage
+- ✅ **Populaire Producten** - Top 5 best verkochte producten
+- ✅ **Verlaten Winkelwagens** - Abandoned cart tracking met email adressen
+- ✅ **Top Klanten** - Ranking op basis van bestedingen
+- ✅ **Protected Routes** - Alle admin pagina's beveiligd
+- ✅ **Admin wachtwoord in .env** - Veiliger configuratie
 
-### 17 januari 2026 - Sessie 1
-- ✅ **Google Merchant Center Feed** - `/api/feed/products` (JSON) en `/api/feed/google-shopping.xml` (XML)
-- ✅ **GTM Code Update** - Vervangen naar `GTM-W9PZRP4B`
-- ✅ **Google Credentials** - Client Secret, Customer ID, Merchant Center ID opgeslagen
+### 18 januari 2026 - Sendcloud & Order Management
+- ✅ **Admin Orders Pagina** - `/admin/orders` voor bestellingenbeheer
+- ✅ **Track & Trace** - Handmatig tracking code toevoegen met email notificatie
+- ✅ **Sendcloud API Integratie** - Verzendlabels aanmaken vanuit admin panel
+- ✅ **MongoDB Atlas** - Productie database verbinding gefixt
+
+### 17 januari 2026 - Google Marketing Suite
+- ✅ **Google Ads API Integratie** - Volledige backend service met OAuth flow
+- ✅ **Shopping Campaigns Admin** - `/admin/shopping-campaigns`
+- ✅ **OAuth Callback** - `/admin/google-ads/callback`
+- ✅ **Google AdSense** - Advertenties op website
+- ✅ **Google Merchant Center Feed** - XML en JSON feeds
 
 ### Eerdere Sessies
 - ✅ Product slider op homepage (Swiper.js)
 - ✅ `/knuffels` pagina met alle producten
-- ✅ Bestsellers sectie op homepage
-- ✅ Hero sectie redesign (mobile responsive)
-- ✅ GA4 E-commerce tracking (view_item, add_to_cart, checkout events)
-- ✅ Google Ads admin pagina (`/admin/google-ads`)
-- ✅ Merchant Feed admin pagina (`/admin/merchant-feed`)
 - ✅ Mollie betalingen (LIVE mode)
 - ✅ Email notificaties (SMTP via TransIP)
 - ✅ Cadeaubon functionaliteit (gift cards)
@@ -49,57 +60,74 @@ Nederlandse e-commerce website voor slaapknuffels met nachtlampjes. Full-stack a
 ## Prioritized Backlog
 
 ### P0 - Kritiek
-- [ ] **OAuth Autorisatie** - Verbind Google Ads account via `/admin/shopping-campaigns`
-- [ ] **Cadeaubon flow verificatie** - End-to-end test door gebruiker
+- [x] **Admin Dashboard** - Compleet met funnel analytics ✅
+- [ ] **Deployment naar Productie** - Alle blockers zijn opgelost
 
 ### P1 - Hoog
-- [ ] **Shopping Campagne Aanmaken** - Na OAuth koppeling
-- [ ] **Admin Dashboard** - Orders en producten beheer (vervangt mockData.js)
+- [ ] **BOOST Google Ads Campagne** - Programmatisch aanmaken via API
+- [ ] **Cadeaubon flow verificatie** - End-to-end test door gebruiker
+- [ ] **Sendcloud Label Test** - Full E2E test van label creatie
 
 ### P2 - Medium
 - [ ] Admin panel voor kortingscodes
-- [ ] WordPress plugin export
-- [ ] Homepage refactoring - Gebruik globale Header/Footer componenten
+- [ ] Gemini logo verwijderen uit product afbeeldingen
+- [ ] Homepage refactoring - Gebruik globale Header/Footer
 
 ### P3 - Laag
+- [ ] WordPress plugin export
 - [ ] Product reviews systeem
 - [ ] Wishlist functionaliteit
-- [ ] Email marketing integratie
+- [ ] Abandoned cart email sequences (FOMO)
 
 ---
 
 ## Technische Stack
 - **Frontend:** React, TailwindCSS, Shadcn/UI, Swiper.js
-- **Backend:** FastAPI (Python)
-- **Database:** MongoDB (data in mockData.js)
+- **Backend:** FastAPI (Python), Motor (async MongoDB)
+- **Database:** MongoDB Atlas (productie)
 - **Betalingen:** Mollie (LIVE)
+- **Verzending:** Sendcloud API
 - **Email:** SMTP via TransIP
-- **Analytics:** Google Analytics 4 (G-HGF9SEQG7Q), Google Tag Manager (GTM-W9PZRP4B)
-- **Ads:** Google AdSense (ca-pub-3408254396794902)
+- **Analytics:** Google Analytics 4, Google Tag Manager
+- **Ads:** Google AdSense, Google Ads API
 
-## Key Endpoints
-- `GET /api/feed/products` - JSON product feed
-- `GET /api/feed/google-shopping.xml` - XML feed voor Merchant Center
-- `GET /api/google-ads/status` - API configuratie status
-- `GET /api/google-ads/oauth-url` - Start OAuth flow
-- `POST /api/google-ads/oauth-callback` - OAuth callback handler
-- `GET /api/google-ads/campaigns` - Ophalen Shopping campagnes
-- `POST /api/google-ads/campaigns/create` - Nieuwe campagne aanmaken
-- `POST /api/orders` - Nieuwe bestelling
-- `POST /api/payments/create` - Mollie betaling
-- `POST /api/gift-card/purchase` - Cadeaubon kopen
+## Key API Endpoints
+- **Orders & Payments:**
+  - `POST /api/orders` - Nieuwe bestelling
+  - `POST /api/payments/create` - Mollie betaling
+  - `POST /api/webhook/mollie` - Payment webhook
+  
+- **Admin (Protected):**
+  - `POST /api/admin/login` - Admin login
+  - `GET /api/admin/verify` - Token verificatie
+  - `GET /api/admin/dashboard` - Dashboard data met funnel
+  - `GET /api/admin/orders` - Alle bestellingen
+  - `POST /api/admin/orders/{id}/tracking` - Tracking toevoegen
+  
+- **Sendcloud:**
+  - `GET /api/sendcloud/shipping-methods` - Verzendmethodes
+  - `POST /api/sendcloud/create-parcel` - Label aanmaken
+
+- **Google:**
+  - `GET /api/feed/google-shopping.xml` - Merchant feed
+  - `GET /api/google-ads/oauth-url` - OAuth start
+  - `POST /api/google-ads/campaigns/create` - Campagne maken
 
 ## Admin Pagina's
-- `/admin/google-ads` - Keywords, advertentieteksten, campagne data
-- `/admin/google-ads/callback` - OAuth callback handler
-- `/admin/merchant-feed` - Product feed voor Merchant Center
-- `/admin/shopping-campaigns` - Shopping campagnes beheer
+- `/admin/login` - Admin inloggen
+- `/admin/dashboard` - Hoofddashboard met statistieken
+- `/admin/orders` - Bestellingenbeheer
+- `/admin/google-ads` - Keywords en advertenties
+- `/admin/merchant-feed` - Product feed beheer
+- `/admin/shopping-campaigns` - Shopping campagnes
 
-## Credentials (opgeslagen in backend/.env)
-- Mollie API Key (LIVE)
-- SMTP credentials (TransIP)
-- Google OAuth Client ID & Secret
-- Google Ads Developer Token: `Gy0ry8CVqgm7Dar4dXhHkg`
-- Google Ads Customer ID: `932-209-5782`
-- Google Ads Manager ID: `362-584-3742`
-- Google Merchant Center ID: `5713316340`
+## Credentials (in backend/.env)
+- Mollie API Key (LIVE): `live_snNwpUSRqr2mPhPh6CCcUDJUnaSzr9`
+- MongoDB Atlas: Verbonden
+- Sendcloud API: Geconfigureerd
+- Admin: `admin` / `Droomvriendjes2024!`
+
+---
+
+## Test Rapporten
+- `/app/test_reports/iteration_6.json` - Admin Dashboard tests (100% passed)
