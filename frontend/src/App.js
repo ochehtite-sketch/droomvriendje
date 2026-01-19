@@ -14,6 +14,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import VoorwaardenPage from "./pages/VoorwaardenPage";
 import BlogsPage from "./pages/BlogsPage";
 import BlogMondriaanPage from "./pages/BlogMondriaanPage";
+import BlogSlaaptipsPage from "./pages/BlogSlaaptipsPage";
 import CadeaubonPage from "./pages/CadeaubonPage";
 import StressPage from "./pages/StressPage";
 import OverprikkelingPage from "./pages/OverprikkelingPage";
