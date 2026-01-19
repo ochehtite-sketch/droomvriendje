@@ -615,7 +615,7 @@ const HomePage = () => {
             </div>
 
             {/* Leeuw - Bestseller #3 */}
-            <div className="group relative" data-testid="bestseller-card-leeuw">
+            <div className="group relative" data-testid="bestseller-card-slaapmaatje">
               <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
               <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100/80 group-hover:border-amber-200 group-hover:-translate-y-2">
                 {/* Rank Badge */}
@@ -627,12 +627,12 @@ const HomePage = () => {
                 </div>
                 
                 {/* Image Container */}
-                <Link to="/product/1" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/product/12" onClick={() => window.scrollTo(0, 0)}>
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-amber-50 via-orange-50/50 to-white">
                     <div className="aspect-square relative flex items-center justify-center">
                       <img 
-                        src="https://i.imgur.com/E4g3eOy.jpeg" 
-                        alt="Leeuw Slaapmaatje"
+                        src="https://i.imgur.com/ZuRmduU.jpeg" 
+                        alt="Baby Slaapmaatje Schaap"
                         className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
@@ -646,27 +646,28 @@ const HomePage = () => {
                 
                 {/* Content */}
                 <div className="p-6 pt-8 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Leeuw Slaapmaatje</h3>
-                  <p className="text-gray-500 text-sm mb-4">Zacht, knuffelbaar & populair</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Baby Slaapmaatje Schaap</h3>
+                  <p className="text-gray-500 text-sm mb-4">Zacht, knuffelbaar & nieuw</p>
                   
                   {/* Rating */}
                   <div className="flex items-center justify-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
-                    <span className="text-sm text-gray-600 ml-1">(187 reviews)</span>
+                    <span className="text-sm text-gray-600 ml-1">(89 reviews)</span>
                   </div>
                   
                   {/* Price */}
                   <div className="mb-5">
-                    <span className="text-3xl font-bold text-gray-900">€59,95</span>
+                    <span className="text-sm text-gray-400 line-through mr-2">€59,95</span>
+                    <span className="text-3xl font-bold text-gray-900">€49,95</span>
                   </div>
                   
                   {/* CTA Button */}
                   <Button 
                     className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300"
-                    onClick={() => addToCart(products.find(p => p.id === 1))}
-                    data-testid="bestseller-add-leeuw"
+                    onClick={() => addToCart(products.find(p => p.id === 12))}
+                    data-testid="bestseller-add-slaapmaatje"
                   >
                     <ShoppingCart className="w-5 h-5 mr-2" />
                     Toevoegen aan winkelwagen
