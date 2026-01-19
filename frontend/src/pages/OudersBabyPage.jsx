@@ -216,11 +216,11 @@ const OudersBabyPage = () => {
       <section id="producten" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <a href="https://www.droomvriendjes.nl/#producten" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+            <Link to="/knuffels" className="hover:opacity-80 transition-opacity">
               <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4" style={{fontFamily: 'Quicksand, sans-serif'}}>
                 Kies het perfecte Droomvriendje
               </h2>
-            </a>
+            </Link>
             <p className="text-[#5a7a5a] text-lg">Alle knuffels zijn veilig vanaf 0 maanden</p>
           </div>
           
