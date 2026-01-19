@@ -140,11 +140,11 @@ const VrouwenLandingPage = () => {
                 className="h-16 w-auto"
               />
             </Link>
-            <a href="#producten">
+            <Link to="/knuffels">
               <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
                 Kies je rustmaatje <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
