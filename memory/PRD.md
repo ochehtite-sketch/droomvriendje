@@ -8,7 +8,7 @@
 E-commerce website for Droomvriendjes selling plush sleep toys with night lights and soothing sounds.
 
 **Tech Stack:** React + FastAPI + MongoDB Atlas
-**Live URL:** https://dreamy-plush.preview.emergentagent.com
+**Live URL:** https://dreampal-ecom.preview.emergentagent.com
 
 ---
 
