@@ -7,6 +7,7 @@ import { Star, ChevronRight, Zap, Volume2, Eye } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
+import Footer from '../components/Footer';
 
 const OverprikkelingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();

@@ -7,6 +7,7 @@ import { Star, ChevronRight, Heart, Moon, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
+import Footer from '../components/Footer';
 
 const DementiePage = () => {
   const { addToCart, setIsCartOpen } = useCart();

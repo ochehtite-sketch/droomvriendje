@@ -7,6 +7,7 @@ import { Star, ChevronRight, Shield, Heart, Moon } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { products as allProducts } from '../mockData';
 import CartSidebar from '../components/CartSidebar';
+import Footer from '../components/Footer';
 
 const AngstPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
