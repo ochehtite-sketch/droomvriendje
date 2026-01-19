@@ -22,7 +22,7 @@ const AdminLoginPage = () => {
     const result = await login(username, password);
     
     if (result.success) {
-      navigate('/admin');
+      navigate('/admin/dashboard');
     } else {
       setError(result.error);
     }
