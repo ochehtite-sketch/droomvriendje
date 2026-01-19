@@ -5,6 +5,13 @@ import ProductSlider from '../components/ProductSlider';
 import { useCart } from '../context/CartContext';
 
 const TipsBedtijdPage = () => {
+  const { addToCart, setIsCartOpen } = useCart();
+  
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setIsCartOpen(true);
+  };
+
   const tips = [
     {
       icon: "🕐",
