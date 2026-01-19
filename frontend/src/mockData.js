@@ -422,6 +422,95 @@ export const products = [
     item_category4: "Medium",
     item_category5: "Met Projectie",
     item_variant: "zwart-wit"
+  },
+  {
+    id: 12,
+    name: "Baby Slaapmaatje Schaap",
+    shortName: "Slaapmaatje Schaap",
+    price: 49.95,
+    originalPrice: 59.95,
+    image: "https://i.imgur.com/ZuRmduU.jpeg",
+    gallery: [
+      "https://i.imgur.com/tK5lFd6.jpeg",
+      "https://i.imgur.com/SDAdl3O.jpeg",
+      "https://i.imgur.com/5meWKRZ.jpeg",
+      "https://i.imgur.com/O9Mbg2I.jpeg",
+      "https://i.imgur.com/NrcwqN2.jpeg",
+      "https://i.imgur.com/y85otLI.jpeg",
+      "https://i.imgur.com/4ickF4C.jpeg",
+      "https://i.imgur.com/lKj67xd.jpeg"
+    ],
+    description: "Schattig schaap slaapmaatje met rustgevend nachtlampje en kalmerende geluiden. Perfect voor baby's en peuters.",
+    features: [
+      "Zacht nachtlampje",
+      "Rustgevende geluiden",
+      "Extra zacht materiaal",
+      "Timer functie"
+    ],
+    benefits: [
+      "💤 Betere nachtrust",
+      "😌 Kalmeert je baby",
+      "🌙 Zacht, warm licht",
+      "💖 Knuffelzacht"
+    ],
+    rating: 4.8,
+    reviews: 89,
+    badge: "NIEUW",
+    inStock: true,
+    ageRange: "Vanaf 0 maanden",
+    warranty: "14 dagen geld-terug-garantie",
+    item_id: "KNUF_012",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Boerderijdieren",
+    item_category4: "Medium",
+    item_category5: "Met Nachtlamp",
+    item_variant: "wit-crème"
+  },
+  {
+    id: 13,
+    name: "Baby Slaapmaatje Teddy Bruin",
+    shortName: "Slaapmaatje Teddy",
+    price: 49.95,
+    originalPrice: 59.95,
+    image: "https://i.imgur.com/rgrTbmF.jpeg",
+    gallery: [
+      "https://i.imgur.com/20H8VWo.jpeg",
+      "https://i.imgur.com/ZuxBiSp.jpeg",
+      "https://i.imgur.com/eM7G4OR.jpeg",
+      "https://i.imgur.com/PbIEHDw.jpeg",
+      "https://i.imgur.com/Ozq7cnr.jpeg",
+      "https://i.imgur.com/PwHLpLf.jpeg",
+      "https://i.imgur.com/0bKtnUq.jpeg",
+      "https://i.imgur.com/i4FzYoB.jpeg",
+      "https://i.imgur.com/wHnNI1Y.jpeg"
+    ],
+    description: "Lieve bruine teddy slaapmaatje met zacht nachtlampje en kalmerende geluiden. Ideaal voor een rustige nacht.",
+    features: [
+      "Warm nachtlampje",
+      "Hartslag en white noise",
+      "Super zacht pluche",
+      "Automatische timer"
+    ],
+    benefits: [
+      "💤 Sneller inslapen",
+      "🧸 Knuffelbare vriend",
+      "🌟 Geruststellend licht",
+      "😴 Doorslapen"
+    ],
+    rating: 4.9,
+    reviews: 76,
+    badge: "POPULAIR",
+    inStock: true,
+    ageRange: "Vanaf 0 maanden",
+    warranty: "14 dagen geld-terug-garantie",
+    item_id: "KNUF_013",
+    item_category: "Knuffels",
+    item_category2: "Slaapknuffels",
+    item_category3: "Beren",
+    item_category4: "Medium",
+    item_category5: "Met Nachtlamp",
+    item_variant: "bruin"
   }
 ];
 
