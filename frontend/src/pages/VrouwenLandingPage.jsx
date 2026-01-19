@@ -247,7 +247,7 @@ const VrouwenLandingPage = () => {
             <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
               <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
                 <img 
-                  src={allProducts[0]?.image} 
+                  src={allProducts.find(p => p.id === 7)?.image} 
                   alt="Warm licht"
                   className="w-full h-auto object-contain max-h-[150px]"
                 />
