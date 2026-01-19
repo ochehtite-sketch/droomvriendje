@@ -1571,9 +1571,16 @@ import hashlib
 import secrets
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-# Admin credentials from environment variables
-ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'Droomvriendjes2024!')
+# Admin credentials from environment variables (required - no fallback for security)
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
+
+# Validate admin credentials are set
+if not ADMIN_USERNAME or not ADMIN_PASSWORD:
+    logger.warning("⚠️ ADMIN_USERNAME or ADMIN_PASSWORD not set in environment - admin panel will be disabled")
+    ADMIN_USERNAME = ADMIN_USERNAME or "admin_disabled"
+    ADMIN_PASSWORD = ADMIN_PASSWORD or secrets.token_hex(32)  # Random password if not set
+
 # Hash the password for comparison
 ADMIN_PASSWORD_HASH = hashlib.sha256(ADMIN_PASSWORD.encode()).hexdigest()
 
