@@ -1661,7 +1661,7 @@ async def google_ads_oauth_callback(request: Request, code: str, origin: str = N
             parsed = urlparse(header_origin)
             base_url = f"{parsed.scheme}://{parsed.netloc}"
         else:
-            base_url = FRONTEND_URL
+            base_url = get_frontend_url()
     
     redirect_uri = f"{base_url}/admin/google-ads/callback"
     logger.info(f"OAuth callback - using redirect_uri: {redirect_uri}")
