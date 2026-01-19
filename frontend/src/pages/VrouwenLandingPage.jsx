@@ -322,14 +322,14 @@ const VrouwenLandingPage = () => {
             {/* Navigation Arrows */}
             <button 
               onClick={prevFeatureSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-20"
               aria-label="Vorige"
             >
               <ChevronLeft className="w-6 h-6 text-[#2d5a3d]" />
             </button>
             <button 
               onClick={nextFeatureSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-20"
               aria-label="Volgende"
             >
               <ChevronRight className="w-6 h-6 text-[#2d5a3d]" />
