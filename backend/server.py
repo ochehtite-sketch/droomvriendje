@@ -1065,14 +1065,18 @@ async def purchase_gift_card(data: GiftCardPurchase):
         logger.info(f"Creating gift card payment with API key: {api_key[:15]}...")
         mollie_client = get_mollie_client()
         
+        # Use dynamic URLs for production
+        frontend_url = get_frontend_url()
+        api_url = get_api_url()
+        
         payment = mollie_client.payments.create({
             "amount": {
                 "currency": "EUR",
                 "value": f"{data.amount:.2f}"
             },
             "description": f"Droomvriendjes Cadeaubon €{data.amount:.2f}",
-            "redirectUrl": f"{FRONTEND_URL}/cadeaubon/succes?id={gift_card_id}",
-            "webhookUrl": f"{API_URL}/api/webhook/gift-card",
+            "redirectUrl": f"{frontend_url}/cadeaubon/succes?id={gift_card_id}",
+            "webhookUrl": f"{api_url}/api/webhook/gift-card}",
             "metadata": {
                 "gift_card_id": gift_card_id,
                 "type": "gift_card"
