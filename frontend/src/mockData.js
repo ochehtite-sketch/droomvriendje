@@ -54,7 +54,6 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/vYpeb4c.jpeg",
     gallery: [
-      "https://i.imgur.com/vYpeb4c.jpeg",
       "https://i.imgur.com/62h7jyd.jpeg",
       "https://i.imgur.com/JxKouOL.jpeg",
       "https://i.imgur.com/CaicX7m.jpeg",
