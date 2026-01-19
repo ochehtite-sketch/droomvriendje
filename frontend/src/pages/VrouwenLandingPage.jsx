@@ -11,6 +11,34 @@ import Footer from '../components/Footer';
 
 const VrouwenLandingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
+  const [featureSlide, setFeatureSlide] = useState(0);
+
+  // Feature slider data
+  const featureCards = [
+    {
+      id: 7,
+      title: "Warm licht",
+      description: "Een zacht, gedimd schijnsel dat u uit de volledige duisternis houdt (als dat onrust geeft) zonder u wakker te maken zoals een telefoonscherm."
+    },
+    {
+      id: 12,
+      title: "Rustige geluiden",
+      description: "Witte ruis en kalmerende geluiden maskeren plotselinge geluiden en geven uw hersenen iets voorspelbaars om op te focussen."
+    },
+    {
+      id: 11,
+      title: "Iets om vast te houden",
+      description: "De knuffel zelf geeft uw handen een contactpunt — veel vrouwen voelen zich rustiger met iets zachts vast te houden."
+    }
+  ];
+
+  const nextFeatureSlide = () => {
+    setFeatureSlide((prev) => (prev + 1) % featureCards.length);
+  };
+
+  const prevFeatureSlide = () => {
+    setFeatureSlide((prev) => (prev - 1 + featureCards.length) % featureCards.length);
+  };
 
   // Select specific products for this landing page (Beer, Panda, Baby Slaapmaatje Schaap)
   // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
