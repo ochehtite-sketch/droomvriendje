@@ -1047,10 +1047,13 @@ async def purchase_gift_card(data: GiftCardPurchase):
         result = await db.gift_cards.insert_one(gift_card)
         gift_card_id = str(result.inserted_id)
         
-        # Create Mollie payment
-        logger.info(f"Creating gift card payment with API key: {MOLLIE_API_KEY[:15]}...")
-        mollie_client = MollieClient()
-        mollie_client.set_api_key(MOLLIE_API_KEY)
+        # Create Mollie payment - use dynamic API key loading
+        api_key = get_mollie_api_key()
+        if not api_key:
+            raise HTTPException(status_code=500, detail="Mollie API key niet geconfigureerd")
+        
+        logger.info(f"Creating gift card payment with API key: {api_key[:15]}...")
+        mollie_client = get_mollie_client()
         
         payment = mollie_client.payments.create({
             "amount": {
