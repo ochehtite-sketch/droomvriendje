@@ -114,38 +114,11 @@ const AngstPage = () => {
         </div>
       </section>
 
-      <section id="producten" className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Aanbevolen bij Angst</h2>
-            <p className="text-lg text-[#5a7a5a]">Deze knuffels geven het meeste gevoel van veiligheid</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {landingProducts.map((product) => (
-              <Card key={product.id} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border">
-                <div className="relative">
-                  <span className="absolute top-4 left-4 bg-[#2d5a3d] text-white px-3 py-1 rounded-full text-sm font-semibold">{product.landingBadge}</span>
-                  <div className="p-6 bg-gradient-to-b from-[#f5f9f5] to-white">
-                    <img src={product.image} alt={product.name} className="w-full h-48 object-contain mx-auto" />
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-[#2d5a3d] mb-2">{product.name}</h3>
-                  <div className="flex items-center mb-3">
-                    {[...Array(5)].map((_, i) => (<Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />))}
-                    <span className="text-sm text-gray-500 ml-2">({product.reviews})</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price}</span>
-                    <Button onClick={() => handleAddToCart(product)} className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-6">Bestel nu</Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+            <ProductSlider 
+        onAddToCart={handleAddToCart}
+        title="Aanbevolen bij Angst"
+        subtitle="Deze knuffels geven het meeste gevoel van veiligheid"
+      />
 
       <section className="py-16 bg-[#f5f9f5]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
