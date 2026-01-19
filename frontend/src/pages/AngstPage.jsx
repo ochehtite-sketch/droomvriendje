@@ -11,17 +11,18 @@ import CartSidebar from '../components/CartSidebar';
 const AngstPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  const selectedProductIds = [3, 2, 1];
+  // Only show IN STOCK products - 7=Beer, 1=Leeuw, 11=Panda
+  const selectedProductIds = [7, 1, 11];
   const landingProducts = allProducts
-    .filter(p => selectedProductIds.includes(p.id))
+    .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 3 ? "MEEST TROOSTEND" : p.id === 2 ? "POPULAIR" : "FAVORIET",
+      landingBadge: p.id === 7 ? "MEEST TROOSTEND" : p.id === 1 ? "POPULAIR" : "FAVORIET",
     }));
 
   const reviews = [
-    { name: "Sandra", context: "Moeder van Lucas (5 jaar)", rating: 5, text: "Lucas was doodsbang in het donker. Elke nacht huilen en bij ons in bed. Sinds zijn Droomvriendje slaapt hij trots in zijn eigen kamer. Het zachte licht geeft hem moed.", product: "Teddy Projector" },
-    { name: "Bart", context: "Vader van Sophie (4 jaar)", rating: 5, text: "Sophie had nachtmerries en durfde niet alleen te slapen. Nu houdt ze haar knuffel vast en kijkt naar de sterren op het plafond. Ze voelt zich veilig.", product: "Baby Nachtlamp Schaap" },
+    { name: "Sandra", context: "Moeder van Lucas (5 jaar)", rating: 5, text: "Lucas was doodsbang in het donker. Elke nacht huilen en bij ons in bed. Sinds zijn Droomvriendje slaapt hij trots in zijn eigen kamer. Het zachte licht geeft hem moed.", product: "Beer Sterrenprojector" },
+    { name: "Bart", context: "Vader van Sophie (4 jaar)", rating: 5, text: "Sophie had nachtmerries en durfde niet alleen te slapen. Nu houdt ze haar knuffel vast en kijkt naar de sterren op het plafond. Ze voelt zich veilig.", product: "Panda Projector" },
     { name: "Ellen", context: "Moeder van Tim (6 jaar)", rating: 5, text: "Tim had veel angst, ook overdag. Het Droomvriendje is zijn maatje geworden. Als hij bang is, pakt hij het en wordt hij rustig. Een echte steun.", product: "Leeuw Slaapmaatje" }
   ];
 
