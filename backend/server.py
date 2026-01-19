@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Request
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Depends
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -1620,7 +1620,7 @@ async def admin_login(login: AdminLogin):
 
 
 @api_router.get("/admin/verify")
-async def verify_admin(credentials: HTTPAuthorizationCredentials = security):
+async def verify_admin(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """Verify admin token"""
     admin = verify_admin_token(credentials)
     if not admin:
@@ -1629,7 +1629,7 @@ async def verify_admin(credentials: HTTPAuthorizationCredentials = security):
 
 
 @api_router.get("/admin/dashboard")
-async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = security):
+async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """Get admin dashboard data"""
     admin = verify_admin_token(credentials)
     if not admin:
