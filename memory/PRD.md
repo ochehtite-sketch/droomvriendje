@@ -1,5 +1,9 @@
 # Droomvriendjes - Product Requirements Document
 
+## Latest Updates (January 19, 2026)
+- **Footer Links Fixed**: Created new `/rustmoment-ouders` page (RustmomentOudersPage.jsx) to make all footer links clickable
+- **Route Added**: Added route in App.js for the new page
+
 ## Project Overview
 E-commerce website for Droomvriendjes selling plush sleep toys with night lights and soothing sounds.
 
