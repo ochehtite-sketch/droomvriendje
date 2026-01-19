@@ -10,6 +10,18 @@ import { AdBanner, AdInArticle } from '../components/AdSense';
 const BlogsPage = () => {
   const blogs = [
     {
+      id: 7,
+      slug: "droomvriendjes-mondriaan-samenwerking",
+      title: "Droomvriendjes.nl x Mondriaan: samen werken aan rust in de avond",
+      excerpt: "In een druk gezinsleven is tot rust komen niet altijd vanzelfsprekend. Daarom werken Droomvriendjes.nl en Mondriaan samen om gezinnen te ondersteunen met praktische rustmomenten.",
+      author: "Team Droomvriendjes",
+      date: "19 januari 2025",
+      readTime: "8 min",
+      category: "Samenwerking",
+      image: "https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800",
+      featured: true
+    },
+    {
       id: 1,
       title: "5 Tips voor een Betere Nachtrust bij Kinderen",
       excerpt: "Ontdek de beste tips om je kind te helpen beter te slapen. Van een vaste slaaproutine tot het creëren van een rustige slaapomgeving.",
@@ -70,6 +82,10 @@ const BlogsPage = () => {
       image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800"
     }
   ];
+
+  // Separate featured blog
+  const featuredBlog = blogs.find(b => b.featured);
+  const regularBlogs = blogs.filter(b => !b.featured);
 
   return (
     <Layout backButtonText="Terug naar Home">
