@@ -11,18 +11,19 @@ import CartSidebar from '../components/CartSidebar';
 const DementiePage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  const selectedProductIds = [7, 2, 8];
+  // Only show IN STOCK products - 7=Beer, 8=Schaap Liggend, 11=Panda
+  const selectedProductIds = [7, 8, 11];
   const landingProducts = allProducts
-    .filter(p => selectedProductIds.includes(p.id))
+    .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 7 ? "MEEST GEKOZEN" : p.id === 2 ? "EXTRA ZACHT" : "RUSTGEVEND",
+      landingBadge: p.id === 7 ? "MEEST GEKOZEN" : p.id === 8 ? "EXTRA ZACHT" : "RUSTGEVEND",
     }));
 
   const reviews = [
     { name: "Annemarie", context: "Dochter van moeder met dementie (78)", rating: 5, text: "Mijn moeder is vaak onrustig, vooral 's avonds. Het Droomvriendje geeft haar iets om vast te houden en het zachte licht kalmeert haar. De verpleging is ook enthousiast.", product: "Beer Projector" },
-    { name: "Gerard", context: "Zoon van vader met dementie (82)", rating: 5, text: "Pa heeft het Droomvriendje op zijn nachtkastje. Als hij 's nachts wakker wordt, zet hij het aan. Het geeft hem troost en afleiding van verwarrende gedachten.", product: "Baby Nachtlamp Schaap" },
-    { name: "Marlies", context: "Verzorgende in verpleeghuis", rating: 5, text: "We gebruiken Droomvriendjes bij meerdere bewoners. Het helpt echt bij onrust en geeft een gevoel van geborgenheid. Vooral het vasthouden en het zachte licht werken kalmerend.", product: "Schaap Liggend" }
+    { name: "Gerard", context: "Zoon van vader met dementie (82)", rating: 5, text: "Pa heeft het Droomvriendje op zijn nachtkastje. Als hij 's nachts wakker wordt, zet hij het aan. Het geeft hem troost en afleiding van verwarrende gedachten.", product: "Schaap Knuffel Liggend" },
+    { name: "Marlies", context: "Verzorgende in verpleeghuis", rating: 5, text: "We gebruiken Droomvriendjes bij meerdere bewoners. Het helpt echt bij onrust en geeft een gevoel van geborgenheid. Vooral het vasthouden en het zachte licht werken kalmerend.", product: "Panda Projector" }
   ];
 
   const faqs = [
