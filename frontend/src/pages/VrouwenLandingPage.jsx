@@ -489,7 +489,8 @@ const VrouwenLandingPage = () => {
             Alle Droomvriendjes hebben zacht licht, rustige geluiden en een comfortabele knuffel — alleen het uiterlijk verschilt.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Desktop: Grid, Mobile: Slider */}
+          <div className="hidden md:grid grid-cols-3 gap-6">
             {landingProducts.map((product) => (
               <Card key={product.id} className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
                 <Link to={`/product/${product.id}`}>
@@ -527,6 +528,86 @@ const VrouwenLandingPage = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Mobile Product Slider */}
+          <div className="md:hidden relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${productSlide * 100}%)` }}
+              >
+                {landingProducts.map((product) => (
+                  <div key={product.id} className="w-full flex-shrink-0 px-2">
+                    <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+                      <Link to={`/product/${product.id}`}>
+                        <div className="bg-[#e8f0e8] p-8 flex items-center justify-center min-h-[280px] cursor-pointer hover:bg-[#dce8dc] transition-colors">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="w-full h-auto object-contain max-h-[220px] max-w-[220px]"
+                          />
+                        </div>
+                      </Link>
+                      <CardContent className="p-6">
+                        <p className="text-xs font-bold text-[#7a9a7a] mb-1">{product.landingBadge}</p>
+                        <Link to={`/product/${product.id}`}>
+                          <h3 className="font-bold text-[#2d5a3d] text-xl mb-1 hover:underline cursor-pointer">{product.shortName}</h3>
+                        </Link>
+                        <p className="text-sm text-[#7a9a7a] mb-3">{product.subtitle}</p>
+                        <p className="text-[#5a7a5a] text-sm mb-4">{product.landingDescription}</p>
+                        
+                        <div className="flex items-baseline justify-between mb-4">
+                          <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price.toFixed(2).replace('.', ',')}</span>
+                          <span className="text-sm text-[#7a9a7a]">incl. btw</span>
+                        </div>
+                        
+                        <Button 
+                          onClick={() => handleAddToCart(product)}
+                          className="w-full bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full py-4"
+                        >
+                          Voeg toe aan winkelwagen
+                        </Button>
+                        
+                        <p className="text-center text-xs text-[#7a9a7a] mt-3">
+                          30 dagen proberen · Gratis verzending
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevProductSlide}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-20"
+              aria-label="Vorige product"
+            >
+              <ChevronLeft className="w-6 h-6 text-[#2d5a3d]" />
+            </button>
+            <button 
+              onClick={nextProductSlide}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-20"
+              aria-label="Volgende product"
+            >
+              <ChevronRight className="w-6 h-6 text-[#2d5a3d]" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {landingProducts.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setProductSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    productSlide === index ? 'bg-[#2d5a3d]' : 'bg-[#c5d9c8]'
+                  }`}
+                  aria-label={`Ga naar product ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
