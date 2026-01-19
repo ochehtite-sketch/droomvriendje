@@ -104,8 +104,55 @@ const BlogsPage = () => {
         {/* Ad Banner Top */}
         <AdBanner className="mb-8" />
         
+        {/* Featured Blog - Mondriaan Samenwerking */}
+        {featuredBlog && (
+          <div className="mb-12">
+            <Link to={`/blog/${featuredBlog.slug || featuredBlog.id}`}>
+              <Card className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-200 group">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  <div className="relative h-64 lg:h-auto overflow-hidden">
+                    <img 
+                      src={featuredBlog.image} 
+                      alt={featuredBlog.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
+                      {featuredBlog.category}
+                    </Badge>
+                  </div>
+                  <CardContent className="p-8 flex flex-col justify-center bg-gradient-to-br from-purple-50 to-white">
+                    <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold mb-4 border-purple-200 bg-purple-100 text-purple-800 w-fit">
+                      Uitgelicht
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-purple-900 mb-4">
+                      {featuredBlog.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6 text-lg">
+                      {featuredBlog.excerpt}
+                    </p>
+                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center space-x-1">
+                        <User className="w-4 h-4" />
+                        <span>{featuredBlog.author}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{featuredBlog.date}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{featuredBlog.readTime}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          </div>
+        )}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.slice(0, 3).map((blog) => (
+          {regularBlogs.slice(0, 6).map((blog) => (
             <Card key={blog.id} className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-100 group">
               <div className="relative h-48 overflow-hidden">
                 <img 
