@@ -427,7 +427,7 @@ const HomePage = () => {
           <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg border border-purple-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">100.000+</p>
+                <p className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">&gt;10.000+</p>
                 <p className="text-sm text-gray-600 font-medium">Tevreden Klanten</p>
               </div>
               <div>
