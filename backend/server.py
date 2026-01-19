@@ -24,13 +24,16 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).parent
-# Load .env file but DON'T override existing environment variables (important for production)
-# In production, env vars are set via Kubernetes, so we should not override them
+
+# Load .env file - this should work for both local dev and production
+# In production, the .env file should be deployed with the app
 env_path = ROOT_DIR / '.env'
 if env_path.exists():
-    load_dotenv(env_path, override=False)
+    # Use override=True to ensure .env values are used
+    load_dotenv(env_path, override=True)
+    logger.info(f"Loaded environment from: {env_path}")
 else:
-    logger.info("No .env file found, using system environment variables")
+    logger.warning(f"No .env file found at {env_path}, using system environment variables only")
 
 # MongoDB connection - Support both local and Atlas MongoDB
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
@@ -45,34 +48,30 @@ except Exception as e:
     logger.error(f"MongoDB connection error: {e}")
     raise
 
-# Mollie configuration - load dynamically for production
+# Mollie configuration - read directly from environment after dotenv load
+MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
+MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
+
+# Log Mollie configuration at startup for debugging
+if MOLLIE_API_KEY:
+    logger.info(f"✅ Mollie API key loaded: {MOLLIE_API_KEY[:20]}... (length: {len(MOLLIE_API_KEY)})")
+else:
+    logger.error("❌ MOLLIE_API_KEY is EMPTY - payments will fail!")
+
 def get_mollie_api_key():
-    """Get Mollie API key from environment, with proper fallback"""
-    # Always read fresh from environment for production support
-    key = os.environ.get('MOLLIE_API_KEY', '')
-    if not key:
-        logger.error("MOLLIE_API_KEY not set in environment!")
-    else:
-        logger.debug(f"Mollie API key loaded: {key[:15]}...")
-    return key
+    """Get Mollie API key - use module-level variable"""
+    if not MOLLIE_API_KEY:
+        logger.error("MOLLIE_API_KEY not configured!")
+    return MOLLIE_API_KEY
 
 def get_mollie_client():
-    """Create a new Mollie client with current API key"""
+    """Create a new Mollie client with API key"""
     api_key = get_mollie_api_key()
     if not api_key:
-        raise ValueError("MOLLIE_API_KEY not configured - please set environment variable")
+        raise ValueError("MOLLIE_API_KEY not configured - check your .env file")
     mollie_client = MollieClient()
     mollie_client.set_api_key(api_key)
     return mollie_client
-
-# Log current Mollie configuration at startup
-_startup_mollie_key = os.environ.get('MOLLIE_API_KEY', '')
-if _startup_mollie_key:
-    logger.info(f"Mollie API key configured at startup: {_startup_mollie_key[:20]}...")
-else:
-    logger.warning("⚠️ MOLLIE_API_KEY not found at startup - payments will fail!")
-
-MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
 
 # URL configuration - load from environment for production support
 def get_frontend_url():
