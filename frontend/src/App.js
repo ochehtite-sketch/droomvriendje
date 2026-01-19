@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
+import { AdminAuthProvider, ProtectedAdminRoute } from "./context/AdminAuthContext";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -36,6 +37,8 @@ import GoogleAdsCallbackPage from "./pages/GoogleAdsCallbackPage";
 import KeywordsPage from "./pages/KeywordsPage";
 import AdsStrategyPage from "./pages/AdsStrategyPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
+import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -48,42 +51,52 @@ function App() {
     <div className="App">
       <CartProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/knuffels" element={<KnuffelsPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/betaling-resultaat/:orderId" element={<PaymentResultPage />} />
-            <Route path="/over-ons" element={<OverOnsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/retourneren" element={<RetournerenPage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/voorwaarden" element={<VoorwaardenPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
-            <Route path="/cadeaubon" element={<CadeaubonPage />} />
-            <Route path="/stress" element={<StressPage />} />
-            <Route path="/overprikkeling" element={<OverprikkelingPage />} />
-            <Route path="/angst" element={<AngstPage />} />
-            <Route path="/slaapproblemen" element={<SlaapproblemenPage />} />
-            <Route path="/troost" element={<TroostPage />} />
-            <Route path="/hsp" element={<HSPPage />} />
-            <Route path="/dementie" element={<DementiePage />} />
-            <Route path="/reviews" element={<ReviewsPage />} />
-            <Route path="/naam-bedenker" element={<NaamBedenkerPage />} />
-            <Route path="/uitproberen" element={<UitproberenPage />} />
-            <Route path="/vrouwen-60" element={<VrouwenLandingPage />} />
-            <Route path="/ouders-baby" element={<OudersBabyPage />} />
-            <Route path="/ouders-peuters" element={<OudersPeutersPage />} />
-            <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
-            <Route path="/admin/google-ads" element={<GoogleAdsPage />} />
-            <Route path="/admin/google-ads/callback" element={<GoogleAdsCallbackPage />} />
-            <Route path="/admin/merchant-feed" element={<MerchantFeedPage />} />
-            <Route path="/admin/shopping-campaigns" element={<ShoppingCampaignsPage />} />
-            <Route path="/admin/shopping-campaigns/data" element={<ShoppingCampaignsDataPage />} />
-            <Route path="/admin/keywords" element={<KeywordsPage />} />
-            <Route path="/admin/orders" element={<AdminOrdersPage />} />
-          </Routes>
-          <Toaster />
+          <AdminAuthProvider>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/knuffels" element={<KnuffelsPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/betaling-resultaat/:orderId" element={<PaymentResultPage />} />
+              <Route path="/over-ons" element={<OverOnsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/retourneren" element={<RetournerenPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/voorwaarden" element={<VoorwaardenPage />} />
+              <Route path="/blogs" element={<BlogsPage />} />
+              <Route path="/cadeaubon" element={<CadeaubonPage />} />
+              <Route path="/stress" element={<StressPage />} />
+              <Route path="/overprikkeling" element={<OverprikkelingPage />} />
+              <Route path="/angst" element={<AngstPage />} />
+              <Route path="/slaapproblemen" element={<SlaapproblemenPage />} />
+              <Route path="/troost" element={<TroostPage />} />
+              <Route path="/hsp" element={<HSPPage />} />
+              <Route path="/dementie" element={<DementiePage />} />
+              <Route path="/reviews" element={<ReviewsPage />} />
+              <Route path="/naam-bedenker" element={<NaamBedenkerPage />} />
+              <Route path="/uitproberen" element={<UitproberenPage />} />
+              <Route path="/vrouwen-60" element={<VrouwenLandingPage />} />
+              <Route path="/ouders-baby" element={<OudersBabyPage />} />
+              <Route path="/ouders-peuters" element={<OudersPeutersPage />} />
+              <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
+              
+              {/* Admin Login (Public) */}
+              <Route path="/admin/login" element={<AdminLoginPage />} />
+              
+              {/* Protected Admin Routes */}
+              <Route path="/admin" element={<ProtectedAdminRoute><AdminDashboardPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/dashboard" element={<ProtectedAdminRoute><AdminDashboardPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/orders" element={<ProtectedAdminRoute><AdminOrdersPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/google-ads" element={<ProtectedAdminRoute><GoogleAdsPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/google-ads/callback" element={<GoogleAdsCallbackPage />} />
+              <Route path="/admin/merchant-feed" element={<ProtectedAdminRoute><MerchantFeedPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/shopping-campaigns" element={<ProtectedAdminRoute><ShoppingCampaignsPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/shopping-campaigns/data" element={<ProtectedAdminRoute><ShoppingCampaignsDataPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/keywords" element={<ProtectedAdminRoute><KeywordsPage /></ProtectedAdminRoute>} />
+            </Routes>
+            <Toaster />
+          </AdminAuthProvider>
         </BrowserRouter>
       </CartProvider>
     </div>
