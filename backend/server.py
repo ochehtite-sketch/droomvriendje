@@ -96,6 +96,16 @@ def get_api_url():
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendjes.nl')
 API_URL = os.environ.get('API_URL', 'https://droomvriendjes.nl')
 
+# Sendcloud API configuration
+SENDCLOUD_PUBLIC_KEY = os.environ.get('SENDCLOUD_PUBLIC_KEY', '')
+SENDCLOUD_SECRET_KEY = os.environ.get('SENDCLOUD_SECRET_KEY', '')
+SENDCLOUD_API_URL = "https://panel.sendcloud.sc/api/v2"
+
+if SENDCLOUD_PUBLIC_KEY:
+    logger.info(f"✅ Sendcloud API configured: {SENDCLOUD_PUBLIC_KEY[:15]}...")
+else:
+    logger.warning("⚠️ Sendcloud API keys not configured")
+
 # SMTP Email configuration
 SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.transip.email')
 SMTP_PORT = int(os.environ.get('SMTP_PORT', 465))
