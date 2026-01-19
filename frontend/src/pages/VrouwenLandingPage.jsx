@@ -11,10 +11,11 @@ import CartSidebar from '../components/CartSidebar';
 const VrouwenLandingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Select specific products for this landing page (Beer, Panda, Schaap)
-  const selectedProductIds = [7, 11, 2]; // Beer Projector, Panda, Schaap
+  // Select specific products for this landing page (Beer, Panda, Baby Slaapmaatje Schaap)
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
-    .filter(p => selectedProductIds.includes(p.id))
+    .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
       subtitle: p.id === 7 ? "Neutrale bruine kleur" : p.id === 11 ? "Zacht wit/zwart, met sterrenprojectie" : "Extra zachte stof, extra gedimd licht",
