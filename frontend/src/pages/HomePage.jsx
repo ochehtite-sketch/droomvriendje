@@ -313,7 +313,7 @@ const HomePage = () => {
               className="product-slider !pb-14"
               data-testid="product-slider"
             >
-              {products.map((product, index) => (
+              {availableProducts.map((product, index) => (
                 <SwiperSlide key={product.id}>
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 h-full flex flex-col">
                     {/* Badge */}
