@@ -1,160 +1,168 @@
 <analysis>**original_problem_statement:**
-The user wants to enhance their Dutch e-commerce website, Droomvriendjes, which sells plush toys. The project is a full-stack application with a React frontend, FastAPI backend, and MongoDB (mocked). The user's goal is to improve the site's UI/UX, add new features, and integrate with Google services for marketing and analytics.
+The user wants to enhance their Dutch e-commerce website, Droomvriendjes, which sells plush toys. The project is a full-stack application with a React frontend, FastAPI backend, and mocked data. The primary goal is to build out a comprehensive suite of tools to manage and automate Google marketing efforts, including Google Shopping, Google Ads, and Google AdSense, while also improving the site's UI/UX.
 
 **PRODUCT REQUIREMENTS (from this session):**
--   **Homepage Slider:** Implement a product slider on the homepage, referencing a competitor's design.
--   **All Products Page:** Create a dedicated page () to display all available products.
--   **Bestsellers Section:** Add a new, highly-styled Bestsellers section to the homepage based on user-provided designs.
--   **GA4 E-commerce Integration:** Implement a full Google Analytics 4 e-commerce tracking setup, including product tags in the data source and events for , , , , etc.
--   **Google Ads Setup:** Create a structured data file and an admin page to manage keywords, ad copy, and campaign information for Google Ads.
--   **Hero Section Redesign:** Update the homepage's main hero section with new text and imagery, and ensure it is fully responsive for mobile devices.
--   **Image Cleanup:** Remove a watermarked image and a duplicate image from the product catalog.
--   **Google Shopping Integration:** Begin building functionality to automatically generate and manage Google Shopping ads, starting with a product feed generator.
+-   **Google Merchant Center Integration:** Fix the broken product feed generator and automate the feed upload process to Google Merchant Center using SFTP.
+-   **Google Ads API Integration:** Implement a full Google Ads API integration to manage Shopping campaigns directly from an admin dashboard. This includes handling a complex OAuth 2.0 flow.
+-   **Google AdSense Integration:** Integrate Google AdSense into the website to display ads on various pages.
+-   **Campaign & Keyword Management:** Create admin interfaces to manage pre-defined shopping campaigns and extensive keyword lists, with options to export for bulk import into Google Ads.
+-   **Create a BOOST campaign:** Use the newly created API integration to programmatically create a marketing campaign.
+-   **Deploy to Production:** Prepare the application for deployment and provide the user with instructions to deploy.
 
 **User's preferred language**: Dutch. The next agent MUST respond in Dutch only.
 
 **what currently exists?**
-A full-stack e-commerce application using React, FastAPI, and a  file as a database. The homepage features a dynamic product slider (using Swiper.js), a redesigned mobile-responsive hero section, and a newly implemented, professionally styled Bestsellers section. A new  page lists all products. Full GA4 e-commerce event tracking is integrated across the site. There are new admin pages for viewing Google Ads data () and a (currently broken) Google Merchant Center feed (). The backend has a new endpoint to generate this XML product feed.
+A full-stack e-commerce application (React/FastAPI/mock-data). The site features a working, automated product feed that can be uploaded to Google Merchant Center via SFTP with a button click from an admin page (). A complete Google Ads API integration is in place, with a now-functional OAuth 2.0 flow and an admin page () to manage campaigns. The site also includes several data-driven admin pages for pre-made Shopping Campaigns (), over 500 keywords (), and an advanced advertising strategy overview (). Google AdSense has been integrated with placeholder ads visible in the preview environment. The major blocker from this session, the Google OAuth , , and  errors, has been resolved.
 
 **Last working item**:
--   **Last item agent was working:** The agent was fixing a bug in the newly created Google Merchant Center product feed generator. The frontend page at  was failing to load data from the backend endpoint  due to a Not Found error.
--   **Status:** IN PROGRESS
--   **Agent Testing Done:** N
--   **Which testing method agent to use?** The agent should first use  to test the  endpoint directly after restarting the backend. If the backend works, use the screenshot tool on  to verify the frontend fix.
+-   **Last item agent was working:** Implementing an advanced Google Ads strategy provided by the user. This involved creating a new data file with over 200 new keywords and tactical advice () and displaying this information on a new admin page ().
+-   **Status:** USER VERIFICATION PENDING
+-   **Agent Testing Done:** N (Agent did not verify the new page with a screenshot after creation).
+-   **Which testing method agent to use?** Screenshot tool on the new  page.
 -   **User Testing Done:** N
 
 **All Pending/In progress Issue list**:
--   **Issue 1:** Google Merchant Center feed page is not loading data. (PRIORITY: P0)
+-   **Issue 1:** The Google Ads API connection has a valid token, but a campaign has not yet been created programmatically. (PRIORITY: P0)
 -   **Issue 2:** User verification for the Cadeaubon (Gift Card) payment flow. (PRIORITY: P1)
 
   **Issues Detail:**
   - **Issue 1:**
-     - **Attempted fixes:** The agent identified that the FastAPI route for the feed was registered after the main API router was included (), and its data dependency () was also defined too late in . The agent attempted a fix by moving both the route definition and the  constant to an earlier position in the file. This fix is incomplete and has not been tested.
+     - **Attempted fixes:** The agent successfully debugged and fixed the entire Google OAuth 2.0 flow, which was the prerequisite. The user confirmed the connection works. The agent attempted to create a campaign but was blocked by a stale authorization code (). The agent then implemented a fix in  to prevent the auth code from being used twice by React's StrictMode.
      - **Next debug checklist:**
-        1.  Verify the changes in  ensure the  route is correctly registered before .
-        2.  Restart the backend service: backend: stopped
-backend: started.
-        3.  Test the endpoint directly: Web server returned an unknown error.
-        4.  If the curl command returns XML data, take a screenshot of  to confirm the frontend page loads correctly.
-     - **Why fix this issue and what will be achieved with the fix?** This is the first step in the Automatic Google Shopping Ads feature requested by the user. Fixing it will provide a valid product feed required for Google Merchant Center.
+        1.  Ask the user to re-authenticate one more time by visiting  and clicking Verbind Google Ads Account to ensure a fresh, valid token is stored.
+        2.  Confirm the  status is  by calling the  endpoint.
+        3.  Implement the logic to create a BOOST campaign using the  functions.
+     - **Why fix this issue and what will be achieved with the fix?** This is the final step to validate the entire Google Ads API integration and fulfill the user's request to BOOST ADVERTENTIE!.
      - **Status:** IN PROGRESS
-     - **Is recurring issue?** N
-     - **Should Test frontend/backend/both after fix?** Both.
+     - **Is recurring issue?** Y (The OAuth flow was a major recurring blocker, but the underlying issue has now shifted to API usage).
+     - **Should Test frontend/backend/both after fix?** Backend.
      - **Blocked on other issue:** None.
 
   - **Issue 2:**
-     - **Attempted fixes:** This is a carry-over issue. A backend fix for the gift card API was implemented in a previous session and tested with a direct API call. However, the full end-to-end flow has not been verified by the user from the frontend.
-     - **Next debug checklist:** After completing the current high-priority tasks, the agent must ask the user to perform a test purchase of a gift card to validate the entire workflow.
-     - **Why fix this issue and what will be achieved with the fix?** This is a critical, potential revenue-blocking issue. Confirmation is needed to ensure the gift card feature is fully operational.
+     - **Attempted fixes:** This is a carry-over issue. A backend fix was implemented in a previous session.
+     - **Next debug checklist:** After completing the Google Ads tasks, the agent must ask the user to perform a test purchase of a gift card.
+     - **Why fix this issue and what will be achieved with the fix?** To confirm a critical, revenue-generating feature is fully functional.
      - **Status:** USER VERIFICATION PENDING
-     - **Is recurring issue?** Y (Payment-related issues have come up before).
+     - **Is recurring issue?** Y
      - **Should Test frontend/backend/both after fix?** Frontend (user-led E2E test).
      - **Blocked on other issue:** None.
 
 **In progress Task List**:
--   **Task 1:** Finalize the Google Merchant Center Product Feed Generator. (PRIORITY: P0)
-     - **Where to resume:** The agent has edited  to fix a routing issue. The next step is to test this fix.
-     - **What will be achieved with this?** A working admin page () that displays a valid XML product feed generated by the backend, ready for upload to Google Merchant Center.
+-   **Task 1:** Create a BOOST campaign via the Google Ads API. (PRIORITY: P0)
+     - **Where to resume:** Resume in  or a new service file. After confirming a valid refresh token exists, create an endpoint that triggers the campaign creation logic in .
+     - **What will be achieved with this?** The first-ever programmatically created ad campaign, proving the integration works end-to-end.
      - **Status:** IN PROGRESS
-     - **Should Test frontend/backend/both after fix?** Both.
-     - **Blocked on something:** Blocked by Issue 1 above.
+     - **Should Test frontend/backend/both after fix?** Backend (verifying campaign creation in the user's Google Ads account).
+     - **Blocked on something:** Blocked by Issue 1.
 
 **Upcoming and Future Tasks**
 -   **Upcoming Tasks:**
-    -   **Complete Google Shopping Ads Integration (P0):** The primary goal is to automate Google Shopping ad creation. The product feed was the first step.
-        -   **Action:** Collect the remaining credentials from the user: **Client Secret** and **Developer Token**.
-        -   **Action:** Implement the logic to connect to the Google Ads API, upload the generated product feed to the Merchant Center, and create Shopping campaigns.
-    -   **Implement Admin Dashboard (P1):** Build a backend and frontend interface to manage orders and products, eventually replacing the  file. The user has asked for this, and the agent should clarify requirements (e.g., auth mechanism).
+    -   **Deploy to Production (P0):** The user explicitly requested deployment. The agent has run a health check and deemed the app ready. The next step is to guide the user through the final deployment.
+    -   **Implement Admin Dashboard (P1):** Build a backend and frontend interface to manage orders and products, moving away from .
 
 -   **Future Tasks:**
     -   Create an admin panel to manage discount codes.
     -   Create a mechanism to export the React application into a WordPress plugin.
 
 **Completed work in this session**
--   **Product Slider:** Implemented a dynamic product slider on the homepage using Swiper.js.
--   **All Products Page:** Created a new page at  to display all products and updated all relevant navigation links.
--   **Homepage Redesign (Bestsellers & Hero):**
-    -   Added a Bestsellers section based on user designs, then completely re-styled it to a more professional, conversion-focused design with gradients and custom badges.
-    -   Redesigned the main hero section with new text/imagery and made it fully mobile-responsive.
--   **GA4 E-commerce Integration:** Fully integrated GA4 e-commerce tracking, including updating  with product tags and implementing events (, , , , ).
--   **Google Ads Admin Page:** Created a new page at  that displays structured data for campaigns, keywords, and ad copy, complete with CSV download functionality.
--   **Image Cleanup:** Removed a duplicate product image and replaced another that contained a Gemini AI watermark.
--   **Product Feed Endpoint:** Created a backend endpoint () and a corresponding admin page () to generate an XML feed for Google Merchant Center (currently being debugged).
+-   **Google Merchant Center Feed Fixed:** Resolved routing bugs in  to make the product feed endpoints ( and ) functional.
+-   **SFTP Product Feed Upload:** Implemented a feature to automatically upload the generated XML product feed to Google Merchant Center via SFTP, triggered by a button in the admin UI.
+-   **Google Ads API & OAuth Flow:** Successfully integrated the Google Ads Python library and resolved a complex series of OAuth 2.0 errors (, , ), resulting in a working connection to the user's Google Ads account.
+-   **Google Ads Admin Pages:**
+    -   Created a main management page: .
+    -   Created a data page with 10 campaign templates: .
+    -   Created a keywords page with 300+ keywords and export functionality: .
+    -   Created a comprehensive strategy page based on user input: .
+-   **Google AdSense Integration:** Added the AdSense script to  and created a reusable React component () to display placeholder ads on multiple pages.
+-   **Deployment Readiness:** Ran a deployment health check and fixed hardcoded URLs in preparation for production deployment.
+-   **GTM & Credentials:** Updated the GTM tag and securely stored all necessary Google API credentials in the backend  file.
 
 **Earlier issues found/mentioned but not fixed**
 -   The **Gift Card Flow Verification** remains the main pending item from previous sessions.
 
 **Known issue recurrence from previous fork**
--   None in this session.
+-   None.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
--   **Frontend:** React, React Router, TailwindCSS, **Swiper.js**, GA4  push events.
--   **Backend:** FastAPI, dynamic XML generation.
--   **Data Source:** All product and site data is managed in .
--   **Integrations:** Google Analytics 4, groundwork laid for Google Merchant Center and Google Ads API.
+-   **Frontend:** React, React Router, TailwindCSS.
+-   **Backend:** FastAPI,  library,  for SFTP.
+-   **Integrations:** Google Ads API (OAuth 2.0), Google Merchant Center (SFTP), Google AdSense, Google Tag Manager.
+-   **Authentication:** Debugging and implementing the server-side Google OAuth 2.0 web flow, including handling , , and  errors.
 
 **key DB schema**
--   N/A. All data is managed in .
+-   N/A. All data is managed in  files in .
 
 **changes in tech stack**
--    library was added to the frontend.
+-   **Backend:** Added  and  Python libraries.
 
 **All files of reference**
--   : Modified to add the product feed endpoint; currently being refactored to fix a routing bug.
--   : Heavily modified with the slider, redesigned Bestsellers section, and mobile-responsive Hero section.
--   : Updated with detailed GA4 product attributes and new image URLs.
--   : New routes added for , , and .
--   : Overwritten to provide comprehensive GA4 e-commerce tracking functions.
--   : (New) Page to display all products.
--   : (New) Admin page for Google Ads data.
--   : (New) Admin page to display the product feed.
+-   : Heavily modified to fix feed routes, add Google Ads OAuth flow, and add SFTP upload endpoint.
+-   : Contains all logic for interacting with the Google Ads API.
+-   : The main UI for the Google Ads integration.
+-   : Handles the OAuth 2.0 redirect from Google.
+-   : Modified to include the Upload Feed Nu! button.
+-   : New page to display keywords.
+-   : New page for the advanced strategy.
+-   : Contains all the new, sensitive Google credentials.
 
 **Areas that need refactoring**:
--    still contains its own hardcoded header and footer implementation. This should be refactored to use the global  and  components to ensure consistency.
+-   The backend  file has grown to over 1700 lines. It should be broken down into smaller, more manageable route files (e.g., , ).
+-   The  still contains a local header/footer implementation and should be refactored to use the global components.
 
 **key api endpoints**
--   : (New) GET endpoint that returns an XML product feed for Google Merchant Center. Currently under debug.
+-   : (GET) Returns product feed as JSON.
+-   : (GET) Returns product feed as XML.
+-   : (POST) Uploads the XML feed to Google Merchant Center via SFTP.
+-   : (GET) Checks the configuration and OAuth status.
+-   : (GET) Generates the URL for the Google OAuth consent screen.
+-   : (POST) Handles the callback from Google to exchange the auth code for tokens.
 
 **Critical Info for New Agent**
--   **Speak Dutch:** The user communicates exclusively in Dutch.
--   **Fix First:** Your immediate priority is to fix the broken product feed generator by resolving the routing issue in .
--   **Gather Credentials:** To proceed with the main task (Google Shopping automation), you MUST collect the remaining credentials from the user: the **Client Secret** and the **Developer Token**.
--   **Address Pending Verification:** After fixing the current issue, remind the user about the pending **Gift Card payment flow test**. It is a high-priority item that has been unresolved for too long.
--   **Data Source is Mock:** Remember all product data is in . All product-related logic reads from this file.
+-   **Speak Dutch.**
+-   **Google OAuth is working!** After a long and difficult process, the Google Ads API connection is established. The user has two Google Cloud projects; the correct, working one is the **new personal @gmail.com project**, not the old organization-restricted one. All required URIs and origins are configured there.
+-   **Immediate Task:** The user's last command was to create a BOOST campaign. The next step is to use the working API connection to fulfill this request. You will likely need the user to re-authenticate one last time to get a fresh token, as the previous one was consumed in an  error.
+-   **Deploy is Pending:** The user has requested to deploy to production. The app passed a health check. This should be a high-priority task after the BOOST campaign is created.
+-   **All Data is Mocked:** All site data (products, campaigns, keywords) is stored in  files in the frontend. No database is connected.
 
 **documents and test reports created in this job**
 -   
+-   
+-   
 -    (updated)
--    (new data file)
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User:** Approves starting the product feed generator.
-2.  **User:** Provides Google Ads Customer ID, email, and Merchant Center ID.
-3.  **Agent:** Confirms Gemini watermark is removed.
-4.  **User:** Points to the exact location of the Gemini watermark on an image.
-5.  **Agent:** Asks for clarification on where the Gemini logo is.
-6.  **User:** Uploads an image showing the Gemini watermark.
-7.  **User:** Asks to remove the Gemini logo/watermark from an image and also delete a duplicate image.
-8.  **User:** Specifies the next major goal: Create automatic Ads shopping.
-9.  **User:** Provides the Google OAuth Client ID again.
-10. **User:** Provides a screenshot of their OAuth2 credentials.
+1.  **User:** Requests to deploy to production and import keywords into Google Ads.
+2.  **User:** Provides an extensive, detailed advertising strategy with 200+ new keywords.
+3.  **Agent:** Confirms the new strategy and keywords will be added.
+4.  **User:** Asks to import keywords into Google Ads and deploy to production.
+5.  **Agent:** Asks the user to clarify if they want to try fixing the OAuth flow again.
+6.  **User:** Confirms they want the agent to fix the OAuth flow.
+7.  **Agent:** Asks the user if the OAuth flow is working now.
+8.  **User:** HET WERKT (IT WORKS). Confirms the OAuth flow is successful.
+9.  **User:** BOOST ADVERTENTIE!. Requests to create a boost campaign.
+10. **User:** Provides SFTP credentials for Google Merchant Center.
 
 **Project Health Check:**
--   **Broken:** The  page and its backend endpoint  are currently broken.
--   **Mocked:** The entire product catalog, reviews, and site content are mocked in .
--   **Verification Pending:** The end-to-end gift card purchase flow requires user testing.
+-   **Broken:** None.
+-   **Mocked:** The entire product catalog, ad campaigns, keywords, and site content are mocked in various  data files.
+-   **Verification Pending:**
+    -   The end-to-end gift card purchase flow.
+    -   Programmatic creation of a Google Ads campaign via the API.
+    -   User testing of the SFTP feed upload button.
 
 **3rd Party Integrations**
 -   **Mollie:** LIVE mode, credentials in .
--   **Google Analytics:**  (fully integrated for e-commerce).
--   **Google Tag Manager:** .
--   **Google Ads / Merchant Center:** Integration is IN PROGRESS. Requires additional credentials (Client Secret, Developer Token).
+-   **Google Analytics:**  (configured).
+-   **Google Tag Manager:**  (updated).
+-   **Google Ads API:** **Working.** OAuth flow is complete, and a refresh token can be obtained. Credentials stored in .
+-   **Google Merchant Center:** **Working.** Product feed generation and SFTP upload are functional. Credentials stored in .
+-   **Google AdSense:** **Integrated.** Publisher ID () added. Displays placeholders in preview.
 
 **Testing status**
--   **Testing agent used after significant changes:** YES, for the product slider implementation.
+-   **Testing agent used after significant changes:** NO
 -   **Troubleshoot agent used after agent stuck in loop:** NO
 -   **Test files created:** None.
 -   **Known regressions:** None.
@@ -162,11 +170,14 @@ backend: started.
 **Credentials to test flow:**
 -   **Mollie API Key:** Stored in .
 -   **SMTP Credentials:** Stored in .
--   **Google Ads/Merchant Center:**
-    -   Customer ID: 
-    -   Merchant Center ID: 
-    -   OAuth Client ID: 
-    -   **Missing:** Client Secret, Developer Token.
+-   **Google Ads/OAuth:**
+    -   Client ID: 
+    -   Client Secret: 
+    -   Developer Token: 
+-   **Google Merchant Center SFTP:**
+    -   Username: 
+    -   Password: 
 
 **What agent forgot to execute**
--   The agent did not remind the user about the pending verification for the **Gift Card payment flow**, a P0/P1 issue carried over from the last session.</analysis>
+-   The agent has not consistently followed up on the pending verification for the **Gift Card payment flow**, which is a recurring pending item.
+-   The user's request to BOOST ADVERTENTIE! was initiated but then diverted by the user providing SFTP credentials. The agent completed the SFTP task but has not yet returned to the original API campaign creation task.</analysis>
