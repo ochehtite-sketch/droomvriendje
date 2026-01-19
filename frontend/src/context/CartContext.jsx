@@ -94,14 +94,27 @@ export const CartProvider = ({ children }) => {
   };
 
   // Bereken korting: 2e knuffel 50% korting
-  // Per 2 items van hetzelfde product: 1x volle prijs + 1x 50% korting
+  // Voor elke 2 items (ongeacht of het dezelfde of verschillende producten zijn)
+  // krijg je 50% korting op het goedkoopste item van elk paar
   const getDiscount = () => {
-    let discount = 0;
+    // Maak een array van alle individuele items met hun prijzen
+    let allItems = [];
     cart.forEach(item => {
-      // Voor elke 2 items krijg je 50% korting op 1 item
-      const discountedItems = Math.floor(item.quantity / 2);
-      discount += discountedItems * (item.price * 0.5);
+      for (let i = 0; i < item.quantity; i++) {
+        allItems.push(item.price);
+      }
     });
+    
+    // Sorteer van hoog naar laag (duurste eerst)
+    allItems.sort((a, b) => b - a);
+    
+    // Voor elk paar: volle prijs voor de eerste, 50% korting op de tweede
+    let discount = 0;
+    for (let i = 1; i < allItems.length; i += 2) {
+      // Item op positie 1, 3, 5, etc. krijgt 50% korting (de goedkopere van elk paar)
+      discount += allItems[i] * 0.5;
+    }
+    
     return discount;
   };
 
