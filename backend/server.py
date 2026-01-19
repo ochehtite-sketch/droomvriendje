@@ -28,11 +28,11 @@ logger = logging.getLogger(__name__)
 ROOT_DIR = Path(__file__).parent
 
 # Load .env file - this should work for both local dev and production
-# In production, the .env file should be deployed with the app
+# In production, Kubernetes environment variables take precedence
 env_path = ROOT_DIR / '.env'
 if env_path.exists():
-    # Use override=True to ensure .env values are used
-    load_dotenv(env_path, override=True)
+    # Use override=False so Kubernetes env vars take precedence in production
+    load_dotenv(env_path, override=False)
     logger.info(f"Loaded environment from: {env_path}")
 else:
     logger.warning(f"No .env file found at {env_path}, using system environment variables only")
@@ -1664,10 +1664,7 @@ async def get_admin_dashboard(
             filter_start = datetime(2020, 1, 1, tzinfo=timezone.utc)
             filter_end = now
         
-        # Get all orders
-        all_orders = await db.orders.find({}).to_list(10000)
-        
-        # Filter orders by date range
+        # Helper function to parse dates
         def parse_date(date_str):
             if not date_str:
                 return None
@@ -1676,11 +1673,29 @@ async def get_admin_dashboard(
             except:
                 return None
         
-        orders = []
-        for o in all_orders:
-            order_date = parse_date(o.get('created_at', ''))
-            if order_date and filter_start <= order_date <= filter_end:
-                orders.append(o)
+        # Get orders with MongoDB date filter and projection for better performance
+        # Use $gte and $lte on created_at string (ISO format sorts correctly)
+        orders_query = {
+            "created_at": {
+                "$gte": filter_start.isoformat(),
+                "$lte": filter_end.isoformat()
+            }
+        }
+        orders_projection = {
+            "_id": 1,
+            "customer_email": 1,
+            "customer_name": 1,
+            "total_amount": 1,
+            "status": 1,
+            "created_at": 1,
+            "items": 1
+        }
+        orders = await db.orders.find(orders_query, orders_projection).to_list(5000)
+        
+        # Also get all orders for today's stats (separate optimized query)
+        today_str = today.isoformat()[:10]  # YYYY-MM-DD format
+        all_orders_projection = {"_id": 1, "total_amount": 1, "status": 1, "created_at": 1, "items": 1}
+        all_orders = await db.orders.find({}, all_orders_projection).to_list(10000)
         
         # Calculate stats for filtered period
         total_orders = len(orders)
@@ -1773,8 +1788,21 @@ async def get_admin_dashboard(
         } for o in recent_orders]
         
         # ============== FUNNEL ANALYTICS ==============
-        # Get checkout events for funnel analysis
-        checkout_events = await db.checkout_events.find({}).to_list(10000)
+        # Get checkout events for funnel analysis with date filter and projection
+        checkout_query = {
+            "created_at": {
+                "$gte": filter_start.isoformat(),
+                "$lte": filter_end.isoformat()
+            }
+        }
+        checkout_projection = {
+            "_id": 1,
+            "customer_email": 1,
+            "cart_items": 1,
+            "total_amount": 1,
+            "created_at": 1
+        }
+        checkout_events = await db.checkout_events.find(checkout_query, checkout_projection).to_list(5000)
         
         # Calculate funnel metrics
         # Step 1: Checkout Started (from checkout_events)
@@ -1922,7 +1950,19 @@ class TrackingUpdate(BaseModel):
 async def get_admin_orders():
     """Get all orders for admin panel"""
     try:
-        orders = await db.orders.find({}).sort("created_at", -1).to_list(500)
+        # Use projection to fetch only needed fields for better performance
+        orders_projection = {
+            "_id": 1,
+            "customer_email": 1,
+            "customer_name": 1,
+            "total_amount": 1,
+            "status": 1,
+            "tracking_code": 1,
+            "carrier": 1,
+            "created_at": 1,
+            "items": 1
+        }
+        orders = await db.orders.find({}, orders_projection).sort("created_at", -1).to_list(500)
         
         result = []
         for order in orders:
