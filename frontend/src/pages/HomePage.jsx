@@ -564,7 +564,7 @@ const HomePage = () => {
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
                     <div className="aspect-square relative flex items-center justify-center">
                       <img 
-                        src="https://i.imgur.com/OrnKoRn.jpeg" 
+                        src="https://i.imgur.com/q2c7zsP.jpeg" 
                         alt="Beer Sterrenprojector"
                         className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
@@ -631,7 +631,7 @@ const HomePage = () => {
                   <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-amber-50 via-orange-50/50 to-white">
                     <div className="aspect-square relative flex items-center justify-center">
                       <img 
-                        src="https://i.imgur.com/MmYMPM7.jpeg" 
+                        src="https://i.imgur.com/E4g3eOy.jpeg" 
                         alt="Leeuw Slaapmaatje"
                         className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
