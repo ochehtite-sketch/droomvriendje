@@ -1388,9 +1388,8 @@ async def mollie_webhook(request: Request):
         
         logger.info(f"Webhook received for payment: {payment_id}")
         
-        # Initialize Mollie client and retrieve payment status
-        mollie_client = MollieClient()
-        mollie_client.set_api_key(MOLLIE_API_KEY)
+        # Initialize Mollie client with dynamic API key
+        mollie_client = get_mollie_client()
         payment = mollie_client.payments.get(payment_id)
         
         # Find the payment record
