@@ -35,7 +35,7 @@ export const products = [
     gallery: [
       "https://i.imgur.com/zYLuTAg.jpeg",
       "https://i.imgur.com/WfHQKKr.jpeg",
-      "https://i.imgur.com/ZeirKxe.jpeg",
+      "https://i.imgur.com/UebmbP4.jpeg",
       "https://i.imgur.com/zdKcLB9.jpeg",
       "https://i.imgur.com/duKgchx.jpeg",
       "https://i.imgur.com/70YlM3h.jpeg",
@@ -201,9 +201,9 @@ export const products = [
       "https://i.imgur.com/kJG1UIK.jpeg",
       "https://i.imgur.com/7kTE4kL.jpeg",
       "https://i.imgur.com/BigOdHS.jpeg",
-      "https://i.imgur.com/kksrsNR.jpeg",
+      "https://i.imgur.com/rNBYdpa.jpeg",
       "https://i.imgur.com/Z6hpUTM.jpeg",
-      "https://i.imgur.com/6iuH7HT.jpeg",
+      "https://i.imgur.com/hqYRLXc.jpeg",
       "https://i.imgur.com/GcYonv2.jpeg"
     ],
     description: "Stoere dinosaurus met nachtlamp en white noise. Perfect voor avonturiers!",
@@ -239,13 +239,13 @@ export const products = [
     shortName: "Duo Schaap & Teddy",
     price: 89.95,
     originalPrice: 99.90,
-    image: "https://i.imgur.com/4blLAM7.jpeg",
+    image: "https://i.imgur.com/7gNmXs4.jpeg",
     gallery: [
-      "https://i.imgur.com/1JbBGgT.jpeg",
-      "https://i.imgur.com/LYNuDrG.jpeg",
+      "https://i.imgur.com/YmWqlp4.jpeg",
+      "https://i.imgur.com/aN7mdYv.jpeg",
       "https://i.imgur.com/gtJ57SZ.jpeg",
       "https://i.imgur.com/JAg2LWX.jpeg",
-      "https://i.imgur.com/UvU8h0Q.jpeg",
+      "https://i.imgur.com/46XLMop.jpeg",
       "https://i.imgur.com/4PfzfNg.jpeg",
       "https://i.imgur.com/1YOYEQR.jpeg"
     ],
@@ -326,7 +326,7 @@ export const products = [
     shortName: "Schaap Liggend",
     price: 59.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/8mKVYOY.jpeg",
+    image: "https://i.imgur.com/9jDShK4.jpeg",
     gallery: [
       "https://i.imgur.com/N1vjMHQ.jpeg",
       "https://i.imgur.com/ZDzpG7a.jpeg",
@@ -369,9 +369,9 @@ export const products = [
     originalPrice: 59.95,
     image: "https://i.imgur.com/KRNfDsV.jpeg",
     gallery: [
-      "https://i.imgur.com/x4PTZXD.png",
-      "https://i.imgur.com/HfEhYtW.png",
-      "https://i.imgur.com/U6jZN9j.png",
+      "https://i.imgur.com/0bGQH9p.png",
+      "https://i.imgur.com/2Mp8DhI.png",
+      "https://i.imgur.com/WVBVI2s.png",
       "https://i.imgur.com/hlK3PYx.png",
       "https://i.imgur.com/I5SCJG1.png",
       "https://i.imgur.com/QxrdidH.png",
@@ -413,10 +413,10 @@ export const products = [
     originalPrice: 49.95,
     image: "https://i.imgur.com/fhVs30E.jpeg",
     gallery: [
-      "https://i.imgur.com/COWpWna.jpeg",
+      "https://i.imgur.com/ZqE1sR0.jpeg",
       "https://i.imgur.com/RJaOAJO.jpeg",
       "https://i.imgur.com/YKR0ywK.jpeg",
-      "https://i.imgur.com/8tBF0yL.jpeg",
+      "https://i.imgur.com/UebmbP4.jpeg",
       "https://i.imgur.com/Ji3DelN.jpeg"
     ],
     description: "Schattige panda met rustgevende muziek en nachtlicht. Perfect voor rustige nachtjes!",
