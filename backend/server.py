@@ -1629,17 +1629,60 @@ async def verify_admin(credentials: HTTPAuthorizationCredentials = Depends(secur
 
 
 @api_router.get("/admin/dashboard")
-async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    """Get admin dashboard data"""
+async def get_admin_dashboard(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    days: int = 30,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None
+):
+    """Get admin dashboard data with date filtering
+    
+    Args:
+        days: Number of days to look back (default 30, use 0 for all time)
+        start_date: Custom start date (YYYY-MM-DD format)
+        end_date: Custom end date (YYYY-MM-DD format)
+    """
     admin = verify_admin_token(credentials)
     if not admin:
         raise HTTPException(status_code=401, detail="Niet geautoriseerd")
     
     try:
-        # Get all orders
-        orders = await db.orders.find({}).to_list(10000)
+        # Calculate date range
+        now = datetime.now(timezone.utc)
+        today = now.date()
         
-        # Calculate stats
+        if start_date and end_date:
+            # Custom date range
+            filter_start = datetime.fromisoformat(start_date).replace(tzinfo=timezone.utc)
+            filter_end = datetime.fromisoformat(end_date).replace(hour=23, minute=59, second=59, tzinfo=timezone.utc)
+        elif days > 0:
+            # Last N days
+            filter_start = now - timedelta(days=days)
+            filter_end = now
+        else:
+            # All time
+            filter_start = datetime(2020, 1, 1, tzinfo=timezone.utc)
+            filter_end = now
+        
+        # Get all orders
+        all_orders = await db.orders.find({}).to_list(10000)
+        
+        # Filter orders by date range
+        def parse_date(date_str):
+            if not date_str:
+                return None
+            try:
+                return datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+            except:
+                return None
+        
+        orders = []
+        for o in all_orders:
+            order_date = parse_date(o.get('created_at', ''))
+            if order_date and filter_start <= order_date <= filter_end:
+                orders.append(o)
+        
+        # Calculate stats for filtered period
         total_orders = len(orders)
         total_revenue = sum(o.get('total_amount', 0) for o in orders if o.get('status') in ['paid', 'shipped', 'delivered'])
         
@@ -1650,11 +1693,45 @@ async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = Depend
         delivered_orders = len([o for o in orders if o.get('status') == 'delivered'])
         cancelled_orders = len([o for o in orders if o.get('status') in ['cancelled', 'failed']])
         
-        # Today's stats
-        today = datetime.now(timezone.utc).date().isoformat()
-        today_orders = [o for o in orders if o.get('created_at', '').startswith(today)]
+        # Today's stats (always show today regardless of filter)
+        today_str = today.isoformat()
+        today_orders = [o for o in all_orders if o.get('created_at', '').startswith(today_str)]
         orders_today = len(today_orders)
         revenue_today = sum(o.get('total_amount', 0) for o in today_orders if o.get('status') in ['paid', 'shipped', 'delivered'])
+        
+        # Calculate previous period for comparison
+        period_length = (filter_end - filter_start).days or 1
+        prev_start = filter_start - timedelta(days=period_length)
+        prev_end = filter_start
+        
+        prev_orders = []
+        for o in all_orders:
+            order_date = parse_date(o.get('created_at', ''))
+            if order_date and prev_start <= order_date < prev_end:
+                prev_orders.append(o)
+        
+        prev_revenue = sum(o.get('total_amount', 0) for o in prev_orders if o.get('status') in ['paid', 'shipped', 'delivered'])
+        
+        # Calculate growth percentage
+        if prev_revenue > 0:
+            revenue_growth = round(((total_revenue - prev_revenue) / prev_revenue) * 100, 1)
+        else:
+            revenue_growth = 100 if total_revenue > 0 else 0
+        
+        # Daily breakdown for chart
+        daily_data = {}
+        for o in orders:
+            order_date = parse_date(o.get('created_at', ''))
+            if order_date:
+                day_key = order_date.date().isoformat()
+                if day_key not in daily_data:
+                    daily_data[day_key] = {'date': day_key, 'orders': 0, 'revenue': 0}
+                daily_data[day_key]['orders'] += 1
+                if o.get('status') in ['paid', 'shipped', 'delivered']:
+                    daily_data[day_key]['revenue'] += o.get('total_amount', 0)
+        
+        # Sort daily data by date
+        daily_breakdown = sorted(daily_data.values(), key=lambda x: x['date'])
         
         # Average order value
         paid_order_count = len([o for o in orders if o.get('status') in ['paid', 'shipped', 'delivered']])
