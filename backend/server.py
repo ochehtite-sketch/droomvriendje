@@ -1100,8 +1100,7 @@ async def gift_card_webhook(request: Request):
         if not payment_id:
             return {"status": "ignored"}
         
-        mollie_client = MollieClient()
-        mollie_client.set_api_key(MOLLIE_API_KEY)
+        mollie_client = get_mollie_client()
         payment = mollie_client.payments.get(payment_id)
         
         # Find the gift card
