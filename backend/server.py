@@ -1466,8 +1466,7 @@ async def get_order(order_id: str):
         # If order has a Mollie payment ID, check current status
         if order.get("mollie_payment_id"):
             try:
-                mollie_client = MollieClient()
-                mollie_client.set_api_key(MOLLIE_API_KEY)
+                mollie_client = get_mollie_client()
                 payment = mollie_client.payments.get(order["mollie_payment_id"])
                 
                 # Determine current status
