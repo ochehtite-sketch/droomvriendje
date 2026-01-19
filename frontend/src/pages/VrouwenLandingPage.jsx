@@ -273,54 +273,81 @@ const VrouwenLandingPage = () => {
             U heeft geen nieuwe technologie nodig die u moet leren kennen. U heeft een simpel, betrouwbaar ritueel nodig dat uw lichaam herkent als &ldquo;tijd om te rusten&rdquo;.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
-                <img 
-                  src={allProducts.find(p => p.id === 7)?.image} 
-                  alt="Warm licht"
-                  className="w-full h-auto object-contain max-h-[150px]"
-                />
+                    {/* Desktop: Grid, Mobile: Slider */}
+          <div className="hidden md:grid grid-cols-3 gap-8">
+            {featureCards.map((card) => (
+              <Card key={card.id} className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+                <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
+                  <img 
+                    src={allProducts.find(p => p.id === card.id)?.image} 
+                    alt={card.title}
+                    className="w-full h-auto object-contain max-h-[150px]"
+                  />
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">{card.title}</h3>
+                  <p className="text-[#5a7a5a]">{card.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Mobile Slider */}
+          <div className="md:hidden relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${featureSlide * 100}%)` }}
+              >
+                {featureCards.map((card) => (
+                  <div key={card.id} className="w-full flex-shrink-0 px-2">
+                    <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
+                      <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
+                        <img 
+                          src={allProducts.find(p => p.id === card.id)?.image} 
+                          alt={card.title}
+                          className="w-full h-auto object-contain max-h-[150px]"
+                        />
+                      </div>
+                      <CardContent className="p-6">
+                        <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">{card.title}</h3>
+                        <p className="text-[#5a7a5a]">{card.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
               </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Warm licht</h3>
-                <p className="text-[#5a7a5a]">
-                  Een zacht, gedimd schijnsel dat u uit de volledige duisternis houdt (als dat onrust geeft) zonder u wakker te maken zoals een telefoonscherm.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
-                <img 
-                  src={allProducts.find(p => p.id === 12)?.image} 
-                  alt="Rustige geluiden"
-                  className="w-full h-auto object-contain max-h-[150px]"
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevFeatureSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-10"
+              aria-label="Vorige"
+            >
+              <ChevronLeft className="w-6 h-6 text-[#2d5a3d]" />
+            </button>
+            <button 
+              onClick={nextFeatureSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition-colors z-10"
+              aria-label="Volgende"
+            >
+              <ChevronRight className="w-6 h-6 text-[#2d5a3d]" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {featureCards.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setFeatureSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    featureSlide === index ? 'bg-[#2d5a3d]' : 'bg-[#c5d9c8]'
+                  }`}
+                  aria-label={`Ga naar slide ${index + 1}`}
                 />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Rustige geluiden</h3>
-                <p className="text-[#5a7a5a]">
-                  Witte ruis en kalmerende geluiden maskeren plotselinge geluiden en geven uw hersenen iets voorspelbaars om op te focussen.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
-              <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
-                <img 
-                  src={allProducts.find(p => p.id === 11)?.image} 
-                  alt="Iets om vast te houden"
-                  className="w-full h-auto object-contain max-h-[150px]"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-bold text-[#2d5a3d] text-xl mb-3">Iets om vast te houden</h3>
-                <p className="text-[#5a7a5a]">
-                  De knuffel zelf geeft uw handen een contactpunt — veel vrouwen voelen zich rustiger met iets zachts vast te houden.
-                </p>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
