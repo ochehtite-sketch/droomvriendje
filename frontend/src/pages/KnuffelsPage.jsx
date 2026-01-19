@@ -83,7 +83,7 @@ const KnuffelsPage = () => {
             {products.map((product, index) => (
               <div 
                 key={product.id} 
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 flex flex-col"
+                className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 flex flex-col ${product.inStock === false ? 'opacity-75' : ''}`}
                 data-testid={`product-card-${product.id}`}
               >
                 {/* Badge */}
@@ -91,6 +91,7 @@ const KnuffelsPage = () => {
                   {product.badge && (
                     <div className="absolute top-3 left-3 z-10">
                       <span className={`px-3 py-1 text-xs font-bold rounded-full shadow-md ${
+                        product.badge === 'UITVERKOCHT' ? 'bg-gradient-to-r from-gray-500 to-gray-700 text-white' :
                         product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white' :
                         product.badge === 'NIEUW' ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white' :
                         product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white' :
@@ -107,8 +108,13 @@ const KnuffelsPage = () => {
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className="w-full h-52 object-contain group-hover:scale-105 transition-transform duration-500"
+                        className={`w-full h-52 object-contain group-hover:scale-105 transition-transform duration-500 ${product.inStock === false ? 'grayscale' : ''}`}
                       />
+                      {product.inStock === false && (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <span className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm">UITVERKOCHT</span>
+                        </div>
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </Link>
@@ -153,7 +159,11 @@ const KnuffelsPage = () => {
                     ) : (
                       <span className="text-2xl font-bold text-gray-900">€{product.price.toFixed(2)}</span>
                     )}
-                    <p className="text-xs text-green-600 mt-1">✓ Op voorraad</p>
+                    {product.inStock === false ? (
+                      <p className="text-xs text-red-600 mt-1 font-semibold">✗ Uitverkocht</p>
+                    ) : (
+                      <p className="text-xs text-green-600 mt-1">✓ Op voorraad</p>
+                    )}
                   </div>
                   
                   {/* Buttons */}
@@ -166,14 +176,23 @@ const KnuffelsPage = () => {
                         Bekijk Details
                       </Button>
                     </Link>
-                    <Button 
-                      className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold"
-                      onClick={() => addToCart(product)}
-                      data-testid={`add-to-cart-${product.id}`}
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      In Winkelmandje
-                    </Button>
+                    {product.inStock === false ? (
+                      <Button 
+                        className="w-full bg-gray-400 text-white font-semibold cursor-not-allowed"
+                        disabled
+                      >
+                        Uitverkocht
+                      </Button>
+                    ) : (
+                      <Button 
+                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold"
+                        onClick={() => addToCart(product)}
+                        data-testid={`add-to-cart-${product.id}`}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        In Winkelmandje
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
