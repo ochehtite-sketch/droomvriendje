@@ -39,11 +39,27 @@ except Exception as e:
     logger.error(f"MongoDB connection error: {e}")
     raise
 
-# Mollie configuration
+# Mollie configuration - load dynamically for production
+def get_mollie_api_key():
+    """Get Mollie API key from environment, with proper fallback"""
+    key = os.environ.get('MOLLIE_API_KEY', '')
+    if not key:
+        logger.warning("MOLLIE_API_KEY not set in environment!")
+    return key
+
+def get_mollie_client():
+    """Create a new Mollie client with current API key"""
+    api_key = get_mollie_api_key()
+    if not api_key:
+        raise ValueError("MOLLIE_API_KEY not configured")
+    mollie_client = MollieClient()
+    mollie_client.set_api_key(api_key)
+    return mollie_client
+
 MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
 MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
-FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendje.nl')
-API_URL = os.environ.get('API_URL', 'https://droomvriendje.nl')
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'https://droomvriendjes.nl')
+API_URL = os.environ.get('API_URL', 'https://droomvriendjes.nl')
 
 # SMTP Email configuration
 SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.transip.email')
