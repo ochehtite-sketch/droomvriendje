@@ -20,12 +20,17 @@ const ProductPage = () => {
     return products.find(p => p.id === parseInt(id));
   }, [id]);
 
-  // Create gallery array - main image + gallery images
+  // Create gallery array - main image + unique gallery images (no duplicates)
   const galleryImages = useMemo(() => {
     if (!product) return [];
     const images = [product.image];
     if (product.gallery && product.gallery.length > 0) {
-      images.push(...product.gallery);
+      // Filter out duplicates - only add images that aren't already in the array
+      product.gallery.forEach(img => {
+        if (!images.includes(img)) {
+          images.push(img);
+        }
+      });
     }
     return images;
   }, [product]);
@@ -100,17 +105,17 @@ const ProductPage = () => {
                 )}
               </div>
               
-              {/* Thumbnail Gallery */}
+              {/* Thumbnail Gallery - Show only unique images */}
               {galleryImages.length > 1 && (
-                <div className="flex gap-2 overflow-x-auto pb-2">
+                <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
                   {galleryImages.map((img, idx) => (
                     <button
-                      key={idx}
+                      key={`thumb-${idx}-${img.slice(-10)}`}
                       onClick={() => setSelectedImage(idx)}
-                      className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                      className={`flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-2 transition-all ${
                         selectedImage === idx 
-                          ? 'border-purple-600 ring-2 ring-purple-300' 
-                          : 'border-gray-200 hover:border-purple-300'
+                          ? 'border-purple-600 ring-2 ring-purple-300 scale-105' 
+                          : 'border-gray-200 hover:border-purple-300 hover:scale-102'
                       }`}
                     >
                       <img 
