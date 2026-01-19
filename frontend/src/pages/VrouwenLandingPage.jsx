@@ -263,7 +263,7 @@ const VrouwenLandingPage = () => {
             <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
               <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
                 <img 
-                  src={allProducts[1]?.image} 
+                  src={allProducts.find(p => p.id === 12)?.image} 
                   alt="Rustige geluiden"
                   className="w-full h-auto object-contain max-h-[150px]"
                 />
@@ -279,7 +279,7 @@ const VrouwenLandingPage = () => {
             <Card className="bg-white border-2 border-[#c5d9c8] rounded-2xl overflow-hidden">
               <div className="bg-[#e8f0e8] p-6 flex items-center justify-center min-h-[200px]">
                 <img 
-                  src={allProducts[2]?.image} 
+                  src={allProducts.find(p => p.id === 11)?.image} 
                   alt="Iets om vast te houden"
                   className="w-full h-auto object-contain max-h-[150px]"
                 />
