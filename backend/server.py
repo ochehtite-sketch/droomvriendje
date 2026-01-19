@@ -1302,9 +1302,11 @@ async def create_payment(payment: PaymentCreate):
     """Create a Mollie payment for an order"""
     try:
         # Debug: Log API key status
-        logger.info(f"Mollie API Key configured: {bool(MOLLIE_API_KEY)}, Length: {len(MOLLIE_API_KEY) if MOLLIE_API_KEY else 0}")
+        # Get API key dynamically for production support
+        api_key = get_mollie_api_key()
+        logger.info(f"Mollie API Key configured: {bool(api_key)}, Length: {len(api_key) if api_key else 0}")
         
-        if not MOLLIE_API_KEY or len(MOLLIE_API_KEY) < 30:
+        if not api_key or len(api_key) < 30:
             raise HTTPException(status_code=500, detail="Mollie API key not configured properly")
         
         # Retrieve order from database
@@ -1312,9 +1314,8 @@ async def create_payment(payment: PaymentCreate):
         if not order:
             raise HTTPException(status_code=404, detail="Order not found")
         
-        # Initialize Mollie client
-        mollie_client = MollieClient()
-        mollie_client.set_api_key(MOLLIE_API_KEY)
+        # Initialize Mollie client with fresh API key
+        mollie_client = get_mollie_client()
         
         # Build redirect and webhook URLs
         redirect_url = f"{FRONTEND_URL}/betaling-resultaat/{payment.order_id}"
