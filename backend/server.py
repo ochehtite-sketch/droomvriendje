@@ -1567,6 +1567,160 @@ async def get_order(order_id: str):
 
 # ============== ADMIN ENDPOINTS ==============
 
+import hashlib
+import secrets
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
+# Admin credentials (in production, use environment variables)
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+ADMIN_PASSWORD_HASH = os.environ.get('ADMIN_PASSWORD_HASH', hashlib.sha256('Droomvriendjes2024!'.encode()).hexdigest())
+
+# Simple token store (in production, use Redis or database)
+admin_tokens = {}
+
+security = HTTPBearer(auto_error=False)
+
+
+class AdminLogin(BaseModel):
+    username: str
+    password: str
+
+
+def verify_admin_token(credentials: HTTPAuthorizationCredentials = None):
+    """Verify admin authentication token"""
+    if not credentials:
+        return None
+    token = credentials.credentials
+    if token in admin_tokens:
+        return admin_tokens[token]
+    return None
+
+
+@api_router.post("/admin/login")
+async def admin_login(login: AdminLogin):
+    """Admin login endpoint"""
+    password_hash = hashlib.sha256(login.password.encode()).hexdigest()
+    
+    if login.username == ADMIN_USERNAME and password_hash == ADMIN_PASSWORD_HASH:
+        # Generate token
+        token = secrets.token_urlsafe(32)
+        admin_tokens[token] = {"username": login.username, "created_at": datetime.now(timezone.utc).isoformat()}
+        
+        logger.info(f"Admin login successful: {login.username}")
+        return {
+            "success": True,
+            "token": token,
+            "admin": {"username": login.username}
+        }
+    
+    logger.warning(f"Admin login failed: {login.username}")
+    raise HTTPException(status_code=401, detail="Ongeldige gebruikersnaam of wachtwoord")
+
+
+@api_router.get("/admin/verify")
+async def verify_admin(credentials: HTTPAuthorizationCredentials = security):
+    """Verify admin token"""
+    admin = verify_admin_token(credentials)
+    if not admin:
+        raise HTTPException(status_code=401, detail="Niet geautoriseerd")
+    return {"valid": True, "admin": admin}
+
+
+@api_router.get("/admin/dashboard")
+async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = security):
+    """Get admin dashboard data"""
+    admin = verify_admin_token(credentials)
+    if not admin:
+        raise HTTPException(status_code=401, detail="Niet geautoriseerd")
+    
+    try:
+        # Get all orders
+        orders = await db.orders.find({}).to_list(10000)
+        
+        # Calculate stats
+        total_orders = len(orders)
+        total_revenue = sum(o.get('total_amount', 0) for o in orders if o.get('status') in ['paid', 'shipped', 'delivered'])
+        
+        # Order status counts
+        pending_orders = len([o for o in orders if o.get('status') == 'pending'])
+        paid_orders = len([o for o in orders if o.get('status') == 'paid'])
+        shipped_orders = len([o for o in orders if o.get('status') == 'shipped'])
+        delivered_orders = len([o for o in orders if o.get('status') == 'delivered'])
+        cancelled_orders = len([o for o in orders if o.get('status') in ['cancelled', 'failed']])
+        
+        # Today's stats
+        today = datetime.now(timezone.utc).date().isoformat()
+        today_orders = [o for o in orders if o.get('created_at', '').startswith(today)]
+        orders_today = len(today_orders)
+        revenue_today = sum(o.get('total_amount', 0) for o in today_orders if o.get('status') in ['paid', 'shipped', 'delivered'])
+        
+        # Average order value
+        paid_order_count = len([o for o in orders if o.get('status') in ['paid', 'shipped', 'delivered']])
+        avg_order_value = total_revenue / paid_order_count if paid_order_count > 0 else 0
+        
+        # Unique customers
+        customer_emails = set(o.get('customer_email', '').lower() for o in orders if o.get('customer_email'))
+        total_customers = len(customer_emails)
+        
+        # To ship count
+        to_ship = len([o for o in orders if o.get('status') == 'paid' and not o.get('tracking_code')])
+        
+        # Top customers
+        customer_spending = {}
+        for order in orders:
+            email = order.get('customer_email', '').lower()
+            if email and order.get('status') in ['paid', 'shipped', 'delivered']:
+                if email not in customer_spending:
+                    customer_spending[email] = {
+                        'email': email,
+                        'name': order.get('customer_name', 'Onbekend'),
+                        'total_spent': 0,
+                        'order_count': 0
+                    }
+                customer_spending[email]['total_spent'] += order.get('total_amount', 0)
+                customer_spending[email]['order_count'] += 1
+        
+        top_customers = sorted(customer_spending.values(), key=lambda x: x['total_spent'], reverse=True)[:5]
+        
+        # Recent orders
+        recent_orders = sorted(orders, key=lambda x: x.get('created_at', ''), reverse=True)[:10]
+        recent_orders_data = [{
+            'order_id': str(o.get('_id', '')),
+            'customer_name': o.get('customer_name', ''),
+            'customer_email': o.get('customer_email', ''),
+            'total_amount': o.get('total_amount', 0),
+            'status': o.get('status', 'pending'),
+            'created_at': o.get('created_at', '')
+        } for o in recent_orders]
+        
+        return {
+            'stats': {
+                'total_revenue': total_revenue,
+                'total_orders': total_orders,
+                'total_customers': total_customers,
+                'avg_order_value': avg_order_value,
+                'pending_orders': pending_orders,
+                'paid_orders': paid_orders,
+                'shipped_orders': shipped_orders,
+                'delivered_orders': delivered_orders,
+                'cancelled_orders': cancelled_orders,
+                'orders_today': orders_today,
+                'revenue_today': revenue_today,
+                'to_ship': to_ship,
+                'revenue_growth': 12.5,  # Placeholder
+                'conversion_rate': 3.2,  # Placeholder
+                'new_customers_week': 5,  # Placeholder
+                'new_customers_today': 1  # Placeholder
+            },
+            'recent_orders': recent_orders_data,
+            'top_customers': top_customers
+        }
+        
+    except Exception as e:
+        logger.error(f"Dashboard error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # Carrier tracking URL configurations
 CARRIERS = {
     "postnl": {
