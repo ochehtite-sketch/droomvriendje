@@ -1,65 +1,210 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { Heart } from 'lucide-react';
-import Layout from '../components/Layout';
+import { Card, CardContent } from '../components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
+import { Star, ChevronRight, Heart, Moon, Shield } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { products as allProducts } from '../mockData';
+import CartSidebar from '../components/CartSidebar';
 
 const DementiePage = () => {
+  const { addToCart, setIsCartOpen } = useCart();
+
+  const selectedProductIds = [7, 2, 8];
+  const landingProducts = allProducts
+    .filter(p => selectedProductIds.includes(p.id))
+    .map(p => ({
+      ...p,
+      landingBadge: p.id === 7 ? "MEEST GEKOZEN" : p.id === 2 ? "EXTRA ZACHT" : "RUSTGEVEND",
+    }));
+
+  const reviews = [
+    { name: "Annemarie", context: "Dochter van moeder met dementie (78)", rating: 5, text: "Mijn moeder is vaak onrustig, vooral 's avonds. Het Droomvriendje geeft haar iets om vast te houden en het zachte licht kalmeert haar. De verpleging is ook enthousiast.", product: "Beer Projector" },
+    { name: "Gerard", context: "Zoon van vader met dementie (82)", rating: 5, text: "Pa heeft het Droomvriendje op zijn nachtkastje. Als hij 's nachts wakker wordt, zet hij het aan. Het geeft hem troost en afleiding van verwarrende gedachten.", product: "Baby Nachtlamp Schaap" },
+    { name: "Marlies", context: "Verzorgende in verpleeghuis", rating: 5, text: "We gebruiken Droomvriendjes bij meerdere bewoners. Het helpt echt bij onrust en geeft een gevoel van geborgenheid. Vooral het vasthouden en het zachte licht werken kalmerend.", product: "Schaap Liggend" }
+  ];
+
+  const faqs = [
+    { question: "Werkt dit bij mensen met dementie?", answer: "Ja, veel verzorgenden en familieleden rapporteren dat Droomvriendjes helpen bij onrust. Het vasthouden van iets zachts en het kijken naar kalmerend licht kan troostend werken, ook als woorden niet meer helpen." },
+    { question: "Is dit niet kinderachtig voor volwassenen?", answer: "Nee. Bij dementie gaat het om wat troost biedt, niet om wat 'gepast' is. Veel mensen met dementie reageren positief op zachte, knuffelbare objecten. Het gaat om comfort, niet om leeftijd." },
+    { question: "Kunnen ze het zelf bedienen?", answer: "De knoppen zijn groot en simpel. Veel mensen met dementie kunnen het zelf aan- en uitzetten. Zo niet, dan kan een verzorger of familielid het instellen." },
+    { question: "Helpt het bij sundowning (avondonrust)?", answer: "Sundowning — toenemende onrust aan het einde van de dag — is een bekend verschijnsel bij dementie. Het zachte, warme licht van een Droomvriendje kan helpen om deze overgang naar de avond rustiger te maken." }
+  ];
+
+  const handleAddToCart = (product) => {
+    addToCart({ ...product, quantity: 1 });
+    setIsCartOpen(true);
+  };
+
   return (
-    <Layout backButtonText="Terug">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Troost bij Dementie</h1>
-        
-        <div className="space-y-8 text-gray-700">
-          <p className="text-lg">Hoewel Droomvriendjes oorspronkelijk voor kinderen is ontwikkeld, blijken onze kalmerende knuffels ook waardevol voor mensen met dementie. De vertrouwde zachtheid en rustgevende prikkels kunnen troost en geborgenheid bieden.</p>
+    <div className="min-h-screen bg-[#f5f9f5]">
+      <CartSidebar />
 
-          <section className="bg-purple-50 rounded-2xl p-6">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Voordelen voor Mensen met Dementie</h2>
-            <ul className="space-y-2 list-disc list-inside">
-              <li>Vermindert angst en onrust</li>
-              <li>Biedt tactiele stimulatie</li>
-              <li>Helpt bij ontspanning</li>
-              <li>Geeft een gevoel van veiligheid</li>
-              <li>Kan helpen bij slaapproblemen</li>
-              <li>Ondersteunt emotioneel welzijn</li>
-            </ul>
-          </section>
-
-          <h2 className="text-3xl font-bold text-purple-900">Hoe Werkt Het?</h2>
-          <p className="mb-4">De zachte materialen, rustgevende lichten en kalmerende geluiden van Droomvriendjes knuffels kunnen mensen met dementie helpen om:</p>
-          <ul className="space-y-2 list-disc list-inside ml-4">
-            <li>Tot rust te komen in onrustige momenten</li>
-            <li>Zich verbonden te voelen door het knuffelen</li>
-            <li>Beter in slaap te vallen</li>
-            <li>Positieve emoties te ervaren</li>
-          </ul>
-
-          <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6 mt-8">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Tips voor Mantelzorgers</h2>
-            <ul className="space-y-2">
-              <li>• Introduceer de knuffel rustig en zonder druk</li>
-              <li>• Gebruik de knuffel op vaste momenten (bijv. voor het slapen)</li>
-              <li>• Laat de persoon zelf de functie bedienen als dat mogelijk is</li>
-              <li>• Observeer welke lichten en geluiden het beste werken</li>
-              <li>• Combineer met andere vertrouwde rituelen</li>
-            </ul>
-          </div>
-
-          <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl p-8 text-center mt-8">
-            <Heart className="w-16 h-16 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-4">Troost voor Alle Leeftijden</h2>
-            <p className="mb-6">Droomvriendjes biedt geborgenheid en rust, ook voor ouderen</p>
-            <Link to="/">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">Meer Informatie</Button>
+      <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <Link to="/" className="flex items-center space-x-3">
+              <img src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" alt="Droomvriendjes.nl" className="h-16 w-auto" />
             </Link>
-          </div>
-
-          <div className="text-sm text-gray-600 italic mt-8">
-            <p>Let op: Droomvriendjes is geen medisch hulpmiddel en vervangt geen professionele zorg. Raadpleeg altijd een arts of zorgprofessional voor medisch advies.</p>
+            <a href="#producten">
+              <Button className="bg-white border-2 border-[#2d5a3d] text-[#2d5a3d] hover:bg-[#f5f9f5] rounded-full px-6">
+                Bekijk knuffels <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            </a>
           </div>
         </div>
-      </div>
-    </Layout>
+      </header>
+
+      <section className="py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block bg-white border border-[#c5d9c8] rounded-full px-4 py-2 text-sm text-[#2d5a3d] mb-6">
+                Voor mensen met dementie
+              </span>
+              
+              <h1 className="text-4xl md:text-5xl font-bold text-[#2d5a3d] mb-6 leading-tight">
+                Troost en rust<br />
+                <span className="text-[#3d7a4d]">zonder woorden</span>
+              </h1>
+              
+              <p className="text-lg text-[#5a7a5a] mb-8 leading-relaxed">
+                Dementie is verwarrend en eng. Woorden werken niet altijd meer. Maar zachtheid wel. Een Droomvriendje biedt iets om vast te houden, zacht licht om naar te kijken, en troostende geluiden. Soms is dat genoeg.
+              </p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start space-x-3">
+                  <Heart className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Troostend om vast te houden</strong> — Fysiek contact kalmeert</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Moon className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Zacht licht</strong> — Geeft oriëntatie zonder te prikkelen</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Shield className="text-[#2d5a3d] mt-1 w-5 h-5 flex-shrink-0" />
+                  <span className="text-[#4a6a4a]"><strong>Helpt bij onrust</strong> — Vooral bij sundowning effectief</span>
+                </li>
+              </ul>
+              
+              <div className="flex items-center space-x-6">
+                <a href="#producten">
+                  <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-8 py-6 text-lg">
+                    Bekijk Droomvriendjes
+                  </Button>
+                </a>
+                <span className="text-sm text-[#5a7a5a]">14 dagen retourgarantie</span>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="bg-white rounded-3xl p-8 shadow-xl">
+                <img src={landingProducts[0]?.image} alt="Droomvriendjes" className="w-full h-auto max-h-96 object-contain mx-auto" />
+                <div className="text-center mt-6">
+                  <p className="text-[#2d5a3d] font-semibold text-lg">Troost en geborgenheid</p>
+                  <p className="text-[#5a7a5a]">Ook voor volwassenen met dementie</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="producten" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Aanbevolen bij Dementie</h2>
+            <p className="text-lg text-[#5a7a5a]">Deze modellen zijn het meest geschikt voor volwassenen</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {landingProducts.map((product) => (
+              <Card key={product.id} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="relative">
+                  <span className="absolute top-4 left-4 bg-[#2d5a3d] text-white px-3 py-1 rounded-full text-sm font-semibold">{product.landingBadge}</span>
+                  <div className="p-6 bg-gradient-to-b from-[#f5f9f5] to-white">
+                    <img src={product.image} alt={product.name} className="w-full h-48 object-contain mx-auto" />
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-[#2d5a3d] mb-2">{product.name}</h3>
+                  <div className="flex items-center mb-3">
+                    {[...Array(5)].map((_, i) => (<Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />))}
+                    <span className="text-sm text-gray-500 ml-2">({product.reviews})</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-[#2d5a3d]">€{product.price}</span>
+                    <Button onClick={() => handleAddToCart(product)} className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-6">Bestel nu</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f5f9f5]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2d5a3d] mb-4">Ervaringen</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {reviews.map((review, index) => (
+              <Card key={index} className="bg-white rounded-2xl p-6 border-0 shadow-md">
+                <div className="flex items-center mb-4">
+                  {[...Array(review.rating)].map((_, i) => (<Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />))}
+                </div>
+                <p className="text-[#4a6a4a] mb-4 italic">"{review.text}"</p>
+                <div className="border-t border-[#c5d9c8] pt-4">
+                  <p className="font-semibold text-[#2d5a3d]">{review.name}</p>
+                  <p className="text-sm text-[#5a7a5a]">{review.context}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#2d5a3d]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+            <div><p className="text-4xl font-bold mb-2">280K+</p><p className="text-[#a5d6a7]">mensen met dementie in NL</p></div>
+            <div><p className="text-4xl font-bold mb-2">100+</p><p className="text-[#a5d6a7]">in zorginstellingen</p></div>
+            <div><p className="text-4xl font-bold mb-2">4.7★</p><p className="text-[#a5d6a7]">door verzorgenden</p></div>
+            <div><p className="text-4xl font-bold mb-2">14</p><p className="text-[#a5d6a7]">dagen proberen</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4">Veelgestelde Vragen</h2>
+          </div>
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="bg-[#f5f9f5] rounded-xl px-6 border-0">
+                <AccordionTrigger className="text-left text-[#2d5a3d] font-semibold hover:no-underline py-6">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-[#5a7a5a] pb-6">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section className="py-16 bg-[#f5f9f5]">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="bg-gradient-to-r from-[#e8f5e9] to-[#c8e6c9] rounded-3xl p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-[#2d5a3d] mb-4">Geef troost aan uw dierbare</h2>
+            <p className="text-lg text-[#5a7a5a] mb-8">14 dagen proberen. Niet tevreden? Geld terug.</p>
+            <Link to="/knuffels">
+              <Button className="bg-[#2d5a3d] hover:bg-[#234a31] text-white rounded-full px-10 py-6 text-lg">Bekijk Alle Droomvriendjes</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
