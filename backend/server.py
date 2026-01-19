@@ -1695,6 +1695,73 @@ async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = securi
             'created_at': o.get('created_at', '')
         } for o in recent_orders]
         
+        # ============== FUNNEL ANALYTICS ==============
+        # Get checkout events for funnel analysis
+        checkout_events = await db.checkout_events.find({}).to_list(10000)
+        
+        # Calculate funnel metrics
+        # Step 1: Checkout Started (from checkout_events)
+        checkout_started = len(checkout_events)
+        
+        # Step 2: Orders Created (from orders - means they clicked pay)
+        orders_created = total_orders
+        
+        # Step 3: Payments Completed (paid orders)
+        payments_completed = paid_orders + shipped_orders + delivered_orders
+        
+        # Calculate drop-off rates
+        checkout_to_order_rate = (orders_created / checkout_started * 100) if checkout_started > 0 else 0
+        order_to_payment_rate = (payments_completed / orders_created * 100) if orders_created > 0 else 0
+        
+        # Overall conversion rate (checkout to paid)
+        overall_conversion = (payments_completed / checkout_started * 100) if checkout_started > 0 else 0
+        
+        # Abandoned carts (started checkout but no order created)
+        abandoned_checkouts = checkout_started - orders_created
+        abandoned_rate = (abandoned_checkouts / checkout_started * 100) if checkout_started > 0 else 0
+        
+        # Payment failures/cancellations
+        payment_failures = cancelled_orders + pending_orders
+        payment_failure_rate = (payment_failures / orders_created * 100) if orders_created > 0 else 0
+        
+        # Popular products (from completed orders)
+        product_counts = {}
+        for order in orders:
+            if order.get('status') in ['paid', 'shipped', 'delivered']:
+                for item in order.get('items', []):
+                    product_name = item.get('product_name', 'Onbekend')
+                    product_id = item.get('product_id', '')
+                    qty = item.get('quantity', 1)
+                    key = product_name
+                    if key not in product_counts:
+                        product_counts[key] = {'name': product_name, 'product_id': product_id, 'count': 0, 'revenue': 0}
+                    product_counts[key]['count'] += qty
+                    product_counts[key]['revenue'] += item.get('price', 0) * qty
+        
+        popular_products = sorted(product_counts.values(), key=lambda x: x['revenue'], reverse=True)[:5]
+        
+        # Recent checkout events (last 10 abandoned)
+        abandoned_emails = set()
+        for ce in checkout_events:
+            email = ce.get('customer_email', '').lower()
+            if email:
+                # Check if this email has a successful order
+                has_order = any(o.get('customer_email', '').lower() == email and o.get('status') in ['paid', 'shipped', 'delivered'] for o in orders)
+                if not has_order:
+                    abandoned_emails.add(email)
+        
+        recent_abandoned = []
+        for ce in sorted(checkout_events, key=lambda x: x.get('created_at', ''), reverse=True):
+            email = ce.get('customer_email', '').lower()
+            if email in abandoned_emails and len(recent_abandoned) < 10:
+                recent_abandoned.append({
+                    'email': email,
+                    'total_amount': ce.get('total_amount', 0),
+                    'items_count': len(ce.get('cart_items', [])),
+                    'created_at': ce.get('created_at', '')
+                })
+                abandoned_emails.discard(email)  # Only show each email once
+        
         return {
             'stats': {
                 'total_revenue': total_revenue,
@@ -1709,11 +1776,25 @@ async def get_admin_dashboard(credentials: HTTPAuthorizationCredentials = securi
                 'orders_today': orders_today,
                 'revenue_today': revenue_today,
                 'to_ship': to_ship,
-                'revenue_growth': 12.5,  # Placeholder
-                'conversion_rate': 3.2,  # Placeholder
-                'new_customers_week': 5,  # Placeholder
-                'new_customers_today': 1  # Placeholder
+                'revenue_growth': 12.5,
+                'conversion_rate': round(overall_conversion, 1),
+                'new_customers_week': 5,
+                'new_customers_today': 1
             },
+            'funnel': {
+                'checkout_started': checkout_started,
+                'orders_created': orders_created,
+                'payments_completed': payments_completed,
+                'checkout_to_order_rate': round(checkout_to_order_rate, 1),
+                'order_to_payment_rate': round(order_to_payment_rate, 1),
+                'overall_conversion': round(overall_conversion, 1),
+                'abandoned_checkouts': abandoned_checkouts,
+                'abandoned_rate': round(abandoned_rate, 1),
+                'payment_failures': payment_failures,
+                'payment_failure_rate': round(payment_failure_rate, 1)
+            },
+            'popular_products': popular_products,
+            'abandoned_carts': recent_abandoned,
             'recent_orders': recent_orders_data,
             'top_customers': top_customers
         }
