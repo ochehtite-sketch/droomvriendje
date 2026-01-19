@@ -11,19 +11,19 @@ import CartSidebar from '../components/CartSidebar';
 const OverprikkelingPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Only show IN STOCK products - 8=Schaap Liggend, 7=Beer, 11=Panda
-  const selectedProductIds = [8, 7, 11];
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 8 ? "MEEST RUSTGEVEND" : p.id === 7 ? "EXTRA ZACHT" : "POPULAIR",
+      landingBadge: p.id === 7 ? "MEEST RUSTGEVEND" : p.id === 11 ? "EXTRA ZACHT" : "POPULAIR",
     }));
 
   const reviews = [
-    { name: "Anneke", context: "Moeder van Luuk (4 jaar)", rating: 5, text: "Luuk raakt snel overprikkeld na school. Het zachte licht van zijn Droomvriendje helpt hem om weer tot rust te komen. Een echte redder!", product: "Schaap Knuffel Liggend" },
-    { name: "Jasper", context: "Vader van Noor (5 jaar)", rating: 5, text: "Noor is hooggevoelig en had veel moeite met inslapen door alle indrukken van de dag. Nu focust ze op het sterrenplafond en valt ze veel sneller in slaap.", product: "Beer Sterrenprojector" },
-    { name: "Mirjam", context: "Moeder van Finn (3 jaar)", rating: 5, text: "Na drukke dagen was Finn onhandelbaar. Nu pakken we samen zijn knuffel, zetten het aan, en wordt hij echt rustig. Magisch!", product: "Schaap Knuffel Liggend" }
+    { name: "Anneke", context: "Moeder van Luuk (4 jaar)", rating: 5, text: "Luuk raakt snel overprikkeld na school. Het zachte licht van zijn Droomvriendje helpt hem om weer tot rust te komen. Een echte redder!", product: "Beer Sterrenprojector" },
+    { name: "Jasper", context: "Vader van Noor (5 jaar)", rating: 5, text: "Noor is hooggevoelig en had veel moeite met inslapen door alle indrukken van de dag. Nu focust ze op het sterrenplafond en valt ze veel sneller in slaap.", product: "Panda Projector" },
+    { name: "Mirjam", context: "Moeder van Finn (3 jaar)", rating: 5, text: "Na drukke dagen was Finn onhandelbaar. Nu pakken we samen zijn knuffel, zetten het aan, en wordt hij echt rustig. Magisch!", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [

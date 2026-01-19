@@ -11,19 +11,19 @@ import CartSidebar from '../components/CartSidebar';
 const HSPPage = () => {
   const { addToCart, setIsCartOpen } = useCart();
 
-  // Only show IN STOCK products - 8=Schaap Liggend, 9=Eenhoorn, 11=Panda
-  const selectedProductIds = [8, 9, 11];
+  // Only show IN STOCK products - 7=Beer, 11=Panda, 12=Baby Slaapmaatje Schaap
+  const selectedProductIds = [7, 11, 12];
   const landingProducts = allProducts
     .filter(p => selectedProductIds.includes(p.id) && p.inStock !== false)
     .map(p => ({
       ...p,
-      landingBadge: p.id === 8 ? "MEEST ZACHT" : p.id === 9 ? "EXTRA RUSTIG" : "POPULAIR",
+      landingBadge: p.id === 7 ? "MEEST ZACHT" : p.id === 11 ? "EXTRA RUSTIG" : "POPULAIR",
     }));
 
   const reviews = [
-    { name: "Monique", context: "Moeder van HSP-kind Eva (6 jaar)", rating: 5, text: "Eva voelt alles intens. Geluiden, emoties, indrukken. Het Droomvriendje geeft haar een veilige cocon om tot rust te komen. Het zachte licht is precies goed - niet te fel.", product: "Schaap Knuffel Liggend" },
-    { name: "Karin", context: "Moeder van HSP-kind Daan (4 jaar)", rating: 5, text: "Daan is hoogsensitief en had altijd moeite met inslapen. Te veel indrukken van de dag. Nu focust hij op zijn knuffel en de sterren, en vergeet hij even alle prikkels.", product: "Schaap Knuffel Liggend" },
-    { name: "Inge", context: "Moeder van HSP-kind Lina (5 jaar)", rating: 5, text: "Als HSP-moeder van een HSP-kind herken ik de behoefte aan zachtheid. Dit product is precies dat - zacht licht, zachte geluiden, zachte stof. Perfect voor ons.", product: "Eenhoorn Knuffel" }
+    { name: "Monique", context: "Moeder van HSP-kind Eva (6 jaar)", rating: 5, text: "Eva voelt alles intens. Geluiden, emoties, indrukken. Het Droomvriendje geeft haar een veilige cocon om tot rust te komen. Het zachte licht is precies goed - niet te fel.", product: "Beer Sterrenprojector" },
+    { name: "Karin", context: "Moeder van HSP-kind Daan (4 jaar)", rating: 5, text: "Daan is hoogsensitief en had altijd moeite met inslapen. Te veel indrukken van de dag. Nu focust hij op zijn knuffel en de sterren, en vergeet hij even alle prikkels.", product: "Panda Projector" },
+    { name: "Inge", context: "Moeder van HSP-kind Lina (5 jaar)", rating: 5, text: "Als HSP-moeder van een HSP-kind herken ik de behoefte aan zachtheid. Dit product is precies dat - zacht licht, zachte geluiden, zachte stof. Perfect voor ons.", product: "Baby Slaapmaatje Schaap" }
   ];
 
   const faqs = [
