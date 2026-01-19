@@ -39,6 +39,7 @@ import AdsStrategyPage from "./pages/AdsStrategyPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
+import TipsBedtijdPage from "./pages/TipsBedtijdPage";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
               <Route path="/ouders-baby" element={<OudersBabyPage />} />
               <Route path="/ouders-peuters" element={<OudersPeutersPage />} />
               <Route path="/ouders-extra-behoeften" element={<OudersExtraBehoeftenPage />} />
+              <Route path="/tips-bedtijd" element={<TipsBedtijdPage />} />
               
               {/* Admin Login (Public) */}
               <Route path="/admin/login" element={<AdminLoginPage />} />
