@@ -1514,8 +1514,7 @@ async def get_order(order_id: str):
 async def get_payment_methods():
     """Get available payment methods from Mollie"""
     try:
-        mollie_client = MollieClient()
-        mollie_client.set_api_key(MOLLIE_API_KEY)
+        mollie_client = get_mollie_client()
         methods = mollie_client.methods.list()
         
         result_methods = []
