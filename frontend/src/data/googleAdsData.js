@@ -859,6 +859,11 @@ export const sitelinks = [
     url: "/knuffels"
   },
   {
+    text: "Verzwaringsknuffels",
+    description: "Lotgenootje® 2kg knuffels",
+    url: "/knuffels"
+  },
+  {
     text: "Bestsellers",
     description: "Onze meest populaire knuffels",
     url: "/#producten"
@@ -890,8 +895,13 @@ export const sitelinks = [
   },
   {
     text: "Over Ons",
-    description: "Leer meer over Droomvriendjes",
+    description: "Het verhaal achter Droomvriendjes",
     url: "/over-ons"
+  },
+  {
+    text: "Voordeelbundels",
+    description: "Bespaar met onze bundels",
+    url: "/knuffels"
   }
 ];
 
