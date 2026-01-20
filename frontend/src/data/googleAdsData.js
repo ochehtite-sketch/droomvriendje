@@ -48,11 +48,54 @@ export const campaignStructure = {
       priority: "MEDIUM"
     },
     {
+      id: "search_verzwaring",
+      name: "Search - Verzwaringsknuffels",
+      type: "SEARCH",
+      budget_daily: 35,
+      bidding_strategy: "MAXIMIZE_CONVERSIONS",
+      priority: "HIGH"
+    },
+    {
+      id: "search_lotgenootje",
+      name: "Search - Lotgenootje Producten",
+      type: "SEARCH",
+      budget_daily: 30,
+      bidding_strategy: "TARGET_CPA",
+      target_cpa: 10.00,
+      priority: "HIGH"
+    },
+    {
+      id: "search_stress_angst",
+      name: "Search - Stress & Angst",
+      type: "SEARCH",
+      budget_daily: 25,
+      bidding_strategy: "MAXIMIZE_CONVERSIONS",
+      priority: "HIGH"
+    },
+    {
+      id: "search_cadeau",
+      name: "Search - Cadeau Keywords",
+      type: "SEARCH",
+      budget_daily: 20,
+      bidding_strategy: "TARGET_CPA",
+      target_cpa: 12.00,
+      priority: "MEDIUM"
+    },
+    {
       id: "shopping",
       name: "Shopping - Alle Producten",
       type: "SHOPPING",
       budget_daily: 40,
       bidding_strategy: "MAXIMIZE_CONVERSION_VALUE",
+      priority: "HIGH"
+    },
+    {
+      id: "shopping_verzwaring",
+      name: "Shopping - Verzwaringsknuffels",
+      type: "SHOPPING",
+      budget_daily: 30,
+      bidding_strategy: "TARGET_ROAS",
+      target_roas: 400,
       priority: "HIGH"
     },
     {
