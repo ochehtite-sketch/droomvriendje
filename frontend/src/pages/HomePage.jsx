@@ -153,7 +153,7 @@ const HomePage = () => {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">4.7/5 sterren</p>
-                  <p className="text-sm text-gray-600">100.000+ tevreden klanten</p>
+                  <p className="text-sm text-gray-600">10.000+ tevreden klanten</p>
                 </div>
               </div>
             </div>
@@ -442,7 +442,7 @@ const HomePage = () => {
               Kies jouw <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Droomvriendje</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-xl mx-auto">
-              Onze top 3 bestsellers, geliefd door meer dan 100.000 gezinnen in Nederland
+              Onze top 3 bestsellers, geliefd door meer dan 10.000 gezinnen in Nederland
             </p>
           </div>
           
