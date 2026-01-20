@@ -133,11 +133,243 @@ export const keywordLists = {
       { keyword: "droomvriendjes slaapknuffel", bid: 1.20, priority: "HIGH" },
       { keyword: "droomvriendjes nachtlampje", bid: 1.00, priority: "MEDIUM" },
       { keyword: "droomvriendjes.nl", bid: 1.50, priority: "HIGH" },
-      { keyword: "droom vriendjes", bid: 1.00, priority: "MEDIUM" }
+      { keyword: "droom vriendjes", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "lotgenootje", bid: 1.50, priority: "HIGH" },
+      { keyword: "lotgenootje knuffel", bid: 1.30, priority: "HIGH" },
+      { keyword: "marien jansen knuffel", bid: 0.80, priority: "MEDIUM" }
     ]
   },
 
-  // Generic - Slaapproblemen
+  // ============== VERZWARINGSKNUFFELS ==============
+  verzwaringsknuffel_main: {
+    campaign: "search_verzwaring",
+    match_types: ["EXACT", "PHRASE"],
+    keywords: [
+      { keyword: "verzwaringsknuffel", bid: 1.50, priority: "HIGH" },
+      { keyword: "verzwaarde knuffel", bid: 1.40, priority: "HIGH" },
+      { keyword: "verzwaringsknuffel 2kg", bid: 1.60, priority: "HIGH" },
+      { keyword: "2 kilo knuffel", bid: 1.30, priority: "HIGH" },
+      { keyword: "zware knuffel", bid: 1.20, priority: "HIGH" },
+      { keyword: "verzwaarde vulling", bid: 1.10, priority: "MEDIUM" },
+      { keyword: "gelijkmatige verzwaring", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "overal verzwaard", bid: 0.90, priority: "MEDIUM" },
+      { keyword: "diepe druk knuffel", bid: 1.40, priority: "HIGH" },
+      { keyword: "druktherapie knuffel", bid: 1.30, priority: "HIGH" }
+    ]
+  },
+
+  diepe_druk: {
+    campaign: "search_verzwaring",
+    match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
+    keywords: [
+      { keyword: "diepe druk stimulatie", bid: 1.30, priority: "HIGH" },
+      { keyword: "diepe druk", bid: 1.20, priority: "HIGH" },
+      { keyword: "zachte druk", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "verzwaringsdeken alternatief", bid: 1.40, priority: "HIGH" },
+      { keyword: "verzwaringsdeken", bid: 1.10, priority: "MEDIUM" },
+      { keyword: "verzwaringsproducten", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "verzwaarde producten", bid: 0.90, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== STRESS & ANGST ==============
+  stress_keywords: {
+    campaign: "search_stress_angst",
+    match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
+    keywords: [
+      { keyword: "stressvermindering", bid: 1.20, priority: "HIGH" },
+      { keyword: "stress verminderen", bid: 1.15, priority: "HIGH" },
+      { keyword: "minder spanning", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "ontspannen lichaam", bid: 0.90, priority: "MEDIUM" },
+      { keyword: "ontspanning", bid: 0.85, priority: "MEDIUM" },
+      { keyword: "cadeau voor stress", bid: 1.10, priority: "HIGH" }
+    ]
+  },
+
+  angst_keywords: {
+    campaign: "search_stress_angst",
+    match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
+    keywords: [
+      { keyword: "angstvermindering", bid: 1.25, priority: "HIGH" },
+      { keyword: "angst verminderen", bid: 1.20, priority: "HIGH" },
+      { keyword: "troost knuffel", bid: 1.15, priority: "HIGH" },
+      { keyword: "geborgenheid", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "troost bij verdriet", bid: 1.05, priority: "HIGH" },
+      { keyword: "comfort item", bid: 0.90, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== PRIKKELVERWERKING ==============
+  prikkelverwerking: {
+    campaign: "search_stress_angst",
+    match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
+    keywords: [
+      { keyword: "prikkelverwerking", bid: 1.30, priority: "HIGH" },
+      { keyword: "overprikkeling", bid: 1.25, priority: "HIGH" },
+      { keyword: "ontprikkelen", bid: 1.20, priority: "HIGH" },
+      { keyword: "rust bij prikkels", bid: 1.10, priority: "HIGH" },
+      { keyword: "sensorische ondersteuning", bid: 1.15, priority: "HIGH" },
+      { keyword: "hoogsensitiviteit", bid: 1.20, priority: "HIGH" }
+    ]
+  },
+
+  // ============== SLAAP ==============
+  slaap_keywords: {
+    campaign: "search_generic",
+    match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
+    keywords: [
+      { keyword: "beter slapen", bid: 1.10, priority: "HIGH" },
+      { keyword: "slaaphulp", bid: 1.15, priority: "HIGH" },
+      { keyword: "inslapen", bid: 1.00, priority: "HIGH" },
+      { keyword: "door slapen", bid: 1.05, priority: "HIGH" },
+      { keyword: "slaapritueel", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "slaap en rust", bid: 0.95, priority: "MEDIUM" },
+      { keyword: "cadeau voor beter slapen", bid: 1.20, priority: "HIGH" },
+      { keyword: "slaapknuffel", bid: 1.30, priority: "HIGH" }
+    ]
+  },
+
+  // ============== KNUFFEL TYPES ==============
+  knuffel_types: {
+    campaign: "search_generic",
+    match_types: ["PHRASE", "EXACT"],
+    keywords: [
+      { keyword: "knuffel die terugknuffelt", bid: 1.40, priority: "HIGH" },
+      { keyword: "rustgevende knuffel", bid: 1.20, priority: "HIGH" },
+      { keyword: "kalmerende knuffel", bid: 1.25, priority: "HIGH" },
+      { keyword: "knuffel voor volwassenen", bid: 1.30, priority: "HIGH" },
+      { keyword: "knuffel voor kinderen", bid: 1.10, priority: "HIGH" },
+      { keyword: "maatje knuffel", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "metgezel knuffel", bid: 0.95, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== LOTGENOOTJE PRODUCTEN ==============
+  lotgenootje_dieren: {
+    campaign: "search_lotgenootje",
+    match_types: ["PHRASE", "EXACT"],
+    keywords: [
+      { keyword: "lotgenootje konijn", bid: 1.20, priority: "HIGH" },
+      { keyword: "lotgenootje koala", bid: 1.20, priority: "HIGH" },
+      { keyword: "lotgenootje hond", bid: 1.20, priority: "HIGH" },
+      { keyword: "lotgenootje beer", bid: 1.20, priority: "HIGH" },
+      { keyword: "lotgenootje kat", bid: 1.20, priority: "HIGH" },
+      { keyword: "lotgenootje schaap", bid: 1.20, priority: "HIGH" }
+    ]
+  },
+
+  lotgenootje_accessoires: {
+    campaign: "search_lotgenootje",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "mini knuffels", bid: 0.90, priority: "MEDIUM" },
+      { keyword: "knuffel kleding", bid: 0.85, priority: "MEDIUM" },
+      { keyword: "knuffel hoodie", bid: 0.80, priority: "MEDIUM" },
+      { keyword: "knuffel trui", bid: 0.80, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== KWALITEIT & VEILIGHEID ==============
+  kwaliteit: {
+    campaign: "search_product",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "super zacht", bid: 0.70, priority: "MEDIUM" },
+      { keyword: "zachte pluche", bid: 0.75, priority: "MEDIUM" },
+      { keyword: "hoogwaardige kwaliteit", bid: 0.80, priority: "MEDIUM" },
+      { keyword: "CE-keurmerk", bid: 0.65, priority: "LOW" },
+      { keyword: "veilig speelgoed", bid: 0.70, priority: "MEDIUM" },
+      { keyword: "hand wasbaar", bid: 0.60, priority: "LOW" },
+      { keyword: "duurzaam produceren", bid: 0.55, priority: "LOW" },
+      { keyword: "vanaf 3 jaar", bid: 0.65, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== CADEAU KEYWORDS ==============
+  cadeau_algemeen: {
+    campaign: "search_cadeau",
+    match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
+    keywords: [
+      { keyword: "origineel cadeau", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "cadeau voor haar", bid: 0.90, priority: "MEDIUM" },
+      { keyword: "cadeau voor hem", bid: 0.85, priority: "MEDIUM" },
+      { keyword: "cadeau voor kind", bid: 0.95, priority: "MEDIUM" }
+    ]
+  },
+
+  cadeau_gelegenheden: {
+    campaign: "search_cadeau",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "verjaardagscadeau", bid: 0.80, priority: "MEDIUM" },
+      { keyword: "kerstcadeau", bid: 0.85, priority: "MEDIUM", season: "december" },
+      { keyword: "moederdag cadeau", bid: 0.90, priority: "MEDIUM", season: "mei" },
+      { keyword: "valentijn cadeau", bid: 0.85, priority: "MEDIUM", season: "februari" },
+      { keyword: "cadeaubon", bid: 0.70, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== AANBIEDINGEN ==============
+  aanbiedingen: {
+    campaign: "search_generic",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "voordeelbundels", bid: 0.75, priority: "MEDIUM" },
+      { keyword: "bundel aanbieding", bid: 0.70, priority: "MEDIUM" },
+      { keyword: "winter sale", bid: 0.65, priority: "LOW", season: "winter" },
+      { keyword: "2e knuffel 50% korting", bid: 0.80, priority: "HIGH" }
+    ]
+  },
+
+  // ============== VERZENDING & SERVICE ==============
+  service: {
+    campaign: "search_generic",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "snelle levering", bid: 0.60, priority: "LOW" },
+      { keyword: "voor 23:59 besteld", bid: 0.55, priority: "LOW" },
+      { keyword: "gratis verzending", bid: 0.65, priority: "MEDIUM" },
+      { keyword: "gratis retourneren", bid: 0.60, priority: "LOW" },
+      { keyword: "30 dagen retourneren", bid: 0.55, priority: "LOW" },
+      { keyword: "30 dagen gratis uitproberen", bid: 0.70, priority: "MEDIUM" }
+    ]
+  },
+
+  // ============== DOELGROEPEN ==============
+  doelgroep_dementie: {
+    campaign: "search_stress_angst",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "dementie", bid: 1.00, priority: "MEDIUM" },
+      { keyword: "knuffel dementie", bid: 1.20, priority: "HIGH" },
+      { keyword: "zorgsector ervaring", bid: 0.80, priority: "LOW" }
+    ]
+  },
+
+  // ============== REVIEWS & VERTROUWEN ==============
+  reviews: {
+    campaign: "search_brand",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "trustpilot reviews", bid: 0.50, priority: "LOW" },
+      { keyword: "klantbeoordelingen", bid: 0.55, priority: "LOW" }
+    ]
+  },
+
+  // ============== FOUNDER & VERHAAL ==============
+  verhaal: {
+    campaign: "search_brand",
+    match_types: ["PHRASE"],
+    keywords: [
+      { keyword: "waar liefde zwaar weegt", bid: 0.70, priority: "MEDIUM" },
+      { keyword: "maatschappelijk werker", bid: 0.50, priority: "LOW" },
+      { keyword: "uniek ontwerp", bid: 0.55, priority: "LOW" },
+      { keyword: "feedback-gedreven", bid: 0.45, priority: "LOW" },
+      { keyword: "niche verzwaringsproducten", bid: 0.80, priority: "MEDIUM" }
+    ]
+  },
+
+  // Generic - Slaapproblemen (existing)
   slaapproblemen: {
     campaign: "search_generic",
     match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
@@ -157,7 +389,7 @@ export const keywordLists = {
     ]
   },
 
-  // Generic - Nachtlampjes
+  // Generic - Nachtlampjes (existing)
   nachtlampjes: {
     campaign: "search_generic",
     match_types: ["PHRASE", "EXACT"],
@@ -176,7 +408,7 @@ export const keywordLists = {
     ]
   },
 
-  // Generic - Knuffels
+  // Generic - Knuffels (existing)
   knuffels: {
     campaign: "search_generic",
     match_types: ["PHRASE", "BROAD_MATCH_MODIFIER"],
@@ -187,7 +419,6 @@ export const keywordLists = {
       { keyword: "knuffel met geluid", bid: 0.90, priority: "HIGH" },
       { keyword: "knuffel met sterrenprojector", bid: 1.00, priority: "HIGH" },
       { keyword: "slaapknuffel peuter", bid: 0.95, priority: "HIGH" },
-      { keyword: "rustgevende knuffel", bid: 0.85, priority: "MEDIUM" },
       { keyword: "kalmerende knuffel baby", bid: 0.90, priority: "HIGH" },
       { keyword: "knuffel white noise", bid: 1.00, priority: "HIGH" },
       { keyword: "knuffel hartslag geluid", bid: 0.85, priority: "MEDIUM" },
@@ -195,7 +426,7 @@ export const keywordLists = {
     ]
   },
 
-  // Product Specifiek - Dieren
+  // Product Specifiek - Dieren (existing)
   product_dieren: {
     campaign: "search_product",
     match_types: ["PHRASE", "EXACT"],
@@ -212,7 +443,7 @@ export const keywordLists = {
     ]
   },
 
-  // Doelgroep - Ouders Baby
+  // Doelgroep - Ouders Baby (existing)
   doelgroep_baby: {
     campaign: "search_generic",
     match_types: ["PHRASE"],
@@ -226,7 +457,7 @@ export const keywordLists = {
     ]
   },
 
-  // Doelgroep - Ouders Peuters
+  // Doelgroep - Ouders Peuters (existing)
   doelgroep_peuter: {
     campaign: "search_generic",
     match_types: ["PHRASE"],
@@ -239,7 +470,7 @@ export const keywordLists = {
     ]
   },
 
-  // Doelgroep - Speciale Behoeften
+  // Doelgroep - Speciale Behoeften (existing)
   doelgroep_special: {
     campaign: "search_generic",
     match_types: ["PHRASE"],
@@ -253,7 +484,7 @@ export const keywordLists = {
     ]
   },
 
-  // Seizoensgebonden
+  // Seizoensgebonden (existing)
   seizoen: {
     campaign: "search_generic",
     match_types: ["PHRASE"],
@@ -265,7 +496,7 @@ export const keywordLists = {
     ]
   },
 
-  // Concurrentie Keywords
+  // Concurrentie Keywords (existing)
   concurrent: {
     campaign: "search_generic",
     match_types: ["EXACT"],
