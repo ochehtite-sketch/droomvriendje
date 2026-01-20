@@ -1052,52 +1052,214 @@ export const conversionActions = [
 ];
 
 // ===========================================
-// EXPORT FUNCTIES
+// EXPORT FUNCTIES - GOOGLE ADS EDITOR FORMAT
 // ===========================================
 
 /**
- * Exporteer keywords naar CSV formaat
+ * Exporteer keywords naar Google Ads Editor CSV formaat
  */
 export const exportKeywordsToCSV = () => {
-  const rows = [["Campaign", "Ad Group", "Keyword", "Match Type", "Max CPC Bid", "Priority"]];
+  const rows = [["Campaign", "Ad group", "Keyword", "Criterion Type", "Max CPC", "Status"]];
   
   Object.entries(keywordLists).forEach(([groupName, group]) => {
+    // Get campaign name from campaign id
+    const campaign = campaignStructure.campaigns.find(c => c.id === group.campaign);
+    const campaignName = campaign ? campaign.name : group.campaign;
+    const adGroupName = groupName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    
     group.keywords.forEach(kw => {
       group.match_types.forEach(matchType => {
         let formattedKeyword = kw.keyword;
-        if (matchType === "EXACT") formattedKeyword = `[${kw.keyword}]`;
-        if (matchType === "PHRASE") formattedKeyword = `"${kw.keyword}"`;
-        if (matchType === "BROAD_MATCH_MODIFIER") formattedKeyword = `+${kw.keyword.split(' ').join(' +')}`;
+        let criterionType = "Keyword";
+        
+        if (matchType === "EXACT") {
+          formattedKeyword = `[${kw.keyword}]`;
+        } else if (matchType === "PHRASE") {
+          formattedKeyword = `"${kw.keyword}"`;
+        } else if (matchType === "BROAD_MATCH_MODIFIER") {
+          formattedKeyword = `+${kw.keyword.split(' ').join(' +')}`;
+        }
         
         rows.push([
-          group.campaign,
-          groupName,
+          campaignName,
+          adGroupName,
           formattedKeyword,
-          matchType,
+          criterionType,
           kw.bid.toFixed(2),
-          kw.priority
+          "Enabled"
         ]);
       });
     });
   });
   
-  return rows.map(row => row.join(",")).join("\n");
+  return rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
 };
 
 /**
- * Exporteer advertenties naar CSV formaat
+ * Exporteer advertenties naar Google Ads Editor CSV formaat (RSA)
  */
 export const exportAdsToCSV = () => {
-  const rows = [["Campaign", "Ad Group", "Type", "Headlines", "Descriptions"]];
+  const rows = [[
+    "Campaign",
+    "Ad group", 
+    "Ad type",
+    "Headline 1",
+    "Headline 2",
+    "Headline 3",
+    "Headline 4",
+    "Headline 5",
+    "Headline 6",
+    "Headline 7",
+    "Headline 8",
+    "Headline 9",
+    "Headline 10",
+    "Headline 11",
+    "Headline 12",
+    "Headline 13",
+    "Headline 14",
+    "Headline 15",
+    "Description 1",
+    "Description 2",
+    "Description 3",
+    "Description 4",
+    "Final URL",
+    "Status"
+  ]];
   
   Object.entries(adCopy).forEach(([adName, ad]) => {
+    const campaign = campaignStructure.campaigns.find(c => c.id === ad.campaign);
+    const campaignName = campaign ? campaign.name : ad.campaign;
+    const adGroupName = (ad.ad_group || adName).replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    
+    // Create row with all headlines and descriptions
+    const row = [
+      campaignName,
+      adGroupName,
+      "Responsive search ad"
+    ];
+    
+    // Add headlines (15 slots)
+    for (let i = 0; i < 15; i++) {
+      row.push(ad.headlines[i] ? ad.headlines[i].text : "");
+    }
+    
+    // Add descriptions (4 slots)
+    for (let i = 0; i < 4; i++) {
+      row.push(ad.descriptions[i] ? ad.descriptions[i].text : "");
+    }
+    
+    // Final URL and Status
+    row.push("https://droomvriendjes.nl");
+    row.push("Enabled");
+    
+    rows.push(row);
+  });
+  
+  return rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+};
+
+/**
+ * Exporteer campagnes naar Google Ads Editor CSV formaat
+ */
+export const exportCampaignsToCSV = () => {
+  const rows = [[
+    "Campaign",
+    "Campaign type",
+    "Campaign status",
+    "Budget",
+    "Budget type",
+    "Bid strategy type"
+  ]];
+  
+  campaignStructure.campaigns.forEach(campaign => {
     rows.push([
-      ad.campaign,
-      ad.ad_group || adName,
-      "Responsive Search Ad",
-      ad.headlines.map(h => h.text).join(" | "),
-      ad.descriptions.map(d => d.text).join(" | ")
+      campaign.name,
+      campaign.type === "SEARCH" ? "Search" : 
+        campaign.type === "SHOPPING" ? "Shopping" : 
+        campaign.type === "DISPLAY" ? "Display" : 
+        campaign.type === "PERFORMANCE_MAX" ? "Performance Max" : campaign.type,
+      "Enabled",
+      campaign.budget_daily.toFixed(2),
+      "Daily",
+      campaign.bidding_strategy.replace(/_/g, ' ').toLowerCase()
     ]);
+  });
+  
+  return rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
+};
+
+/**
+ * Exporteer sitelinks naar Google Ads Editor CSV formaat
+ */
+export const exportSitelinksToCSV = () => {
+  const rows = [[
+    "Campaign",
+    "Sitelink text",
+    "Description line 1",
+    "Final URL"
+  ]];
+  
+  // Add sitelinks for each campaign
+  campaignStructure.campaigns
+    .filter(c => c.type === "SEARCH")
+    .forEach(campaign => {
+      sitelinks.forEach(link => {
+        rows.push([
+          campaign.name,
+          link.text,
+          link.description,
+          `https://droomvriendjes.nl${link.url}`
+        ]);
+      });
+    });
+  
+  return rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
+};
+
+/**
+ * Exporteer callouts naar Google Ads Editor CSV formaat
+ */
+export const exportCalloutsToCSV = () => {
+  const rows = [[
+    "Campaign",
+    "Callout text"
+  ]];
+  
+  campaignStructure.campaigns
+    .filter(c => c.type === "SEARCH")
+    .forEach(campaign => {
+      callouts.forEach(callout => {
+        rows.push([
+          campaign.name,
+          callout
+        ]);
+      });
+    });
+  
+  return rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
+};
+
+/**
+ * Exporteer negatieve keywords naar Google Ads Editor CSV formaat
+ */
+export const exportNegativeKeywordsToCSV = () => {
+  const rows = [["Campaign", "Keyword", "Criterion Type"]];
+  
+  // Account level negatives - add to all campaigns
+  campaignStructure.campaigns
+    .filter(c => c.type === "SEARCH")
+    .forEach(campaign => {
+      negativeKeywords.account_level.forEach(kw => {
+        rows.push([
+          campaign.name,
+          kw,
+          "Negative keyword"
+        ]);
+      });
+    });
+  
+  return rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
+};
   });
   
   return rows.map(row => row.join(",")).join("\n");
