@@ -44,7 +44,7 @@ const GoogleAdsPage = () => {
 
   const handleDownloadKeywords = () => {
     const csv = exportKeywordsToCSV();
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -54,12 +54,62 @@ const GoogleAdsPage = () => {
 
   const handleDownloadAds = () => {
     const csv = exportAdsToCSV();
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'droomvriendjes_ads.csv';
     a.click();
+  };
+
+  const handleDownloadCampaigns = () => {
+    const csv = exportCampaignsToCSV();
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'droomvriendjes_campaigns.csv';
+    a.click();
+  };
+
+  const handleDownloadSitelinks = () => {
+    const csv = exportSitelinksToCSV();
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'droomvriendjes_sitelinks.csv';
+    a.click();
+  };
+
+  const handleDownloadCallouts = () => {
+    const csv = exportCalloutsToCSV();
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'droomvriendjes_callouts.csv';
+    a.click();
+  };
+
+  const handleDownloadNegatives = () => {
+    const csv = exportNegativeKeywordsToCSV();
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'droomvriendjes_negative_keywords.csv';
+    a.click();
+  };
+
+  const handleDownloadAll = () => {
+    // Download all files with small delay between each
+    handleDownloadCampaigns();
+    setTimeout(() => handleDownloadKeywords(), 300);
+    setTimeout(() => handleDownloadNegatives(), 600);
+    setTimeout(() => handleDownloadAds(), 900);
+    setTimeout(() => handleDownloadSitelinks(), 1200);
+    setTimeout(() => handleDownloadCallouts(), 1500);
   };
 
   return (
