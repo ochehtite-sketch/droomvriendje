@@ -1260,10 +1260,6 @@ export const exportNegativeKeywordsToCSV = () => {
   
   return rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
 };
-  });
-  
-  return rows.map(row => row.join(",")).join("\n");
-};
 
 /**
  * Get all keywords count
