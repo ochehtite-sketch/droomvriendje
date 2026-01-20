@@ -171,14 +171,41 @@ const GoogleAdsPage = () => {
           </div>
 
           {/* Export Buttons */}
-          <div className="flex gap-4 mb-8">
-            <Button onClick={handleDownloadKeywords} className="bg-blue-600 hover:bg-blue-700">
+          <div className="bg-white rounded-lg p-6 mb-8 shadow-sm">
+            <h3 className="text-lg font-semibold mb-4">📥 Download voor Google Ads Editor</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Download de CSV bestanden en importeer ze in Google Ads Editor. 
+              Volg deze volgorde: 1) Campagnes → 2) Keywords → 3) Negatieve Keywords → 4) Advertenties → 5) Extensies
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+              <Button onClick={handleDownloadCampaigns} variant="outline" className="justify-start">
+                <Download className="w-4 h-4 mr-2" />
+                Campagnes
+              </Button>
+              <Button onClick={handleDownloadKeywords} variant="outline" className="justify-start">
+                <Download className="w-4 h-4 mr-2" />
+                Keywords
+              </Button>
+              <Button onClick={handleDownloadNegatives} variant="outline" className="justify-start">
+                <Download className="w-4 h-4 mr-2" />
+                Negatieve KW
+              </Button>
+              <Button onClick={handleDownloadAds} variant="outline" className="justify-start">
+                <Download className="w-4 h-4 mr-2" />
+                Advertenties
+              </Button>
+              <Button onClick={handleDownloadSitelinks} variant="outline" className="justify-start">
+                <Download className="w-4 h-4 mr-2" />
+                Sitelinks
+              </Button>
+              <Button onClick={handleDownloadCallouts} variant="outline" className="justify-start">
+                <Download className="w-4 h-4 mr-2" />
+                Callouts
+              </Button>
+            </div>
+            <Button onClick={handleDownloadAll} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
               <Download className="w-4 h-4 mr-2" />
-              Download Keywords CSV
-            </Button>
-            <Button onClick={handleDownloadAds} className="bg-green-600 hover:bg-green-700">
-              <Download className="w-4 h-4 mr-2" />
-              Download Ads CSV
+              Download Alles (6 bestanden)
             </Button>
           </div>
 
