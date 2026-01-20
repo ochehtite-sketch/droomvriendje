@@ -572,7 +572,7 @@ export const adCopy = {
       { text: "White Noise Functie" },
       { text: "Vanaf €49,95" },
       { text: "★★★★★ 4.7/5 Reviews" },
-      { text: "100.000+ Tevreden Klanten" },
+      { text: "10.000+ Tevreden Klanten" },
       { text: "Veilig Vanaf 0 Maanden" },
       { text: "Voor 23:00 = Morgen in Huis" },
       { text: "Ideaal Kraamcadeau" },
@@ -581,7 +581,7 @@ export const adCopy = {
     descriptions: [
       { text: "Ontdek onze slaapknuffels met sterrenprojector en rustgevende geluiden. Gratis verzending & 14 dagen retour.", pinned: 1 },
       { text: "Help je kind beter slapen met een Droomvriendje. Kalmerende lichtjes en white noise voor een rustige nacht." },
-      { text: "Bestel vandaag en ontvang morgen. Veilige betaling met iDEAL. Meer dan 100.000 tevreden ouders gingen je voor!" },
+      { text: "Bestel vandaag en ontvang morgen. Veilige betaling met iDEAL. Meer dan 10.000 tevreden ouders gingen je voor!" },
       { text: "Slaapknuffels met projector en muziek. Perfect voor baby's en peuters. Nu 2e knuffel voor 50% korting!" }
     ]
   },
@@ -755,7 +755,7 @@ export const adCopy = {
     descriptions: [
       { text: "Moeite met inslapen? Onze slaapknuffels met rustgevende lichtjes en geluiden helpen je kind sneller in slaap vallen." },
       { text: "Speciaal ontwikkeld voor kinderen met slaapproblemen. Kalmerende white noise en sterrenprojectie voor betere nachtrust." },
-      { text: "Al meer dan 100.000 ouders gingen je voor. Bestel nu met gratis verzending en 14 dagen bedenktijd." },
+      { text: "Al meer dan 10.000 ouders gingen je voor. Bestel nu met gratis verzending en 14 dagen bedenktijd." },
       { text: "Wetenschappelijk onderbouwd: white noise en lichtprojectie verminderen onrust. Probeer 14 dagen gratis!" }
     ]
   },
@@ -784,7 +784,7 @@ export const adCopy = {
     descriptions: [
       { text: "Knuffel met ingebouwd nachtlampje en sterrenprojectie. Creëer een magische sfeer in de kinderkamer. Gratis verzending!" },
       { text: "Onze nachtlampjes projecteren een sterrenhemel op het plafond. Met timer en dimfunctie. Veilig vanaf 0 maanden." },
-      { text: "Populairste nachtlampje van Nederland! Meer dan 100.000 verkocht. Bestel nu en ontvang morgen in huis." },
+      { text: "Populairste nachtlampje van Nederland! Meer dan 10.000 verkocht. Bestel nu en ontvang morgen in huis." },
       { text: "Combineer knuffelen met rustgevend licht. Perfecte slaaphulp voor je kleintje. 14 dagen niet goed = geld terug." }
     ]
   },
@@ -806,14 +806,14 @@ export const adCopy = {
       { text: "2e Knuffel 50% Korting" },
       { text: "Droomvriendjes®" },
       { text: "★★★★★ 4.7/5" },
-      { text: "100.000+ Verkocht" },
+      { text: "10.000+ Verkocht" },
       { text: "Veilig Vanaf 0 Maanden" },
       { text: "Schattige Dieren" }
     ],
     descriptions: [
       { text: "Slaapknuffels met ingebouwde nachtlamp en white noise. Kies uit teddy, schaap, panda en meer. Gratis verzending!" },
       { text: "Onze knuffels helpen je kind tot rust te komen. Met sterrenprojector, muziek en timer. Nu 2e knuffel halve prijs!" },
-      { text: "Super zachte knuffels met kalmerende functies. Perfect als kraamcadeau. Meer dan 100.000 tevreden ouders!" },
+      { text: "Super zachte knuffels met kalmerende functies. Perfect als kraamcadeau. Meer dan 10.000 tevreden ouders!" },
       { text: "Van teddy tot eenhoorn - vind de perfecte slaapknuffel voor jouw kind. 14 dagen bedenktijd. Gratis retour." }
     ]
   },
