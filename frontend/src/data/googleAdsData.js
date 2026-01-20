@@ -934,15 +934,19 @@ export const callouts = [
 export const structuredSnippets = [
   {
     header: "Types",
-    values: ["Teddybeer", "Schaap", "Panda", "Leeuw", "Pinguïn", "Dinosaurus", "Eenhoorn"]
+    values: ["Konijn", "Koala", "Hond", "Beer", "Kat", "Schaap"]
   },
   {
     header: "Functies",
-    values: ["Sterrenprojector", "White Noise", "Nachtlampje", "Timer", "Muziek"]
+    values: ["Verzwaard 2kg", "Diepe Druk", "Super Zacht", "Handwasbaar", "CE-Keurmerk"]
   },
   {
     header: "Voordelen",
-    values: ["Gratis Verzending", "14 Dagen Retour", "Veilig Betalen", "Snel Geleverd"]
+    values: ["Gratis Verzending", "30 Dagen Retour", "Veilig Betalen", "Snel Geleverd"]
+  },
+  {
+    header: "Doelgroepen",
+    values: ["Kinderen", "Volwassenen", "HSP", "Stress", "Slaapproblemen"]
   }
 ];
 
