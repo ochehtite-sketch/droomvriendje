@@ -586,7 +586,152 @@ export const adCopy = {
     ]
   },
 
-  // RSA - Slaapproblemen
+  // ============== VERZWARINGSKNUFFEL ADS ==============
+  verzwaringsknuffel_rsa: {
+    campaign: "search_verzwaring",
+    ad_group: "verzwaringsknuffel",
+    headlines: [
+      { text: "Verzwaringsknuffel 2kg", pinned: 1 },
+      { text: "Lotgenootje® Knuffels" },
+      { text: "Diepe Druk Stimulatie" },
+      { text: "Knuffel die Terugknuffelt" },
+      { text: "Waar Liefde Zwaar Weegt" },
+      { text: "Gelijkmatig Verzwaard" },
+      { text: "Super Zacht Materiaal" },
+      { text: "Bewezen Kalmerend Effect" },
+      { text: "Gratis Verzending NL" },
+      { text: "30 Dagen Uitproberen" },
+      { text: "CE-Gecertificeerd Veilig" },
+      { text: "Voor Kinderen & Volwassenen" },
+      { text: "Stress & Angst Verminderen" },
+      { text: "Handwasbaar" },
+      { text: "★★★★★ Reviews" }
+    ],
+    descriptions: [
+      { text: "Ontdek de Lotgenootje verzwaringsknuffel. 2kg gelijkmatig verdeeld gewicht voor diepe druk stimulatie en rust.", pinned: 1 },
+      { text: "Verzwaringsknuffels die echt terugknuffelen. Vermindert stress, angst en overprikkeling. Gratis verzending!" },
+      { text: "Alternatief voor verzwaringsdeken. Super zacht, CE-keurmerk, handwasbaar. 30 dagen gratis uitproberen." },
+      { text: "Door zorgsector ontwikkeld. Perfect bij hoogsensitiviteit, ADHD, autisme of gewoon extra troost nodig." }
+    ]
+  },
+
+  // Lotgenootje Product Ads
+  lotgenootje_rsa: {
+    campaign: "search_lotgenootje",
+    ad_group: "lotgenootje_dieren",
+    headlines: [
+      { text: "Lotgenootje® Knuffels", pinned: 1 },
+      { text: "Kies Jouw Maatje" },
+      { text: "Konijn, Koala, Hond & Meer" },
+      { text: "Verzwaarde Knuffels 2kg" },
+      { text: "Uniek Ontwerp" },
+      { text: "Super Zacht Pluche" },
+      { text: "Rust en Geborgenheid" },
+      { text: "Voor Alle Leeftijden" },
+      { text: "Gratis Verzending" },
+      { text: "30 Dagen Proberen" },
+      { text: "★★★★★ Beoordeeld" },
+      { text: "Inclusief Kleding" },
+      { text: "Handwasbaar" },
+      { text: "CE-Keurmerk" },
+      { text: "Direct Leverbaar" }
+    ],
+    descriptions: [
+      { text: "Ontmoet jouw Lotgenootje! Kies uit konijn, koala, hond, beer, kat of schaap. Elk 2kg verzwaard voor diepe rust.", pinned: 1 },
+      { text: "Verzwaringsknuffels ontworpen met liefde. Perfect als maatje, trooster en slaaphulp. Gratis verzending!" },
+      { text: "Super zachte knuffels met gelijkmatig verdeeld gewicht. Inclusief schattige outfits. 30 dagen uitproberen." },
+      { text: "Door ervaringsdeskundigen ontwikkeld. Helpt bij stress, angst en prikkelverwerking. Bestel vandaag!" }
+    ]
+  },
+
+  // Stress & Angst Ads
+  stress_angst_rsa: {
+    campaign: "search_stress_angst",
+    ad_group: "stress_angst",
+    headlines: [
+      { text: "Stress Verminderen?", pinned: 1 },
+      { text: "Angst Aanpakken" },
+      { text: "Diepe Druk Therapie" },
+      { text: "Verzwaringsknuffel Helpt" },
+      { text: "Bewezen Kalmerend" },
+      { text: "Troost & Geborgenheid" },
+      { text: "Voor Kinderen & Volwassenen" },
+      { text: "Lotgenootje® Knuffels" },
+      { text: "Gratis Verzending" },
+      { text: "30 Dagen Uitproberen" },
+      { text: "★★★★★ Reviews" },
+      { text: "Ontspan Je Lichaam" },
+      { text: "Minder Spanning" },
+      { text: "Super Zacht" },
+      { text: "Direct Leverbaar" }
+    ],
+    descriptions: [
+      { text: "Verzwaringsknuffels met diepe druk stimulatie helpen bij stress en angst. 2kg gewicht voor direct ontspanning.", pinned: 1 },
+      { text: "Wetenschappelijk bewezen: diepe druk vermindert stress hormonen. Onze knuffels bieden troost wanneer je het nodig hebt." },
+      { text: "Lotgenootje knuffels: je persoonlijke maatje in moeilijke momenten. Gratis verzending, 30 dagen proberen!" },
+      { text: "Alternatief voor verzwaringsdeken maar dan knuffelbaar. Super zacht, veilig, en altijd bij de hand." }
+    ]
+  },
+
+  // Prikkelverwerking Ads
+  prikkelverwerking_rsa: {
+    campaign: "search_stress_angst",
+    ad_group: "prikkelverwerking",
+    headlines: [
+      { text: "Overprikkeld?", pinned: 1 },
+      { text: "Prikkelverwerking Hulp" },
+      { text: "Sensorische Ondersteuning" },
+      { text: "Ontprikkelen met Knuffel" },
+      { text: "HSP & Hoogsensitief" },
+      { text: "Diepe Druk Werkt" },
+      { text: "Verzwaringsknuffel 2kg" },
+      { text: "Rust bij Prikkels" },
+      { text: "Lotgenootje® Knuffels" },
+      { text: "Gratis Verzending" },
+      { text: "30 Dagen Uitproberen" },
+      { text: "★★★★★ Reviews" },
+      { text: "CE-Gecertificeerd" },
+      { text: "Ontwikkeld met Experts" },
+      { text: "Direct Leverbaar" }
+    ],
+    descriptions: [
+      { text: "Overprikkeld? Onze verzwaringsknuffels bieden sensorische ondersteuning door diepe druk stimulatie. Direct rust.", pinned: 1 },
+      { text: "Speciaal voor hoogsensitieve kinderen en volwassenen. 2kg gelijkmatig verdeeld gewicht kalmeert het zenuwstelsel." },
+      { text: "Lotgenootje: je veilige haven bij teveel prikkels. Super zacht, altijd beschikbaar. 30 dagen gratis uitproberen!" },
+      { text: "Door zorgprofessionals aanbevolen. Helpt bij autisme, ADHD, HSP. Gratis verzending & retourneren." }
+    ]
+  },
+
+  // Cadeau Ads
+  cadeau_rsa: {
+    campaign: "search_cadeau",
+    ad_group: "cadeau",
+    headlines: [
+      { text: "Origineel Cadeau Idee", pinned: 1 },
+      { text: "Verzwaringsknuffel Cadeau" },
+      { text: "Lotgenootje® Knuffels" },
+      { text: "Cadeau voor Rust & Troost" },
+      { text: "Uniek & Betekenisvol" },
+      { text: "Verrassend Anders" },
+      { text: "Gratis Inpakken" },
+      { text: "Cadeaubon Beschikbaar" },
+      { text: "Gratis Verzending" },
+      { text: "★★★★★ Reviews" },
+      { text: "Perfect Kerstcadeau" },
+      { text: "Moederdag Cadeau Tip" },
+      { text: "Verjaardag Verrassing" },
+      { text: "Voor Alle Leeftijden" },
+      { text: "Direct Leverbaar" }
+    ],
+    descriptions: [
+      { text: "Op zoek naar een origineel cadeau? Geef een Lotgenootje verzwaringsknuffel. Troost die je kunt vastpakken!", pinned: 1 },
+      { text: "Het perfecte cadeau voor iemand die rust en geborgenheid verdient. Gratis verzending, mooi verpakt." },
+      { text: "Cadeaubon beschikbaar! Laat je dierbare zelf kiezen uit konijn, koala, hond, beer, kat of schaap." },
+      { text: "Verrassend, betekenisvol, blijvend. Het cadeau dat echt iets doet. 30 dagen niet goed = geld terug." }
+    ]
+  },
+
+  // RSA - Slaapproblemen (existing)
   slaapproblemen_rsa: {
     campaign: "search_generic",
     ad_group: "slaapproblemen",
@@ -615,7 +760,7 @@ export const adCopy = {
     ]
   },
 
-  // RSA - Nachtlampjes
+  // RSA - Nachtlampjes (existing)
   nachtlampjes_rsa: {
     campaign: "search_generic",
     ad_group: "nachtlampjes",
@@ -644,7 +789,7 @@ export const adCopy = {
     ]
   },
 
-  // RSA - Knuffels
+  // RSA - Knuffels (existing)
   knuffels_rsa: {
     campaign: "search_generic",
     ad_group: "knuffels",
@@ -673,7 +818,7 @@ export const adCopy = {
     ]
   },
 
-  // RSA - Speciale Behoeften
+  // RSA - Speciale Behoeften (existing)
   special_needs_rsa: {
     campaign: "search_generic",
     ad_group: "special_needs",
