@@ -1290,5 +1290,9 @@ export default {
   conversionActions,
   exportKeywordsToCSV,
   exportAdsToCSV,
+  exportCampaignsToCSV,
+  exportSitelinksToCSV,
+  exportCalloutsToCSV,
+  exportNegativeKeywordsToCSV,
   getKeywordStats
 };
