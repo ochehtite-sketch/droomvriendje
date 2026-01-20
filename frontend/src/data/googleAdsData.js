@@ -911,15 +911,20 @@ export const sitelinks = [
 
 export const callouts = [
   "Gratis Verzending",
-  "14 Dagen Bedenktijd",
+  "30 Dagen Uitproberen",
   "Voor 23:00 Besteld = Morgen in Huis",
-  "Veilig Vanaf 0 Maanden",
-  "100.000+ Tevreden Klanten",
-  "★★★★★ 4.7/5 Reviews",
+  "Veilig Vanaf 3 Jaar",
+  "★★★★★ Reviews",
   "Veilig Betalen met iDEAL",
   "2e Knuffel 50% Korting",
   "CE Gecertificeerd",
-  "Nederlandse Klantenservice"
+  "Nederlandse Klantenservice",
+  "Handwasbaar",
+  "2kg Verzwaard",
+  "Diepe Druk Stimulatie",
+  "Super Zacht Pluche",
+  "Gratis Retourneren",
+  "Lotgenootje® Kwaliteit"
 ];
 
 // ===========================================
