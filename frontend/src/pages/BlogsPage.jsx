@@ -51,7 +51,7 @@ const BlogsPage = () => {
       date: "28 december 2024",
       readTime: "6 min",
       category: "Opvoeding",
-      image: "https://images.unsplash.com/photo-1587616211892-54b471a7eeae?w=800"
+      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800"
     },
     {
       id: 4,
