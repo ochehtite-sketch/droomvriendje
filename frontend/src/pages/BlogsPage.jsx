@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Calendar, User, Clock } from 'lucide-react';
-import Layout from '../components/Layout';
-import { AdBanner, AdInArticle } from '../components/AdSense';
+import { Calendar, User, Clock, Mail } from 'lucide-react';
+import Footer from '../components/Footer';
 
 const BlogsPage = () => {
   const blogs = [
@@ -45,6 +44,7 @@ const BlogsPage = () => {
     },
     {
       id: 3,
+      slug: "hoogsensitiviteit-bij-kinderen",
       title: "Hoogsensitiviteit bij Kinderen: Wat Je Moet Weten",
       excerpt: "Alles over hoogsensitieve kinderen en hoe je ze kunt helpen om beter om te gaan met prikkels en emoties in het dagelijks leven.",
       author: "Emma Janssen",
@@ -55,6 +55,7 @@ const BlogsPage = () => {
     },
     {
       id: 4,
+      slug: "wetenschap-diepe-druk-stimulatie",
       title: "De Wetenschap Achter Diepe Druk Stimulatie",
       excerpt: "Ontdek hoe diepe druk stimulatie werkt en waarom het zo effectief is bij het kalmeren van kinderen en volwassenen.",
       author: "Prof. Mark Hendriksen",
@@ -65,6 +66,7 @@ const BlogsPage = () => {
     },
     {
       id: 5,
+      slug: "slaaprituals-rustgevende-routine",
       title: "Slaaprituals: Hoe Creëer Je Een Rustgevende Routine?",
       excerpt: "Een goede slaaproutine is essentieel voor kinderen. Lees onze tips voor het creëren van een effectief slaaprituaal.",
       author: "Lisa van Dam",
@@ -75,6 +77,7 @@ const BlogsPage = () => {
     },
     {
       id: 6,
+      slug: "adhd-slaapproblemen-tips",
       title: "ADHD en Slaapproblemen: Wat Ouders Moeten Weten",
       excerpt: "Kinderen met ADHD hebben vaak moeite met slapen. Ontdek praktische tips en oplossingen om je kind te helpen.",
       author: "Team Droomvriendjes",
@@ -89,62 +92,91 @@ const BlogsPage = () => {
   const featuredBlog = blogs.find(b => b.featured);
   const regularBlogs = blogs.filter(b => !b.featured);
 
+  // Get blog link - use slug if available, otherwise use id
+  const getBlogLink = (blog) => {
+    if (blog.slug) {
+      return `/blog/${blog.slug}`;
+    }
+    return `/blog/${blog.id}`;
+  };
+
   return (
-    <Layout backButtonText="Terug naar Home">
-      {/* Hero */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <Link to="/" className="flex items-center space-x-3">
+              <img 
+                src="https://i.imgur.com/IESI44c.png" 
+                alt="Droomvriendjes.nl" 
+                className="h-14 sm:h-16 w-auto"
+              />
+            </Link>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-6">
+              <Link to="/" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">Home</Link>
+              <Link to="/knuffels" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">Producten</Link>
+              <Link to="/blogs" className="text-purple-600 font-medium">Blog</Link>
+              <Link to="/contact" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">Contact</Link>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Droomvriendjes Blog</h1>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Droomvriendjes Blog</h1>
+          <p className="text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto px-4">
             Tips, advies en verhalen over betere nachtrust, kinderslaap en welzijn
           </p>
         </div>
       </div>
 
-      {/* Blog Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Ad Banner Top */}
-        <AdBanner className="mb-8" />
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         
-        {/* Featured Blog - Mondriaan Samenwerking */}
+        {/* Featured Blog - Mondriaan */}
         {featuredBlog && (
-          <div className="mb-12">
-            <Link to={`/blog/${featuredBlog.slug || featuredBlog.id}`}>
-              <Card className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-200 group">
+          <div className="mb-8 sm:mb-12">
+            <Link to={getBlogLink(featuredBlog)}>
+              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-purple-200 group cursor-pointer">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
-                  <div className="relative h-64 lg:h-auto overflow-hidden">
+                  <div className="relative h-48 sm:h-64 lg:h-auto overflow-hidden">
                     <img 
                       src={featuredBlog.image} 
                       alt={featuredBlog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
+                    <Badge className="absolute top-4 left-4 bg-purple-600 text-white shadow-lg">
                       {featuredBlog.category}
                     </Badge>
                   </div>
-                  <CardContent className="p-8 flex flex-col justify-center bg-gradient-to-br from-purple-50 to-white">
-                    <div className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold mb-4 border-purple-200 bg-purple-100 text-purple-800 w-fit">
+                  <CardContent className="p-6 sm:p-8 flex flex-col justify-center bg-gradient-to-br from-purple-50 to-white">
+                    <Badge variant="outline" className="mb-3 sm:mb-4 w-fit border-purple-200 bg-purple-100 text-purple-800">
                       Uitgelicht
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-purple-900 mb-4">
+                    </Badge>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-purple-900 mb-3 sm:mb-4">
                       {featuredBlog.title}
                     </h2>
-                    <p className="text-gray-600 mb-6 text-lg">
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
                       {featuredBlog.excerpt}
                     </p>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <div className="flex items-center space-x-1">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                      <span className="flex items-center gap-1">
                         <User className="w-4 h-4" />
-                        <span>{featuredBlog.author}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
+                        {featuredBlog.author}
+                      </span>
+                      <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        <span>{featuredBlog.date}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
+                        {featuredBlog.date}
+                      </span>
+                      <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
-                        <span>{featuredBlog.readTime}</span>
-                      </div>
+                        {featuredBlog.readTime}
+                      </span>
                     </div>
                   </CardContent>
                 </div>
@@ -152,44 +184,45 @@ const BlogsPage = () => {
             </Link>
           </div>
         )}
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {regularBlogs.slice(0, 6).map((blog) => (
-            <Link key={blog.id} to={`/blog/${blog.slug || blog.id}`}>
-              <Card className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-100 group h-full">
-                <div className="relative h-48 overflow-hidden">
+
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
+          {regularBlogs.map((blog) => (
+            <Link key={blog.id} to={getBlogLink(blog)}>
+              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-purple-100 group cursor-pointer h-full hover:-translate-y-1">
+                <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img 
                     src={blog.image} 
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
+                  <Badge className="absolute top-4 left-4 bg-purple-600 text-white shadow-lg text-xs">
                     {blog.category}
                   </Badge>
                 </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{blog.date}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{blog.readTime}</span>
-                    </div>
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5" />
+                      {blog.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5" />
+                      {blog.readTime}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold text-purple-900 mb-3 line-clamp-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-purple-900 mb-2 sm:mb-3 line-clamp-2">
                     {blog.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 line-clamp-3">
                     {blog.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 text-sm text-gray-500">
-                      <User className="w-4 h-4" />
-                      <span>{blog.author}</span>
-                    </div>
-                    <Button variant="outline" className="text-purple-600 border-purple-600 hover:bg-purple-50">
+                    <span className="text-xs sm:text-sm text-gray-500 truncate flex items-center gap-1">
+                      <User className="w-3.5 h-3.5" />
+                      {blog.author}
+                    </span>
+                    <Button variant="outline" size="sm" className="text-purple-600 border-purple-600 hover:bg-purple-50 text-xs sm:text-sm whitespace-nowrap ml-2">
                       Lees Meer
                     </Button>
                   </div>
@@ -199,74 +232,31 @@ const BlogsPage = () => {
           ))}
         </div>
 
-        {/* In-Article Ad */}
-        <AdInArticle />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.slice(3).map((blog) => (
-            <Card key={blog.id} className="overflow-hidden hover:shadow-2xl transition-all border-2 border-purple-100 group">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={blog.image} 
-                  alt={blog.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
-                  {blog.category}
-                </Badge>
-              </div>
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-                  <div className="flex items-center space-x-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{blog.date}</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{blog.readTime}</span>
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-3 line-clamp-2">
-                  {blog.title}
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  {blog.excerpt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2 text-sm text-gray-500">
-                    <User className="w-4 h-4" />
-                    <span>{blog.author}</span>
-                  </div>
-                  <Button variant="outline" className="text-purple-600 border-purple-600 hover:bg-purple-50">
-                    Lees Meer
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* Newsletter CTA */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Blijf Op De Hoogte</h2>
-          <p className="text-lg mb-8 opacity-90">
-            Ontvang de nieuwste blogs, tips en aanbiedingen direct in je inbox
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Je email adres"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900"
-            />
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
-              Inschrijven
-            </Button>
+        {/* Newsletter Section */}
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12 sm:py-16 rounded-2xl">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Mail className="w-12 h-12 mx-auto mb-4 opacity-90" />
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Blijf Op De Hoogte</h2>
+            <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90">
+              Ontvang de nieuwste blogs, tips en aanbiedingen direct in je inbox
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md mx-auto">
+              <input 
+                type="email" 
+                placeholder="Je email adres"
+                className="flex-1 px-4 py-2.5 sm:py-3 rounded-lg text-gray-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-purple-300"
+              />
+              <Button className="bg-white text-purple-600 hover:bg-gray-100 px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base whitespace-nowrap font-medium">
+                Inschrijven
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
+
+      </main>
+
+      <Footer variant="purple" />
+    </div>
   );
 };
 
