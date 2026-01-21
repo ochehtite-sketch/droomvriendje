@@ -1452,6 +1452,7 @@ async def create_payment(payment: PaymentCreate):
                 item_total = float(item.get('price', 0)) * int(item.get('quantity', 1))
                 lines.append({
                     'type': 'physical',
+                    'description': item.get('product_name', 'Droomvriendjes Knuffel'),
                     'name': item.get('product_name', 'Product'),
                     'quantity': int(item.get('quantity', 1)),
                     'unitPrice': {
