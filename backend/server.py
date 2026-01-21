@@ -2727,6 +2727,32 @@ async def start_abandoned_cart_flow(cart_id: str):
         return {"status": "flow_started", "cart_id": cart_id}
     raise HTTPException(status_code=400, detail="Could not start flow - cart not found or already recovered")
 
+@api_router.post("/email/track-checkout")
+async def track_checkout_session(checkout_data: CheckoutTrackRequest):
+    """
+    Track a checkout session for abandoned cart recovery.
+    Call this when a customer enters their email on the checkout page.
+    Automatically schedules the abandoned cart email flow to start after 1 hour.
+    """
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    result = await email_service.track_checkout_session(checkout_data.model_dump())
+    return result
+
+@api_router.post("/email/process-scheduled-carts")
+async def process_scheduled_abandoned_carts():
+    """
+    Process abandoned carts that have passed their scheduled flow time.
+    This will automatically start the email flow for carts that have been
+    abandoned for more than 1 hour.
+    """
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    flows_started = await email_service.process_scheduled_abandoned_carts()
+    return {"status": "processed", "flows_started": flows_started}
+
 @api_router.post("/email/subscribe")
 async def subscribe_email(subscriber: SubscriberCreate):
     """Subscribe to newsletter and start welcome flow"""
