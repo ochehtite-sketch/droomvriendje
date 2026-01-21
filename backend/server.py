@@ -1445,6 +1445,31 @@ async def create_payment(payment: PaymentCreate):
             # Klarna also requires shipping address
             payment_data['shippingAddress'] = payment_data['billingAddress'].copy()
         
+        # Klarna specifically requires order lines
+        if payment.payment_method in ['klarna', 'klarnapaylater', 'klarnasliceit']:
+            lines = []
+            for item in order.get('items', []):
+                item_total = float(item.get('price', 0)) * int(item.get('quantity', 1))
+                lines.append({
+                    'type': 'physical',
+                    'name': item.get('product_name', 'Product'),
+                    'quantity': int(item.get('quantity', 1)),
+                    'unitPrice': {
+                        'currency': 'EUR',
+                        'value': f"{float(item.get('price', 0)):.2f}"
+                    },
+                    'totalAmount': {
+                        'currency': 'EUR',
+                        'value': f"{item_total:.2f}"
+                    },
+                    'vatRate': '21.00',
+                    'vatAmount': {
+                        'currency': 'EUR',
+                        'value': f"{item_total * 0.21 / 1.21:.2f}"
+                    }
+                })
+            payment_data['lines'] = lines
+        
         # Create payment with Mollie
         mollie_payment = mollie_client.payments.create(payment_data)
         
