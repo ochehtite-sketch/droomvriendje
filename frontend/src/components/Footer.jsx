@@ -99,10 +99,18 @@ const Footer = ({ variant = 'purple' }) => {
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
             <div className="mt-6">
-              <p className="font-semibold text-white mb-2 text-sm">Betaalmethoden</p>
-              <div className={`${c.textMuted} text-sm`}>
-                <p>iDEAL • Klarna</p>
-                <p>PayPal • Creditcard</p>
+              <p className="font-semibold text-white mb-3 text-sm">Veilig betalen met</p>
+              <div className="flex flex-wrap gap-2">
+                <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-6 bg-white rounded p-1" />
+                <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-6 bg-white rounded p-1" />
+                <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-6 bg-white rounded p-1" />
+                <img src="https://www.mollie.com/external/icons/payment-methods/klarna.svg" alt="Klarna" className="h-6 bg-white rounded p-1" />
+                <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-6 bg-white rounded p-1" />
+                <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-6 bg-white rounded p-1" />
+              </div>
+              <div className="mt-3 flex items-center gap-2 text-xs text-green-300">
+                <span>🔒</span>
+                <span>SSL Beveiligd</span>
               </div>
             </div>
           </div>
