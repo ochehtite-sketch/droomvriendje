@@ -3157,4 +3157,16 @@ app.add_middleware(
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
+    global abandoned_cart_scheduler_task
+    
+    # Stop the abandoned cart scheduler
+    if abandoned_cart_scheduler_task:
+        abandoned_cart_scheduler_task.cancel()
+        try:
+            await abandoned_cart_scheduler_task
+        except asyncio.CancelledError:
+            pass
+        logger.info("🛑 Abandoned cart scheduler stopped")
+    
     client.close()
+    logger.info("🛑 Database connection closed")
