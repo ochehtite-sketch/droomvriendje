@@ -92,14 +92,14 @@ const ProductPage = () => {
                       className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all"
                       aria-label="Vorige foto"
                     >
-                      <ChevronLeft className="w-6 h-6 text-purple-600" />
+                      <ChevronLeft className="w-6 h-6 text-[#8B7355]" />
                     </button>
                     <button
                       onClick={() => setSelectedImage(prev => prev === galleryImages.length - 1 ? 0 : prev + 1)}
                       className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all"
                       aria-label="Volgende foto"
                     >
-                      <ChevronRight className="w-6 h-6 text-purple-600" />
+                      <ChevronRight className="w-6 h-6 text-[#8B7355]" />
                     </button>
                   </>
                 )}
@@ -114,8 +114,8 @@ const ProductPage = () => {
                       onClick={() => setSelectedImage(idx)}
                       className={`flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-2 transition-all ${
                         selectedImage === idx 
-                          ? 'border-purple-600 ring-2 ring-purple-300 scale-105' 
-                          : 'border-gray-200 hover:border-purple-300 hover:scale-102'
+                          ? 'border-[#8B7355] ring-2 ring-[#8B7355]/30 scale-105' 
+                          : 'border-gray-200 hover:border-[#8B7355]/50 hover:scale-102'
                       }`}
                     >
                       <img 
@@ -139,12 +139,12 @@ const ProductPage = () => {
                   </div>
                 )}
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-2">
+                <h1 className="text-4xl md:text-5xl font-bold text-[#5a4a3a] mb-2">
                   {product.name}
                 </h1>
                 
                 {/* Subtitle/Tagline */}
-                <p className="text-lg text-purple-600 italic mb-4">
+                <p className="text-lg text-[#8B7355] italic mb-4">
                   {product.shortName === 'Lotgenootje Konijn' && 'Projecteert sterren + speelt hartslaggeluid voor een geruststellende nachtrust'}
                   {product.shortName === 'Lotgenootje Beer' && 'De perfecte slaapmaatje met rustgevende hartslag en ademhaling'}
                   {product.shortName === 'Lotgenootje Olifant' && 'Grote knuffel met grote troost - kalmerende geluiden voor diepe slaap'}
@@ -180,9 +180,9 @@ const ProductPage = () => {
                 </div>
                 
                 {/* Emotional Description */}
-                <div className="bg-purple-50 rounded-xl p-4 mb-6">
+                <div className="bg-[#faf7f4] rounded-xl p-4 mb-6 border border-[#e8e0d8]">
                   <p className="text-gray-700 leading-relaxed">
-                    <span className="text-2xl">💜</span> Dit lieve {product.shortName} helpt jouw kindje makkelijker in slaap vallen. 
+                    <span className="text-2xl">🧸</span> Dit lieve {product.shortName} helpt jouw kindje makkelijker in slaap vallen. 
                     Met rustgevende geluiden en een zacht nachtlampje voelt je kleintje zich geborgen en droomt sneller weg – 
                     terwijl jij ook eindelijk je rust krijgt.
                   </p>
@@ -190,10 +190,10 @@ const ProductPage = () => {
               </div>
 
               {/* Price Section - CRO Optimized */}
-              <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6 mb-6">
+              <div className="bg-gradient-to-r from-[#f5efe8] to-[#fdf8f3] rounded-2xl p-6 mb-6 border border-[#e8e0d8]">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
-                    <span className="text-4xl md:text-5xl font-bold text-purple-900">€{product.price.toFixed(2).replace('.', ',')}</span>
+                    <span className="text-4xl md:text-5xl font-bold text-[#5a4a3a]">€{product.price.toFixed(2).replace('.', ',')}</span>
                     <span className="text-gray-500 text-sm ml-2 line-through">€{(product.price * 1.3).toFixed(2).replace('.', ',')}</span>
                   </div>
                   <div className="bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm animate-pulse">
@@ -207,19 +207,19 @@ const ProductPage = () => {
 
               {/* Key Features - Quick Scan */}
               <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                <div className="flex items-center gap-2 bg-white border border-[#e8e0d8] rounded-xl p-3">
                   <span className="text-xl">✩</span>
                   <span className="text-sm font-medium text-gray-700">Kalmerende sterrenhemel</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                <div className="flex items-center gap-2 bg-white border border-[#e8e0d8] rounded-xl p-3">
                   <span className="text-xl">💗</span>
                   <span className="text-sm font-medium text-gray-700">White noise & hartslag</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                <div className="flex items-center gap-2 bg-white border border-[#e8e0d8] rounded-xl p-3">
                   <span className="text-xl">⏰</span>
                   <span className="text-sm font-medium text-gray-700">Automatische timer</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                <div className="flex items-center gap-2 bg-white border border-[#e8e0d8] rounded-xl p-3">
                   <span className="text-xl">🧺</span>
                   <span className="text-sm font-medium text-gray-700">Wasbaar & veilig</span>
                 </div>
@@ -227,7 +227,7 @@ const ProductPage = () => {
 
               {/* Benefits */}
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-purple-900 mb-4">Voordelen:</h3>
+                <h3 className="text-2xl font-bold text-[#5a4a3a] mb-4">Voordelen:</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.benefits.map((benefit, idx) => (
                     <div key={idx} className="flex items-start space-x-2">
@@ -240,11 +240,11 @@ const ProductPage = () => {
 
               {/* Features */}
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-purple-900 mb-4">Eigenschappen:</h3>
+                <h3 className="text-2xl font-bold text-[#5a4a3a] mb-4">Eigenschappen:</h3>
                 <div className="space-y-2">
                   {product.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start space-x-2">
-                      <Sparkles className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                      <Sparkles className="w-5 h-5 text-[#8B7355] mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700">{feature}</span>
                     </div>
                   ))}
@@ -295,7 +295,7 @@ const ProductPage = () => {
               </div>
 
               {/* Trust Badges - Enhanced */}
-              <div className="bg-white rounded-xl border-2 border-green-100 p-4 mb-6">
+              <div className="bg-white rounded-xl border-2 border-[#e8e0d8] p-4 mb-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -331,8 +331,8 @@ const ProductPage = () => {
               </div>
 
               {/* Product Details */}
-              <div className="bg-white rounded-xl p-6 border-2 border-purple-100">
-                <h3 className="font-bold text-purple-900 mb-3">Product Details:</h3>
+              <div className="bg-white rounded-xl p-6 border-2 border-[#e8e0d8]">
+                <h3 className="font-bold text-[#5a4a3a] mb-3">Product Details:</h3>
                 <div className="space-y-2 text-sm text-gray-700">
                   <p><strong>Leeftijd:</strong> {product.ageRange}</p>
                   <p><strong>Garantie:</strong> {product.warranty}</p>
@@ -442,9 +442,9 @@ const ProductPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-16 bg-gradient-to-b from-white to-purple-50">
+      <section id="faq" className="py-16 bg-gradient-to-b from-white to-[#fdf8f3]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#5a4a3a] mb-12">
             Veelgestelde Vragen
           </h2>
           <Accordion type="single" collapsible className="space-y-4">
@@ -452,9 +452,9 @@ const ProductPage = () => {
               <AccordionItem 
                 key={idx} 
                 value={`item-${idx}`}
-                className="bg-white border-2 border-purple-100 rounded-xl px-6"
+                className="bg-white border-2 border-[#e8e0d8] rounded-xl px-6"
               >
-                <AccordionTrigger className="text-left font-semibold text-purple-900 hover:text-purple-700">
+                <AccordionTrigger className="text-left font-semibold text-[#5a4a3a] hover:text-[#8B7355]">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-700">
@@ -467,17 +467,17 @@ const ProductPage = () => {
       </section>
 
       {/* Related Products */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-8 text-center">
             Andere Knuffels
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.filter(p => p.id !== product.id).slice(0, 3).map((relatedProduct) => (
-              <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all border-2 border-purple-100">
-                <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 p-6">
+              <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all border border-[#e8e0d8] bg-white">
+                <div className="relative bg-[#faf7f4] p-6">
                   {relatedProduct.badge && (
-                    <Badge className="absolute top-4 left-4 bg-purple-600 text-white">
+                    <Badge className="absolute top-4 left-4 bg-[#2d2d2d] text-white">
                       {relatedProduct.badge}
                     </Badge>
                   )}
@@ -488,17 +488,17 @@ const ProductPage = () => {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-purple-900 mb-2">{relatedProduct.shortName}</h3>
+                  <h3 className="text-xl font-bold text-[#3d3d3d] mb-2">{relatedProduct.shortName}</h3>
                   <p className="text-gray-600 text-sm mb-4">{relatedProduct.description}</p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-purple-900">€{relatedProduct.price.toFixed(2)}</span>
+                    <span className="text-2xl font-bold text-[#8B7355]">€{relatedProduct.price.toFixed(2)}</span>
                     <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                       <span className="text-sm font-semibold">{relatedProduct.rating}</span>
                     </div>
                   </div>
                   <Link to={`/product/${relatedProduct.id}`} onClick={() => window.scrollTo(0, 0)}>
-                    <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white" data-testid={`view-product-${relatedProduct.id}`}>
+                    <Button className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white" data-testid={`view-product-${relatedProduct.id}`}>
                       Bekijk Product
                     </Button>
                   </Link>
