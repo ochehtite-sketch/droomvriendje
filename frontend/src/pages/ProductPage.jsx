@@ -294,20 +294,40 @@ const ProductPage = () => {
                 )}
               </div>
 
-              {/* Trust Badges */}
-              <div className="grid grid-cols-3 gap-4 py-6 border-t border-purple-200">
-                <div className="text-center">
-                  <Shield className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                  <p className="text-xs text-gray-600 font-semibold">14 dagen<br />retour</p>
+              {/* Trust Badges - Enhanced */}
+              <div className="bg-white rounded-xl border-2 border-green-100 p-4 mb-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Shield className="w-6 h-6 text-green-600" />
+                    </div>
+                    <p className="text-xs text-gray-700 font-semibold">14 dagen<br />proefslapen</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Check className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <p className="text-xs text-gray-700 font-semibold">Gratis<br />verzending</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Star className="w-6 h-6 text-yellow-600" />
+                    </div>
+                    <p className="text-xs text-gray-700 font-semibold">CE<br />gecertificeerd</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <span className="text-xl">🇳🇱</span>
+                    </div>
+                    <p className="text-xs text-gray-700 font-semibold">Nederlandse<br />klantenservice</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <Check className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                  <p className="text-xs text-gray-600 font-semibold">Gratis<br />verzending</p>
-                </div>
-                <div className="text-center">
-                  <Star className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                  <p className="text-xs text-gray-600 font-semibold">CE<br />gecertificeerd</p>
-                </div>
+              </div>
+              
+              {/* Guarantee Banner */}
+              <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl p-4 mb-6 text-white text-center">
+                <p className="font-bold text-lg">💯 100% Tevredenheidsgarantie</p>
+                <p className="text-sm opacity-90">Niet tevreden? Geld terug, geen vragen!</p>
               </div>
 
               {/* Product Details */}
