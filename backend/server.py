@@ -1417,12 +1417,15 @@ async def create_payment(payment: PaymentCreate):
         api_url = get_api_url()
         redirect_url = f"{frontend_url}/betaling-resultaat/{payment.order_id}"
         webhook_url = f"{api_url}/api/webhook/mollie"
+        cancel_url = f"{frontend_url}/checkout"
         
-        logger.info(f"Creating payment - Redirect: {redirect_url}, Webhook: {webhook_url}")
+        logger.info(f"Creating payment - Frontend URL: {frontend_url}")
+        logger.info(f"Creating payment - Redirect: {redirect_url}")
+        logger.info(f"Creating payment - Cancel: {cancel_url}")
+        logger.info(f"Creating payment - Webhook: {webhook_url}")
         logger.info(f"Order total: {order['total_amount']}, Method: {payment.payment_method}")
         
         # Base payment data
-        cancel_url = f"{frontend_url}/checkout"
         payment_data = {
             'amount': {
                 'currency': 'EUR',
