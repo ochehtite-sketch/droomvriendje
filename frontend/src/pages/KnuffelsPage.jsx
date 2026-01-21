@@ -208,8 +208,8 @@ const KnuffelsPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      {/* CTA Section - Brown Theme */}
+      <section className="py-12 bg-gradient-to-r from-[#8B7355] to-[#6d5a45] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Hulp nodig bij het kiezen?
@@ -218,7 +218,7 @@ const KnuffelsPage = () => {
             Neem contact met ons op en we helpen je graag de perfecte Droomvriendje te vinden.
           </p>
           <Link to="/contact">
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8">
+            <Button size="lg" className="bg-white text-[#8B7355] hover:bg-gray-100 px-8 py-6 font-bold rounded-full">
               Neem Contact Op
             </Button>
           </Link>
