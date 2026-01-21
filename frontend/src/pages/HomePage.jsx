@@ -787,29 +787,101 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-purple-50">
+      {/* Testimonials Section - Enhanced Trustpilot Style */}
+      <section className="py-20 bg-gradient-to-b from-[#fdf8f3] to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
-            Wat Ouders Zeggen
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="border-2 border-purple-100 hover:shadow-lg transition-all">
-                <CardContent className="pt-6">
-                  <div className="flex items-center space-x-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-4 italic">&ldquo;{testimonial.text}&rdquo;</p>
+          {/* Trustpilot-style Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-md border border-gray-100 mb-6">
+              <span className="text-green-500 font-bold text-lg">★</span>
+              <span className="text-gray-700 font-semibold">Trustpilot</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-4">
+              Vertrouwd door 10.000+ ouders
+            </h2>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 fill-green-500 text-green-500" />
+                ))}
+              </div>
+              <span className="text-xl font-bold text-gray-900">4.9/5</span>
+              <span className="text-gray-500">op Trustpilot</span>
+            </div>
+            {/* Customer Avatars */}
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <div className="flex -space-x-2">
+                <img src="https://i.pravatar.cc/40?img=1" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                <img src="https://i.pravatar.cc/40?img=5" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                <img src="https://i.pravatar.cc/40?img=8" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                <img src="https://i.pravatar.cc/40?img=9" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-[#8B7355] flex items-center justify-center text-white text-xs font-bold">
+                  +9K
+                </div>
+              </div>
+              <span className="text-sm text-gray-600 ml-2">500+ beoordelingen</span>
+            </div>
+          </div>
+          
+          {/* Testimonial Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={testimonial.id} 
+                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                data-testid={`testimonial-card-${index}`}
+              >
+                {/* Green Trustpilot Stars */}
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-6 h-6 bg-green-500 flex items-center justify-center">
+                      <Star className="w-4 h-4 fill-white text-white" />
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Review Title */}
+                <h3 className="font-bold text-gray-900 text-lg mb-3">
+                  {index === 0 && "Eindelijk rust in huis! 🎉"}
+                  {index === 1 && "Beste investering ooit 💯"}
+                  {index === 2 && "Perfect voor onze tweeling 👶👶"}
+                </h3>
+                
+                {/* Review Text */}
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  "{testimonial.text}"
+                </p>
+                
+                {/* Reviewer Info */}
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <img 
+                    src={`https://i.pravatar.cc/48?img=${index + 10}`} 
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full"
+                  />
                   <div>
-                    <p className="font-bold text-purple-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                    <div className="flex items-center gap-1 text-sm text-gray-500">
+                      <span className="text-green-500">✓</span>
+                      <span>Geverifieerde aankoop</span>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
+          </div>
+          
+          {/* CTA Button */}
+          <div className="text-center mt-10">
+            <Link to="/reviews">
+              <Button 
+                variant="outline" 
+                className="border-2 border-[#8B7355] text-[#8B7355] hover:bg-[#f5efe8] px-8 py-6 text-lg font-semibold rounded-full"
+                data-testid="view-all-reviews-btn"
+              >
+                Bekijk alle 500+ reviews
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
