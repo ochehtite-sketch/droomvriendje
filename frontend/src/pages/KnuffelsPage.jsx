@@ -1,30 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { products } from '../mockData';
+import { products as mockProducts } from '../mockData';
 import Layout from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Star, ShoppingCart, Filter } from 'lucide-react';
 import { trackViewItemList, trackSelectItem } from '../utils/analytics';
 import { AdBanner } from '../components/AdSense';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 const KnuffelsPage = () => {
   const { addToCart } = useCart();
+  const [products, setProducts] = useState(mockProducts);
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/products`);
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   // Sort products: in-stock first, out-of-stock at the end
   const sortedProducts = [...products].sort((a, b) => {
-    // If both are in stock or both are out of stock, maintain original order
     const aInStock = a.inStock !== false;
     const bInStock = b.inStock !== false;
     if (aInStock === bInStock) return 0;
-    // In stock items come first
     return aInStock ? -1 : 1;
   });
 
   // GA4: Track view_item_list when page loads
   useEffect(() => {
     trackViewItemList(sortedProducts, 'alle_knuffels', 'Alle Knuffels');
-  }, []);
+  }, [sortedProducts]);
 
   // GA4: Track product click
   const handleProductClick = (product, index) => {
