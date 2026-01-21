@@ -915,12 +915,150 @@ class EmailService:
             "emails_sent": 0,
             "last_email_sent": None,
             "recovered": False,
-            "recovery_order_id": None
+            "recovery_order_id": None,
+            "flow_started": False,
+            "flow_scheduled_at": None
         }
         
         await self.db.abandoned_carts.insert_one(abandoned_cart)
         logger.info(f"Created abandoned cart: {cart_id}")
         return cart_id
+
+    async def track_checkout_session(self, checkout_data: dict) -> dict:
+        """
+        Track a checkout session - automatically creates/updates abandoned cart
+        and schedules the email flow to start after 1 hour if not completed.
+        
+        This is called when a customer enters their email on the checkout page.
+        """
+        email = checkout_data.get("email")
+        name = checkout_data.get("name", "")
+        items = checkout_data.get("items", [])
+        total = checkout_data.get("total", 0)
+        
+        # Check if there's an existing active abandoned cart for this email
+        existing_cart = await self.db.abandoned_carts.find_one({
+            "customer_email": email,
+            "status": "abandoned",
+            "recovered": False
+        })
+        
+        now = datetime.now(timezone.utc)
+        flow_trigger_time = now + timedelta(hours=1)  # 1 hour from now
+        
+        if existing_cart:
+            # Update existing cart with new items/info
+            await self.db.abandoned_carts.update_one(
+                {"cart_id": existing_cart["cart_id"]},
+                {"$set": {
+                    "customer_name": name,
+                    "items": items,
+                    "total_amount": total,
+                    "updated_at": now,
+                    "flow_scheduled_at": flow_trigger_time
+                }}
+            )
+            cart_id = existing_cart["cart_id"]
+            logger.info(f"Updated existing abandoned cart: {cart_id}")
+        else:
+            # Create new abandoned cart
+            cart_id = str(uuid.uuid4())
+            abandoned_cart = {
+                "cart_id": cart_id,
+                "customer_email": email,
+                "customer_name": name,
+                "items": items,
+                "total_amount": total,
+                "created_at": now,
+                "updated_at": now,
+                "status": "abandoned",
+                "emails_sent": 0,
+                "last_email_sent": None,
+                "recovered": False,
+                "recovery_order_id": None,
+                "flow_started": False,
+                "flow_scheduled_at": flow_trigger_time
+            }
+            await self.db.abandoned_carts.insert_one(abandoned_cart)
+            logger.info(f"Created new abandoned cart from checkout: {cart_id}")
+        
+        return {
+            "cart_id": cart_id,
+            "flow_scheduled_at": flow_trigger_time.isoformat(),
+            "status": "tracking"
+        }
+
+    async def process_scheduled_abandoned_carts(self) -> int:
+        """
+        Process abandoned carts that have passed their scheduled flow time.
+        This should be called periodically (e.g., every 15 minutes) to check
+        for carts that need their email flow started.
+        
+        Returns the number of flows started.
+        """
+        now = datetime.now(timezone.utc)
+        
+        # Find abandoned carts that:
+        # 1. Have a scheduled flow time that has passed
+        # 2. Haven't started the flow yet
+        # 3. Haven't been recovered
+        carts_to_process = await self.db.abandoned_carts.find({
+            "status": "abandoned",
+            "flow_started": False,
+            "recovered": False,
+            "flow_scheduled_at": {"$lte": now, "$ne": None}
+        }).to_list(100)
+        
+        flows_started = 0
+        for cart in carts_to_process:
+            try:
+                success = await self.start_abandoned_cart_flow(cart["cart_id"])
+                if success:
+                    flows_started += 1
+                    logger.info(f"Auto-started abandoned cart flow for: {cart['cart_id']}")
+            except Exception as e:
+                logger.error(f"Error starting flow for cart {cart['cart_id']}: {str(e)}")
+        
+        return flows_started
+
+    async def mark_cart_recovered(self, email: str, order_id: str) -> bool:
+        """
+        Mark an abandoned cart as recovered when the customer completes a purchase.
+        Also cancels any pending emails in the queue for this cart.
+        """
+        # Find the most recent abandoned cart for this email
+        cart = await self.db.abandoned_carts.find_one({
+            "customer_email": email,
+            "status": "abandoned",
+            "recovered": False
+        }, sort=[("created_at", -1)])
+        
+        if not cart:
+            return False
+        
+        # Update the cart as recovered
+        await self.db.abandoned_carts.update_one(
+            {"cart_id": cart["cart_id"]},
+            {"$set": {
+                "status": "recovered",
+                "recovered": True,
+                "recovery_order_id": order_id,
+                "updated_at": datetime.now(timezone.utc)
+            }}
+        )
+        
+        # Cancel any pending emails for this flow
+        if cart.get("flow_id"):
+            await self.db.email_queue.update_many(
+                {
+                    "flow_id": cart["flow_id"],
+                    "status": "queued"
+                },
+                {"$set": {"status": "cancelled"}}
+            )
+        
+        logger.info(f"Cart {cart['cart_id']} recovered with order {order_id}")
+        return True
     
     async def get_abandoned_carts(self, status: str = None, limit: int = 100) -> List[dict]:
         """Get abandoned carts, optionally filtered by status"""
