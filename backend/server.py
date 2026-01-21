@@ -2650,6 +2650,183 @@ async def upload_feed_to_merchant_center():
         raise HTTPException(status_code=500, detail=f"Upload mislukt: {str(e)}")
 
 
+# ============== EMAIL MARKETING API ==============
+
+from services.email_service import EmailService, EMAIL_TEMPLATES
+
+# Initialize email service (will be set on startup)
+email_service = None
+
+# Pydantic models for email API
+class AbandonedCartCreate(BaseModel):
+    email: str
+    name: Optional[str] = ""
+    items: List[dict] = []
+    total: float = 0
+
+class ManualEmailSend(BaseModel):
+    template_id: str
+    recipient_email: str
+    recipient_name: Optional[str] = ""
+    variables: Optional[dict] = {}
+
+class SubscriberCreate(BaseModel):
+    email: str
+    name: Optional[str] = ""
+
+@api_router.get("/email/stats")
+async def get_email_stats(days: int = 30):
+    """Get email marketing statistics"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    stats = await email_service.get_email_stats(days)
+    return stats
+
+@api_router.get("/email/templates")
+async def get_email_templates():
+    """Get all email templates"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    templates = await email_service.get_templates()
+    return {"templates": templates}
+
+@api_router.get("/email/abandoned-carts")
+async def get_abandoned_carts(status: Optional[str] = None, limit: int = 100):
+    """Get abandoned carts"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    carts = await email_service.get_abandoned_carts(status, limit)
+    return {"carts": carts}
+
+@api_router.post("/email/abandoned-cart")
+async def create_abandoned_cart(cart: AbandonedCartCreate):
+    """Create an abandoned cart record"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    cart_id = await email_service.create_abandoned_cart(cart.model_dump())
+    return {"cart_id": cart_id, "status": "created"}
+
+@api_router.post("/email/abandoned-cart/{cart_id}/start-flow")
+async def start_abandoned_cart_flow(cart_id: str):
+    """Start the abandoned cart email flow"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    success = await email_service.start_abandoned_cart_flow(cart_id)
+    if success:
+        return {"status": "flow_started", "cart_id": cart_id}
+    raise HTTPException(status_code=400, detail="Could not start flow - cart not found or already recovered")
+
+@api_router.post("/email/subscribe")
+async def subscribe_email(subscriber: SubscriberCreate):
+    """Subscribe to newsletter and start welcome flow"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    success = await email_service.start_welcome_flow(subscriber.email, subscriber.name)
+    if success:
+        return {"status": "subscribed", "email": subscriber.email}
+    return {"status": "already_subscribed", "email": subscriber.email}
+
+@api_router.post("/email/send")
+async def send_manual_email(email_data: ManualEmailSend):
+    """Send a manual email"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    success = await email_service.send_manual_email(
+        template_id=email_data.template_id,
+        recipient_email=email_data.recipient_email,
+        recipient_name=email_data.recipient_name,
+        variables=email_data.variables
+    )
+    if success:
+        return {"status": "sent", "recipient": email_data.recipient_email}
+    raise HTTPException(status_code=500, detail="Failed to send email")
+
+@api_router.post("/email/process-queue")
+async def process_email_queue():
+    """Process the email queue (send pending emails)"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    sent_count = await email_service.process_email_queue()
+    return {"status": "processed", "emails_sent": sent_count}
+
+@api_router.get("/email/queue")
+async def get_email_queue(status: Optional[str] = None, limit: int = 100):
+    """Get emails in the queue"""
+    query = {}
+    if status:
+        query["status"] = status
+    
+    emails = await db.email_queue.find(
+        query,
+        {"_id": 0}
+    ).sort("created_at", -1).limit(limit).to_list(limit)
+    
+    return {"emails": emails}
+
+@api_router.get("/email/track/open/{email_id}")
+async def track_email_open(email_id: str):
+    """Track email open (via tracking pixel)"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    await email_service.track_email_open(email_id)
+    # Return 1x1 transparent GIF
+    gif_data = base64.b64decode("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+    return Response(content=gif_data, media_type="image/gif")
+
+@api_router.get("/email/track/click/{email_id}")
+async def track_email_click(email_id: str, url: str = ""):
+    """Track email click and redirect"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    await email_service.track_email_click(email_id, url)
+    from fastapi.responses import RedirectResponse
+    redirect_url = url if url else os.environ.get('FRONTEND_URL', 'https://droomvriendjes.nl')
+    return RedirectResponse(url=redirect_url)
+
+@api_router.get("/email/subscribers")
+async def get_subscribers(limit: int = 100):
+    """Get email subscribers"""
+    subscribers = await db.email_subscribers.find(
+        {},
+        {"_id": 0}
+    ).sort("subscribed_at", -1).limit(limit).to_list(limit)
+    
+    total = await db.email_subscribers.count_documents({})
+    active = await db.email_subscribers.count_documents({"status": "active"})
+    
+    return {
+        "subscribers": subscribers,
+        "total": total,
+        "active": active
+    }
+
+@api_router.post("/email/start-post-purchase/{order_id}")
+async def start_post_purchase_flow(order_id: str):
+    """Start post-purchase email flow for an order"""
+    global email_service
+    if email_service is None:
+        email_service = EmailService(db)
+    
+    order = await db.orders.find_one({"order_id": order_id})
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    
+    success = await email_service.start_post_purchase_flow(order)
+    if success:
+        return {"status": "flow_started", "order_id": order_id}
+    raise HTTPException(status_code=500, detail="Failed to start flow")
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
