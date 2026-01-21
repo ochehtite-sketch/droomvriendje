@@ -33,16 +33,16 @@ const KnuffelsPage = () => {
 
   return (
     <Layout showBackButton={true}>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-purple-100 via-blue-50 to-white py-12">
+      {/* Hero Section - Brown Theme */}
+      <section className="bg-gradient-to-b from-[#f5efe8] via-[#fdf8f3] to-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <span className="inline-block bg-[#8B7355]/10 text-[#8B7355] px-4 py-2 rounded-full text-sm font-semibold mb-4">
             Onze Collectie
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Alle <span className="text-purple-600">Droomvriendjes</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#5a4a3a] mb-4">
+            Alle <span className="text-[#8B7355]">Droomvriendjes</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-[#7a6a5a] max-w-2xl mx-auto">
             Ontdek onze complete collectie slaapknuffels met rustgevende lichtjes en geluiden. 
             Perfect voor een betere nachtrust.
           </p>
@@ -50,23 +50,23 @@ const KnuffelsPage = () => {
       </section>
 
       {/* Trust Bar */}
-      <section className="bg-white border-b py-4">
+      <section className="bg-white border-b border-[#e8e0d8] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-gray-600">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-[#7a6a5a]">
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <span className="text-green-600">✓</span>
               <span>Gratis verzending</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <span className="text-green-600">✓</span>
               <span>14 dagen bedenktijd</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <span className="text-green-600">✓</span>
               <span>Veilig betalen</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <span className="text-green-600">✓</span>
               <span>Voor 23:00 besteld = morgen in huis</span>
             </div>
           </div>
