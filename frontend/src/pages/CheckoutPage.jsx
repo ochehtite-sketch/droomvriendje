@@ -347,19 +347,22 @@ const CheckoutPage = () => {
               {/* Payment Method */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Betaalmethode</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <CreditCard className="w-5 h-5 text-purple-600" />
+                    Betaalmethode
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <RadioGroup value={paymentMethod} onValueChange={handlePaymentMethodChange} className="space-y-3">
-                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'ideal' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
                       <RadioGroupItem value="ideal" id="ideal" />
                       <Label htmlFor="ideal" className="flex-1 cursor-pointer">
                         <span className="font-medium">iDEAL</span>
-                        <span className="block text-sm text-gray-500">Betaal direct via je eigen bank</span>
+                        <span className="block text-sm text-gray-500">Meest gekozen - Direct via je bank</span>
                       </Label>
                       <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-8" />
                     </div>
-                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'creditcard' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
                       <RadioGroupItem value="creditcard" id="creditcard" />
                       <Label htmlFor="creditcard" className="flex-1 cursor-pointer">
                         <span className="font-medium">Creditcard</span>
@@ -367,15 +370,15 @@ const CheckoutPage = () => {
                       </Label>
                       <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-8" />
                     </div>
-                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'applepay' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
                       <RadioGroupItem value="applepay" id="applepay" />
                       <Label htmlFor="applepay" className="flex-1 cursor-pointer">
                         <span className="font-medium">Apple Pay</span>
-                        <span className="block text-sm text-gray-500">Betaal snel en veilig met Apple Pay</span>
+                        <span className="block text-sm text-gray-500">Snel en veilig betalen</span>
                       </Label>
                       <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-8" />
                     </div>
-                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'paypal' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
                       <RadioGroupItem value="paypal" id="paypal" />
                       <Label htmlFor="paypal" className="flex-1 cursor-pointer">
                         <span className="font-medium">PayPal</span>
@@ -383,7 +386,7 @@ const CheckoutPage = () => {
                       </Label>
                       <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-8" />
                     </div>
-                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'bancontact' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
                       <RadioGroupItem value="bancontact" id="bancontact" />
                       <Label htmlFor="bancontact" className="flex-1 cursor-pointer">
                         <span className="font-medium">Bancontact</span>
@@ -391,7 +394,7 @@ const CheckoutPage = () => {
                       </Label>
                       <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-8" />
                     </div>
-                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'klarna' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
                       <RadioGroupItem value="klarna" id="klarna" />
                       <Label htmlFor="klarna" className="flex-1 cursor-pointer">
                         <span className="font-medium">Klarna</span>
@@ -403,10 +406,26 @@ const CheckoutPage = () => {
                 </CardContent>
               </Card>
 
+              {/* Trust Indicators Before Submit */}
+              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-green-800">
+                  <span className="flex items-center gap-1">
+                    <span className="text-green-600">🔒</span> SSL beveiligd
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="text-green-600">✓</span> 14 dagen retour
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="text-green-600">🚚</span> Gratis verzending
+                  </span>
+                </div>
+              </div>
+
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-7 text-xl font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                data-testid="checkout-submit-button"
               >
                 {isLoading ? (
                   <>
@@ -415,10 +434,14 @@ const CheckoutPage = () => {
                   </>
                 ) : (
                   <>
-                    Betalen €{getTotal().toFixed(2).replace('.', ',')}
+                    🔒 Veilig Betalen - €{getTotal().toFixed(2).replace('.', ',')}
                   </>
                 )}
               </Button>
+              
+              <p className="text-center text-sm text-gray-500">
+                Door te bestellen ga je akkoord met onze <a href="/voorwaarden" className="text-purple-600 underline">algemene voorwaarden</a>
+              </p>
             </form>
           </div>
 
