@@ -48,7 +48,7 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* Hero Section - Verbeterd voor mobiel */}
+      {/* Hero Section - CRO Geoptimaliseerd */}
       <section className="relative bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Mobile Layout - Image on top */}
@@ -66,35 +66,47 @@ const HomePage = () => {
             {/* Mobile Content */}
             <div className="px-4 pb-8 -mt-8 relative z-10">
               <h1 className="text-2xl font-serif font-bold text-[#5a4a3a] mb-2 leading-tight text-center">
-                Meer dan een knuffel,
+                Geef je kind het cadeau van een rustige nacht
               </h1>
-              <p className="text-xl font-serif font-bold text-purple-700 mb-6 leading-tight text-center">
-                De beste vriend van je kind in het donker
+              <p className="text-lg font-serif text-purple-700 mb-4 leading-tight text-center">
+                86% van de kinderen slaapt beter met een Droomvriendje
               </p>
               
+              {/* Mobile Social Proof */}
+              <div className="bg-white/80 rounded-xl p-3 mb-4 text-center">
+                <div className="flex items-center justify-center gap-1 mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-sm text-gray-700 font-medium">4.7/5 van 10.000+ ouders</p>
+              </div>
+              
               {/* Mobile Features */}
-              <div className="grid grid-cols-3 gap-2 mb-6">
-                <div className="text-center">
-                  <span className="text-[#c9a55a] text-xl">✦</span>
-                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Ontspanning & geborgenheid</p>
+              <div className="grid grid-cols-3 gap-2 mb-5">
+                <div className="text-center bg-white/60 rounded-lg p-2">
+                  <span className="text-green-500 text-lg">✓</span>
+                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Gratis verzending</p>
                 </div>
-                <div className="text-center">
-                  <span className="text-[#c9a55a] text-xl">✦</span>
-                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Lichtjes & geluiden</p>
+                <div className="text-center bg-white/60 rounded-lg p-2">
+                  <span className="text-green-500 text-lg">✓</span>
+                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">14 dagen retour</p>
                 </div>
-                <div className="text-center">
-                  <span className="text-[#c9a55a] text-xl">✦</span>
-                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Kind & volwassenen</p>
+                <div className="text-center bg-white/60 rounded-lg p-2">
+                  <span className="text-green-500 text-lg">✓</span>
+                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">CE-gecertificeerd</p>
                 </div>
               </div>
               
               {/* Mobile CTA */}
               <Button 
                 size="lg" 
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-6 text-lg rounded-full shadow-lg"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-full shadow-lg font-bold"
+                data-testid="hero-cta-mobile"
               >
-                <a href="#producten">Bekijk onze knuffels</a>
+                <a href="#producten">🎁 Bekijk Droomvriendjes - Vanaf €39,95</a>
               </Button>
+              <p className="text-center text-sm text-gray-600 mt-2">Voor 23:00 besteld = morgen in huis</p>
             </div>
           </div>
 
@@ -102,36 +114,82 @@ const HomePage = () => {
           <div className="hidden md:flex items-center min-h-[600px] lg:min-h-[650px] px-6 lg:px-8">
             {/* Left Content */}
             <div className="w-1/2 pr-8 lg:pr-16">
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
-                Meer dan een knuffel,
+              {/* Urgency Badge */}
+              <div className="inline-flex items-center bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                🔥 Winter Sale: 2e knuffel 50% korting
+              </div>
+              
+              <h1 className="text-4xl lg:text-5xl xl:text-5xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
+                Geef je kind het cadeau van een rustige nacht
               </h1>
-              <p className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-purple-700 mb-8 leading-tight">
-                De beste vriend van je kind in het donker
+              <p className="text-xl lg:text-2xl text-gray-600 mb-6 leading-relaxed">
+                Ontdek waarom <span className="font-bold text-purple-700">10.000+ ouders</span> kiezen voor Droomvriendjes - de knuffel die écht helpt bij het inslapen.
               </p>
               
-              {/* Features */}
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-3">
-                  <span className="text-[#c9a55a] text-xl">✦</span>
-                  <p className="text-[#5a4a3a] font-medium">Brengt ontspanning en geborgenheid</p>
+              {/* Stats Row */}
+              <div className="flex items-center gap-6 mb-6 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <span className="font-bold text-gray-900">4.7/5</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-[#c9a55a] text-xl">✦</span>
-                  <p className="text-[#5a4a3a] font-medium">Kalmerende lichtjes en rustgevende geluiden</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-[#c9a55a] text-xl">✦</span>
-                  <p className="text-[#5a4a3a] font-medium">Voor kinderen én volwassenen</p>
+                <div className="text-gray-600">|</div>
+                <div className="text-gray-700">
+                  <span className="font-bold text-green-600">86%</span> slaapt beter door
                 </div>
               </div>
               
-              {/* CTA */}
-              <Button 
-                size="lg" 
-                className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
-              >
-                <a href="#producten">Bekijk onze knuffels</a>
-              </Button>
+              {/* Features */}
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3">
+                  <span className="text-green-500 text-xl">✓</span>
+                  <p className="text-[#5a4a3a] font-medium">Rustgevende hartslag, ademhaling & witte ruis</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-500 text-xl">✓</span>
+                  <p className="text-[#5a4a3a] font-medium">Zacht nachtlampje met timer</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-500 text-xl">✓</span>
+                  <p className="text-[#5a4a3a] font-medium">CE-gecertificeerd & veilig voor alle leeftijden</p>
+                </div>
+              </div>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-4">
+                <Button 
+                  size="lg" 
+                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all font-bold"
+                  data-testid="hero-cta-desktop"
+                >
+                  <a href="#producten" className="flex items-center gap-2">
+                    <ShoppingCart className="w-5 h-5" />
+                    Bestel Nu - Vanaf €39,95
+                  </a>
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-6 text-lg rounded-full"
+                >
+                  <a href="#voordelen">Meer informatie</a>
+                </Button>
+              </div>
+              
+              {/* Trust indicators */}
+              <div className="flex items-center gap-4 text-sm text-gray-600">
+                <span className="flex items-center gap-1">
+                  <Truck className="w-4 h-4 text-green-600" />
+                  Gratis verzending
+                </span>
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-green-600" />
+                  14 dagen retour
+                </span>
+              </div>
             </div>
             
             {/* Right Image */}
@@ -146,15 +204,20 @@ const HomePage = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
               </div>
               
-              {/* Floating badge */}
+              {/* Floating badge - Social Proof */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
                 <div className="bg-amber-100 rounded-full p-2">
                   <span className="text-2xl">⭐</span>
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900">4.7/5 sterren</p>
-                  <p className="text-sm text-gray-600">10.000+ tevreden klanten</p>
+                  <p className="font-bold text-gray-900">Populairste keuze</p>
+                  <p className="text-sm text-gray-600">1.247 verkocht deze maand</p>
                 </div>
+              </div>
+              
+              {/* Floating badge - Guarantee */}
+              <div className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full px-4 py-2 shadow-lg text-sm font-bold">
+                ✓ 100% Tevredenheidsgarantie
               </div>
             </div>
           </div>
