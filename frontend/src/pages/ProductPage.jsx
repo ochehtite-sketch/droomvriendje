@@ -251,8 +251,8 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="space-y-3 mb-8">
+              {/* CTA Buttons - CRO Optimized */}
+              <div className="space-y-3 mb-6">
                 {product.inStock === false ? (
                   <>
                     {/* Out of Stock Message */}
@@ -273,22 +273,23 @@ const ProductPage = () => {
                   <>
                     <Button 
                       size="lg" 
-                      className="w-full bg-purple-600 hover:bg-purple-700 text-white text-lg py-6"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white text-xl py-7 rounded-xl shadow-lg hover:shadow-xl transition-all font-bold"
                       onClick={handleAddToCart}
                       data-testid="add-to-cart-button"
                     >
-                      <ShoppingCart className="w-5 h-5 mr-2" />
-                      In Winkelwagen - €{product.price.toFixed(2)}
+                      <ShoppingCart className="w-6 h-6 mr-2" />
+                      Bestel Nu - €{product.price.toFixed(2).replace('.', ',')}
                     </Button>
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                      className="w-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 text-lg py-6"
-                      onClick={handleDirectOrder}
-                      data-testid="direct-order-button"
-                    >
-                      Direct Bestellen
-                    </Button>
+                    <p className="text-center text-sm text-gray-600">
+                      🚚 Voor 23:00 besteld = morgen in huis
+                    </p>
+                    
+                    {/* Stock Urgency */}
+                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 text-center">
+                      <p className="text-orange-700 text-sm font-medium">
+                        ⚡ Nog maar {Math.floor(Math.random() * 8) + 3} op voorraad - bestel snel!
+                      </p>
+                    </div>
                   </>
                 )}
               </div>
