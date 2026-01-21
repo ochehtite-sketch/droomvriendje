@@ -137,19 +137,25 @@ const HomePage = () => {
                 Ontdek waarom <span className="font-bold text-purple-700">10.000+ ouders</span> kiezen voor Droomvriendjes - de knuffel die écht helpt bij het inslapen.
               </p>
               
-              {/* Stats Row */}
-              <div className="flex items-center gap-6 mb-6 flex-wrap">
-                <div className="flex items-center gap-2">
-                  <div className="flex">
+              {/* Stats Row - Trustpilot Style */}
+              <div className="flex items-center gap-4 mb-6 flex-wrap">
+                <div className="flex items-center gap-2 bg-white/80 rounded-full px-4 py-2">
+                  <div className="flex -space-x-1">
+                    <img src="https://i.pravatar.cc/24?img=1" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
+                    <img src="https://i.pravatar.cc/24?img=5" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
+                    <img src="https://i.pravatar.cc/24?img=8" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
+                  </div>
+                  <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <span className="font-bold text-gray-900">4.7/5</span>
+                  <span className="font-bold text-gray-900">4.9/5</span>
+                  <span className="text-gray-500 text-sm">(500+ reviews)</span>
                 </div>
-                <div className="text-gray-600">|</div>
-                <div className="text-gray-700">
-                  <span className="font-bold text-green-600">86%</span> slaapt beter door
+                <div className="text-gray-600 hidden lg:block">|</div>
+                <div className="text-gray-700 bg-green-100 px-3 py-1 rounded-full">
+                  <span className="font-bold text-green-700">86%</span> <span className="text-green-700">slaapt beter</span>
                 </div>
               </div>
               
