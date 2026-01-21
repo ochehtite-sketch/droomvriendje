@@ -224,30 +224,50 @@ const HomePage = () => {
         </div>
       </section>
       
-      {/* Trust Features onder hero */}
-      <section className="py-12 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center p-4">
-              <div className="text-3xl mb-2">🚚</div>
-              <p className="font-bold text-gray-900 text-sm mb-1">Gratis verzending</p>
-              <p className="text-xs text-gray-600">Voor 23:00 besteld, morgen in huis</p>
+      {/* Trust Features onder hero - CRO Geoptimaliseerd */}
+      <section className="py-8 bg-white border-b">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Trust Badges */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="flex items-center justify-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div className="text-2xl">🚚</div>
+              <div>
+                <p className="font-bold text-gray-900 text-sm">Gratis verzending</p>
+                <p className="text-xs text-gray-600">In heel Nederland</p>
+              </div>
             </div>
-            <div className="text-center p-4">
-              <div className="text-3xl mb-2">↩️</div>
-              <p className="font-bold text-gray-900 text-sm mb-1">14 dagen bedenktijd</p>
-              <p className="text-xs text-gray-600">Defect? Geld terug!</p>
+            <div className="flex items-center justify-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div className="text-2xl">⏰</div>
+              <div>
+                <p className="font-bold text-gray-900 text-sm">Morgen in huis</p>
+                <p className="text-xs text-gray-600">Voor 23:00 besteld</p>
+              </div>
             </div>
-            <div className="text-center p-4">
-              <div className="text-3xl mb-2">👥</div>
-              <p className="font-bold text-gray-900 text-sm mb-1">10k+ klanten</p>
-              <p className="text-xs text-gray-600">Gaan je voor</p>
+            <div className="flex items-center justify-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div className="text-2xl">↩️</div>
+              <div>
+                <p className="font-bold text-gray-900 text-sm">14 dagen retour</p>
+                <p className="text-xs text-gray-600">Niet tevreden? Geld terug!</p>
+              </div>
             </div>
-            <div className="text-center p-4">
-              <div className="text-3xl mb-2">✅</div>
-              <p className="font-bold text-gray-900 text-sm mb-1">CE gecertificeerd</p>
-              <p className="text-xs text-gray-600">Veilig voor alle leeftijden</p>
+            <div className="flex items-center justify-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div className="text-2xl">✅</div>
+              <div>
+                <p className="font-bold text-gray-900 text-sm">CE gecertificeerd</p>
+                <p className="text-xs text-gray-600">100% veilig</p>
+              </div>
             </div>
+          </div>
+          
+          {/* Payment Methods */}
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4 border-t">
+            <span className="text-sm text-gray-500 mr-2">Veilig betalen:</span>
+            <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
+            <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
+            <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
+            <img src="https://www.mollie.com/external/icons/payment-methods/klarna.svg" alt="Klarna" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
+            <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
+            <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-7 opacity-80 hover:opacity-100 transition-opacity" />
           </div>
         </div>
       </section>
