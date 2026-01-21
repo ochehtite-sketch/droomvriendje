@@ -1497,6 +1497,13 @@ async def mollie_webhook(request: Request):
                 send_order_confirmation_email(order)
                 # Send success notification to owner
                 send_order_notification_email(order, 'payment_success')
+                
+                # Mark any abandoned cart as recovered
+                global email_service
+                if email_service is None:
+                    email_service = EmailService(db)
+                await email_service.mark_cart_recovered(order["customer_email"], order_id)
+                
             elif order_status in ["cancelled", "expired", "failed"]:
                 # Send failure notification to owner
                 send_order_notification_email(order, 'payment_failed')
