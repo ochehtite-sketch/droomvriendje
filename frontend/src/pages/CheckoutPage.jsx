@@ -44,9 +44,74 @@ const CheckoutPage = () => {
     }
   }, []);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (trackingTimeoutRef.current) {
+        clearTimeout(trackingTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Track checkout session for abandoned cart recovery
+  const trackCheckoutSession = async (email, name) => {
+    if (!email || cart.length === 0) return;
+    
+    try {
+      await fetch(`${API_URL}/api/email/track-checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          name: name || '',
+          items: cart.map(item => ({
+            product_id: String(item.id),
+            name: item.shortName || item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image
+          })),
+          total: getTotal()
+        })
+      });
+      hasTrackedRef.current = true;
+      console.log('Checkout session tracked for abandoned cart recovery');
+    } catch (error) {
+      console.error('Error tracking checkout session:', error);
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Track checkout session when email is entered (debounced)
+    if (name === 'email' && value.includes('@') && value.includes('.')) {
+      // Clear existing timeout
+      if (trackingTimeoutRef.current) {
+        clearTimeout(trackingTimeoutRef.current);
+      }
+      
+      // Debounce - wait 2 seconds after user stops typing
+      trackingTimeoutRef.current = setTimeout(() => {
+        const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+        trackCheckoutSession(value, fullName);
+      }, 2000);
+    }
+    
+    // Also track when name is updated (if email already exists)
+    if ((name === 'firstName' || name === 'lastName') && formData.email.includes('@')) {
+      if (trackingTimeoutRef.current) {
+        clearTimeout(trackingTimeoutRef.current);
+      }
+      
+      trackingTimeoutRef.current = setTimeout(() => {
+        const firstName = name === 'firstName' ? value : formData.firstName;
+        const lastName = name === 'lastName' ? value : formData.lastName;
+        const fullName = `${firstName} ${lastName}`.trim();
+        trackCheckoutSession(formData.email, fullName);
+      }, 2000);
+    }
   };
 
   // GA4: Track when payment method changes
