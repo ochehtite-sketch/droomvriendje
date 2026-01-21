@@ -183,29 +183,21 @@ const KnuffelsPage = () => {
                   
                   {/* Buttons */}
                   <div className="space-y-2">
-                    <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)} className="block">
-                      <Button 
-                        variant="outline"
-                        className="w-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 font-semibold"
-                      >
-                        Bekijk Details
-                      </Button>
-                    </Link>
                     {product.inStock === false ? (
                       <Button 
-                        className="w-full bg-gray-400 text-white font-semibold cursor-not-allowed"
+                        className="w-full bg-gray-400 text-white font-semibold cursor-not-allowed py-5 rounded-xl"
                         disabled
                       >
                         Uitverkocht
                       </Button>
                     ) : (
                       <Button 
-                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold"
+                        className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-semibold py-5 rounded-xl shadow-md hover:shadow-lg transition-all"
                         onClick={() => addToCart(product)}
                         data-testid={`add-to-cart-${product.id}`}
                       >
                         <ShoppingCart className="w-4 h-4 mr-2" />
-                        In Winkelmandje
+                        In Winkelwagen
                       </Button>
                     )}
                   </div>
