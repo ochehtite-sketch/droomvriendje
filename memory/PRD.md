@@ -143,20 +143,18 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
 
 ## In Progress / Geblokkeerd
 
-### ✅ P0 - Productie Betalingen - OPGELOST
+### 🟢 P0 - Productie Betalingen - OPGELOST
 - **Status:** OPGELOST
 - **Issue:** Productie site gebruikte test_ key
 - **Oplossing:** Gebruiker heeft live_ Mollie key ingesteld in productie environment
 
 ### 🟢 P0 - Google Ads OAuth
-- **Status:** GEBLOKKEERD op gebruikersactie - maar gebruiker geeft aan "DONE"
-- **Issue:** `redirect_uri_mismatch` error
-- **Actie:** Gebruiker geeft aan dit opgelost te hebben
+- **Status:** OPGELOST (gebruiker bevestigd "DONE")
 
 ### 🟢 P1 - Undefined Image URLs
-- **Status:** OPGELOST
-- **Issue:** Sommige product afbeeldingen hadden "undefined" URLs
-- **Actie:** Gebruiker geeft aan dit opgelost te hebben
+- **Status:** BEKENDE ISSUE
+- **Issue:** Pinguïn Projector heeft een broken imgur link
+- **Actie:** Via admin panel `/admin/products` kan de afbeelding URL worden aangepast
 
 ---
 
