@@ -450,7 +450,7 @@ const HomePage = () => {
                         data-testid={`add-to-cart-slider-${product.id}`}
                       >
                         <ShoppingCart className="w-4 h-4 mr-2" />
-                        In Winkelmandje
+                        In Winkelwagen
                       </Button>
                     </div>
                   </div>
@@ -460,48 +460,48 @@ const HomePage = () => {
             
             {/* Custom Navigation Buttons */}
             <button 
-              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-purple-50 hover:shadow-xl transition-all border border-gray-200"
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#f5efe8] hover:shadow-xl transition-all border border-[#e8e0d8]"
               aria-label="Vorige"
               data-testid="slider-prev-button"
             >
-              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#8B7355]" />
             </button>
             <button 
-              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-purple-50 hover:shadow-xl transition-all border border-gray-200"
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#f5efe8] hover:shadow-xl transition-all border border-[#e8e0d8]"
               aria-label="Volgende"
               data-testid="slider-next-button"
             >
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#8B7355]" />
             </button>
           </div>
           
           {/* View All Products Link */}
           <div className="text-center mt-10">
             <Link to="/knuffels">
-              <Button variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg font-semibold rounded-full">
+              <Button variant="outline" className="border-2 border-[#8B7355] text-[#8B7355] hover:bg-[#f5efe8] px-8 py-6 text-lg font-semibold rounded-full">
                 Bekijk Alle Knuffels
               </Button>
             </Link>
           </div>
           
           {/* Trust Section Below Products */}
-          <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg border border-purple-100">
+          <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg border border-[#e8e0d8]">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">&gt;10.000+</p>
-                <p className="text-sm text-gray-600 font-medium">Tevreden Klanten</p>
+                <p className="text-3xl md:text-4xl font-bold text-[#8B7355] mb-2">&gt;10.000+</p>
+                <p className="text-sm text-[#7a6a5a] font-medium">Tevreden Klanten</p>
               </div>
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">86%</p>
-                <p className="text-sm text-gray-600 font-medium">Slaapt Beter</p>
+                <p className="text-3xl md:text-4xl font-bold text-[#6d8b55] mb-2">86%</p>
+                <p className="text-sm text-[#7a6a5a] font-medium">Slaapt Beter</p>
               </div>
               <div>
                 <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">4.7/5</p>
-                <p className="text-sm text-gray-600 font-medium">Trustpilot Score</p>
+                <p className="text-sm text-[#7a6a5a] font-medium">Trustpilot Score</p>
               </div>
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-green-600 mb-2">30</p>
-                <p className="text-sm text-gray-600 font-medium">Dagen Garantie</p>
+                <p className="text-3xl md:text-4xl font-bold text-[#8B7355] mb-2">30</p>
+                <p className="text-sm text-[#7a6a5a] font-medium">Dagen Garantie</p>
               </div>
             </div>
           </div>
