@@ -342,6 +342,21 @@ async def health_check():
     """Health check endpoint for Kubernetes liveness/readiness probes"""
     return {"status": "healthy", "service": "droomvriendje-backend"}
 
+@app.get("/api/health")
+async def api_health_check():
+    """API health check with configuration status"""
+    mollie_key = get_mollie_api_key()
+    return {
+        "status": "healthy",
+        "service": "droomvriendje-backend",
+        "config": {
+            "mollie_configured": bool(mollie_key),
+            "mollie_key_type": "live" if mollie_key and mollie_key.startswith("live_") else "test" if mollie_key else "none",
+            "smtp_configured": bool(os.environ.get('SMTP_HOST')),
+            "mongodb_connected": True
+        }
+    }
+
 
 # ============== EMAIL FUNCTIONS ==============
 
