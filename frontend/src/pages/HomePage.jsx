@@ -72,14 +72,25 @@ const HomePage = () => {
                 86% van de kinderen slaapt beter met een Droomvriendje
               </p>
               
-              {/* Mobile Social Proof */}
-              <div className="bg-white/80 rounded-xl p-3 mb-4 text-center">
-                <div className="flex items-center justify-center gap-1 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
+              {/* Mobile Social Proof - Trustpilot Style */}
+              <div className="bg-white/90 rounded-xl p-3 mb-4">
+                <p className="text-xs text-gray-500 text-center mb-1">Trusted by 10.000+ Parents</p>
+                <div className="flex items-center justify-center gap-2">
+                  <div className="flex -space-x-1">
+                    <img src="https://i.pravatar.cc/24?img=1" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
+                    <img src="https://i.pravatar.cc/24?img=5" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
+                    <img src="https://i.pravatar.cc/24?img=8" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="text-sm font-bold text-gray-900">4.9/5</span>
+                  </div>
+                  <span className="text-xs text-gray-500">(500+ reviews)</span>
                 </div>
-                <p className="text-sm text-gray-700 font-medium">4.7/5 van 10.000+ ouders</p>
               </div>
               
               {/* Mobile Features */}
