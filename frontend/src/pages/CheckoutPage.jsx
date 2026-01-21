@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
@@ -17,6 +17,8 @@ const CheckoutPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('ideal');
+  const trackingTimeoutRef = useRef(null);
+  const hasTrackedRef = useRef(false);
   
   const [formData, setFormData] = useState({
     email: '',
