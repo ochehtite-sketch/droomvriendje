@@ -78,13 +78,13 @@ const KnuffelsPage = () => {
         <AdBanner />
       </div>
 
-      {/* Products Grid */}
-      <section className="py-12 bg-gray-50">
+      {/* Products Grid - Brown Theme */}
+      <section className="py-12 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Results Count */}
           <div className="flex items-center justify-between mb-8">
-            <p className="text-gray-600">
-              <span className="font-semibold text-gray-900">{sortedProducts.length}</span> producten gevonden
+            <p className="text-[#7a6a5a]">
+              <span className="font-semibold text-[#5a4a3a]">{sortedProducts.length}</span> producten gevonden
             </p>
           </div>
 
@@ -93,47 +93,68 @@ const KnuffelsPage = () => {
             {sortedProducts.map((product, index) => (
               <div 
                 key={product.id} 
-                className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 flex flex-col ${product.inStock === false ? 'opacity-75' : ''}`}
+                className={`group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#e8e0d8] hover:border-[#8B7355]/30 flex flex-col ${product.inStock === false ? 'opacity-75' : ''}`}
                 data-testid={`product-card-${product.id}`}
               >
-                {/* Badge */}
+                {/* Badges */}
                 <div className="relative">
                   {product.badge && (
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className={`px-3 py-1 text-xs font-bold rounded-full shadow-md ${
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className={`px-4 py-1.5 text-xs font-bold rounded-full shadow-lg ${
                         product.badge === 'UITVERKOCHT' ? 'bg-gradient-to-r from-gray-500 to-gray-700 text-white' :
-                        product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white' :
-                        product.badge === 'NIEUW' ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white' :
-                        product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white' :
-                        'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                        product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white' :
+                        product.badge === 'NIEUW' ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white' :
+                        product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white' :
+                        'bg-gradient-to-r from-[#8B7355] to-[#6d5a45] text-white'
                       }`}>
                         {product.badge}
                       </span>
                     </div>
                   )}
                   
+                  {/* Discount Badge */}
+                  {product.inStock !== false && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="px-3 py-1.5 text-xs font-bold rounded-full bg-red-500 text-white shadow-lg">
+                        -50% OP 2E
+                      </span>
+                    </div>
+                  )}
+                  
                   {/* Product Image */}
                   <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
-                    <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-6 cursor-pointer overflow-hidden">
+                    <div className="relative bg-gradient-to-br from-[#faf6f1] via-[#f5efe8] to-[#efe7dc] p-6 cursor-pointer overflow-hidden aspect-square">
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className={`w-full h-52 object-contain group-hover:scale-105 transition-transform duration-500 ${product.inStock === false ? 'grayscale' : ''}`}
+                        className={`w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 ${product.inStock === false ? 'grayscale' : ''}`}
                       />
                       {product.inStock === false && (
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                           <span className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm">UITVERKOCHT</span>
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </Link>
                 </div>
                 
                 {/* Product Info */}
-                <div className="p-5 flex-1 flex flex-col">
+                <div className="p-5 flex-1 flex flex-col bg-white">
+                  {/* Title with Price */}
+                  <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-bold text-[#5a4a3a] group-hover:text-[#8B7355] transition-colors cursor-pointer flex-1 pr-2 line-clamp-2">
+                        {product.shortName || product.name}
+                      </h3>
+                      <div className="text-right flex-shrink-0">
+                        <span className="text-sm text-gray-400 line-through block">€{(product.price * 1.3).toFixed(2).replace('.', ',')}</span>
+                        <span className="text-xl font-bold text-[#8B7355]">€{product.price.toFixed(2).replace('.', ',')}</span>
+                      </div>
+                    </div>
+                  </Link>
+                  
                   {/* Rating */}
-                  <div className="flex items-center gap-1 mb-2">
+                  <div className="flex items-center gap-1 mb-3">
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (
                         <Star 
@@ -142,37 +163,21 @@ const KnuffelsPage = () => {
                         />
                       ))}
                     </div>
-                    <span className="text-sm font-semibold text-gray-700">{product.rating}</span>
-                    <span className="text-xs text-gray-500">({product.reviews})</span>
+                    <span className="text-sm font-semibold text-[#5a4a3a]">{product.rating}</span>
+                    <span className="text-xs text-[#8a7a6a]">({product.reviews} reviews)</span>
                   </div>
                   
-                  {/* Title */}
-                  <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors cursor-pointer line-clamp-2">
-                      {product.name}
-                    </h3>
-                  </Link>
+                  {/* Description */}
+                  <p className="text-sm text-[#7a6a5a] mb-4 line-clamp-2 flex-1">
+                    {product.description}
+                  </p>
                   
-                  {/* Features */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded-full">Projectie</span>
-                    <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">White Noise</span>
-                  </div>
-                  
-                  {/* Price */}
-                  <div className="mb-4 mt-auto">
-                    {product.originalPrice > product.price ? (
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-sm text-gray-400 line-through">€{product.originalPrice.toFixed(2)}</span>
-                        <span className="text-2xl font-bold text-purple-600">€{product.price.toFixed(2)}</span>
-                      </div>
-                    ) : (
-                      <span className="text-2xl font-bold text-gray-900">€{product.price.toFixed(2)}</span>
-                    )}
+                  {/* Stock Status */}
+                  <div className="mb-3">
                     {product.inStock === false ? (
-                      <p className="text-xs text-red-600 mt-1 font-semibold">✗ Uitverkocht</p>
+                      <p className="text-xs text-red-600 font-semibold">✗ Uitverkocht</p>
                     ) : (
-                      <p className="text-xs text-green-600 mt-1">✓ Op voorraad</p>
+                      <p className="text-xs text-green-600">✓ Op voorraad - morgen in huis</p>
                     )}
                   </div>
                   
