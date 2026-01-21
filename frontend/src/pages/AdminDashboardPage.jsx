@@ -443,7 +443,7 @@ const AdminDashboardPage = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
           <Link to="/admin/orders" data-testid="orders-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-purple-200">
               <CardContent className="p-6 text-center">
@@ -454,12 +454,32 @@ const AdminDashboardPage = () => {
             </Card>
           </Link>
           
-          <Link to="/admin/merchant-feed" data-testid="merchant-link">
+          <Link to="/admin/products" data-testid="products-link">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-amber-200">
+              <CardContent className="p-6 text-center">
+                <ShoppingBag className="w-10 h-10 mx-auto text-amber-600 mb-3" />
+                <h3 className="font-semibold text-gray-900">Producten</h3>
+                <p className="text-sm text-gray-500">Catalogus beheer</p>
+              </CardContent>
+            </Card>
+          </Link>
+          
+          <Link to="/admin/discount-codes" data-testid="discount-codes-link">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-pink-200">
+              <CardContent className="p-6 text-center">
+                <Target className="w-10 h-10 mx-auto text-pink-600 mb-3" />
+                <h3 className="font-semibold text-gray-900">Kortingscodes</h3>
+                <p className="text-sm text-gray-500">Promoties</p>
+              </CardContent>
+            </Card>
+          </Link>
+          
+          <Link to="/admin/email-marketing" data-testid="email-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-blue-200">
               <CardContent className="p-6 text-center">
-                <ShoppingCart className="w-10 h-10 mx-auto text-blue-600 mb-3" />
-                <h3 className="font-semibold text-gray-900">Product Feed</h3>
-                <p className="text-sm text-gray-500">Google Merchant</p>
+                <Mail className="w-10 h-10 mx-auto text-blue-600 mb-3" />
+                <h3 className="font-semibold text-gray-900">Email</h3>
+                <p className="text-sm text-gray-500">Marketing</p>
               </CardContent>
             </Card>
           </Link>
@@ -474,12 +494,12 @@ const AdminDashboardPage = () => {
             </Card>
           </Link>
           
-          <Link to="/admin/keywords" data-testid="keywords-link">
+          <Link to="/admin/merchant-feed" data-testid="merchant-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-orange-200">
               <CardContent className="p-6 text-center">
-                <Settings className="w-10 h-10 mx-auto text-orange-600 mb-3" />
-                <h3 className="font-semibold text-gray-900">Keywords</h3>
-                <p className="text-sm text-gray-500">SEO & Ads</p>
+                <ShoppingCart className="w-10 h-10 mx-auto text-orange-600 mb-3" />
+                <h3 className="font-semibold text-gray-900">Feed</h3>
+                <p className="text-sm text-gray-500">Google Merchant</p>
               </CardContent>
             </Card>
           </Link>
