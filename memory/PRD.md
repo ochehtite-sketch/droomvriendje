@@ -33,13 +33,52 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
 ### ✅ CRO Optimalisaties (21 Jan 2026 - NIEUW)
 - **Homepage Hero Sectie:**
   - Nieuwe headline: "Geef je kind het cadeau van een rustige nacht"
-  - Social proof: "10.000+ ouders", "4.7/5", "86% slaapt beter"
+  - Social proof: "10.000+ ouders", "4.9/5", "86% slaapt beter"
   - Groene CTA knop met prijsindicatie: "Bestel Nu - Vanaf €39,95"
   - Floating badges: "100% Tevredenheidsgarantie", "Populairste keuze"
   - Urgency element: "Winter Sale: 2e knuffel 50% korting"
+  - **NIEUW:** Klant avatars naast sterren rating
+  - **NIEUW:** "(500+ reviews)" tekst toegevoegd
 - **Trust Badges:**
   - Gratis verzending, Morgen in huis, 14 dagen retour, CE gecertificeerd
   - Betaalmethode icons: iDEAL, Creditcard, PayPal, Klarna, Apple Pay, Bancontact
+
+### ✅ Reviews/Testimonials Verbeteringen (22 Jan 2026 - NIEUW)
+- **Homepage Testimonials Sectie (Trustpilot-stijl):**
+  - Trustpilot badge: groene ster met "Trustpilot" tekst
+  - "Vertrouwd door 10.000+ ouders" headline
+  - 5 groene sterren met 4.9/5 rating
+  - Klant avatars met "+9K" badge
+  - Moderne review cards met:
+    - Groene Trustpilot-stijl sterren (vierkante blokken)
+    - Klant avatars
+    - "Geverifieerde aankoop" badges
+    - Review titels met emoji's
+- **Homepage Reviews Sectie:**
+  - "Echte Reviews van Echte Ouders" headline
+  - Rating: 4.9/5 met 500+ geverifieerde reviews
+  - Verbeterde review cards met:
+    - Klant avatars
+    - Groene sterren
+    - Product tags met emoji's
+    - "Bekijk Alle Reviews" CTA knop
+- **Reviews Pagina (/reviews) - Volledige Redesign:**
+  - Trustpilot-achtige hero sectie
+  - Rating breakdown met staafgrafieken (5 ster: 27, 4 ster: 3, etc.)
+  - Product filter sidebar
+  - Sorteer op: Meest recent / Hoogste beoordeling
+  - Groene Trustpilot-stijl sterren per review
+  - "Geverifieerd" badge styling
+  - CTA footer met "Word ook een tevreden klant!"
+- **Product Pagina Reviews:**
+  - "Klantbeoordelingen" badge
+  - Product-specifieke titel: "Wat Klanten Zeggen Over [Product]"
+  - Rating weergave met sterren en review count
+  - Verbeterde review cards met avatars en Trustpilot-stijl sterren
+- **Product Kaarten (Homepage & /knuffels):**
+  - Bruine "In Winkelwagen" buttons
+  - Sterren rating met "(X reviews)" tekst
+  - "Op voorraad - morgen in huis" status
 - **Checkout Optimalisatie:**
   - Gradient achtergrond (roze → paars)
   - Opmerkingen veld voor speciale wensen
