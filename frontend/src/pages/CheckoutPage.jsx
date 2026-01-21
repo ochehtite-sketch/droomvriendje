@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
-import { Moon, ShoppingCart, ArrowLeft, CreditCard, Loader2, Trash2, Plus, Minus, Tag } from 'lucide-react';
+import { ShoppingCart, CreditCard, Lock, Check, Truck, Heart, ArrowLeft, Loader2, Plus, Minus, Trash2, MessageSquare } from 'lucide-react';
 import { trackBeginCheckout, trackAddPaymentInfo, trackAddShippingInfo } from '../utils/analytics';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
@@ -16,7 +11,6 @@ const CheckoutPage = () => {
   const { cart, getSubtotal, getDiscount, getTotal, updateQuantity, removeFromCart, clearCart } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState('ideal');
   const trackingTimeoutRef = useRef(null);
   const hasTrackedRef = useRef(false);
   
@@ -27,6 +21,9 @@ const CheckoutPage = () => {
     address: '',
     city: '',
     zipCode: '',
+    phone: '',
+    comment: '',
+    paymentMethod: 'ideal'
   });
 
   // GA4: Track begin_checkout when page loads
@@ -75,7 +72,6 @@ const CheckoutPage = () => {
         })
       });
       hasTrackedRef.current = true;
-      console.log('Checkout session tracked for abandoned cart recovery');
     } catch (error) {
       console.error('Error tracking checkout session:', error);
     }
@@ -87,48 +83,53 @@ const CheckoutPage = () => {
     
     // Track checkout session when email is entered (debounced)
     if (name === 'email' && value.includes('@') && value.includes('.')) {
-      // Clear existing timeout
       if (trackingTimeoutRef.current) {
         clearTimeout(trackingTimeoutRef.current);
       }
-      
-      // Debounce - wait 2 seconds after user stops typing
       trackingTimeoutRef.current = setTimeout(() => {
         const fullName = `${formData.firstName} ${formData.lastName}`.trim();
         trackCheckoutSession(value, fullName);
       }, 2000);
     }
-    
-    // Also track when name is updated (if email already exists)
-    if ((name === 'firstName' || name === 'lastName') && formData.email.includes('@')) {
-      if (trackingTimeoutRef.current) {
-        clearTimeout(trackingTimeoutRef.current);
-      }
-      
-      trackingTimeoutRef.current = setTimeout(() => {
-        const firstName = name === 'firstName' ? value : formData.firstName;
-        const lastName = name === 'lastName' ? value : formData.lastName;
-        const fullName = `${firstName} ${lastName}`.trim();
-        trackCheckoutSession(formData.email, fullName);
-      }, 2000);
-    }
   };
 
-  // GA4: Track when payment method changes
   const handlePaymentMethodChange = (value) => {
-    setPaymentMethod(value);
+    setFormData(prev => ({ ...prev, paymentMethod: value }));
     trackAddPaymentInfo(cart, value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!formData.email || !formData.firstName || !formData.lastName || 
+        !formData.address || !formData.zipCode || !formData.city) {
+      setError('Vul alle verplichte velden in');
+      return;
+    }
+
+    if (cart.length === 0) {
+      setError('Je winkelwagen is leeg');
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
 
-    // GA4: Track add_shipping_info
-    trackAddShippingInfo(cart, 'gratis_verzending');
-
     try {
+      // Track shipping info for GA4
+      trackAddShippingInfo(cart, 'standard_shipping');
+      
+      // Notify backend of checkout start
+      await fetch(`${API_URL}/api/checkout-started`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          name: `${formData.firstName} ${formData.lastName}`,
+          items: cart
+        })
+      }).catch(() => {});
+      
       // Create order
       const orderResponse = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
@@ -136,9 +137,11 @@ const CheckoutPage = () => {
         body: JSON.stringify({
           customer_email: formData.email,
           customer_name: `${formData.firstName} ${formData.lastName}`,
+          customer_phone: formData.phone || '',
           customer_address: formData.address,
           customer_city: formData.city,
           customer_zipcode: formData.zipCode,
+          customer_comment: formData.comment || '',
           items: cart.map(item => ({
             product_id: String(item.id),
             product_name: item.shortName || item.name,
@@ -146,70 +149,72 @@ const CheckoutPage = () => {
             quantity: item.quantity,
             image: item.image
           })),
+          subtotal: getSubtotal(),
+          discount: getDiscount(),
           total_amount: getTotal()
         })
       });
 
       if (!orderResponse.ok) {
-        throw new Error('Order creation failed');
+        throw new Error('Order kon niet worden aangemaakt');
       }
 
-      const { order_id } = await orderResponse.json();
+      const orderData = await orderResponse.json();
 
-      // Create payment
+      // Create payment via backend (SECURE - no API key in frontend!)
       const paymentResponse = await fetch(`${API_URL}/api/payments/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          order_id,
-          payment_method: paymentMethod
+          order_id: orderData.order_id,
+          payment_method: formData.paymentMethod
         })
       });
 
       if (!paymentResponse.ok) {
-        const errorData = await paymentResponse.json();
-        throw new Error(errorData.detail || 'Payment creation failed');
+        const errData = await paymentResponse.json();
+        throw new Error(errData.detail || 'Betaling kon niet worden gestart');
       }
 
-      const { checkout_url } = await paymentResponse.json();
+      const paymentData = await paymentResponse.json();
 
-      // Clear cart and redirect to Mollie
-      clearCart();
-      window.location.href = checkout_url;
-
+      if (paymentData.checkout_url) {
+        clearCart();
+        window.location.href = paymentData.checkout_url;
+      } else {
+        throw new Error('Geen checkout URL ontvangen');
+      }
     } catch (err) {
       console.error('Checkout error:', err);
       setError(err.message || 'Er is iets misgegaan. Probeer het opnieuw.');
-    } finally {
       setIsLoading(false);
     }
   };
 
+  const paymentMethods = [
+    { value: 'ideal', label: 'iDEAL', icon: '🏦', popular: true, description: 'Direct via je bank' },
+    { value: 'creditcard', label: 'Creditcard', icon: '💳', description: 'Visa, Mastercard, Amex' },
+    { value: 'bancontact', label: 'Bancontact', icon: '🇧🇪', description: 'Belgische betaalmethode' },
+    { value: 'paypal', label: 'PayPal', icon: '🅿️', description: 'Betaal met PayPal' },
+    { value: 'applepay', label: 'Apple Pay', icon: '🍎', description: 'Snel & veilig' },
+    { value: 'klarna', label: 'Klarna', icon: '🛍️', description: 'Betaal later' },
+  ];
+
+  // Empty cart view
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <header className="bg-white border-b">
-          <div className="max-w-7xl mx-auto px-4 py-4">
-            <Link to="/" className="flex items-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
-                alt="Droomvriendjes" 
-                className="h-16 md:h-20 w-auto"
-              />
-            </Link>
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <ShoppingCart className="w-12 h-12 text-purple-600" />
           </div>
-        </header>
-
-        <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-          <ShoppingCart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Je winkelwagen is leeg</h1>
-          <p className="text-gray-600 mb-8">Voeg eerst producten toe aan je winkelwagen.</p>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Je winkelwagen is leeg</h2>
+          <p className="text-gray-600 mb-6">Voeg eerst producten toe aan je winkelwagen.</p>
           <Link to="/">
-            <Button className="bg-purple-600 hover:bg-purple-700">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+            <button className="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition flex items-center gap-2 mx-auto">
+              <ArrowLeft className="w-5 h-5" />
               Terug naar shop
-            </Button>
+            </button>
           </Link>
         </div>
       </div>
@@ -217,324 +222,338 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
-                alt="Droomvriendjes" 
-                className="h-16 md:h-20 w-auto"
-              />
-            </Link>
-            <div className="flex items-center text-sm text-gray-600">
-              <CreditCard className="w-4 h-4 mr-2" />
-              Veilig betalen met Mollie
-            </div>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 py-6 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <Link to="/" className="inline-block mb-4">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
+              alt="Droomvriendjes" 
+              className="h-20 md:h-24 w-auto mx-auto"
+            />
+          </Link>
+          <p className="text-gray-600 flex items-center justify-center gap-2">
+            <Lock className="w-4 h-4" />
+            Veilig afrekenen
+          </p>
         </div>
-      </header>
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <Link to="/" className="inline-flex items-center text-purple-600 hover:text-purple-700 mb-6">
+        {/* Back link */}
+        <Link to="/" className="inline-flex items-center text-purple-600 hover:text-purple-700 mb-6 font-medium">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Terug naar shop
         </Link>
 
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Afrekenen</h1>
-
+        {/* Error message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 flex items-center gap-2">
+            <span className="text-red-500">⚠️</span>
             {error}
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Checkout Form */}
-          <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit}>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Left Column - Form */}
+            <div className="lg:col-span-2 space-y-6">
               {/* Contact Info */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Contactgegevens</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Label htmlFor="email">E-mailadres *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="jouw@email.nl"
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="firstName">Voornaam *</Label>
-                      <Input
-                        id="firstName"
-                        name="firstName"
-                        required
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        placeholder="Jan"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName">Achternaam *</Label>
-                      <Input
-                        id="lastName"
-                        name="lastName"
-                        required
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        placeholder="Jansen"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Lock className="w-5 h-5 text-purple-600" />
+                  Contactgegevens
+                </h2>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-mailadres *"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                />
+              </div>
 
               {/* Shipping Address */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Verzendadres</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Label htmlFor="address">Straat en huisnummer *</Label>
-                    <Input
-                      id="address"
-                      name="address"
-                      required
-                      value={formData.address}
-                      onChange={handleInputChange}
-                      placeholder="Hoofdstraat 123"
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="zipCode">Postcode *</Label>
-                      <Input
-                        id="zipCode"
-                        name="zipCode"
-                        required
-                        value={formData.zipCode}
-                        onChange={handleInputChange}
-                        placeholder="1234 AB"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="city">Plaats *</Label>
-                      <Input
-                        id="city"
-                        name="city"
-                        required
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        placeholder="Amsterdam"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Payment Method */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CreditCard className="w-5 h-5 text-purple-600" />
-                    Betaalmethode
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <RadioGroup value={paymentMethod} onValueChange={handlePaymentMethodChange} className="space-y-3">
-                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'ideal' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
-                      <RadioGroupItem value="ideal" id="ideal" />
-                      <Label htmlFor="ideal" className="flex-1 cursor-pointer">
-                        <span className="font-medium">iDEAL</span>
-                        <span className="block text-sm text-gray-500">Meest gekozen - Direct via je bank</span>
-                      </Label>
-                      <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-8" />
-                    </div>
-                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'creditcard' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
-                      <RadioGroupItem value="creditcard" id="creditcard" />
-                      <Label htmlFor="creditcard" className="flex-1 cursor-pointer">
-                        <span className="font-medium">Creditcard</span>
-                        <span className="block text-sm text-gray-500">Visa, Mastercard, American Express</span>
-                      </Label>
-                      <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-8" />
-                    </div>
-                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'applepay' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
-                      <RadioGroupItem value="applepay" id="applepay" />
-                      <Label htmlFor="applepay" className="flex-1 cursor-pointer">
-                        <span className="font-medium">Apple Pay</span>
-                        <span className="block text-sm text-gray-500">Snel en veilig betalen</span>
-                      </Label>
-                      <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-8" />
-                    </div>
-                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'paypal' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
-                      <RadioGroupItem value="paypal" id="paypal" />
-                      <Label htmlFor="paypal" className="flex-1 cursor-pointer">
-                        <span className="font-medium">PayPal</span>
-                        <span className="block text-sm text-gray-500">Betaal met je PayPal account</span>
-                      </Label>
-                      <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-8" />
-                    </div>
-                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'bancontact' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
-                      <RadioGroupItem value="bancontact" id="bancontact" />
-                      <Label htmlFor="bancontact" className="flex-1 cursor-pointer">
-                        <span className="font-medium">Bancontact</span>
-                        <span className="block text-sm text-gray-500">Belgische betaalmethode</span>
-                      </Label>
-                      <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-8" />
-                    </div>
-                    <div className={`flex items-center space-x-3 p-4 border-2 rounded-xl cursor-pointer transition-all ${paymentMethod === 'klarna' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'}`}>
-                      <RadioGroupItem value="klarna" id="klarna" />
-                      <Label htmlFor="klarna" className="flex-1 cursor-pointer">
-                        <span className="font-medium">Klarna</span>
-                        <span className="block text-sm text-gray-500">Betaal later of in termijnen</span>
-                      </Label>
-                      <img src="https://www.mollie.com/external/icons/payment-methods/klarna.svg" alt="Klarna" className="h-8" />
-                    </div>
-                  </RadioGroup>
-                </CardContent>
-              </Card>
-
-              {/* Trust Indicators Before Submit */}
-              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-                <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-green-800">
-                  <span className="flex items-center gap-1">
-                    <span className="text-green-600">🔒</span> SSL beveiligd
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="text-green-600">✓</span> 14 dagen retour
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="text-green-600">🚚</span> Gratis verzending
-                  </span>
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Truck className="w-5 h-5 text-purple-600" />
+                  Verzendadres
+                </h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="Voornaam *"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  />
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Achternaam *"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  />
+                  <input
+                    type="text"
+                    name="address"
+                    placeholder="Adres + huisnummer *"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    required
+                    className="md:col-span-2 p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  />
+                  <input
+                    type="text"
+                    name="zipCode"
+                    placeholder="Postcode *"
+                    value={formData.zipCode}
+                    onChange={handleInputChange}
+                    required
+                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  />
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Plaats *"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    required
+                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Telefoonnummer (optioneel)"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="md:col-span-2 p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  />
                 </div>
               </div>
 
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-7 text-xl font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                data-testid="checkout-submit-button"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Bezig met verwerken...
-                  </>
-                ) : (
-                  <>
-                    🔒 Veilig Betalen - €{getTotal().toFixed(2).replace('.', ',')}
-                  </>
-                )}
-              </Button>
-              
-              <p className="text-center text-sm text-gray-500">
-                Door te bestellen ga je akkoord met onze <a href="/voorwaarden" className="text-purple-600 underline">algemene voorwaarden</a>
-              </p>
-            </form>
-          </div>
+              {/* Comments/Special Requests */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5 text-purple-600" />
+                  Opmerkingen
+                </h2>
+                <textarea
+                  name="comment"
+                  placeholder="Heb je een speciale wens of opmerking? (bijvoorbeeld: cadeauverpakking, bezorgmoment, persoonlijk bericht)"
+                  value={formData.comment}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none resize-none transition"
+                />
+                <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                  <Heart className="w-3 h-3 text-pink-500" />
+                  Optioneel - We doen ons best om aan je wensen te voldoen!
+                </p>
+              </div>
 
-          {/* Order Summary */}
-          <div>
-            <Card className="sticky top-24">
-              <CardHeader>
-                <CardTitle>Besteloverzicht</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {cart.map(item => (
-                  <div key={item.id} className="flex gap-3 pb-4 border-b">
-                    <img
-                      src={item.image}
-                      alt={item.shortName}
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                    <div className="flex-1">
-                      <p className="font-medium text-sm">{item.shortName || item.name}</p>
-                      <p className="text-sm text-gray-600">€{item.price.toFixed(2).replace('.', ',')}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 hover:bg-gray-100 rounded"
-                        >
-                          <Minus className="w-3 h-3" />
-                        </button>
-                        <span className="text-sm">{item.quantity}</span>
-                        <button
-                          type="button"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 hover:bg-gray-100 rounded"
-                        >
-                          <Plus className="w-3 h-3" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => removeFromCart(item.id)}
-                          className="p-1 hover:bg-red-100 rounded ml-auto text-red-500"
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </button>
+              {/* Payment Methods */}
+              <div className="bg-white rounded-2xl shadow-lg p-6">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <CreditCard className="w-5 h-5 text-purple-600" />
+                  Betaalmethode
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {paymentMethods.map(method => (
+                    <label 
+                      key={method.value} 
+                      className={`relative flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer hover:border-purple-400 transition ${
+                        formData.paymentMethod === method.value 
+                          ? 'border-purple-500 bg-purple-50 shadow-md' 
+                          : 'border-gray-200 hover:bg-gray-50'
+                      }`}
+                    >
+                      {method.popular && (
+                        <span className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
+                          Populair
+                        </span>
+                      )}
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value={method.value}
+                        checked={formData.paymentMethod === method.value}
+                        onChange={() => handlePaymentMethodChange(method.value)}
+                        className="sr-only"
+                      />
+                      <span className="text-3xl mb-1">{method.icon}</span>
+                      <span className="font-semibold text-gray-700 text-sm">{method.label}</span>
+                      <span className="text-xs text-gray-500 text-center mt-1">{method.description}</span>
+                    </label>
+                  ))}
+                </div>
+                
+                {/* Payment Security Badge */}
+                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600 bg-green-50 p-3 rounded-xl">
+                  <Lock className="w-4 h-4 text-green-600" />
+                  <span>Veilige betaling via Mollie - SSL versleuteld</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Order Summary */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
+                <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <ShoppingCart className="w-5 h-5 text-purple-600" />
+                  Besteloverzicht
+                </h2>
+
+                {/* Cart Items */}
+                <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto">
+                  {cart.map(item => (
+                    <div key={item.id} className="flex gap-3 pb-4 border-b border-gray-100">
+                      <img 
+                        src={item.image} 
+                        alt={item.shortName || item.name}
+                        className="w-16 h-16 object-cover rounded-xl bg-purple-50"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-gray-800 text-sm truncate">{item.shortName || item.name}</h3>
+                        <p className="text-purple-600 font-bold">€{item.price.toFixed(2).replace('.', ',')}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <button
+                            type="button"
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+                          >
+                            <Minus className="w-3 h-3" />
+                          </button>
+                          <span className="w-6 text-center font-semibold text-sm">{item.quantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => removeFromCart(item.id)}
+                            className="ml-auto text-red-500 hover:text-red-700 transition"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <p className="font-medium text-sm">
-                      €{(item.price * item.quantity).toFixed(2).replace('.', ',')}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
 
-                <div className="space-y-2 pt-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Subtotaal</span>
-                    <span>€{getSubtotal().toFixed(2).replace('.', ',')}</span>
+                {/* Pricing */}
+                <div className="space-y-2 text-sm mb-6">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Subtotaal</span>
+                    <span className="font-semibold">€{getSubtotal().toFixed(2).replace('.', ',')}</span>
                   </div>
                   {getDiscount() > 0 && (
-                    <div className="flex justify-between text-sm text-green-600">
-                      <span className="flex items-center gap-1">
-                        <Tag className="w-3 h-3" />
-                        2e knuffel 50% korting
-                      </span>
-                      <span>-€{getDiscount().toFixed(2).replace('.', ',')}</span>
+                    <div className="flex justify-between text-green-600">
+                      <span>Korting (2e 50%)</span>
+                      <span className="font-semibold">-€{getDiscount().toFixed(2).replace('.', ',')}</span>
                     </div>
                   )}
-                  <div className="flex justify-between text-sm text-green-600">
-                    <span>Verzending</span>
-                    <span>GRATIS</span>
-                  </div>
-                  <div className="flex justify-between font-bold text-lg pt-2 border-t">
-                    <span>Totaal</span>
-                    <span>€{getTotal().toFixed(2).replace('.', ',')}</span>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Verzending</span>
+                    <span className="font-semibold text-green-600">GRATIS</span>
                   </div>
                 </div>
 
-                {/* Trust badges */}
-                <div className="pt-4 border-t space-y-2 text-sm text-gray-600">
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>Veilig betalen met Mollie</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>14 dagen retourrecht</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>Gratis verzending</span>
-                  </div>
+                {/* Total */}
+                <div className="flex justify-between text-xl font-bold mb-6 pt-4 border-t-2 border-purple-100">
+                  <span>Totaal</span>
+                  <span className="text-purple-600">€{getTotal().toFixed(2).replace('.', ',')}</span>
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  data-testid="checkout-submit-button"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Verwerken...
+                    </>
+                  ) : (
+                    <>
+                      <Lock className="w-5 h-5" />
+                      Veilig betalen €{getTotal().toFixed(2).replace('.', ',')}
+                    </>
+                  )}
+                </button>
+
+                {/* Trust indicators */}
+                <div className="mt-4 flex items-center justify-center gap-4 text-xs text-gray-500">
+                  <span className="flex items-center gap-1">
+                    <Heart className="w-4 h-4 text-pink-500" />
+                    Met liefde gemaakt
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Truck className="w-4 h-4 text-purple-500" />
+                    1-2 werkdagen
+                  </span>
+                </div>
+
+                {/* Terms */}
+                <p className="text-center text-xs text-gray-500 mt-4">
+                  Door te bestellen ga je akkoord met onze{' '}
+                  <Link to="/voorwaarden" className="text-purple-600 underline hover:text-purple-700">
+                    algemene voorwaarden
+                  </Link>
+                </p>
+              </div>
+            </div>
           </div>
+        </form>
+
+        {/* Trust Section */}
+        <div className="mt-8 bg-white rounded-2xl shadow-lg p-6">
+          <div className="grid md:grid-cols-3 gap-6 text-center">
+            <div className="flex flex-col items-center">
+              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                <Lock className="w-7 h-7 text-purple-600" />
+              </div>
+              <h3 className="font-bold text-gray-800 mb-1">Veilig betalen</h3>
+              <p className="text-sm text-gray-600">SSL versleutelde verbinding</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                <Truck className="w-7 h-7 text-purple-600" />
+              </div>
+              <h3 className="font-bold text-gray-800 mb-1">Snelle levering</h3>
+              <p className="text-sm text-gray-600">Gratis verzending in heel NL</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                <Heart className="w-7 h-7 text-purple-600" />
+              </div>
+              <h3 className="font-bold text-gray-800 mb-1">14 dagen retour</h3>
+              <p className="text-sm text-gray-600">Niet tevreden? Geld terug!</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Payment Icons */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+          <span className="text-sm text-gray-500">Betaal veilig met:</span>
+          <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-8" />
+          <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-8" />
+          <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-8" />
+          <img src="https://www.mollie.com/external/icons/payment-methods/klarna.svg" alt="Klarna" className="h-8" />
+          <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-8" />
+          <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-8" />
         </div>
       </div>
     </div>
