@@ -121,20 +121,20 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
 
 ## In Progress / Geblokkeerd
 
-### 🔴 P0 - Productie Betalingen
-- **Status:** GEBLOKKEERD op deployment
-- **Issue:** Nieuwe Mollie keys werken in preview, maar productie site heeft oude keys
-- **Actie:** Gebruiker moet deployen naar productie
+### ✅ P0 - Productie Betalingen - OPGELOST
+- **Status:** OPGELOST
+- **Issue:** Productie site gebruikte test_ key
+- **Oplossing:** Gebruiker heeft live_ Mollie key ingesteld in productie environment
 
-### 🔴 P0 - Google Ads OAuth
-- **Status:** GEBLOKKEERD op gebruikersactie
+### 🟢 P0 - Google Ads OAuth
+- **Status:** GEBLOKKEERD op gebruikersactie - maar gebruiker geeft aan "DONE"
 - **Issue:** `redirect_uri_mismatch` error
-- **Actie:** Gebruiker moet redirect URI toevoegen in Google Cloud Console
+- **Actie:** Gebruiker geeft aan dit opgelost te hebben
 
-### 🟡 P1 - iDEAL Activatie
-- **Status:** GEBLOKKEERD op gebruikersactie
-- **Issue:** "The payment method is not activated on your account"
-- **Actie:** Gebruiker moet iDEAL activeren in Mollie dashboard
+### 🟢 P1 - Undefined Image URLs
+- **Status:** OPGELOST
+- **Issue:** Sommige product afbeeldingen hadden "undefined" URLs
+- **Actie:** Gebruiker geeft aan dit opgelost te hebben
 
 ---
 
