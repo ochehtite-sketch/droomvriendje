@@ -1081,10 +1081,11 @@ async def validate_discount_code(data: DiscountCodeValidate):
 async def purchase_gift_card(data: GiftCardPurchase):
     """Create a gift card purchase and initiate payment"""
     try:
-        # Verify Mollie API key is available
-        if not MOLLIE_API_KEY or len(MOLLIE_API_KEY) < 10:
-            logger.error(f"Mollie API key not configured properly. Length: {len(MOLLIE_API_KEY) if MOLLIE_API_KEY else 0}")
-            raise HTTPException(status_code=500, detail="Betaalsysteem niet correct geconfigureerd")
+        # Verify Mollie API key is available - use fresh check
+        api_key = get_mollie_api_key()
+        if not api_key:
+            logger.error("Mollie API key not configured for gift card purchase")
+            raise HTTPException(status_code=500, detail="Betaalsysteem niet correct geconfigureerd. Neem contact op met support.")
         
         # Generate unique gift card code
         gift_card_code = f"DV-{uuid.uuid4().hex[:8].upper()}"
@@ -1106,11 +1107,7 @@ async def purchase_gift_card(data: GiftCardPurchase):
         result = await db.gift_cards.insert_one(gift_card)
         gift_card_id = str(result.inserted_id)
         
-        # Create Mollie payment - use dynamic API key loading
-        api_key = get_mollie_api_key()
-        if not api_key:
-            raise HTTPException(status_code=500, detail="Mollie API key niet geconfigureerd")
-        
+        # Create Mollie payment
         logger.info(f"Creating gift card payment with API key: {api_key[:15]}...")
         mollie_client = get_mollie_client()
         
