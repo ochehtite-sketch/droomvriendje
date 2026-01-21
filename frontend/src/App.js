@@ -109,6 +109,7 @@ function App() {
               <Route path="/admin/shopping-campaigns" element={<ProtectedAdminRoute><ShoppingCampaignsPage /></ProtectedAdminRoute>} />
               <Route path="/admin/shopping-campaigns/data" element={<ProtectedAdminRoute><ShoppingCampaignsDataPage /></ProtectedAdminRoute>} />
               <Route path="/admin/keywords" element={<ProtectedAdminRoute><KeywordsPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/email-marketing" element={<ProtectedAdminRoute><EmailMarketingPage /></ProtectedAdminRoute>} />
             </Routes>
             <Toaster />
           </AdminAuthProvider>
