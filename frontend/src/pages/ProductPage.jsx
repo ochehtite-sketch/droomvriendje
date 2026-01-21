@@ -345,41 +345,98 @@ const ProductPage = () => {
         </div>
       </section>
 
-      {/* Product Reviews */}
-      <section className="py-16 bg-white">
+      {/* Product Reviews - Enhanced Design */}
+      <section className="py-16 bg-gradient-to-b from-[#fdf8f3] to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            Wat Klanten Zeggen Over {product.shortName}
-          </h2>
+          {/* Section Header */}
+          <div className="text-center mb-10">
+            <span className="inline-block bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              ⭐ Klantbeoordelingen
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-4">
+              Wat Klanten Zeggen Over {product.shortName}
+            </h2>
+            {productReviews.length > 0 && (
+              <div className="flex items-center justify-center gap-3">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="font-bold text-gray-900">{product.rating}/5</span>
+                <span className="text-gray-500">({product.reviews} reviews)</span>
+              </div>
+            )}
+          </div>
+          
           {productReviews.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {productReviews.map((review) => (
-                <Card key={review.id} className="border-2 border-purple-100">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-1">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
+              {productReviews.map((review, index) => (
+                <div 
+                  key={review.id} 
+                  className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300"
+                  data-testid={`product-review-${index}`}
+                >
+                  {/* Header with Avatar */}
+                  <div className="flex items-start gap-3 mb-4">
+                    <img 
+                      src={`https://i.pravatar.cc/48?img=${(review.id % 20) + 20}`}
+                      alt={review.name}
+                      className="w-12 h-12 rounded-full"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-gray-900">{review.name}</span>
+                        {review.verified && (
+                          <span className="text-green-500 text-sm flex items-center gap-1">
+                            <span>✓</span> Geverifieerd
+                          </span>
+                        )}
                       </div>
-                      {review.verified && (
-                        <Badge variant="outline" className="text-green-600 border-green-600">
-                          ✓ Geverifieerd
-                        </Badge>
-                      )}
+                      <div className="flex items-center gap-2 mt-1">
+                        {/* Trustpilot-style Stars */}
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <div 
+                              key={i} 
+                              className={`w-4 h-4 flex items-center justify-center ${
+                                i < review.rating ? 'bg-green-500' : 'bg-gray-200'
+                              }`}
+                            >
+                              <Star className={`w-3 h-3 ${i < review.rating ? 'fill-white text-white' : 'fill-gray-400 text-gray-400'}`} />
+                            </div>
+                          ))}
+                        </div>
+                        <span className="text-sm text-gray-400">{review.date}</span>
+                      </div>
                     </div>
-                    <h4 className="font-bold text-purple-900 mb-2">{review.title}</h4>
-                    <p className="text-gray-600 text-sm mb-3">{review.text}</p>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="font-semibold text-gray-700">{review.name}</span>
-                      <span className="text-gray-500">{review.date}</span>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                  
+                  {/* Review Content */}
+                  <h4 className="font-bold text-[#5a4a3a] mb-2">{review.title}</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">{review.text}</p>
+                </div>
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-600">Nog geen reviews beschikbaar.</p>
+            <div className="text-center py-12 bg-white rounded-2xl border border-gray-200">
+              <p className="text-gray-500 text-lg">Nog geen reviews beschikbaar voor dit product.</p>
+              <p className="text-gray-400 mt-2">Wees de eerste om een review te schrijven!</p>
+            </div>
+          )}
+          
+          {/* View All Reviews CTA */}
+          {productReviews.length > 0 && (
+            <div className="text-center mt-10">
+              <Link to="/reviews">
+                <Button 
+                  className="bg-[#8B7355] hover:bg-[#6d5a45] text-white px-8 py-6 text-lg font-semibold rounded-full shadow-md hover:shadow-lg transition-all"
+                  data-testid="view-all-product-reviews-btn"
+                >
+                  Bekijk Alle Reviews →
+                </Button>
+              </Link>
+            </div>
           )}
         </div>
       </section>
