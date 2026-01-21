@@ -885,10 +885,14 @@ class OrderItem(BaseModel):
 class OrderCreate(BaseModel):
     customer_email: str
     customer_name: str
+    customer_phone: Optional[str] = None
     customer_address: Optional[str] = None
     customer_city: Optional[str] = None
     customer_zipcode: Optional[str] = None
+    customer_comment: Optional[str] = None
     items: List[OrderItem]
+    subtotal: Optional[float] = None
+    discount: Optional[float] = 0
     total_amount: float
     discount_code: Optional[str] = None
     discount_amount: Optional[float] = 0
