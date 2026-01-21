@@ -1409,8 +1409,8 @@ async def create_payment(payment: PaymentCreate):
         logger.info(f"Creating payment - Redirect: {redirect_url}, Webhook: {webhook_url}")
         logger.info(f"Order total: {order['total_amount']}, Method: {payment.payment_method}")
         
-        # Create payment with Mollie
-        mollie_payment = mollie_client.payments.create({
+        # Base payment data
+        payment_data = {
             'amount': {
                 'currency': 'EUR',
                 'value': f"{order['total_amount']:.2f}"
@@ -1423,7 +1423,30 @@ async def create_payment(payment: PaymentCreate):
                 'order_id': payment.order_id,
                 'customer_email': order['customer_email']
             }
-        })
+        }
+        
+        # Add billing address for Klarna and iDEAL in3 (required by these methods)
+        if payment.payment_method in ['klarna', 'klarnapaylater', 'klarnasliceit', 'in3', 'ideal_in3']:
+            # Split name into given and family name
+            name_parts = order.get('customer_name', '').split(' ', 1)
+            given_name = name_parts[0] if name_parts else ''
+            family_name = name_parts[1] if len(name_parts) > 1 else name_parts[0]
+            
+            payment_data['billingAddress'] = {
+                'givenName': given_name,
+                'familyName': family_name,
+                'email': order.get('customer_email', ''),
+                'streetAndNumber': order.get('customer_address', ''),
+                'postalCode': order.get('customer_zipcode', ''),
+                'city': order.get('customer_city', ''),
+                'country': 'NL'
+            }
+            
+            # Klarna also requires shipping address
+            payment_data['shippingAddress'] = payment_data['billingAddress'].copy()
+        
+        # Create payment with Mollie
+        mollie_payment = mollie_client.payments.create(payment_data)
         
         # Store payment reference in order
         await db.orders.update_one(
