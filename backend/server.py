@@ -2942,11 +2942,48 @@ from services.email_service import EmailService, EMAIL_TEMPLATES
 # Initialize email service
 email_service = None
 
+# Background task for processing scheduled abandoned carts
+abandoned_cart_scheduler_task = None
+
+async def abandoned_cart_scheduler():
+    """
+    Background task that runs every 15 minutes to process scheduled abandoned carts.
+    This automatically starts the email flow for carts that have been abandoned for 1+ hour.
+    """
+    global email_service
+    logger.info("🚀 Abandoned cart scheduler started - will check every 15 minutes")
+    
+    while True:
+        try:
+            # Wait 15 minutes between checks
+            await asyncio.sleep(15 * 60)  # 15 minutes
+            
+            if email_service:
+                flows_started = await email_service.process_scheduled_abandoned_carts()
+                if flows_started > 0:
+                    logger.info(f"📧 Abandoned cart scheduler: Started {flows_started} email flow(s)")
+                else:
+                    logger.debug("📧 Abandoned cart scheduler: No carts to process")
+            else:
+                logger.warning("⚠️ Email service not available for abandoned cart processing")
+                
+        except asyncio.CancelledError:
+            logger.info("🛑 Abandoned cart scheduler stopped")
+            break
+        except Exception as e:
+            logger.error(f"❌ Abandoned cart scheduler error: {str(e)}")
+            # Continue running even after errors
+            await asyncio.sleep(60)  # Wait 1 minute before retrying after error
+
 @app.on_event("startup")
 async def init_email_service():
-    global email_service
+    global email_service, abandoned_cart_scheduler_task
     email_service = EmailService(db)
     logger.info("✅ Email service initialized")
+    
+    # Start the abandoned cart scheduler as a background task
+    abandoned_cart_scheduler_task = asyncio.create_task(abandoned_cart_scheduler())
+    logger.info("✅ Abandoned cart scheduler task created")
 
 # Pydantic models for email API
 class AbandonedCartCreate(BaseModel):
