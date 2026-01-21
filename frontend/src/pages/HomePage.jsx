@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { reviews, benefits, features, testimonials, videos, faqs, products as mockProducts } from '../mockData';
+import { products, reviews, benefits, features, testimonials, videos, faqs } from '../mockData';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -16,29 +16,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const API_URL = process.env.REACT_APP_BACKEND_URL;
-
 const HomePage = () => {
   const navigate = useNavigate();
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
-  const [products, setProducts] = useState(mockProducts);
-
-  // Fetch products from API
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(`${API_URL}/api/products`);
-        if (response.ok) {
-          const data = await response.json();
-          setProducts(data);
-        }
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        // Fall back to mock data
-      }
-    };
-    fetchProducts();
-  }, []);
 
   // Filter out of stock products from homepage
   const availableProducts = products.filter(p => p.inStock !== false);
@@ -46,7 +26,7 @@ const HomePage = () => {
   // GA4: Track view_item_list when page loads
   useEffect(() => {
     trackViewItemList(availableProducts, 'homepage_products', 'Homepage Producten');
-  }, [availableProducts]);
+  }, []);
 
   // GA4: Track product click
   const handleProductClick = (product, index) => {
