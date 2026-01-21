@@ -3077,6 +3077,11 @@ async def init_email_service():
     # Start the abandoned cart scheduler as a background task
     abandoned_cart_scheduler_task = asyncio.create_task(abandoned_cart_scheduler())
     logger.info("✅ Abandoned cart scheduler task created")
+    
+    # Seed products and discount codes from routes
+    await products_route.seed_products()
+    await discount_codes_route.seed_discount_codes()
+    logger.info("✅ Database seeding completed")
 
 # Pydantic models for email API
 class AbandonedCartCreate(BaseModel):
