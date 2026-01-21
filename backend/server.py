@@ -2663,6 +2663,12 @@ class AbandonedCartCreate(BaseModel):
     name: Optional[str] = ""
     items: List[dict] = []
     total: float = 0
+class CheckoutTrackRequest(BaseModel):
+    """Request model for tracking checkout sessions"""
+    email: str
+    name: Optional[str] = ""
+    items: List[dict] = []
+    total: float = 0
 
 class ManualEmailSend(BaseModel):
     template_id: str
