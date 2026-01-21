@@ -319,17 +319,17 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Products Section - SLIDER */}
-      <section id="producten" className="py-20 bg-gradient-to-b from-white to-purple-50">
+      {/* Products Section - New Brown/Beige Theme */}
+      <section id="producten" className="py-20 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <span className="inline-block bg-[#8B7355]/10 text-[#8B7355] px-4 py-2 rounded-full text-sm font-semibold mb-4">
               ✨ Onze Collectie
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Jouw <span className="text-purple-600">Droomvriendje</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#5a4a3a] mb-6">
+              Jouw <span className="text-[#8B7355]">Droomvriendje</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-[#7a6a5a] max-w-2xl mx-auto">
               Speciale slaapknuffels met rustgevende lichtjes en geluiden voor een betere nachtrust
             </p>
           </div>
@@ -373,40 +373,59 @@ const HomePage = () => {
             >
               {availableProducts.map((product, index) => (
                 <SwiperSlide key={product.id}>
-                  <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200 h-full flex flex-col">
+                  <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#e8e0d8] hover:border-[#8B7355]/30 h-full flex flex-col">
                     {/* Badge */}
                     <div className="relative">
                       {product.badge && (
-                        <div className="absolute top-3 left-3 z-10">
-                          <span className={`px-3 py-1 text-xs font-bold rounded-full shadow-md ${
-                            product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white' :
-                            product.badge === 'NIEUW' ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white' :
-                            product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-blue-400 to-blue-600 text-white' :
-                            'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                        <div className="absolute top-4 left-4 z-10">
+                          <span className={`px-4 py-1.5 text-xs font-bold rounded-full shadow-lg ${
+                            product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white' :
+                            product.badge === 'NIEUW' ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white' :
+                            product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white' :
+                            'bg-gradient-to-r from-[#8B7355] to-[#6d5a45] text-white'
                           }`}>
                             {product.badge}
                           </span>
                         </div>
                       )}
                       
+                      {/* Discount Badge */}
+                      <div className="absolute top-4 right-4 z-10">
+                        <span className="px-3 py-1.5 text-xs font-bold rounded-full bg-red-500 text-white shadow-lg">
+                          -50% OP 2E
+                        </span>
+                      </div>
+                      
                       {/* Product Image */}
                       <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
-                        <div className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 p-6 cursor-pointer overflow-hidden">
+                        <div className="relative bg-gradient-to-br from-[#faf6f1] via-[#f5efe8] to-[#efe7dc] p-6 cursor-pointer overflow-hidden aspect-square">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                             data-testid={`product-image-${product.id}`}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                       </Link>
                     </div>
                     
                     {/* Product Info */}
-                    <div className="p-5 flex-1 flex flex-col">
+                    <div className="p-5 flex-1 flex flex-col bg-white">
+                      {/* Title with Price */}
+                      <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="text-lg font-bold text-[#5a4a3a] group-hover:text-[#8B7355] transition-colors cursor-pointer flex-1 pr-2">
+                            {product.shortName || product.name}
+                          </h3>
+                          <div className="text-right flex-shrink-0">
+                            <span className="text-sm text-gray-400 line-through block">€{(product.price * 1.3).toFixed(2).replace('.', ',')}</span>
+                            <span className="text-xl font-bold text-[#8B7355]">€{product.price.toFixed(2).replace('.', ',')}</span>
+                          </div>
+                        </div>
+                      </Link>
+                      
                       {/* Rating */}
-                      <div className="flex items-center gap-1 mb-2">
+                      <div className="flex items-center gap-1 mb-3">
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
                             <Star 
@@ -415,37 +434,18 @@ const HomePage = () => {
                             />
                           ))}
                         </div>
-                        <span className="text-sm font-semibold text-gray-700">{product.rating}</span>
-                        <span className="text-xs text-gray-500">({product.reviews})</span>
+                        <span className="text-sm font-semibold text-[#5a4a3a]">{product.rating}</span>
+                        <span className="text-xs text-[#8a7a6a]">({product.reviews} reviews)</span>
                       </div>
                       
-                      {/* Title */}
-                      <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors cursor-pointer">
-                          {product.name}
-                        </h3>
-                      </Link>
-                      
                       {/* Short Description */}
-                      <p className="text-sm text-gray-500 mb-4 line-clamp-2 flex-1">
+                      <p className="text-sm text-[#7a6a5a] mb-4 line-clamp-2 flex-1">
                         {product.description}
                       </p>
                       
-                      {/* Price */}
-                      <div className="mb-4">
-                        {product.originalPrice > product.price ? (
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-sm text-gray-400 line-through">€{product.originalPrice.toFixed(2)}</span>
-                            <span className="text-2xl font-bold text-purple-600">€{product.price.toFixed(2)}</span>
-                          </div>
-                        ) : (
-                          <span className="text-2xl font-bold text-gray-900">€{product.price.toFixed(2)}</span>
-                        )}
-                      </div>
-                      
                       {/* Add to Cart Button */}
                       <Button 
-                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-5 rounded-xl shadow-md hover:shadow-lg transition-all"
+                        className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-semibold py-5 rounded-xl shadow-md hover:shadow-lg transition-all"
                         onClick={() => addToCart(product)}
                         data-testid={`add-to-cart-slider-${product.id}`}
                       >
