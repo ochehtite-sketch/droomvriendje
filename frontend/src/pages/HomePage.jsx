@@ -458,21 +458,6 @@ const HomePage = () => {
                   </div>
                 </SwiperSlide>
               ))}
-                      </p>
-                      
-                      {/* Add to Cart Button */}
-                      <Button 
-                        className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-semibold py-5 rounded-xl shadow-md hover:shadow-lg transition-all"
-                        onClick={() => addToCart(product)}
-                        data-testid={`add-to-cart-slider-${product.id}`}
-                      >
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        In Winkelwagen
-                      </Button>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
             </Swiper>
             
             {/* Custom Navigation Buttons */}
