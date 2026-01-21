@@ -886,48 +886,90 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <section id="reviews" className="py-16 bg-white">
+      {/* Reviews Section - Enhanced with Photos */}
+      <section id="reviews" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-4">
-              Vertrouwd Door 1000+ Gezinnen
+            <span className="inline-block bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              ⭐ Klantbeoordelingen
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-4">
+              Echte Reviews van Echte Ouders
             </h2>
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-                ))}
+            <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="font-bold text-gray-900">4.9/5</span>
               </div>
-              <span className="text-xl font-bold">4.5/5.0</span>
+              <span className="text-gray-400">|</span>
+              <span className="text-gray-600">500+ geverifieerde reviews</span>
             </div>
-            <p className="text-gray-600">Gebaseerd op 500+ verified reviews</p>
           </div>
+          
+          {/* Reviews Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.slice(0, 6).map((review) => (
-              <Card key={review.id} className="border-2 border-purple-100">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center space-x-1">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
+            {reviews.slice(0, 6).map((review, index) => (
+              <div 
+                key={review.id} 
+                className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:border-[#8B7355]/30"
+                data-testid={`review-card-${index}`}
+              >
+                {/* Header with Avatar */}
+                <div className="flex items-start gap-3 mb-4">
+                  <img 
+                    src={`https://i.pravatar.cc/48?img=${(review.id % 20) + 20}`}
+                    alt={review.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-gray-900">{review.name}</span>
+                      {review.verified && (
+                        <span className="text-green-500 text-sm flex items-center gap-1">
+                          <span>✓</span> Geverifieerd
+                        </span>
+                      )}
                     </div>
-                    {review.verified && (
-                      <Badge variant="outline" className="text-green-600 border-green-600">
-                        ✓ Geverifieerd
-                      </Badge>
-                    )}
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="flex">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-400">{review.date}</span>
+                    </div>
                   </div>
-                  <h4 className="font-bold text-purple-900 mb-2">{review.title}</h4>
-                  <p className="text-gray-600 text-sm mb-3">{review.text}</p>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="font-semibold text-gray-700">{review.name}</span>
-                    <span className="text-gray-500">{review.date}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+                
+                {/* Review Content */}
+                <h4 className="font-bold text-[#5a4a3a] mb-2">{review.title}</h4>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">{review.text}</p>
+                
+                {/* Product Tag */}
+                <div className="pt-3 border-t border-gray-100">
+                  <span className="inline-flex items-center gap-1 bg-[#f5efe8] text-[#8B7355] px-3 py-1 rounded-full text-xs font-medium">
+                    🧸 {review.product}
+                  </span>
+                </div>
+              </div>
             ))}
+          </div>
+          
+          {/* Load More */}
+          <div className="text-center mt-10">
+            <Link to="/reviews">
+              <Button 
+                className="bg-[#8B7355] hover:bg-[#6d5a45] text-white px-8 py-6 text-lg font-semibold rounded-full shadow-md hover:shadow-lg transition-all"
+                data-testid="load-more-reviews-btn"
+              >
+                Bekijk Alle Reviews →
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
