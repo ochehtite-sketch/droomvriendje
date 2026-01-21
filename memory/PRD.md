@@ -20,7 +20,7 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
 - Mollie betalingsintegratie (werkend in preview)
 - Order management
 
-### ✅ Email Marketing System (NIEUW - Vandaag geïmplementeerd)
+### ✅ Email Marketing System
 - **Abandoned Cart Tracking:** Automatische tracking wanneer klant e-mail invult op checkout
 - **Automatische Email Flow:** 
   - Mail 1: Na 1 uur (herinnering)
@@ -29,8 +29,24 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
 - **Cart Recovery:** Automatisch markeren als "recovered" bij succesvolle betaling
 - **Background Scheduler:** Automatische verwerking elke 15 minuten (geen externe cron nodig!)
 - **Admin Dashboard:** `/admin/email-marketing` met statistieken, verlaten wagens overzicht, email queue
-- **Handmatig e-mails versturen:** Via admin panel
-- **Email Templates:** Welkom flow, Post-purchase flow, Win-back flow
+
+### ✅ CRO Optimalisaties (21 Jan 2026 - NIEUW)
+- **Homepage Hero Sectie:**
+  - Nieuwe headline: "Geef je kind het cadeau van een rustige nacht"
+  - Social proof: "10.000+ ouders", "4.7/5", "86% slaapt beter"
+  - Groene CTA knop met prijsindicatie: "Bestel Nu - Vanaf €39,95"
+  - Floating badges: "100% Tevredenheidsgarantie", "Populairste keuze"
+  - Urgency badge: "Winter Sale: 2e knuffel 50% korting"
+- **Trust Badges:**
+  - Gratis verzending, Morgen in huis, 14 dagen retour, CE gecertificeerd
+  - Betaalmethode icons: iDEAL, Creditcard, PayPal, Klarna, Apple Pay, Bancontact
+- **Checkout Optimalisatie:**
+  - Verbeterde payment method selectie met highlight
+  - Trust indicators voor submit: SSL beveiligd, 14 dagen retour, Gratis verzending
+  - Grotere, duidelijkere betaalknop met slot-icoon
+- **Footer:**
+  - Betaalmethode icons toegevoegd
+  - SSL Beveiligd indicator
 
 ### ✅ Admin Dashboard
 - Order overzicht met datum/tijd
