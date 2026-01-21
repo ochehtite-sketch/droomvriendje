@@ -36,17 +36,31 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
   - Social proof: "10.000+ ouders", "4.7/5", "86% slaapt beter"
   - Groene CTA knop met prijsindicatie: "Bestel Nu - Vanaf €39,95"
   - Floating badges: "100% Tevredenheidsgarantie", "Populairste keuze"
-  - Urgency badge: "Winter Sale: 2e knuffel 50% korting"
+  - Urgency element: "Winter Sale: 2e knuffel 50% korting"
 - **Trust Badges:**
   - Gratis verzending, Morgen in huis, 14 dagen retour, CE gecertificeerd
   - Betaalmethode icons: iDEAL, Creditcard, PayPal, Klarna, Apple Pay, Bancontact
 - **Checkout Optimalisatie:**
-  - Verbeterde payment method selectie met highlight
-  - Trust indicators voor submit: SSL beveiligd, 14 dagen retour, Gratis verzending
-  - Grotere, duidelijkere betaalknop met slot-icoon
+  - Gradient achtergrond (roze → paars)
+  - Opmerkingen veld voor speciale wensen
+  - Verbeterde payment method selectie met emoji's en "Populair" badge
+  - Trust indicators: SSL beveiligd, 14 dagen retour
+  - Grotere betaalknop met slot-icoon
+- **Product Pagina (PDP) CRO:**
+  - Urgency badge met product status
+  - Emotionele subtitle: "Helpt je kindje sneller inslapen"
+  - Social proof bar: "86% van ouders zegt: kind slaapt beter"
+  - Emotionele product beschrijving met 💜 emoji
+  - Prijs met doorgestreepte "was-prijs" en korting badge
+  - Key features grid: sterrenhemel, white noise, timer, wasbaar
+  - Groene CTA knop: "Bestel Nu - €XX,XX"
+  - Stock urgency: "Nog maar X op voorraad - bestel snel!"
+  - Trust badges: proefslapen, verzending, CE, Nederlandse klantenservice
+  - 100% Tevredenheidsgarantie banner
 - **Footer:**
-  - Betaalmethode icons toegevoegd
+  - Betaalmethode icons
   - SSL Beveiligd indicator
+  - Uitgebreide navigatie links
 
 ### ✅ Admin Dashboard
 - Order overzicht met datum/tijd
