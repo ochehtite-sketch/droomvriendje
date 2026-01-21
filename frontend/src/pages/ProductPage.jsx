@@ -71,13 +71,13 @@ const ProductPage = () => {
   return (
     <Layout backButtonText="Terug" showPromoBanner={false}>
       {/* Product Detail */}
-      <section className="py-12">
+      <section className="py-12 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Product Image Gallery */}
             <div>
               {/* Main Image */}
-              <div className="relative bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl p-8 mb-4">
+              <div className="relative bg-[#faf7f4] rounded-3xl p-8 mb-4 shadow-sm">
                 <img 
                   src={galleryImages[selectedImage]} 
                   alt={product.name}
