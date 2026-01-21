@@ -105,6 +105,8 @@ function App() {
               <Route path="/admin" element={<ProtectedAdminRoute><AdminDashboardPage /></ProtectedAdminRoute>} />
               <Route path="/admin/dashboard" element={<ProtectedAdminRoute><AdminDashboardPage /></ProtectedAdminRoute>} />
               <Route path="/admin/orders" element={<ProtectedAdminRoute><AdminOrdersPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/discount-codes" element={<ProtectedAdminRoute><AdminDiscountCodesPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/products" element={<ProtectedAdminRoute><AdminProductsPage /></ProtectedAdminRoute>} />
               <Route path="/admin/google-ads" element={<ProtectedAdminRoute><GoogleAdsPage /></ProtectedAdminRoute>} />
               <Route path="/admin/google-ads/callback" element={<GoogleAdsCallbackPage />} />
               <Route path="/admin/merchant-feed" element={<ProtectedAdminRoute><MerchantFeedPage /></ProtectedAdminRoute>} />
