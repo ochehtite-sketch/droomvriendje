@@ -390,36 +390,25 @@ const HomePage = () => {
             >
               {availableProducts.map((product, index) => (
                 <SwiperSlide key={product.id}>
-                  <div className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-[#e8e0d8] hover:border-[#8B7355]/30 h-full flex flex-col">
-                    {/* Badge */}
+                  <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    {/* Product Image with Badge */}
                     <div className="relative">
+                      {/* BESTSELLER Badge - Top Left */}
                       {product.badge && (
-                        <div className="absolute top-4 left-4 z-10">
-                          <span className={`px-4 py-1.5 text-xs font-bold rounded-full shadow-lg ${
-                            product.badge === 'BESTSELLER' ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white' :
-                            product.badge === 'NIEUW' ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white' :
-                            product.badge === 'POPULAIR' ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white' :
-                            'bg-gradient-to-r from-[#8B7355] to-[#6d5a45] text-white'
-                          }`}>
+                        <div className="absolute top-3 left-3 z-10">
+                          <span className="bg-[#2d2d2d] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wide">
                             {product.badge}
                           </span>
                         </div>
                       )}
                       
-                      {/* Discount Badge */}
-                      <div className="absolute top-4 right-4 z-10">
-                        <span className="px-3 py-1.5 text-xs font-bold rounded-full bg-red-500 text-white shadow-lg">
-                          -50% OP 2E
-                        </span>
-                      </div>
-                      
                       {/* Product Image */}
                       <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
-                        <div className="relative bg-gradient-to-br from-[#faf6f1] via-[#f5efe8] to-[#efe7dc] p-6 cursor-pointer overflow-hidden aspect-square">
+                        <div className="relative bg-[#faf7f4] p-4 cursor-pointer aspect-square flex items-center justify-center">
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                             data-testid={`product-image-${product.id}`}
                           />
                         </div>
@@ -427,37 +416,48 @@ const HomePage = () => {
                     </div>
                     
                     {/* Product Info */}
-                    <div className="p-5 flex-1 flex flex-col bg-white">
-                      {/* Title with Price */}
+                    <div className="p-4 flex-1 flex flex-col">
+                      {/* Product Name and Price Row */}
                       <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
                         <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-lg font-bold text-[#5a4a3a] group-hover:text-[#8B7355] transition-colors cursor-pointer flex-1 pr-2">
+                          <h3 className="text-base font-semibold text-[#3d3d3d] group-hover:text-[#8B7355] transition-colors cursor-pointer flex-1 pr-2">
                             {product.shortName || product.name}
                           </h3>
-                          <div className="text-right flex-shrink-0">
-                            <span className="text-sm text-gray-400 line-through block">€{(product.price * 1.3).toFixed(2).replace('.', ',')}</span>
-                            <span className="text-xl font-bold text-[#8B7355]">€{product.price.toFixed(2).replace('.', ',')}</span>
-                          </div>
+                          <span className="text-lg font-bold text-[#8B7355] flex-shrink-0">€{product.price.toFixed(2).replace('.', ',')}</span>
                         </div>
                       </Link>
                       
                       {/* Rating */}
-                      <div className="flex items-center gap-1 mb-3">
+                      <div className="flex items-center gap-1.5 mb-2">
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
                             <Star 
                               key={i} 
-                              className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'fill-gray-200 text-gray-200'}`} 
+                              className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'fill-gray-300 text-gray-300'}`} 
                             />
                           ))}
                         </div>
-                        <span className="text-sm font-semibold text-[#5a4a3a]">{product.rating}</span>
-                        <span className="text-xs text-[#8a7a6a]">({product.reviews} reviews)</span>
+                        <span className="text-xs text-gray-500">({product.reviews} reviews)</span>
                       </div>
                       
-                      {/* Short Description */}
-                      <p className="text-sm text-[#7a6a5a] mb-4 line-clamp-2 flex-1">
+                      {/* Description */}
+                      <p className="text-sm text-gray-500 mb-4 line-clamp-2 flex-1">
                         {product.description}
+                      </p>
+                      
+                      {/* Add to Cart Button */}
+                      <Button 
+                        className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-medium py-3 rounded-lg transition-colors"
+                        onClick={() => addToCart(product)}
+                        data-testid={`add-to-cart-slider-${product.id}`}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        In Winkelwagen
+                      </Button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
                       </p>
                       
                       {/* Add to Cart Button */}
