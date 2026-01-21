@@ -189,10 +189,39 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              {/* Price */}
+              {/* Price Section - CRO Optimized */}
               <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6 mb-6">
-                <div className="flex items-baseline space-x-3">
-                  <span className="text-5xl font-bold text-purple-900">€{product.price.toFixed(2)}</span>
+                <div className="flex items-center justify-between flex-wrap gap-4">
+                  <div>
+                    <span className="text-4xl md:text-5xl font-bold text-purple-900">€{product.price.toFixed(2).replace('.', ',')}</span>
+                    <span className="text-gray-500 text-sm ml-2 line-through">€{(product.price * 1.3).toFixed(2).replace('.', ',')}</span>
+                  </div>
+                  <div className="bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm animate-pulse">
+                    🎁 2e knuffel 50% korting!
+                  </div>
+                </div>
+                <p className="text-green-700 font-medium mt-2 text-sm">
+                  ✓ Gratis verzending · ✓ Morgen in huis · ✓ 14 dagen retour
+                </p>
+              </div>
+
+              {/* Key Features - Quick Scan */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                  <span className="text-xl">✩</span>
+                  <span className="text-sm font-medium text-gray-700">Kalmerende sterrenhemel</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                  <span className="text-xl">💗</span>
+                  <span className="text-sm font-medium text-gray-700">White noise & hartslag</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                  <span className="text-xl">⏰</span>
+                  <span className="text-sm font-medium text-gray-700">Automatische timer</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border border-purple-200 rounded-xl p-3">
+                  <span className="text-xl">🧺</span>
+                  <span className="text-sm font-medium text-gray-700">Wasbaar & veilig</span>
                 </div>
               </div>
 
