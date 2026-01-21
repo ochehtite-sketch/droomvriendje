@@ -1422,6 +1422,7 @@ async def create_payment(payment: PaymentCreate):
         logger.info(f"Order total: {order['total_amount']}, Method: {payment.payment_method}")
         
         # Base payment data
+        cancel_url = f"{frontend_url}/checkout"
         payment_data = {
             'amount': {
                 'currency': 'EUR',
@@ -1429,6 +1430,7 @@ async def create_payment(payment: PaymentCreate):
             },
             'description': f"Droomvriendjes Bestelling #{payment.order_id[-8:]}",
             'redirectUrl': redirect_url,
+            'cancelUrl': cancel_url,
             'webhookUrl': webhook_url,
             'method': payment.payment_method,
             'metadata': {
