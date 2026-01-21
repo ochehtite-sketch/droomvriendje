@@ -194,10 +194,8 @@ const CheckoutPage = () => {
   const paymentMethods = [
     { value: 'ideal', label: 'iDEAL', icon: '🏦', popular: true, description: 'Direct via je bank' },
     { value: 'creditcard', label: 'Creditcard', icon: '💳', description: 'Visa, Mastercard, Amex' },
-    { value: 'ideal_in3', label: 'iDEAL in3', icon: '3️⃣', description: 'Betaal in 3 termijnen' },
-    { value: 'klarna', label: 'Klarna', icon: '🛍️', description: 'Betaal later' },
+    { value: 'in3', label: 'iDEAL in3', icon: '3️⃣', description: 'Betaal in 3 termijnen' },
     { value: 'applepay', label: 'Apple Pay', icon: '🍎', description: 'Snel & veilig' },
-    { value: 'googlepay', label: 'Google Pay', icon: '📱', description: 'Betaal met Google' },
     { value: 'bancontact', label: 'Bancontact', icon: '🇧🇪', description: 'Voor België' },
   ];
 
