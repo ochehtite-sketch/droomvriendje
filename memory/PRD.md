@@ -5,20 +5,42 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
 
 ## Tech Stack
 - **Frontend:** React, Tailwind CSS, Shadcn/UI
-- **Backend:** FastAPI, Motor (Async MongoDB), Pydantic
+- **Backend:** FastAPI (modulaire structuur), Motor (Async MongoDB), Pydantic
 - **Database:** MongoDB Atlas
 - **Integrations:** Mollie (Payments), Sendcloud (Shipping), SMTP (Email), Google Ads API
 
 ---
 
-## Completed Features (21 Jan 2026)
+## Completed Features (22 Jan 2026)
+
+### ✅ NIEUW: Admin Panel Kortingscodes
+- Volledige CRUD voor kortingscodes via `/admin/discount-codes`
+- Ondersteunde types: percentage korting, vast bedrag, gratis verzending
+- Features: vervaldatum, max. gebruik, minimaal bestelbedrag
+- 4 standaard codes geseeded: WELKOM10, WINTER25, GRATISVERZENDING, 5EUROKORTING
+- Backend route: `/api/discount-codes/*`
+- Validatie endpoint: `/api/discount-codes/validate`
+
+### ✅ NIEUW: Admin Panel Producten
+- Volledige CRUD voor producten via `/admin/products`
+- 11 producten gemigreerd van mockData naar MongoDB
+- Bewerkbare velden: naam, prijs, afbeelding, beschrijving, badge, voorraad
+- Backend route: `/api/products/*`
+- Frontend haalt producten nu van API in plaats van mockData
+
+### ✅ NIEUW: Modulaire Backend Structuur
+- Routes verplaatst naar `/app/backend/routes/`:
+  - `products.py` - Product CRUD API
+  - `discount_codes.py` - Kortingscodes API
+- Models in `/app/backend/models/schemas.py`
+- Database helpers in `/app/backend/utils/database.py`
+- Automatische database seeding bij startup
 
 ### ✅ Core E-commerce
 - Product catalog met knuffels/slaapknuffels
 - Winkelwagen met "2e knuffel 50% korting" logica
 - Checkout flow met meerdere betaalmethodes (iDEAL, creditcard, PayPal, Klarna, Bancontact)
-- Mollie betalingsintegratie (werkend in preview)
-- Order management
+- Mollie betalingsintegratie (werkend in productie)
 
 ### ✅ Email Marketing System
 - **Abandoned Cart Tracking:** Automatische tracking wanneer klant e-mail invult op checkout
