@@ -62,30 +62,41 @@ except Exception as e:
     logger.error(f"MongoDB connection error: {e}")
     raise
 
-# Mollie configuration - read directly from environment after dotenv load
-MOLLIE_API_KEY = os.environ.get('MOLLIE_API_KEY', '')
-MOLLIE_PROFILE_ID = os.environ.get('MOLLIE_PROFILE_ID', '')
-
-# Log Mollie configuration at startup for debugging
-if MOLLIE_API_KEY:
-    logger.info(f"✅ Mollie API key loaded: {MOLLIE_API_KEY[:20]}... (length: {len(MOLLIE_API_KEY)})")
-else:
-    logger.error("❌ MOLLIE_API_KEY is EMPTY - payments will fail!")
+# Mollie configuration - read fresh from environment each time
+# This ensures Kubernetes environment variables are always used
 
 def get_mollie_api_key():
-    """Get Mollie API key - use module-level variable"""
-    if not MOLLIE_API_KEY:
-        logger.error("MOLLIE_API_KEY not configured!")
-    return MOLLIE_API_KEY
+    """Get Mollie API key fresh from environment - handles Kubernetes env vars"""
+    api_key = os.environ.get('MOLLIE_API_KEY', '').strip()
+    if not api_key:
+        logger.error("❌ MOLLIE_API_KEY not configured or empty!")
+        return None
+    # Validate key format
+    if not (api_key.startswith('live_') or api_key.startswith('test_')):
+        logger.error(f"❌ Invalid Mollie API key format. Key should start with 'live_' or 'test_'. Got: {api_key[:10]}...")
+        return None
+    return api_key
+
+def get_mollie_profile_id():
+    """Get Mollie Profile ID fresh from environment"""
+    return os.environ.get('MOLLIE_PROFILE_ID', '').strip()
 
 def get_mollie_client():
-    """Create a new Mollie client with API key"""
+    """Create a new Mollie client with API key from environment"""
     api_key = get_mollie_api_key()
     if not api_key:
-        raise ValueError("MOLLIE_API_KEY not configured - check your .env file")
+        raise ValueError("MOLLIE_API_KEY not configured - add it to environment variables")
     mollie_client = MollieClient()
     mollie_client.set_api_key(api_key)
+    logger.info(f"Mollie client created with key: {api_key[:15]}... (length: {len(api_key)})")
     return mollie_client
+
+# Log Mollie configuration at startup for debugging
+_startup_mollie_key = get_mollie_api_key()
+if _startup_mollie_key:
+    logger.info(f"✅ Mollie API key available at startup: {_startup_mollie_key[:20]}... (length: {len(_startup_mollie_key)})")
+else:
+    logger.warning("⚠️ MOLLIE_API_KEY not set at startup - will check again when needed")
 
 # URL configuration - load from environment for production support
 def get_frontend_url():
