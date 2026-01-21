@@ -27,6 +27,7 @@ Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop
   - Mail 2: Na 24 uur (social proof + benefits)
   - Mail 3: Na 72 uur (laatste kans + 15% korting code)
 - **Cart Recovery:** Automatisch markeren als "recovered" bij succesvolle betaling
+- **Background Scheduler:** Automatische verwerking elke 15 minuten (geen externe cron nodig!)
 - **Admin Dashboard:** `/admin/email-marketing` met statistieken, verlaten wagens overzicht, email queue
 - **Handmatig e-mails versturen:** Via admin panel
 - **Email Templates:** Welkom flow, Post-purchase flow, Win-back flow
