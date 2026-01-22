@@ -1,0 +1,268 @@
+# Original URL -> New Path Mapping
+https://i.imgur.com/E4g3eOy.jpeg
+  -> /products/product_1_ca8e1d32.png
+
+https://i.imgur.com/zYLuTAg.jpeg
+  -> /products/product_2_65d7a5c6.png
+
+https://i.imgur.com/WfHQKKr.jpeg
+  -> /products/product_3_4609dd31.png
+
+https://i.imgur.com/UebmbP4.jpeg
+  -> /products/product_4_bb4dc9d0.png
+
+https://i.imgur.com/zdKcLB9.jpeg
+  -> /products/product_5_1143a4e1.png
+
+https://i.imgur.com/duKgchx.jpeg
+  -> /products/product_6_697c5a90.png
+
+https://i.imgur.com/70YlM3h.jpeg
+  -> /products/product_7_bd26a9eb.png
+
+https://i.imgur.com/rtlHACD.jpeg
+  -> /products/product_8_7c459ecf.png
+
+https://i.imgur.com/vK0xkKp.jpeg
+  -> /products/product_9_74759e1e.png
+
+https://i.imgur.com/NimxYi0.jpeg
+  -> /products/product_10_8126d1b9.png
+
+https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/9c0069868eaddfa298d7a4577a694f616febd07682d8a642d150726feca96ed7.png
+  -> /products/product_11_1182c8a2.png
+
+https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/405ce339052197cd41eeff60a236daf6feb2a995c50023c9e09a545f46ece952.png
+  -> /products/product_12_be23b52d.png
+
+https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/828fda5834154a470ad60b4584a1130ece462386bc331e70aafcd95069ad8078.png
+  -> /products/product_13_5a396c22.png
+
+https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/c202aec2f88a3ccb4045ca3a70d4ba35df223c927209411482b5df272e6800e8.png
+  -> /products/product_14_16485511.png
+
+https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/cfe4075e05ded1d8387ab601be52a730f4a06fc5e746c2c0452e828aa2f35fc4.png
+  -> /products/product_15_392a454e.png
+
+https://static.prod-images.emergentagent.com/jobs/073088da-a909-4727-8ae1-29a66f00e00d/images/37b4a05b8093c6346c1e779fbb815f08ac3326ff9402ef69b7be26c392e764bb.png
+  -> /products/product_16_ff699558.png
+
+https://i.imgur.com/NICJrZM.jpeg
+  -> /products/product_17_9c0e4fe2.png
+
+https://i.imgur.com/bicxCOu.jpeg
+  -> /products/product_18_f23dd21b.png
+
+https://i.imgur.com/ovhoMza.jpeg
+  -> /products/product_19_0605dba7.png
+
+https://i.imgur.com/VfY0HrH.jpeg
+  -> /products/product_20_fbd37eb0.png
+
+https://i.imgur.com/Vj6XXsq.jpeg
+  -> /products/product_21_8abd97f5.png
+
+https://i.imgur.com/BIurdBZ.jpeg
+  -> /products/product_22_1f8423be.png
+
+https://i.imgur.com/c2tzUKa.jpeg
+  -> /products/product_23_27b47a90.png
+
+https://i.imgur.com/VnbLdap.jpeg
+  -> /products/product_24_231e8899.png
+
+https://i.imgur.com/z4cyllw.jpeg
+  -> /products/product_25_0359d8a1.png
+
+https://i.imgur.com/mWJSBxI.jpeg
+  -> /products/product_26_81719990.png
+
+https://i.imgur.com/kJG1UIK.jpeg
+  -> /products/product_27_f6a375e5.png
+
+https://i.imgur.com/7kTE4kL.jpeg
+  -> /products/product_28_e31427f7.png
+
+https://i.imgur.com/BigOdHS.jpeg
+  -> /products/product_29_22e8f9e2.png
+
+https://i.imgur.com/rNBYdpa.jpeg
+  -> /products/product_30_ed24da5e.png
+
+https://i.imgur.com/Z6hpUTM.jpeg
+  -> /products/product_31_2d94f57d.png
+
+https://i.imgur.com/hqYRLXc.jpeg
+  -> /products/product_32_e83034db.png
+
+https://i.imgur.com/GcYonv2.jpeg
+  -> /products/product_33_fe07e280.png
+
+https://i.imgur.com/7gNmXs4.jpeg
+  -> /products/product_34_cd4edf17.png
+
+https://i.imgur.com/YmWqlp4.jpeg
+  -> /products/product_35_bb591cf9.png
+
+https://i.imgur.com/aN7mdYv.jpeg
+  -> /products/product_36_e9649224.png
+
+https://i.imgur.com/gtJ57SZ.jpeg
+  -> /products/product_37_e2d51bf9.png
+
+https://i.imgur.com/JAg2LWX.jpeg
+  -> /products/product_38_21c0cd34.png
+
+https://i.imgur.com/46XLMop.jpeg
+  -> /products/product_39_a00b2ff7.png
+
+https://i.imgur.com/4PfzfNg.jpeg
+  -> /products/product_40_d633d1a7.png
+
+https://i.imgur.com/1YOYEQR.jpeg
+  -> /products/product_41_17726509.png
+
+https://i.imgur.com/q2c7zsP.jpeg
+  -> /products/product_42_6b661acb.png
+
+https://i.imgur.com/xyXHy7f.jpeg
+  -> /products/product_43_ea8b77bf.png
+
+https://i.imgur.com/H5W6Q5h.jpeg
+  -> /products/product_44_507200f2.png
+
+https://i.imgur.com/4BllnwS.jpeg
+  -> /products/product_45_1114d756.png
+
+https://i.imgur.com/4GiHWvE.jpeg
+  -> /products/product_46_7e03ad97.png
+
+https://i.imgur.com/0pPCNRt.jpeg
+  -> /products/product_47_48644bab.png
+
+https://i.imgur.com/G3Q2WBz.jpeg
+  -> /products/product_48_cef3eac3.png
+
+https://i.imgur.com/8TN6Erw.jpeg
+  -> /products/product_49_22235b5c.png
+
+https://i.imgur.com/NiZGGmg.jpeg
+  -> /products/product_50_349fb6ca.png
+
+https://i.imgur.com/9jDShK4.jpeg
+  -> /products/product_51_c436e997.png
+
+https://i.imgur.com/N1vjMHQ.jpeg
+  -> /products/product_52_69d1468e.png
+
+https://i.imgur.com/ZDzpG7a.jpeg
+  -> /products/product_53_70aaa381.png
+
+https://i.imgur.com/CPdB6WK.jpeg
+  -> /products/product_54_f35453d3.png
+
+https://i.imgur.com/zORMue1.jpeg
+  -> /products/product_55_7cf77c35.png
+
+https://i.imgur.com/9GUTTtP.jpeg
+  -> /products/product_56_e727d5ed.png
+
+https://i.imgur.com/KRNfDsV.jpeg
+  -> /products/product_57_0cf58ad7.png
+
+https://i.imgur.com/0bGQH9p.png
+  -> /products/product_58_eb66b49e.png
+
+https://i.imgur.com/2Mp8DhI.png
+  -> /products/product_59_d269d2db.png
+
+https://i.imgur.com/WVBVI2s.png
+  -> /products/product_60_414f595b.png
+
+https://i.imgur.com/hlK3PYx.png
+  -> /products/product_61_76db4a91.png
+
+https://i.imgur.com/I5SCJG1.png
+  -> /products/product_62_2b7149d5.png
+
+https://i.imgur.com/QxrdidH.png
+  -> /products/product_63_4db9a2c9.png
+
+https://i.imgur.com/KcxOjMy.png
+  -> /products/product_64_8db603b8.png
+
+https://i.imgur.com/sapubN7.png
+  -> /products/product_65_ede0d459.png
+
+https://i.imgur.com/fhVs30E.jpeg
+  -> /products/product_66_39f79bd1.png
+
+https://i.imgur.com/ZqE1sR0.jpeg
+  -> /products/product_67_7d87ebd2.png
+
+https://i.imgur.com/RJaOAJO.jpeg
+  -> /products/product_68_106d2ad7.png
+
+https://i.imgur.com/YKR0ywK.jpeg
+  -> /products/product_69_bfce47b7.png
+
+https://i.imgur.com/Ji3DelN.jpeg
+  -> /products/product_70_328aa4ca.png
+
+https://i.imgur.com/ZuRmduU.jpeg
+  -> /products/product_71_fd960a21.png
+
+https://i.imgur.com/tK5lFd6.jpeg
+  -> /products/product_72_e389cd62.png
+
+https://i.imgur.com/SDAdl3O.jpeg
+  -> /products/product_73_f4651b50.png
+
+https://i.imgur.com/5meWKRZ.jpeg
+  -> /products/product_74_27833cda.png
+
+https://i.imgur.com/O9Mbg2I.jpeg
+  -> /products/product_75_62a47747.png
+
+https://i.imgur.com/NrcwqN2.jpeg
+  -> /products/product_76_f271fc14.png
+
+https://i.imgur.com/y85otLI.jpeg
+  -> /products/product_77_eadcf3eb.png
+
+https://i.imgur.com/4ickF4C.jpeg
+  -> /products/product_78_8f5c2578.png
+
+https://i.imgur.com/lKj67xd.jpeg
+  -> /products/product_79_187e9120.png
+
+https://i.imgur.com/rgrTbmF.jpeg
+  -> /products/product_80_f9a43703.png
+
+https://i.imgur.com/20H8VWo.jpeg
+  -> /products/product_81_0a8f6545.png
+
+https://i.imgur.com/ZuxBiSp.jpeg
+  -> /products/product_82_0b222a64.png
+
+https://i.imgur.com/eM7G4OR.jpeg
+  -> /products/product_83_6c0d5109.png
+
+https://i.imgur.com/PbIEHDw.jpeg
+  -> /products/product_84_4c2456e4.png
+
+https://i.imgur.com/Ozq7cnr.jpeg
+  -> /products/product_85_8172cabd.png
+
+https://i.imgur.com/PwHLpLf.jpeg
+  -> /products/product_86_223697ca.png
+
+https://i.imgur.com/0bKtnUq.jpeg
+  -> /products/product_87_2572ffa9.png
+
+https://i.imgur.com/i4FzYoB.jpeg
+  -> /products/product_88_3064c3ef.png
+
+https://i.imgur.com/wHnNI1Y.jpeg
+  -> /products/product_89_137c78d9.png
+
