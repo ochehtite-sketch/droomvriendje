@@ -25,10 +25,11 @@ const Layout = ({
   showPromoBanner = false,
   promoBannerText = "WINTER SALE: 2E KNUFFEL 50% KORTING",
   hideFooter = false,
-  hideHeader = false
+  hideHeader = false,
+  bgClassName = "bg-gradient-to-b from-purple-50 via-white to-blue-50"
 }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50 flex flex-col">
+    <div className={`min-h-screen flex flex-col ${bgClassName}`}>
       {/* Shopping Cart Sidebar - Always available */}
       <CartSidebar />
 
