@@ -69,9 +69,9 @@ const ProductPage = () => {
   const productReviews = reviews.filter(r => r.product === product.shortName);
 
   return (
-    <Layout backButtonText="Terug" showPromoBanner={false}>
+    <Layout backButtonText="Terug" showPromoBanner={false} bgClassName="bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
       {/* Product Detail */}
-      <section className="py-12 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Product Image Gallery */}
