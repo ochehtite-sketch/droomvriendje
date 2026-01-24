@@ -548,12 +548,12 @@ const HomePage = () => {
                 
                 {/* Image Container */}
                 <Link to="/product/11" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white">
-                    <div className="aspect-square relative flex items-center justify-center">
+                  <div className="relative pt-8 pb-6 px-4 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white">
+                    <div className="aspect-[3/4] relative flex items-center justify-center">
                       <img 
                         src="https://i.imgur.com/fhVs30E.jpeg" 
                         alt="Panda"
-                        className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
@@ -621,12 +621,12 @@ const HomePage = () => {
                 
                 {/* Image Container */}
                 <Link to="/product/7" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
-                    <div className="aspect-square relative flex items-center justify-center">
+                  <div className="relative pt-8 pb-6 px-4 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
+                    <div className="aspect-[3/4] relative flex items-center justify-center">
                       <img 
                         src="https://i.imgur.com/q2c7zsP.jpeg" 
                         alt="Beer Sterrenprojector"
-                        className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
@@ -688,12 +688,12 @@ const HomePage = () => {
                 
                 {/* Image Container */}
                 <Link to="/product/12" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="relative pt-14 pb-6 px-6 bg-gradient-to-br from-amber-50 via-orange-50/50 to-white">
-                    <div className="aspect-square relative flex items-center justify-center">
+                  <div className="relative pt-8 pb-6 px-4 bg-gradient-to-br from-amber-50 via-orange-50/50 to-white">
+                    <div className="aspect-[3/4] relative flex items-center justify-center">
                       <img 
                         src="https://i.imgur.com/ZuRmduU.jpeg" 
                         alt="Baby Slaapmaatje Schaap"
-                        className="w-full h-full max-w-[280px] max-h-[280px] object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
+                        className="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                       />
                       {/* Floating feature badges */}
                       <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
