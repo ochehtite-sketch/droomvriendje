@@ -242,47 +242,51 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section - Warm Brown Theme */}
       <section id="voordelen" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
-            Waarom Droomvriendjes?
-          </h2>
+          <div className="text-center mb-12">
+            <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">Onze Favorieten</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">
+              Waarom Droomvriendjes?
+            </h2>
+            <div className="w-24 h-1 bg-warm-brown-500 mx-auto rounded-full mt-4"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="border-2 border-purple-100 hover:border-purple-300 transition-all hover:shadow-lg">
+            <Card className="border-2 border-warm-brown-100 hover:border-warm-brown-300 transition-all hover:shadow-lg">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">😴</span>
+                <div className="w-16 h-16 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Moon className="w-8 h-8 text-warm-brown-500" />
                 </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">Verbeterde Nachtrust</h3>
-                <p className="text-gray-600">86% van de kinderen valt sneller in slaap en slaapt beter door</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Verbeterde Nachtrust</h3>
+                <p className="text-slate-600">86% van de kinderen valt sneller in slaap en slaapt beter door</p>
               </CardContent>
             </Card>
-            <Card className="border-2 border-blue-100 hover:border-blue-300 transition-all hover:shadow-lg">
+            <Card className="border-2 border-warm-brown-100 hover:border-warm-brown-300 transition-all hover:shadow-lg">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-warm-brown-500" />
                 </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">Minder Stress & Angst</h3>
-                <p className="text-gray-600">Helpt kinderen ontspannen en zich veilig te voelen</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Minder Stress & Angst</h3>
+                <p className="text-slate-600">Helpt kinderen ontspannen en zich veilig te voelen</p>
               </CardContent>
             </Card>
-            <Card className="border-2 border-pink-100 hover:border-pink-300 transition-all hover:shadow-lg">
+            <Card className="border-2 border-warm-brown-100 hover:border-warm-brown-300 transition-all hover:shadow-lg">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="w-8 h-8 text-pink-600" />
+                <div className="w-16 h-16 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="w-8 h-8 text-warm-brown-500" />
                 </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">Rustgevend & Kalmerend</h3>
-                <p className="text-gray-600">Zachte lichten en muziek voor optimale ontspanning</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Rustgevend & Kalmerend</h3>
+                <p className="text-slate-600">Zachte lichten en muziek voor optimale ontspanning</p>
               </CardContent>
             </Card>
-            <Card className="border-2 border-indigo-100 hover:border-indigo-300 transition-all hover:shadow-lg">
+            <Card className="border-2 border-warm-brown-100 hover:border-warm-brown-300 transition-all hover:shadow-lg">
               <CardContent className="pt-6 text-center">
-                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Monitor className="w-8 h-8 text-indigo-600" />
+                <div className="w-16 h-16 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Monitor className="w-8 h-8 text-warm-brown-500" />
                 </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">Minder Schermtijd</h3>
-                <p className="text-gray-600">Een gezond schermvrij alternatief voor het slapengaan</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Minder Schermtijd</h3>
+                <p className="text-slate-600">Een gezond schermvrij alternatief voor het slapengaan</p>
               </CardContent>
             </Card>
           </div>
