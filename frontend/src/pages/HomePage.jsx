@@ -672,43 +672,46 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
+      {/* Trust Section - Warm Brown Theme */}
+      <section className="py-16 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {features.map((feature, idx) => (
               <div key={idx} className="text-center">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
-                  {feature.icon === 'ShieldCheck' && <ShieldCheck className="w-8 h-8 text-green-600" />}
-                  {feature.icon === 'Truck' && <Truck className="w-8 h-8 text-blue-600" />}
-                  {feature.icon === 'Award' && <Award className="w-8 h-8 text-purple-600" />}
-                  {feature.icon === 'Star' && <Star className="w-8 h-8 text-yellow-400" />}
+                <div className="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mx-auto mb-4">
+                  {feature.icon === 'ShieldCheck' && <ShieldCheck className="w-8 h-8 text-warm-brown-500" />}
+                  {feature.icon === 'Truck' && <Truck className="w-8 h-8 text-warm-brown-500" />}
+                  {feature.icon === 'Award' && <Award className="w-8 h-8 text-warm-brown-500" />}
+                  {feature.icon === 'Star' && <Star className="w-8 h-8 text-amber-400 fill-amber-400" />}
                 </div>
-                <h3 className="font-bold text-purple-900 mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-600">{feature.description}</p>
+                <h3 className="font-bold text-slate-900 mb-2">{feature.title}</h3>
+                <p className="text-sm text-slate-600">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section - Warm Brown Theme */}
       <section id="faq" className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
-            Veelgestelde Vragen
-          </h2>
+          <div className="text-center mb-12">
+            <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">
+              Veelgestelde Vragen
+            </h2>
+          </div>
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, idx) => (
               <AccordionItem 
                 key={idx} 
                 value={`item-${idx}`}
-                className="bg-purple-50 border-2 border-purple-100 rounded-xl px-6"
+                className="bg-warm-brown-50 border-2 border-warm-brown-100 rounded-xl px-6"
               >
-                <AccordionTrigger className="text-left font-semibold text-purple-900 hover:text-purple-700">
+                <AccordionTrigger className="text-left font-semibold text-slate-900 hover:text-warm-brown-600">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-700">
+                <AccordionContent className="text-slate-600">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -717,22 +720,31 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      {/* CTA Section - Warm Brown Theme */}
+      <section className="bg-warm-brown-500 text-white py-16 overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
             Klaar Voor Betere Nachten?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Sluit je aan bij 1000+ tevreden ouders. 2 KOPEN = 3E GRATIS!
+          <p className="text-lg md:text-xl text-warm-brown-100 max-w-2xl mx-auto leading-relaxed">
+            Sluit je aan bij 100.000+ tevreden ouders. Profiteer nu van onze winteractie: 2e knuffel 50% korting!
           </p>
-          <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-6 text-lg">
-            <a href="#producten">Bestel Nu Met Korting</a>
-          </Button>
-          <div className="mt-6 flex items-center justify-center space-x-4 text-sm">
-            <span>✓ Gratis verzending</span>
-            <span>✓ 14 dagen retour</span>
-            <span>✓ Klarna beschikbaar</span>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="px-10 py-5 bg-white text-warm-brown-600 rounded-2xl font-black text-lg md:text-xl shadow-2xl hover:bg-warm-brown-50 transition transform hover:-translate-y-1"
+            >
+              <a href="#producten">Bestel Nu Met Korting</a>
+            </Button>
+          </div>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-warm-brown-100">
+            <span><Check className="w-4 h-4 inline mr-2" /> Gratis verzending</span>
+            <span><Check className="w-4 h-4 inline mr-2" /> 14 dagen retour</span>
+            <span><Check className="w-4 h-4 inline mr-2" /> Klarna achteraf</span>
           </div>
         </div>
       </section>
