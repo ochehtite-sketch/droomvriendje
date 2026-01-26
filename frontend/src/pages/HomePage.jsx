@@ -34,17 +34,17 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-white">
+    <div className="min-h-screen bg-cream">
       {/* Header */}
       <Header />
 
       {/* Shopping Cart Sidebar */}
       <CartSidebar />
       
-      {/* Promo Banner */}
-      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 text-white py-4 text-center shadow-lg">
-        <p className="text-lg md:text-2xl font-bold tracking-wide">
-          WINTER SALE: 2E KNUFFEL 50% KORTING
+      {/* Promo Banner - Warm Brown */}
+      <div className="bg-warm-brown-500 text-white py-3 text-center">
+        <p className="text-sm md:text-base font-medium tracking-wide">
+          WINTER SALE: 2E KNUFFEL 50% KORTING ❄️
         </p>
       </div>
 
