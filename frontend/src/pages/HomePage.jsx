@@ -293,19 +293,17 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Products Section - New Brown/Beige Theme */}
-      <section id="producten" className="py-20 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
+      {/* Products Section - Warm Brown Theme */}
+      <section id="producten" className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="inline-block bg-[#8B7355]/10 text-[#8B7355] px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              ✨ Onze Collectie
+            <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">
+              Onze Collectie
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#5a4a3a] mb-6">
-              Jouw <span className="text-[#8B7355]">Droomvriendje</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
+              Meest Verkochte Knuffels
             </h2>
-            <p className="text-lg text-[#7a6a5a] max-w-2xl mx-auto">
-              Speciale slaapknuffels met rustgevende lichtjes en geluiden voor een betere nachtrust
-            </p>
+            <div className="w-24 h-1 bg-warm-brown-500 mx-auto rounded-full"></div>
           </div>
           
           {/* Product Slider */}
@@ -347,13 +345,13 @@ const HomePage = () => {
             >
               {availableProducts.map((product, index) => (
                 <SwiperSlide key={product.id}>
-                  <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                  <div className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 h-full flex flex-col border border-slate-100">
                     {/* Product Image with Badge */}
-                    <div className="relative">
-                      {/* BESTSELLER Badge - Top Left */}
+                    <div className="relative overflow-hidden aspect-square">
+                      {/* Badge - Top Left */}
                       {product.badge && (
-                        <div className="absolute top-3 left-3 z-10">
-                          <span className="bg-[#2d2d2d] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wide">
+                        <div className="absolute top-4 left-4 z-10">
+                          <span className="bg-warm-brown-700 text-white text-xs font-bold px-3 py-1 rounded-lg">
                             {product.badge}
                           </span>
                         </div>
@@ -361,56 +359,57 @@ const HomePage = () => {
                       
                       {/* Product Image */}
                       <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
-                        <div className="relative bg-[#faf7f4] p-4 cursor-pointer aspect-square flex items-center justify-center">
-                          <img 
-                            src={product.image} 
-                            alt={product.name}
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                            data-testid={`product-image-${product.id}`}
-                          />
-                        </div>
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          data-testid={`product-image-${product.id}`}
+                        />
                       </Link>
                     </div>
                     
                     {/* Product Info */}
-                    <div className="p-4 flex-1 flex flex-col">
-                      {/* Product Name and Price Row */}
+                    <div className="p-8 flex flex-col flex-grow space-y-4">
                       <Link to={`/product/${product.id}`} onClick={() => window.scrollTo(0, 0)}>
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="text-base font-semibold text-[#3d3d3d] group-hover:text-[#8B7355] transition-colors cursor-pointer flex-1 pr-2">
+                        <div className="flex justify-between items-start">
+                          <h3 className="text-xl font-bold text-slate-900 group-hover:text-warm-brown-600 transition-colors cursor-pointer">
                             {product.shortName || product.name}
                           </h3>
-                          <span className="text-lg font-bold text-[#8B7355] flex-shrink-0">€{product.price.toFixed(2).replace('.', ',')}</span>
+                          <div className="text-right">
+                            <p className="text-2xl font-black text-warm-brown-600">€{product.price.toFixed(2).replace('.', ',')}</p>
+                          </div>
                         </div>
                       </Link>
                       
                       {/* Rating */}
-                      <div className="flex items-center gap-1.5 mb-2">
+                      <div className="flex items-center text-amber-400 text-sm gap-2">
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
                             <Star 
                               key={i} 
-                              className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'fill-gray-300 text-gray-300'}`} 
+                              className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'fill-gray-300 text-gray-300'}`} 
                             />
                           ))}
                         </div>
-                        <span className="text-xs text-gray-500">({product.reviews} reviews)</span>
+                        <span className="text-slate-500 font-medium">({product.reviews} reviews)</span>
                       </div>
                       
                       {/* Description */}
-                      <p className="text-sm text-gray-500 mb-4 line-clamp-2 flex-1">
+                      <p className="text-slate-600 text-sm line-clamp-2 flex-1">
                         {product.description}
                       </p>
                       
                       {/* Add to Cart Button */}
-                      <Button 
-                        className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-medium py-3 rounded-lg transition-colors"
-                        onClick={() => addToCart(product)}
-                        data-testid={`add-to-cart-slider-${product.id}`}
-                      >
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        In Winkelwagen
-                      </Button>
+                      <div className="pt-4 mt-auto">
+                        <Button 
+                          className="w-full py-4 bg-warm-brown-500 text-white font-bold rounded-xl hover:bg-warm-brown-600 transition flex items-center justify-center gap-2"
+                          onClick={() => addToCart(product)}
+                          data-testid={`add-to-cart-slider-${product.id}`}
+                        >
+                          <ShoppingCart className="w-4 h-4" />
+                          In Winkelwagen
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -419,50 +418,28 @@ const HomePage = () => {
             
             {/* Custom Navigation Buttons */}
             <button 
-              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#f5efe8] hover:shadow-xl transition-all border border-[#e8e0d8]"
+              className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-warm-brown-50 hover:shadow-xl transition-all border border-warm-brown-100"
               aria-label="Vorige"
               data-testid="slider-prev-button"
             >
-              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#8B7355]" />
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-warm-brown-500" />
             </button>
             <button 
-              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#f5efe8] hover:shadow-xl transition-all border border-[#e8e0d8]"
+              className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-warm-brown-50 hover:shadow-xl transition-all border border-warm-brown-100"
               aria-label="Volgende"
               data-testid="slider-next-button"
             >
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#8B7355]" />
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-warm-brown-500" />
             </button>
           </div>
           
           {/* View All Products Link */}
           <div className="text-center mt-10">
             <Link to="/knuffels">
-              <Button variant="outline" className="border-2 border-[#8B7355] text-[#8B7355] hover:bg-[#f5efe8] px-8 py-6 text-lg font-semibold rounded-full">
+              <Button variant="outline" className="border-2 border-warm-brown-500 text-warm-brown-600 hover:bg-warm-brown-50 px-8 py-6 text-lg font-semibold rounded-xl">
                 Bekijk Alle Knuffels
               </Button>
             </Link>
-          </div>
-          
-          {/* Trust Section Below Products */}
-          <div className="mt-16 bg-white rounded-3xl p-8 shadow-lg border border-[#e8e0d8]">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-[#8B7355] mb-2">&gt;10.000+</p>
-                <p className="text-sm text-[#7a6a5a] font-medium">Tevreden Klanten</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-[#6d8b55] mb-2">86%</p>
-                <p className="text-sm text-[#7a6a5a] font-medium">Slaapt Beter</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-amber-500 mb-2">4.7/5</p>
-                <p className="text-sm text-[#7a6a5a] font-medium">Trustpilot Score</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold text-[#8B7355] mb-2">30</p>
-                <p className="text-sm text-[#7a6a5a] font-medium">Dagen Garantie</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
