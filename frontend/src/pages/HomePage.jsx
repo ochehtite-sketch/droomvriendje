@@ -551,7 +551,7 @@ const HomePage = () => {
                 
                 {/* Review Text */}
                 <p className="text-slate-600 mb-4 leading-relaxed font-medium">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
                 
                 {/* Reviewer Info */}
@@ -645,7 +645,7 @@ const HomePage = () => {
                 </div>
                 
                 {/* Review Content */}
-                <h4 className="font-black text-slate-900 mb-2 text-xl leading-tight">"{review.title}"</h4>
+                <h4 className="font-black text-slate-900 mb-2 text-xl leading-tight">&ldquo;{review.title}&rdquo;</h4>
                 <p className="text-slate-600 text-sm mb-4 leading-relaxed font-medium">{review.text}</p>
                 
                 {/* Product Tag */}
