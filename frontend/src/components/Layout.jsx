@@ -5,16 +5,7 @@ import CartSidebar from './CartSidebar';
 
 /**
  * Layout Component - Wrapper voor alle pagina's met Header, Footer en CartSidebar
- * 
- * @param {React.ReactNode} children - De inhoud van de pagina
- * @param {boolean} showFullNav - Toon volledige navigatie in header (alleen HomePage)
- * @param {boolean} showBackButton - Toon "Terug" knop in header
- * @param {string} backButtonText - Tekst voor de terug knop
- * @param {string} backButtonLink - Link voor de terug knop
- * @param {boolean} showPromoBanner - Toon promo banner onder header
- * @param {string} promoBannerText - Tekst voor de promo banner
- * @param {boolean} hideFooter - Verberg de footer (voor checkout flows)
- * @param {boolean} hideHeader - Verberg de header (voor speciale pagina's)
+ * Consistent Warm Brown Theme
  */
 const Layout = ({ 
   children, 
@@ -23,10 +14,10 @@ const Layout = ({
   backButtonText = "Terug",
   backButtonLink = "/",
   showPromoBanner = false,
-  promoBannerText = "WINTER SALE: 2E KNUFFEL 50% KORTING",
+  promoBannerText = "WINTER SALE: 2E KNUFFEL 50% KORTING ❄️",
   hideFooter = false,
   hideHeader = false,
-  bgClassName = "bg-gradient-to-b from-purple-50 via-white to-blue-50"
+  bgClassName = "bg-cream"
 }) => {
   return (
     <div className={`min-h-screen flex flex-col ${bgClassName}`}>
@@ -45,8 +36,8 @@ const Layout = ({
 
       {/* Promo Banner */}
       {showPromoBanner && (
-        <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 text-white py-4 text-center shadow-lg">
-          <p className="text-lg md:text-2xl font-bold tracking-wide">
+        <div className="bg-warm-brown-500 text-white py-3 text-center">
+          <p className="text-sm md:text-base font-medium tracking-wide">
             {promoBannerText}
           </p>
         </div>
