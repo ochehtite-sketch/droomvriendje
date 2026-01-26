@@ -48,8 +48,8 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* Hero Section - CRO Geoptimaliseerd */}
-      <section className="relative bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8] overflow-hidden">
+      {/* Hero Section - Warm Brown Theme */}
+      <section className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Mobile Layout - Image on top */}
           <div className="md:hidden">
@@ -60,21 +60,21 @@ const HomePage = () => {
                 alt="Kind met Droomvriendje knuffel"
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fdf8f3]"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
             </div>
             
             {/* Mobile Content */}
             <div className="px-4 pb-8 -mt-8 relative z-10">
-              <h1 className="text-2xl font-serif font-bold text-[#5a4a3a] mb-2 leading-tight text-center">
-                Geef je kind het cadeau van een rustige nacht
+              <h1 className="text-2xl font-bold text-slate-900 mb-2 leading-tight text-center">
+                Meer dan een knuffel,
               </h1>
-              <p className="text-lg font-serif text-purple-700 mb-4 leading-tight text-center">
-                86% van de kinderen slaapt beter met een Droomvriendje
+              <p className="text-lg font-bold text-warm-brown-500 mb-4 leading-tight text-center">
+                De beste vriend van je kind in het donker.
               </p>
               
-              {/* Mobile Social Proof - Trustpilot Style */}
-              <div className="bg-white/90 rounded-xl p-3 mb-4">
-                <p className="text-xs text-gray-500 text-center mb-1">Trusted by 10.000+ Parents</p>
+              {/* Mobile Social Proof */}
+              <div className="bg-white/90 rounded-xl p-3 mb-4 shadow-sm">
+                <p className="text-xs text-gray-500 text-center mb-1">Trusted by 100,000+ Parents</p>
                 <div className="flex items-center justify-center gap-2">
                   <div className="flex -space-x-1">
                     <img src="https://i.pravatar.cc/24?img=1" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
@@ -96,26 +96,26 @@ const HomePage = () => {
               {/* Mobile Features */}
               <div className="grid grid-cols-3 gap-2 mb-5">
                 <div className="text-center bg-white/60 rounded-lg p-2">
-                  <span className="text-green-500 text-lg">✓</span>
-                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">Gratis verzending</p>
+                  <span className="text-warm-brown-500 text-lg">✓</span>
+                  <p className="text-slate-700 font-medium text-xs mt-1">Gratis verzending</p>
                 </div>
                 <div className="text-center bg-white/60 rounded-lg p-2">
-                  <span className="text-green-500 text-lg">✓</span>
-                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">14 dagen retour</p>
+                  <span className="text-warm-brown-500 text-lg">✓</span>
+                  <p className="text-slate-700 font-medium text-xs mt-1">14 dagen retour</p>
                 </div>
                 <div className="text-center bg-white/60 rounded-lg p-2">
-                  <span className="text-green-500 text-lg">✓</span>
-                  <p className="text-[#5a4a3a] font-medium text-xs mt-1">CE-gecertificeerd</p>
+                  <span className="text-warm-brown-500 text-lg">✓</span>
+                  <p className="text-slate-700 font-medium text-xs mt-1">CE-gecertificeerd</p>
                 </div>
               </div>
               
               {/* Mobile CTA */}
               <Button 
                 size="lg" 
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-full shadow-lg font-bold"
+                className="w-full bg-warm-brown-500 hover:bg-warm-brown-600 text-white py-6 text-lg rounded-xl shadow-lg shadow-warm-brown-200 font-bold"
                 data-testid="hero-cta-mobile"
               >
-                <a href="#producten">🎁 Bekijk Droomvriendjes - Vanaf €39,95</a>
+                <a href="#producten">Bekijk Onze Knuffels</a>
               </Button>
               <p className="text-center text-sm text-gray-600 mt-2">Voor 23:00 besteld = morgen in huis</p>
             </div>
@@ -126,18 +126,19 @@ const HomePage = () => {
             {/* Left Content */}
             <div className="w-1/2 pr-8 lg:pr-16">
               {/* Urgency Badge */}
-              <div className="inline-flex items-center bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                🔥 Winter Sale: 2e knuffel 50% korting
+              <div className="inline-flex items-center bg-warm-brown-50 text-warm-brown-700 px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-warm-brown-100">
+                Trusted by 100,000+ Parents
               </div>
               
-              <h1 className="text-4xl lg:text-5xl xl:text-5xl font-serif font-bold text-[#5a4a3a] mb-4 leading-tight">
-                Geef je kind het cadeau van een rustige nacht
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
+                Meer dan een knuffel, <br />
+                <span className="text-warm-brown-500">De beste vriend van je kind in het donker.</span>
               </h1>
-              <p className="text-xl lg:text-2xl text-gray-600 mb-6 leading-relaxed">
-                Ontdek waarom <span className="font-bold text-purple-700">10.000+ ouders</span> kiezen voor Droomvriendjes - de knuffel die écht helpt bij het inslapen.
+              <p className="text-lg lg:text-xl text-slate-600 mb-6 leading-relaxed max-w-lg">
+                Help je kindje sneller in slaap vallen met onze zachte knuffels voorzien van rustgevende geluiden en sfeerlicht.
               </p>
               
-              {/* Stats Row - Trustpilot Style */}
+              {/* Stats Row */}
               <div className="flex items-center gap-4 mb-6 flex-wrap">
                 <div className="flex items-center gap-2 bg-white/80 rounded-full px-4 py-2">
                   <div className="flex -space-x-1">
@@ -153,57 +154,36 @@ const HomePage = () => {
                   <span className="font-bold text-gray-900">4.9/5</span>
                   <span className="text-gray-500 text-sm">(500+ reviews)</span>
                 </div>
-                <div className="text-gray-600 hidden lg:block">|</div>
-                <div className="text-gray-700 bg-green-100 px-3 py-1 rounded-full">
-                  <span className="font-bold text-green-700">86%</span> <span className="text-green-700">slaapt beter</span>
-                </div>
-              </div>
-              
-              {/* Features */}
-              <div className="space-y-3 mb-8">
-                <div className="flex items-center gap-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <p className="text-[#5a4a3a] font-medium">Rustgevende hartslag, ademhaling & witte ruis</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <p className="text-[#5a4a3a] font-medium">Zacht nachtlampje met timer</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <p className="text-[#5a4a3a] font-medium">CE-gecertificeerd & veilig voor alle leeftijden</p>
-                </div>
               </div>
               
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-4">
                 <Button 
                   size="lg" 
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all font-bold"
+                  className="bg-warm-brown-500 hover:bg-warm-brown-600 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-warm-brown-200 hover:shadow-xl transition-all font-bold transform hover:-translate-y-1"
                   data-testid="hero-cta-desktop"
                 >
                   <a href="#producten" className="flex items-center gap-2">
-                    <ShoppingCart className="w-5 h-5" />
-                    Bestel Nu - Vanaf €39,95
+                    Bekijk Onze Knuffels
                   </a>
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-6 text-lg rounded-full"
+                  className="border-2 border-slate-200 text-slate-700 hover:border-warm-brown-500 px-6 py-6 text-lg rounded-xl"
                 >
-                  <a href="#voordelen">Meer informatie</a>
+                  <a href="#voordelen">Hoe het werkt</a>
                 </Button>
               </div>
               
               {/* Trust indicators */}
-              <div className="flex items-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-4 text-sm text-slate-600">
                 <span className="flex items-center gap-1">
-                  <Truck className="w-4 h-4 text-green-600" />
+                  <Truck className="w-4 h-4 text-warm-brown-500" />
                   Gratis verzending
                 </span>
                 <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-4 h-4 text-green-600" />
+                  <ShieldCheck className="w-4 h-4 text-warm-brown-500" />
                   14 dagen retour
                 </span>
               </div>
@@ -217,24 +197,17 @@ const HomePage = () => {
                   alt="Kind met Droomvriendje knuffel"
                   className="w-full h-[500px] lg:h-[550px] object-cover object-center"
                 />
-                {/* Subtle overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
               </div>
               
-              {/* Floating badge - Social Proof */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
-                <div className="bg-amber-100 rounded-full p-2">
-                  <span className="text-2xl">⭐</span>
+              {/* Floating badge - Delivery */}
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-slate-100">
+                <div className="bg-green-100 text-green-600 p-2 rounded-full">
+                  <Check className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900">Populairste keuze</p>
-                  <p className="text-sm text-gray-600">1.247 verkocht deze maand</p>
+                  <p className="font-bold text-slate-900">Direct Leverbaar</p>
+                  <p className="text-xs text-slate-500">Bestel voor 23:00, morgen in huis</p>
                 </div>
-              </div>
-              
-              {/* Floating badge - Guarantee */}
-              <div className="absolute -top-2 -right-2 bg-green-500 text-white rounded-full px-4 py-2 shadow-lg text-sm font-bold">
-                ✓ 100% Tevredenheidsgarantie
               </div>
             </div>
           </div>
