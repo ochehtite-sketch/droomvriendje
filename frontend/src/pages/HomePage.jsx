@@ -505,39 +505,23 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section - Enhanced Trustpilot Style */}
-      <section className="py-20 bg-gradient-to-b from-[#fdf8f3] to-white">
+      {/* Testimonials Section - Warm Brown Theme */}
+      <section className="py-20 bg-warm-brown-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Trustpilot-style Header */}
+          {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-md border border-gray-100 mb-6">
-              <span className="text-green-500 font-bold text-lg">★</span>
-              <span className="text-gray-700 font-semibold">Trustpilot</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-4">
-              Vertrouwd door 10.000+ ouders
+            <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">Klantbeoordelingen</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
+              Vertrouwd door 100.000+ ouders
             </h2>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-green-500 text-green-500" />
+                  <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
                 ))}
               </div>
               <span className="text-xl font-bold text-gray-900">4.9/5</span>
               <span className="text-gray-500">op Trustpilot</span>
-            </div>
-            {/* Customer Avatars */}
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <div className="flex -space-x-2">
-                <img src="https://i.pravatar.cc/40?img=1" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
-                <img src="https://i.pravatar.cc/40?img=5" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
-                <img src="https://i.pravatar.cc/40?img=8" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
-                <img src="https://i.pravatar.cc/40?img=9" alt="Klant" className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
-                <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-[#8B7355] flex items-center justify-center text-white text-xs font-bold">
-                  +9K
-                </div>
-              </div>
-              <span className="text-sm text-gray-600 ml-2">500+ beoordelingen</span>
             </div>
           </div>
           
@@ -546,40 +530,38 @@ const HomePage = () => {
             {testimonials.map((testimonial, index) => (
               <div 
                 key={testimonial.id} 
-                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-white rounded-[32px] p-6 sm:p-10 shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300"
                 data-testid={`testimonial-card-${index}`}
               >
-                {/* Green Trustpilot Stars */}
+                {/* Stars */}
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-6 h-6 bg-green-500 flex items-center justify-center">
+                    <div key={i} className="w-6 h-6 bg-amber-400 flex items-center justify-center">
                       <Star className="w-4 h-4 fill-white text-white" />
                     </div>
                   ))}
                 </div>
                 
                 {/* Review Title */}
-                <h3 className="font-bold text-gray-900 text-lg mb-3">
-                  {index === 0 && "Eindelijk rust in huis! 🎉"}
-                  {index === 1 && "Beste investering ooit 💯"}
-                  {index === 2 && "Perfect voor onze tweeling 👶👶"}
+                <h3 className="font-black text-slate-900 text-xl mb-3 leading-tight">
+                  {index === 0 && `"De eerste keer dat hij doorsliep!"`}
+                  {index === 1 && `"Onmisbaar onderdeel van het ritueel"`}
+                  {index === 2 && `"Zoveel beter dan de goedkope versies"`}
                 </h3>
                 
                 {/* Review Text */}
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="text-slate-600 mb-4 leading-relaxed font-medium">
                   "{testimonial.text}"
                 </p>
                 
                 {/* Reviewer Info */}
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <img 
-                    src={`https://i.pravatar.cc/48?img=${index + 10}`} 
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full"
-                  />
+                <div className="flex items-center gap-3 pt-6 border-t border-slate-50">
+                  <div className="w-12 h-12 bg-soft-blue rounded-2xl flex items-center justify-center font-black text-warm-brown-700 text-lg">
+                    {testimonial.name.charAt(0)}
+                  </div>
                   <div>
-                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
+                    <p className="font-bold text-slate-900">{testimonial.name}</p>
+                    <div className="flex items-center gap-1 text-xs text-slate-500">
                       <span className="text-green-500">✓</span>
                       <span>Geverifieerde aankoop</span>
                     </div>
@@ -594,7 +576,7 @@ const HomePage = () => {
             <Link to="/reviews">
               <Button 
                 variant="outline" 
-                className="border-2 border-[#8B7355] text-[#8B7355] hover:bg-[#f5efe8] px-8 py-6 text-lg font-semibold rounded-full"
+                className="border-2 border-warm-brown-500 text-warm-brown-600 hover:bg-warm-brown-50 px-8 py-6 text-lg font-semibold rounded-xl"
                 data-testid="view-all-reviews-btn"
               >
                 Bekijk alle 500+ reviews
