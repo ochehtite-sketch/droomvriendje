@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
     margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -129,7 +130,7 @@ code {
 }
 
 .product-slider .swiper-pagination-bullet-active {
-    background: #9333ea;
+    background: #A26A49;
     width: 24px;
     border-radius: 5px;
 }
@@ -142,4 +143,20 @@ code {
 .product-slider .swiper-button-next,
 .product-slider .swiper-button-prev {
     display: none;
+}
+
+/* Warm Brown Theme Colors - Consistent across entire site */
+:root {
+    --warm-brown-50: #FAF7F5;
+    --warm-brown-100: #F6F1EB;
+    --warm-brown-200: #E8DDD2;
+    --warm-brown-300: #D4BFA9;
+    --warm-brown-400: #C08F70;
+    --warm-brown-500: #A26A49;
+    --warm-brown-600: #8B5A3D;
+    --warm-brown-700: #6F4831;
+    --warm-brown-800: #523627;
+    --warm-brown-900: #3A271C;
+    --cream: #F6F1EB;
+    --soft-blue: #DCE7F2;
 }
