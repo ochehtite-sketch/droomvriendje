@@ -586,15 +586,15 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Reviews Section - Enhanced with Photos */}
+      {/* Reviews Section - Warm Brown Theme */}
       <section id="reviews" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <span className="inline-block bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              ⭐ Klantbeoordelingen
+            <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">
+              Klantbeoordelingen
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
               Echte Reviews van Echte Ouders
             </h2>
             <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
@@ -616,22 +616,20 @@ const HomePage = () => {
             {reviews.slice(0, 6).map((review, index) => (
               <div 
                 key={review.id} 
-                className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:border-[#8B7355]/30"
+                className="bg-white rounded-[32px] border border-slate-100 p-6 sm:p-10 hover:shadow-md transition-all duration-300"
                 data-testid={`review-card-${index}`}
               >
                 {/* Header with Avatar */}
-                <div className="flex items-start gap-3 mb-4">
-                  <img 
-                    src={`https://i.pravatar.cc/48?img=${(review.id % 20) + 20}`}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full"
-                  />
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 bg-warm-brown-50 rounded-2xl flex items-center justify-center font-black text-warm-brown-700 text-lg">
+                    {review.name.charAt(0)}
+                  </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-gray-900">{review.name}</span>
+                      <span className="font-bold text-slate-900">{review.name}</span>
                       {review.verified && (
-                        <span className="text-green-500 text-sm flex items-center gap-1">
-                          <span>✓</span> Geverifieerd
+                        <span className="text-green-600 text-[10px] font-bold bg-green-50 px-2 py-0.5 rounded-full flex items-center gap-1 uppercase tracking-tight">
+                          <Check className="w-3 h-3" /> Geverifieerd
                         </span>
                       )}
                     </div>
@@ -641,19 +639,19 @@ const HomePage = () => {
                           <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                         ))}
                       </div>
-                      <span className="text-sm text-gray-400">{review.date}</span>
+                      <span className="text-xs text-slate-400">{review.date}</span>
                     </div>
                   </div>
                 </div>
                 
                 {/* Review Content */}
-                <h4 className="font-bold text-[#5a4a3a] mb-2">{review.title}</h4>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">{review.text}</p>
+                <h4 className="font-black text-slate-900 mb-2 text-xl leading-tight">"{review.title}"</h4>
+                <p className="text-slate-600 text-sm mb-4 leading-relaxed font-medium">{review.text}</p>
                 
                 {/* Product Tag */}
-                <div className="pt-3 border-t border-gray-100">
-                  <span className="inline-flex items-center gap-1 bg-[#f5efe8] text-[#8B7355] px-3 py-1 rounded-full text-xs font-medium">
-                    🧸 {review.product}
+                <div className="pt-6 border-t border-slate-50">
+                  <span className="inline-flex items-center gap-1 bg-warm-brown-50 text-warm-brown-600 px-3 py-1 rounded-full text-xs font-bold">
+                    Gekocht: {review.product}
                   </span>
                 </div>
               </div>
@@ -661,13 +659,13 @@ const HomePage = () => {
           </div>
           
           {/* Load More */}
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <Link to="/reviews">
               <Button 
-                className="bg-[#8B7355] hover:bg-[#6d5a45] text-white px-8 py-6 text-lg font-semibold rounded-full shadow-md hover:shadow-lg transition-all"
+                className="px-10 py-5 bg-white border-2 border-slate-200 text-slate-800 font-black rounded-2xl hover:border-warm-brown-500 hover:text-warm-brown-600 transition-all flex items-center gap-3 mx-auto shadow-sm"
                 data-testid="load-more-reviews-btn"
               >
-                Bekijk Alle Reviews →
+                Laad meer reviews <Plus className="w-4 h-4" />
               </Button>
             </Link>
           </div>
