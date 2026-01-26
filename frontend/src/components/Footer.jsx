@@ -3,130 +3,74 @@ import { Link } from 'react-router-dom';
 
 /**
  * Footer Component - Herbruikbare footer voor alle pagina's
- * @param {string} variant - 'purple' (default) of 'green' voor groene variant
+ * Consistent Warm Brown Theme
  */
-const Footer = ({ variant = 'purple' }) => {
-  // Kleur configuratie gebaseerd op variant
-  const colors = {
-    purple: {
-      bg: 'bg-purple-900',
-      textMuted: 'text-purple-200',
-      border: 'border-purple-700',
-      borderBottom: 'border-purple-800',
-    },
-    green: {
-      bg: 'bg-[#2d5a3d]',
-      textMuted: 'text-green-200',
-      border: 'border-[#234a31]',
-      borderBottom: 'border-[#234a31]',
-    }
-  };
-
-  const c = colors[variant] || colors.purple;
-
+const Footer = () => {
   return (
-    <footer className={`${c.bg} text-white py-12`}>
+    <footer className="bg-warm-brown-900 text-warm-brown-100 pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-warm-brown-800">
           {/* Bedrijfsgegevens */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-3xl">🧸</span>
-              <span className="text-2xl font-bold">Droomvriendjes</span>
-            </div>
-            <div className={`${c.textMuted} text-sm space-y-1`}>
-              <p className="font-semibold text-white mb-2">Bedrijfsgegevens</p>
-              <p>Droomvriendjes</p>
-              <p>Schaesbergerweg 103</p>
-              <p>6415 AD Heerlen</p>
-              <p className="text-xs italic">(Dit is geen bezoekadres)</p>
-              <p className="mt-3">KVK: 9921083</p>
-              
-              <div className={`mt-4 pt-4 border-t ${c.border}`}>
-                <p className="font-semibold text-white mb-1">Retouradres:</p>
-                <p>Centerpoort-Nieuwgraaf</p>
-                <p>Geograaf 16</p>
-                <p>6921 EW Duiven</p>
-              </div>
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white">Droomvriendjes</h3>
+            <p className="text-sm leading-relaxed opacity-70">
+              Wij helpen kinderen en ouders aan een betere nachtrust door middel van innovatieve slaapknuffels.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="w-10 h-10 bg-warm-brown-800 rounded-full flex items-center justify-center hover:bg-warm-brown-500 transition">
+                <span className="text-sm">📷</span>
+              </a>
+              <a href="#" className="w-10 h-10 bg-warm-brown-800 rounded-full flex items-center justify-center hover:bg-warm-brown-500 transition">
+                <span className="text-sm">📘</span>
+              </a>
+              <a href="#" className="w-10 h-10 bg-warm-brown-800 rounded-full flex items-center justify-center hover:bg-warm-brown-500 transition">
+                <span className="text-sm">🎵</span>
+              </a>
             </div>
           </div>
 
-          {/* Navigatie */}
+          {/* Producten */}
           <div>
-            <h3 className="font-bold mb-4 text-lg">Navigatie</h3>
-            <ul className={`space-y-2 ${c.textMuted} text-sm`}>
-              <li><Link to="/knuffels" className="hover:text-white transition-colors">Onze Kalmerende Knuffels</Link></li>
-              <li><Link to="/knuffels" className="hover:text-white transition-colors">Alle producten</Link></li>
-              <li><Link to="/ouders-slaaptips" className="hover:text-white transition-colors">Ouders slaaptips</Link></li>
-              <li><Link to="/over-ons" className="hover:text-white transition-colors">Over Droomvriendjes</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><Link to="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
-              <li><Link to="/cadeaubon" className="hover:text-white transition-colors">Cadeaubon</Link></li>
-              <li><Link to="/uitproberen" className="hover:text-white transition-colors">14 dagen gratis uitproberen</Link></li>
-              <li><Link to="/reviews" className="hover:text-white transition-colors">Beoordelingen</Link></li>
-              <li><Link to="/naam-bedenker" className="hover:text-white transition-colors">Droomvriendjes naam bedenker</Link></li>
-              <li><Link to="/vrouwen-60" className="hover:text-white transition-colors">Vrouwen 60+</Link></li>
-              <li><Link to="/ouders-baby" className="hover:text-white transition-colors">Ouders van baby's</Link></li>
-              <li><Link to="/ouders-peuters" className="hover:text-white transition-colors">Ouders van peuters</Link></li>
-              <li><Link to="/ouders-extra-behoeften" className="hover:text-white transition-colors">Extra behoeften</Link></li>
-            </ul>
-          </div>
-
-          {/* Droomvriendjes helpt bij */}
-          <div>
-            <h3 className="font-bold mb-4 text-lg">Droomvriendjes helpt bij</h3>
-            <ul className={`space-y-2 ${c.textMuted} text-sm`}>
-              <li><Link to="/stress" className="hover:text-white transition-colors">Stressvermindering</Link></li>
-              <li><Link to="/overprikkeling" className="hover:text-white transition-colors">Prikkelverwerking</Link></li>
-              <li><Link to="/angst" className="hover:text-white transition-colors">Angstvermindering</Link></li>
-              <li><Link to="/tips-bedtijd" className="hover:text-white transition-colors">Tips voor bedtijd</Link></li>
-              <li><Link to="/rustmoment-ouders" className="hover:text-white transition-colors">Rustmoment voor ouders</Link></li>
-              <li><Link to="/hsp" className="hover:text-white transition-colors">Hoogsensitiviteit</Link></li>
-              <li><Link to="/dementie" className="hover:text-white transition-colors">Dementie</Link></li>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs">Producten</h4>
+            <ul className="space-y-3 text-sm opacity-70">
+              <li><Link to="/knuffels" className="hover:text-warm-brown-400 transition">Alle Knuffels</Link></li>
+              <li><Link to="/knuffels" className="hover:text-warm-brown-400 transition">Voordeelbundels</Link></li>
+              <li><Link to="/cadeaubon" className="hover:text-warm-brown-400 transition">Cadeaubonnen</Link></li>
+              <li><Link to="/knuffels" className="hover:text-warm-brown-400 transition">Nieuw Binnen</Link></li>
             </ul>
           </div>
 
           {/* Klantenservice */}
           <div>
-            <h3 className="font-bold mb-4 text-lg">Klantenservice</h3>
-            <ul className={`space-y-2 ${c.textMuted} text-sm`}>
-              <li><Link to="/#producten" className="hover:text-white transition-colors">Zoeken</Link></li>
-              <li><Link to="/retourneren" className="hover:text-white transition-colors">Retourneren</Link></li>
-              <li><Link to="/voorwaarden" className="hover:text-white transition-colors">Algemene Voorwaarden</Link></li>
-              <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Beleid</Link></li>
-              <li><Link to="/#faq" className="hover:text-white transition-colors">Veelgestelde Vragen</Link></li>
-              <li><Link to="/#producten" className="hover:text-white transition-colors">Verzending</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs">Klantenservice</h4>
+            <ul className="space-y-3 text-sm opacity-70">
+              <li><Link to="/#faq" className="hover:text-warm-brown-400 transition">Veelgestelde Vragen</Link></li>
+              <li><Link to="/retourneren" className="hover:text-warm-brown-400 transition">Verzending & Levertijd</Link></li>
+              <li><Link to="/retourneren" className="hover:text-warm-brown-400 transition">Retouren</Link></li>
+              <li><Link to="/contact" className="hover:text-warm-brown-400 transition">Contact</Link></li>
             </ul>
-            <div className="mt-6">
-              <p className="font-semibold text-white mb-3 text-sm">Veilig betalen met</p>
-              <div className="flex flex-wrap gap-2">
-                <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-6 bg-white rounded p-1" />
-                <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-6 bg-white rounded p-1" />
-                <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-6 bg-white rounded p-1" />
-                <img src="https://www.mollie.com/external/icons/payment-methods/klarna.svg" alt="Klarna" className="h-6 bg-white rounded p-1" />
-                <img src="https://www.mollie.com/external/icons/payment-methods/applepay.svg" alt="Apple Pay" className="h-6 bg-white rounded p-1" />
-                <img src="https://www.mollie.com/external/icons/payment-methods/bancontact.svg" alt="Bancontact" className="h-6 bg-white rounded p-1" />
-              </div>
-              <div className="mt-3 flex items-center gap-2 text-xs text-green-300">
-                <span>🔒</span>
-                <span>SSL Beveiligd</span>
-              </div>
+          </div>
+
+          {/* Betaalmethoden */}
+          <div>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs">Betaalmethoden</h4>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">iDEAL</div>
+              <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">KLARNA</div>
+              <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">PAYPAL</div>
+              <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">VISA</div>
+              <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">MC</div>
             </div>
           </div>
         </div>
 
         {/* Bottom Footer */}
-        <div className={`border-t ${c.borderBottom} pt-8 text-center`}>
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className={`${c.textMuted} text-sm`}>&copy; 2025 Droomvriendjes. Alle rechten voorbehouden.</p>
-            <div className={`flex items-center space-x-4 ${c.textMuted} text-sm`}>
-              <Link to="/voorwaarden" className="hover:text-white transition-colors">Voorwaarden</Link>
-              <span>•</span>
-              <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-              <span>•</span>
-              <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
-            </div>
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 uppercase tracking-widest gap-4">
+          <p>© 2024 Droomvriendjes. Alle rechten voorbehouden.</p>
+          <div className="flex space-x-6">
+            <Link to="/voorwaarden" className="hover:text-white transition">Voorwaarden</Link>
+            <Link to="/privacy" className="hover:text-white transition">Privacy</Link>
+            <Link to="/contact" className="hover:text-white transition">Cookies</Link>
           </div>
         </div>
       </div>
