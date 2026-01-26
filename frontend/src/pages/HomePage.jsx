@@ -479,10 +479,10 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="py-16 bg-white">
+      {/* Video Section - Warm Brown Theme */}
+      <section className="py-16 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-purple-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center text-slate-900 mb-12">
             Zie Droomvriendjes In Actie
           </h2>
           <div className="flex flex-col items-center">
@@ -500,14 +500,6 @@ const HomePage = () => {
                   Je browser ondersteunt geen video.
                 </video>
               </div>
-            </div>
-            {/* Tekst onder de video */}
-            <div className="mt-4 text-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_droomvriendjes-clone/artifacts/3gktziez_image.png" 
-                alt="Droomvriendjes - Rust in je armen"
-                className="h-12 md:h-16 mx-auto"
-              />
             </div>
           </div>
         </div>
