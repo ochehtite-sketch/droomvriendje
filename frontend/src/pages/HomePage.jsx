@@ -444,247 +444,37 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Bestsellers Section - Premium Design */}
-      <section className="py-20 bg-gradient-to-b from-[#fdfcfa] to-[#f5f0eb] relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-purple-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-yellow-100 px-5 py-2 rounded-full mb-6 border border-amber-200/50">
-              <span className="text-amber-600 text-lg">🏆</span>
-              <span className="text-amber-800 font-semibold text-sm tracking-wide">MEEST VERKOCHT</span>
+      {/* Bestsellers Section - Warm Brown Theme */}
+      <section className="py-20 bg-white border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+            <div>
+              <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">Vers van de Pers</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Nieuwe Collectie</h2>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Kies jouw <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Droomvriendje</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-xl mx-auto">
-              Onze top 3 bestsellers, geliefd door meer dan 10.000 gezinnen in Nederland
-            </p>
-          </div>
-          
-          {/* Bestseller Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-            
-            {/* Panda - Bestseller #2 */}
-            <div className="group relative" data-testid="bestseller-card-panda">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
-              <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100/80 group-hover:border-blue-200 group-hover:-translate-y-2">
-                {/* Rank Badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-blue-500/30 flex items-center gap-1.5">
-                    <span className="text-base">🥈</span>
-                    <span>#2 BESTSELLER</span>
-                  </div>
-                </div>
-                
-                {/* Image Container */}
-                <Link to="/product/11" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="relative pt-8 pb-6 px-4 bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white">
-                    <div className="aspect-[3/4] relative flex items-center justify-center">
-                      <img 
-                        src="https://i.imgur.com/fhVs30E.jpeg" 
-                        alt="Panda"
-                        className="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
-                      />
-                      {/* Floating feature badges */}
-                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🌟 Projectie</span>
-                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">💤 Rustgevend</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-                
-                {/* Content */}
-                <div className="p-6 pt-8 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Panda</h3>
-                  <p className="text-gray-500 text-sm mb-4">Super rustgevend & schattig</p>
-                  
-                  {/* Rating */}
-                  <div className="flex items-center justify-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
-                    <span className="text-sm text-gray-600 ml-1">(287 reviews)</span>
-                  </div>
-                  
-                  {/* Price */}
-                  <div className="mb-5">
-                    <span className="text-sm text-gray-400 line-through mr-2">€59,95</span>
-                    <span className="text-3xl font-bold text-gray-900">€49,95</span>
-                  </div>
-                  
-                  {/* CTA Button */}
-                  <Button 
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
-                    onClick={() => addToCart(products.find(p => p.id === 11))}
-                    data-testid="bestseller-add-panda"
-                  >
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Toevoegen aan winkelwagen
-                  </Button>
-                  
-                  {/* Trust badges */}
-                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
-                    <span className="flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Gratis verzending</span>
-                    <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5" /> 14 dagen retour</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Beer - Bestseller #1 (Featured - CENTER) */}
-            <div className="group relative md:-mt-4 md:mb-4" data-testid="bestseller-card-beer">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
-              <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_50px_rgba(147,51,234,0.15)] hover:shadow-[0_25px_70px_rgba(147,51,234,0.25)] transition-all duration-500 border-2 border-purple-200 group-hover:border-purple-300 group-hover:-translate-y-2 relative">
-                {/* Popular ribbon */}
-                <div className="absolute -right-12 top-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-12 py-1.5 rotate-45 shadow-lg z-30">
-                  POPULAIR
-                </div>
-                
-                {/* Rank Badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-purple-500/30 flex items-center gap-1.5">
-                    <span className="text-base">🥇</span>
-                    <span>#1 BESTSELLER</span>
-                  </div>
-                </div>
-                
-                {/* Image Container */}
-                <Link to="/product/7" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="relative pt-8 pb-6 px-4 bg-gradient-to-br from-purple-50 via-pink-50/50 to-white">
-                    <div className="aspect-[3/4] relative flex items-center justify-center">
-                      <img 
-                        src="https://i.imgur.com/q2c7zsP.jpeg" 
-                        alt="Beer Sterrenprojector"
-                        className="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
-                      />
-                      {/* Floating feature badges */}
-                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🌟 Projectie</span>
-                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🎵 Muziek</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-                
-                {/* Content */}
-                <div className="p-6 pt-8 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Beer Sterrenprojector</h3>
-                  <p className="text-gray-500 text-sm mb-4">Meest gekozen door ouders</p>
-                  
-                  {/* Rating */}
-                  <div className="flex items-center justify-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
-                    <span className="text-sm text-gray-600 ml-1">(178 reviews)</span>
-                  </div>
-                  
-                  {/* Price */}
-                  <div className="mb-5">
-                    <span className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">€59,95</span>
-                  </div>
-                  
-                  {/* CTA Button */}
-                  <Button 
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300"
-                    onClick={() => addToCart(products.find(p => p.id === 7))}
-                    data-testid="bestseller-add-beer"
-                  >
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Toevoegen aan winkelwagen
-                  </Button>
-                  
-                  {/* Trust badges */}
-                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
-                    <span className="flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Gratis verzending</span>
-                    <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5" /> 14 dagen retour</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Leeuw - Bestseller #3 */}
-            <div className="group relative" data-testid="bestseller-card-slaapmaatje">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
-              <div className="bg-white rounded-[2rem] overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] transition-all duration-500 border border-gray-100/80 group-hover:border-amber-200 group-hover:-translate-y-2">
-                {/* Rank Badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-amber-500/30 flex items-center gap-1.5">
-                    <span className="text-base">🥉</span>
-                    <span>#3 BESTSELLER</span>
-                  </div>
-                </div>
-                
-                {/* Image Container */}
-                <Link to="/product/12" onClick={() => window.scrollTo(0, 0)}>
-                  <div className="relative pt-8 pb-6 px-4 bg-gradient-to-br from-amber-50 via-orange-50/50 to-white">
-                    <div className="aspect-[3/4] relative flex items-center justify-center">
-                      <img 
-                        src="https://i.imgur.com/ZuRmduU.jpeg" 
-                        alt="Baby Slaapmaatje Schaap"
-                        className="w-full h-full object-cover rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
-                      />
-                      {/* Floating feature badges */}
-                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🌟 Projectie</span>
-                        <span className="bg-white/95 backdrop-blur-sm text-xs font-medium px-3 py-1.5 rounded-full shadow-md border border-gray-100">🎵 White Noise</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-                
-                {/* Content */}
-                <div className="p-6 pt-8 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">Baby Slaapmaatje Schaap</h3>
-                  <p className="text-gray-500 text-sm mb-4">Zacht, knuffelbaar & nieuw</p>
-                  
-                  {/* Rating */}
-                  <div className="flex items-center justify-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
-                    <span className="text-sm text-gray-600 ml-1">(89 reviews)</span>
-                  </div>
-                  
-                  {/* Price */}
-                  <div className="mb-5">
-                    <span className="text-sm text-gray-400 line-through mr-2">€59,95</span>
-                    <span className="text-3xl font-bold text-gray-900">€49,95</span>
-                  </div>
-                  
-                  {/* CTA Button */}
-                  <Button 
-                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold py-6 rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300"
-                    onClick={() => addToCart(products.find(p => p.id === 12))}
-                    data-testid="bestseller-add-slaapmaatje"
-                  >
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Toevoegen aan winkelwagen
-                  </Button>
-                  
-                  {/* Trust badges */}
-                  <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
-                    <span className="flex items-center gap-1"><Truck className="w-3.5 h-3.5" /> Gratis verzending</span>
-                    <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5" /> 14 dagen retour</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Bottom CTA */}
-          <div className="text-center mt-14">
-            <Link to="/knuffels">
-              <Button variant="outline" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-6 text-lg font-semibold rounded-full group">
-                Bekijk alle knuffels
-                <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
-              </Button>
+            <Link to="/knuffels" className="text-warm-brown-600 font-bold hover:underline flex items-center gap-2">
+              Bekijk Alles <ChevronRight className="w-4 h-4" />
             </Link>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Mini Product Cards */}
+            {availableProducts.slice(0, 4).map((product) => (
+              <Link to={`/product/${product.id}`} key={product.id} className="group" onClick={() => window.scrollTo(0, 0)}>
+                <div className="relative rounded-2xl overflow-hidden aspect-square mb-4">
+                  <span className="absolute top-3 left-3 bg-warm-brown-500 text-white px-2 py-1 rounded-md text-[10px] font-bold z-10 uppercase">
+                    {product.badge || 'Nieuw'}
+                  </span>
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
+                  />
+                </div>
+                <h4 className="font-bold text-slate-900 group-hover:text-warm-brown-600 transition">{product.shortName || product.name}</h4>
+                <p className="text-warm-brown-600 font-black">€{product.price.toFixed(2).replace('.', ',')}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
