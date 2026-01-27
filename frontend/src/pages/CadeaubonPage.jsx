@@ -79,11 +79,11 @@ const CadeaubonPage = () => {
   return (
     <Layout backButtonText="Terug naar Home">
       {/* Hero */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
+      <div className="bg-warm-brown-500 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Gift className="w-20 h-20 mx-auto mb-4" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Droomvriendjes Cadeaubon</h1>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
+          <p className="text-xl text-warm-brown-100 max-w-3xl mx-auto">
             Het perfecte cadeau voor betere nachten en meer rust
           </p>
         </div>
@@ -94,68 +94,68 @@ const CadeaubonPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left: Benefits */}
           <div>
-            <h2 className="text-3xl font-bold text-purple-900 mb-6">Waarom een Droomvriendjes Cadeaubon?</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-6">Waarom een Droomvriendjes Cadeaubon?</h2>
             <div className="space-y-6">
-              <Card className="border-2 border-purple-100">
+              <Card className="border-2 border-warm-brown-100">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Gift className="w-6 h-6 text-purple-600" />
+                    <div className="w-12 h-12 bg-warm-brown-50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Gift className="w-6 h-6 text-warm-brown-500" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-purple-900 mb-2">Betekenisvol Cadeau</h3>
-                      <p className="text-gray-600">Geef het cadeau van rust en betere nachtrust. Perfect voor nieuwe ouders, verjaardagen of gewoon omdat het kan!</p>
+                      <h3 className="font-bold text-slate-900 mb-2">Betekenisvol Cadeau</h3>
+                      <p className="text-slate-600">Geef het cadeau van rust en betere nachtrust. Perfect voor nieuwe ouders, verjaardagen of gewoon omdat het kan!</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-blue-100">
+              <Card className="border-2 border-warm-brown-100">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-warm-brown-50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-6 h-6 text-warm-brown-500" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-purple-900 mb-2">Vrije Keuze</h3>
-                      <p className="text-gray-600">De ontvanger kan zelf kiezen uit al onze kalmerende knuffels en producten. Iedereen krijgt wat gewenst wordt!</p>
+                      <h3 className="font-bold text-slate-900 mb-2">Vrije Keuze</h3>
+                      <p className="text-slate-600">De ontvanger kan zelf kiezen uit al onze kalmerende knuffels en producten. Iedereen krijgt wat gewenst wordt!</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-pink-100">
+              <Card className="border-2 border-warm-brown-100">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Star className="w-6 h-6 text-pink-600" />
+                    <div className="w-12 h-12 bg-warm-brown-50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Star className="w-6 h-6 text-warm-brown-500" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-purple-900 mb-2">Direct Verzonden</h3>
-                      <p className="text-gray-600">Na betaling wordt de cadeaubon direct per email verstuurd naar de ontvanger. Geen wachttijd!</p>
+                      <h3 className="font-bold text-slate-900 mb-2">Direct Verzonden</h3>
+                      <p className="text-slate-600">Na betaling wordt de cadeaubon direct per email verstuurd naar de ontvanger. Geen wachttijd!</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            <div className="mt-8 bg-gradient-to-r from-purple-100 to-blue-100 rounded-2xl p-6">
-              <h3 className="font-bold text-purple-900 mb-3">Hoe werkt het?</h3>
-              <ol className="space-y-2 text-gray-700">
+            <div className="mt-8 bg-warm-brown-50 rounded-2xl p-6">
+              <h3 className="font-bold text-slate-900 mb-3">Hoe werkt het?</h3>
+              <ol className="space-y-2 text-slate-700">
                 <li className="flex items-start">
-                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                  <span className="w-6 h-6 bg-warm-brown-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
                   <span>Kies het bedrag en vul de gegevens in</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                  <span className="w-6 h-6 bg-warm-brown-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
                   <span>Betaal veilig via iDEAL, Klarna of creditcard</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                  <span className="w-6 h-6 bg-warm-brown-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
                   <span>De ontvanger krijgt direct de cadeaubon per email</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                  <span className="w-6 h-6 bg-warm-brown-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
                   <span>De ontvanger kan direct shoppen!</span>
                 </li>
               </ol>
@@ -164,9 +164,9 @@ const CadeaubonPage = () => {
 
           {/* Right: Order Form */}
           <div>
-            <Card className="border-2 border-purple-100 sticky top-24">
+            <Card className="border-2 border-warm-brown-100 sticky top-24">
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold text-purple-900 mb-6">Bestel Je Cadeaubon</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">Bestel Je Cadeaubon</h2>
                 
                 {error && (
                   <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
@@ -177,7 +177,7 @@ const CadeaubonPage = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Amount Selection */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">Kies een bedrag</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-3">Kies een bedrag</label>
                     <div className="grid grid-cols-2 gap-3 mb-3">
                       {amounts.map((amount) => (
                         <button
@@ -189,8 +189,8 @@ const CadeaubonPage = () => {
                           }}
                           className={`p-4 rounded-lg border-2 font-bold text-lg transition-all ${
                             selectedAmount === amount && !customAmount
-                              ? 'border-purple-600 bg-purple-50 text-purple-900'
-                              : 'border-gray-200 hover:border-purple-300'
+                              ? 'border-warm-brown-500 bg-warm-brown-50 text-slate-900'
+                              : 'border-slate-200 hover:border-warm-brown-300'
                           }`}
                         >
                           €{amount}
@@ -205,75 +205,75 @@ const CadeaubonPage = () => {
                         setCustomAmount(e.target.value);
                         setSelectedAmount(0);
                       }}
-                      className="border-purple-200"
+                      className="border-warm-brown-200 focus:border-warm-brown-500"
                     />
                   </div>
 
                   {/* Recipient Info */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Naam ontvanger *</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Naam ontvanger *</label>
                     <Input
                       required
                       value={formData.ontvanger}
                       onChange={(e) => setFormData({...formData, ontvanger: e.target.value})}
                       placeholder="Voor wie is de cadeaubon?"
-                      className="border-purple-200"
+                      className="border-warm-brown-200 focus:border-warm-brown-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Email ontvanger *</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Email ontvanger *</label>
                     <Input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       placeholder="email@voorbeeld.nl"
-                      className="border-purple-200"
+                      className="border-warm-brown-200 focus:border-warm-brown-500"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Hier wordt de cadeaubon naartoe gestuurd</p>
+                    <p className="text-xs text-slate-500 mt-1">Hier wordt de cadeaubon naartoe gestuurd</p>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Persoonlijke boodschap</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Persoonlijke boodschap</label>
                     <Textarea
                       value={formData.boodschap}
                       onChange={(e) => setFormData({...formData, boodschap: e.target.value})}
                       placeholder="Schrijf een persoonlijke boodschap..."
                       rows={4}
-                      className="border-purple-200"
+                      className="border-warm-brown-200 focus:border-warm-brown-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jouw naam *</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Jouw naam *</label>
                     <Input
                       required
                       value={formData.verzender}
                       onChange={(e) => setFormData({...formData, verzender: e.target.value})}
                       placeholder="Van wie is de cadeaubon?"
-                      className="border-purple-200"
+                      className="border-warm-brown-200 focus:border-warm-brown-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jouw email *</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Jouw email *</label>
                     <Input
                       type="email"
                       required
                       value={formData.verzenderEmail}
                       onChange={(e) => setFormData({...formData, verzenderEmail: e.target.value})}
                       placeholder="jouw@email.nl"
-                      className="border-purple-200"
+                      className="border-warm-brown-200 focus:border-warm-brown-500"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Voor de bevestiging van je betaling</p>
+                    <p className="text-xs text-slate-500 mt-1">Voor de bevestiging van je betaling</p>
                   </div>
 
                   {/* Total */}
-                  <div className="bg-purple-50 rounded-lg p-4">
+                  <div className="bg-warm-brown-50 rounded-lg p-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-purple-900">Totaal:</span>
-                      <span className="text-3xl font-bold text-purple-900">
+                      <span className="text-lg font-semibold text-slate-900">Totaal:</span>
+                      <span className="text-3xl font-bold text-warm-brown-600">
                         €{getFinalAmount().toFixed(2).replace('.', ',')}
                       </span>
                     </div>
@@ -283,7 +283,7 @@ const CadeaubonPage = () => {
                     type="submit" 
                     size="lg" 
                     disabled={isLoading}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white py-6"
+                    className="w-full bg-warm-brown-500 hover:bg-warm-brown-600 text-white py-6"
                     data-testid="cadeaubon-betalen-button"
                   >
                     {isLoading ? (
@@ -299,7 +299,7 @@ const CadeaubonPage = () => {
                     )}
                   </Button>
 
-                  <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
+                  <div className="flex items-center justify-center space-x-4 text-xs text-slate-500">
                     <span>✓ Veilig betalen</span>
                     <span>✓ Direct verzonden</span>
                     <span>✓ 2 jaar geldig</span>
