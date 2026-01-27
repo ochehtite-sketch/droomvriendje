@@ -202,15 +202,15 @@ const CheckoutPage = () => {
   // Empty cart view
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-cream flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <ShoppingCart className="w-12 h-12 text-purple-600" />
+          <div className="w-20 h-20 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-6">
+            <ShoppingCart className="w-12 h-12 text-warm-brown-500" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Je winkelwagen is leeg</h2>
-          <p className="text-gray-600 mb-6">Voeg eerst producten toe aan je winkelwagen.</p>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">Je winkelwagen is leeg</h2>
+          <p className="text-slate-600 mb-6">Voeg eerst producten toe aan je winkelwagen.</p>
           <Link to="/">
-            <button className="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition flex items-center gap-2 mx-auto">
+            <button className="bg-warm-brown-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-warm-brown-600 transition flex items-center gap-2 mx-auto">
               <ArrowLeft className="w-5 h-5" />
               Terug naar shop
             </button>
@@ -221,25 +221,25 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 py-6 px-4">
+    <div className="min-h-screen bg-cream py-6 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
           <Link to="/" className="inline-block mb-4">
             <img 
-              src="https://customer-assets.emergentagent.com/job_plush-revamp/artifacts/npuc23bl_lgoo%20ads%20%281%29.png" 
+              src="/logo.svg" 
               alt="Droomvriendjes" 
               className="h-20 md:h-24 w-auto mx-auto"
             />
           </Link>
-          <p className="text-gray-600 flex items-center justify-center gap-2">
+          <p className="text-slate-600 flex items-center justify-center gap-2">
             <Lock className="w-4 h-4" />
             Veilig afrekenen
           </p>
         </div>
 
         {/* Back link */}
-        <Link to="/" className="inline-flex items-center text-purple-600 hover:text-purple-700 mb-6 font-medium">
+        <Link to="/" className="inline-flex items-center text-warm-brown-600 hover:text-warm-brown-700 mb-6 font-medium">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Terug naar shop
         </Link>
@@ -258,8 +258,8 @@ const CheckoutPage = () => {
             <div className="lg:col-span-2 space-y-6">
               {/* Contact Info */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <Lock className="w-5 h-5 text-purple-600" />
+                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <Lock className="w-5 h-5 text-warm-brown-500" />
                   Contactgegevens
                 </h2>
                 <input
@@ -269,14 +269,14 @@ const CheckoutPage = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                  className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                 />
               </div>
 
               {/* Shipping Address */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <Truck className="w-5 h-5 text-purple-600" />
+                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <Truck className="w-5 h-5 text-warm-brown-500" />
                   Verzendadres
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -287,7 +287,7 @@ const CheckoutPage = () => {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -296,7 +296,7 @@ const CheckoutPage = () => {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -305,7 +305,7 @@ const CheckoutPage = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    className="md:col-span-2 p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                    className="md:col-span-2 p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -314,7 +314,7 @@ const CheckoutPage = () => {
                     value={formData.zipCode}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -323,7 +323,7 @@ const CheckoutPage = () => {
                     value={formData.city}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="tel"
@@ -331,15 +331,15 @@ const CheckoutPage = () => {
                     placeholder="Telefoonnummer (optioneel)"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="md:col-span-2 p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+                    className="md:col-span-2 p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                 </div>
               </div>
 
               {/* Comments/Special Requests */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <MessageSquare className="w-5 h-5 text-purple-600" />
+                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5 text-warm-brown-500" />
                   Opmerkingen
                 </h2>
                 <textarea
@@ -348,32 +348,32 @@ const CheckoutPage = () => {
                   value={formData.comment}
                   onChange={handleInputChange}
                   rows="3"
-                  className="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none resize-none transition"
+                  className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none resize-none transition"
                 />
-                <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
-                  <Heart className="w-3 h-3 text-pink-500" />
+                <p className="text-xs text-slate-500 mt-2 flex items-center gap-1">
+                  <Heart className="w-3 h-3 text-warm-brown-400" />
                   Optioneel - We doen ons best om aan je wensen te voldoen!
                 </p>
               </div>
 
               {/* Payment Methods */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-purple-600" />
+                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <CreditCard className="w-5 h-5 text-warm-brown-500" />
                   Betaalmethode
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {paymentMethods.map(method => (
                     <label 
                       key={method.value} 
-                      className={`relative flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer hover:border-purple-400 transition ${
+                      className={`relative flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer hover:border-warm-brown-400 transition ${
                         formData.paymentMethod === method.value 
-                          ? 'border-purple-500 bg-purple-50 shadow-md' 
-                          : 'border-gray-200 hover:bg-gray-50'
+                          ? 'border-warm-brown-500 bg-warm-brown-50 shadow-md' 
+                          : 'border-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       {method.popular && (
-                        <span className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
+                        <span className="absolute -top-2 -right-2 bg-warm-brown-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
                           Populair
                         </span>
                       )}
@@ -386,14 +386,14 @@ const CheckoutPage = () => {
                         className="sr-only"
                       />
                       <span className="text-3xl mb-1">{method.icon}</span>
-                      <span className="font-semibold text-gray-700 text-sm">{method.label}</span>
-                      <span className="text-xs text-gray-500 text-center mt-1">{method.description}</span>
+                      <span className="font-semibold text-slate-700 text-sm">{method.label}</span>
+                      <span className="text-xs text-slate-500 text-center mt-1">{method.description}</span>
                     </label>
                   ))}
                 </div>
                 
                 {/* Payment Security Badge */}
-                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600 bg-green-50 p-3 rounded-xl">
+                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600 bg-green-50 p-3 rounded-xl">
                   <Lock className="w-4 h-4 text-green-600" />
                   <span>Veilige betaling via Mollie - SSL versleuteld</span>
                 </div>
@@ -403,28 +403,28 @@ const CheckoutPage = () => {
             {/* Right Column - Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                  <ShoppingCart className="w-5 h-5 text-purple-600" />
+                <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                  <ShoppingCart className="w-5 h-5 text-warm-brown-500" />
                   Besteloverzicht
                 </h2>
 
                 {/* Cart Items */}
                 <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto">
                   {cart.map(item => (
-                    <div key={item.id} className="flex gap-3 pb-4 border-b border-gray-100">
+                    <div key={item.id} className="flex gap-3 pb-4 border-b border-slate-100">
                       <img 
                         src={item.image} 
                         alt={item.shortName || item.name}
-                        className="w-16 h-16 object-cover rounded-xl bg-purple-50"
+                        className="w-16 h-16 object-cover rounded-xl bg-warm-brown-50"
                       />
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-800 text-sm truncate">{item.shortName || item.name}</h3>
-                        <p className="text-purple-600 font-bold">€{item.price.toFixed(2).replace('.', ',')}</p>
+                        <h3 className="font-semibold text-slate-800 text-sm truncate">{item.shortName || item.name}</h3>
+                        <p className="text-warm-brown-600 font-bold">€{item.price.toFixed(2).replace('.', ',')}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+                            className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition"
                           >
                             <Minus className="w-3 h-3" />
                           </button>
@@ -432,7 +432,7 @@ const CheckoutPage = () => {
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+                            className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition"
                           >
                             <Plus className="w-3 h-3" />
                           </button>
@@ -452,7 +452,7 @@ const CheckoutPage = () => {
                 {/* Pricing */}
                 <div className="space-y-2 text-sm mb-6">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotaal</span>
+                    <span className="text-slate-600">Subtotaal</span>
                     <span className="font-semibold">€{getSubtotal().toFixed(2).replace('.', ',')}</span>
                   </div>
                   {getDiscount() > 0 && (
@@ -462,22 +462,22 @@ const CheckoutPage = () => {
                     </div>
                   )}
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Verzending</span>
+                    <span className="text-slate-600">Verzending</span>
                     <span className="font-semibold text-green-600">GRATIS</span>
                   </div>
                 </div>
 
                 {/* Total */}
-                <div className="flex justify-between text-xl font-bold mb-6 pt-4 border-t-2 border-purple-100">
+                <div className="flex justify-between text-xl font-bold mb-6 pt-4 border-t-2 border-warm-brown-100">
                   <span>Totaal</span>
-                  <span className="text-purple-600">€{getTotal().toFixed(2).replace('.', ',')}</span>
+                  <span className="text-warm-brown-600">€{getTotal().toFixed(2).replace('.', ',')}</span>
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-pink-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-warm-brown-500 text-white py-4 rounded-xl font-bold text-lg hover:bg-warm-brown-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   data-testid="checkout-submit-button"
                 >
                   {isLoading ? (
@@ -494,21 +494,21 @@ const CheckoutPage = () => {
                 </button>
 
                 {/* Trust indicators */}
-                <div className="mt-4 flex items-center justify-center gap-4 text-xs text-gray-500">
+                <div className="mt-4 flex items-center justify-center gap-4 text-xs text-slate-500">
                   <span className="flex items-center gap-1">
-                    <Heart className="w-4 h-4 text-pink-500" />
+                    <Heart className="w-4 h-4 text-warm-brown-400" />
                     Met liefde gemaakt
                   </span>
                   <span className="flex items-center gap-1">
-                    <Truck className="w-4 h-4 text-purple-500" />
+                    <Truck className="w-4 h-4 text-warm-brown-500" />
                     1-2 werkdagen
                   </span>
                 </div>
 
                 {/* Terms */}
-                <p className="text-center text-xs text-gray-500 mt-4">
+                <p className="text-center text-xs text-slate-500 mt-4">
                   Door te bestellen ga je akkoord met onze{' '}
-                  <Link to="/voorwaarden" className="text-purple-600 underline hover:text-purple-700">
+                  <Link to="/voorwaarden" className="text-warm-brown-600 underline hover:text-warm-brown-700">
                     algemene voorwaarden
                   </Link>
                 </p>
@@ -521,32 +521,32 @@ const CheckoutPage = () => {
         <div className="mt-8 bg-white rounded-2xl shadow-lg p-6">
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-3">
-                <Lock className="w-7 h-7 text-purple-600" />
+              <div className="w-14 h-14 bg-warm-brown-50 rounded-full flex items-center justify-center mb-3">
+                <Lock className="w-7 h-7 text-warm-brown-500" />
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">Veilig betalen</h3>
-              <p className="text-sm text-gray-600">SSL versleutelde verbinding</p>
+              <h3 className="font-bold text-slate-800 mb-1">Veilig betalen</h3>
+              <p className="text-sm text-slate-600">SSL versleutelde verbinding</p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-3">
-                <Truck className="w-7 h-7 text-purple-600" />
+              <div className="w-14 h-14 bg-warm-brown-50 rounded-full flex items-center justify-center mb-3">
+                <Truck className="w-7 h-7 text-warm-brown-500" />
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">Snelle levering</h3>
-              <p className="text-sm text-gray-600">Gratis verzending in heel NL</p>
+              <h3 className="font-bold text-slate-800 mb-1">Snelle levering</h3>
+              <p className="text-sm text-slate-600">Gratis verzending in heel NL</p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-3">
-                <Heart className="w-7 h-7 text-purple-600" />
+              <div className="w-14 h-14 bg-warm-brown-50 rounded-full flex items-center justify-center mb-3">
+                <Heart className="w-7 h-7 text-warm-brown-500" />
               </div>
-              <h3 className="font-bold text-gray-800 mb-1">14 dagen retour</h3>
-              <p className="text-sm text-gray-600">Niet tevreden? Geld terug!</p>
+              <h3 className="font-bold text-slate-800 mb-1">14 dagen retour</h3>
+              <p className="text-sm text-slate-600">Niet tevreden? Geld terug!</p>
             </div>
           </div>
         </div>
 
         {/* Payment Icons */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-          <span className="text-sm text-gray-500">Betaal veilig met:</span>
+          <span className="text-sm text-slate-500">Betaal veilig met:</span>
           <img src="https://www.mollie.com/external/icons/payment-methods/ideal.svg" alt="iDEAL" className="h-8" />
           <img src="https://www.mollie.com/external/icons/payment-methods/creditcard.svg" alt="Creditcard" className="h-8" />
           <img src="https://www.mollie.com/external/icons/payment-methods/paypal.svg" alt="PayPal" className="h-8" />
