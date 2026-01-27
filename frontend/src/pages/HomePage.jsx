@@ -514,14 +514,31 @@ const HomePage = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
               Vertrouwd door 10.000+ ouders
             </h2>
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
-                ))}
+            
+            {/* Trustpilot Badge */}
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="bg-white rounded-xl px-6 py-4 shadow-md border border-slate-100 flex items-center gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-2xl font-bold text-slate-900">4.9</span>
+                    <span className="text-slate-500">/5</span>
+                  </div>
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-[#00b67a] text-[#00b67a]" />
+                    ))}
+                  </div>
+                </div>
+                <div className="border-l border-slate-200 pl-4">
+                  <p className="text-sm font-semibold text-slate-900">Uitstekend</p>
+                  <p className="text-xs text-slate-500">Gebaseerd op 500+ reviews</p>
+                </div>
+                <img 
+                  src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-black.svg" 
+                  alt="Trustpilot" 
+                  className="h-6 ml-2"
+                />
               </div>
-              <span className="text-xl font-bold text-gray-900">4.9/5</span>
-              <span className="text-gray-500">op Trustpilot</span>
             </div>
           </div>
           
