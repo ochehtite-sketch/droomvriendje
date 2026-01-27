@@ -17,11 +17,12 @@ const PrivacyPage = () => {
 
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Contactgegevens</h2>
-            <div className="bg-warm-brown-50 rounded-xl p-6">
+            <div className="bg-warm-brown-50 rounded-xl p-6 border border-warm-brown-100">
               <p><strong>Droomvriendjes</strong></p>
               <p>Schaesbergerweg 103</p>
               <p>6415 AD Heerlen</p>
-              <p>KVK: 99210835\n              <p>BTW: NL204392123B01</p>
+              <p>KVK: 99210835</p>
+              <p>BTW: NL204392123B01</p>
               <p>Email: info@droomvriendjes.nl</p>
             </div>
           </section>
