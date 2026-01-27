@@ -1,38 +1,22 @@
 # Droomvriendjes - Product Requirements Document
 
-## Latest Update: 26 January 2026
+## Latest Update: 27 January 2026
 
 ### Completed This Session:
+- ✅ **NIEUW LOGO** - Geïmplementeerd vanaf `/logo.svg` (lokaal opgeslagen)
+- ✅ **BEDRIJFSGEGEVENS BIJGEWERKT:**
+  - KVK: 99210835
+  - Adres: Schaesbergerweg 103, 6415 AD Heerlen
+  - E-mail: info@droomvriendjes.nl
+  - Retouradres: Centerpoort-Nieuwgraaf, Geograaf 16, 6921 EW Duiven
+- ✅ **CONSISTENT WARM-BROWN THEMA** op alle pagina's:
+  - ContactPage.jsx - Alle paarse/blauwe elementen vervangen door warm-brown
+  - CheckoutPage.jsx - Volledig nieuw warm-brown ontwerp
+  - ProductPage.jsx - Trust badges bijgewerkt naar warm-brown
+  - Footer.jsx - Bedrijfsgegevens + retouradres toegevoegd
+
+### Previous Session (26 Jan):
 - ✅ **WARM BROWN THEME OVERHAUL** - Volledige website redesign naar consistent warm-brown kleurenschema
-  - Promo banner: warm-brown-500 (#A26A49) achtergrond
-  - Hero sectie: Witte achtergrond met warm-brown accenten
-  - Trust badges: soft-blue (#DCE7F2) achtergrond met warm-brown iconen
-  - Product sectie: Cream (#F6F1EB) achtergrond, warm-brown buttons
-  - Testimonials: warm-brown-50 achtergrond
-  - CTA sectie: warm-brown-500 achtergrond
-  - Footer: warm-brown-900 (#3A271C) achtergrond
-  - Header: Witte achtergrond met warm-brown hover states
-- ✅ Tailwind config uitgebreid met custom warm-brown palette (50-900)
-- ✅ CSS variabelen toegevoegd voor consistent kleuren gebruik
-- ✅ Inter font geïmporteerd voor consistente typografie
-- ✅ Alle paarse/blauwe kleuren vervangen door warm-brown varianten
-
-### Color Palette (Consistent across site):
-```
-warm-brown-50:  #FAF7F5
-warm-brown-100: #F6F1EB (cream)
-warm-brown-200: #E8DDD2
-warm-brown-300: #D4BFA9
-warm-brown-400: #C08F70
-warm-brown-500: #A26A49 (primary)
-warm-brown-600: #8B5A3D
-warm-brown-700: #6F4831
-warm-brown-800: #523627
-warm-brown-900: #3A271C (footer)
-soft-blue: #DCE7F2 (accent)
-```
-
-## Original Problem Statement
 Nederlandse e-commerce website voor knuffels/slaapknuffels met volledige webshop functionaliteit, admin dashboard, betalingsintegratie, en marketing tools.
 
 ## Tech Stack
