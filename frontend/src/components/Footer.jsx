@@ -16,7 +16,20 @@ const Footer = () => {
             <p className="text-sm leading-relaxed opacity-70">
               Wij helpen kinderen en ouders aan een betere nachtrust door middel van innovatieve slaapknuffels.
             </p>
-            <div className="flex space-x-4">
+            <div className="text-sm opacity-70 space-y-1">
+              <p>Schaesbergerweg 103</p>
+              <p>6415 AD Heerlen</p>
+              <p className="italic text-xs">(Dit is geen bezoekadres)</p>
+              <p className="mt-2">KVK: 99210835</p>
+              <p>E-mail: info@droomvriendjes.nl</p>
+            </div>
+            <div className="pt-4 border-t border-warm-brown-800">
+              <p className="font-semibold text-white text-sm mb-2">Retouradres:</p>
+              <p className="text-sm opacity-70">Centerpoort-Nieuwgraaf</p>
+              <p className="text-sm opacity-70">Geograaf 16</p>
+              <p className="text-sm opacity-70">6921 EW Duiven</p>
+            </div>
+            <div className="flex space-x-4 pt-4">
               <a href="#" className="w-10 h-10 bg-warm-brown-800 rounded-full flex items-center justify-center hover:bg-warm-brown-500 transition">
                 <span className="text-sm">📷</span>
               </a>
