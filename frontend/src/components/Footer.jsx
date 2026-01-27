@@ -32,7 +32,7 @@ const Footer = () => {
               <div className="w-8 h-8 flex items-center justify-center mb-2">
                 <span className="text-2xl">⭐</span>
               </div>
-              <p className="font-semibold text-white text-sm">4.9/5 Sterren</p>
+              <p className="font-semibold text-white text-sm">4.9/5 Trustpilot</p>
               <p className="text-xs opacity-70">500+ Tevreden klanten</p>
             </div>
           </div>
