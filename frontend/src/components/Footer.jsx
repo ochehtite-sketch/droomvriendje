@@ -21,6 +21,7 @@ const Footer = () => {
               <p>6415 AD Heerlen</p>
               <p className="italic text-xs">(Dit is geen bezoekadres)</p>
               <p className="mt-2">KVK: 99210835</p>
+              <p>BTW: NL204392123B01</p>
               <p>E-mail: info@droomvriendjes.nl</p>
             </div>
             <div className="pt-4 border-t border-warm-brown-800">
