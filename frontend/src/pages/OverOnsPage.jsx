@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const OverOnsPage = () => {
   const stats = [
-    { number: "100.000+", label: "Tevreden gezinnen" },
+    { number: "10.000+", label: "Tevreden gezinnen" },
     { number: "100%", label: "Liefde & zorg" },
     { number: "24/7", label: "Rust & geborgenheid" },
     { number: "5★", label: "Gemiddelde beoordeling" }
@@ -128,7 +128,7 @@ const OverOnsPage = () => {
                 <span className="absolute bottom-0 left-0 w-16 h-1 bg-warm-brown-500 rounded"></span>
               </h2>
               <p className="text-lg text-slate-600 mb-4 leading-relaxed">
-                Inmiddels helpen we meer dan 100.000+ gezinnen met betere nachten. Elke positieve reactie van ouders 
+                Inmiddels helpen we meer dan 10.000+ gezinnen met betere nachten. Elke positieve reactie van ouders 
                 die eindelijk weer een goede nachtrust krijgen, motiveert ons om door te gaan.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">

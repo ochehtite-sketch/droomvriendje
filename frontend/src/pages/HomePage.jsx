@@ -74,7 +74,7 @@ const HomePage = () => {
               
               {/* Mobile Social Proof */}
               <div className="bg-white/90 rounded-xl p-3 mb-4 shadow-sm">
-                <p className="text-xs text-gray-500 text-center mb-1">Trusted by 100,000+ Parents</p>
+                <p className="text-xs text-gray-500 text-center mb-1">Trusted by 10,000+ Parents</p>
                 <div className="flex items-center justify-center gap-2">
                   <div className="flex -space-x-1">
                     <img src="https://i.pravatar.cc/24?img=1" alt="" className="w-6 h-6 rounded-full border-2 border-white" />
@@ -127,7 +127,7 @@ const HomePage = () => {
             <div className="w-1/2 pr-8 lg:pr-16">
               {/* Urgency Badge */}
               <div className="inline-flex items-center bg-warm-brown-50 text-warm-brown-700 px-4 py-2 rounded-full text-sm font-semibold mb-4 border border-warm-brown-100">
-                Trusted by 100,000+ Parents
+                Trusted by 10,000+ Parents
               </div>
               
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
@@ -230,7 +230,7 @@ const HomePage = () => {
             </div>
             <div className="flex flex-col items-center text-center space-y-2">
               <Heart className="w-6 h-6 text-warm-brown-500" />
-              <p className="font-semibold text-sm">100.000+ Klanten</p>
+              <p className="font-semibold text-sm">10.000+ Klanten</p>
               <p className="text-xs text-slate-500">Blije ouders en kinderen</p>
             </div>
             <div className="flex flex-col items-center text-center space-y-2">
@@ -512,7 +512,7 @@ const HomePage = () => {
           <div className="text-center mb-12">
             <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">Klantbeoordelingen</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
-              Vertrouwd door 100.000+ ouders
+              Vertrouwd door 10.000+ ouders
             </h2>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="flex">
@@ -731,7 +731,7 @@ const HomePage = () => {
             Klaar Voor Betere Nachten?
           </h2>
           <p className="text-lg md:text-xl text-warm-brown-100 max-w-2xl mx-auto leading-relaxed">
-            Sluit je aan bij 100.000+ tevreden ouders. Profiteer nu van onze winteractie: 2e knuffel 50% korting!
+            Sluit je aan bij 10.000+ tevreden ouders. Profiteer nu van onze winteractie: 2e knuffel 50% korting!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 

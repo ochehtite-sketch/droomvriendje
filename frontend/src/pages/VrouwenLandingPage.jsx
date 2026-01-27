@@ -190,7 +190,7 @@ const VrouwenLandingPage = () => {
                   </Button>
                 </a>
                 <div className="text-sm text-[#5a7a5a]">
-                  <p className="font-semibold">100.000+ klanten slapen beter. 86%</p>
+                  <p className="font-semibold">10.000+ klanten slapen beter. 86%</p>
                   <p>rapporteert rustigere nachten.*</p>
                 </div>
               </div>
