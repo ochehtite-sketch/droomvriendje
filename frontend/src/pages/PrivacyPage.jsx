@@ -5,29 +5,29 @@ const PrivacyPage = () => {
   return (
     <Layout backButtonText="Terug naar Home">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-8">Privacy Beleid</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8">Privacy Beleid</h1>
         
         <div className="space-y-8 text-gray-700">
           <section>
             <p className="mb-4">
-              Droomvriendjes, gevestigd aan SCHAESBERGERWEG 103, 6415 AD Heerlen, is verantwoordelijk voor de verwerking 
+              Droomvriendjes, gevestigd aan Schaesbergerweg 103, 6415 AD Heerlen, is verantwoordelijk voor de verwerking 
               van persoonsgegevens zoals weergegeven in deze privacyverklaring.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Contactgegevens</h2>
-            <div className="bg-purple-50 rounded-xl p-6">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Contactgegevens</h2>
+            <div className="bg-warm-brown-50 rounded-xl p-6">
               <p><strong>Droomvriendjes</strong></p>
-              <p>SCHAESBERGERWEG 103</p>
+              <p>Schaesbergerweg 103</p>
               <p>6415 AD Heerlen</p>
-              <p>KVK: 9921083</p>
+              <p>KVK: 99210835\n              <p>BTW: NL204392123B01</p>
               <p>Email: info@droomvriendjes.nl</p>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Persoonsgegevens die wij verwerken</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Persoonsgegevens die wij verwerken</h2>
             <p className="mb-4">Droomvriendjes verwerkt je persoonsgegevens doordat je gebruik maakt van onze diensten en/of omdat je deze gegevens zelf aan ons verstrekt.</p>
             <p className="mb-2">Hieronder vind je een overzicht van de persoonsgegevens die wij verwerken:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
@@ -43,7 +43,7 @@ const PrivacyPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Waarom we gegevens nodig hebben</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Waarom we gegevens nodig hebben</h2>
             <p className="mb-2">Droomvriendjes verwerkt jouw persoonsgegevens voor de volgende doelen:</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Het afhandelen van jouw bestelling</li>
@@ -57,7 +57,7 @@ const PrivacyPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Hoe lang we gegevens bewaren</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Hoe lang we gegevens bewaren</h2>
             <p>
               Droomvriendjes bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren 
               waarvoor je gegevens worden verzameld. Wij hanteren de volgende bewaartermijnen:
@@ -70,7 +70,7 @@ const PrivacyPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Delen met derden</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Delen met derden</h2>
             <p className="mb-4">
               Droomvriendjes verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze 
               overeenkomst met jou of om te voldoen aan een wettelijke verplichting.
@@ -79,7 +79,7 @@ const PrivacyPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Cookies</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Cookies</h2>
             <p className="mb-4">
               Droomvriendjes gebruikt functionele, analytische en tracking cookies. Een cookie is een klein tekstbestand 
               dat bij het eerste bezoek aan deze website wordt opgeslagen in de browser van je computer, tablet 
@@ -94,7 +94,7 @@ const PrivacyPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Jouw rechten</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Jouw rechten</h2>
             <p className="mb-4">Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door Droomvriendjes.</p>
             <p className="mb-4">Je hebt het recht op gegevensoverdraagbaarheid. Dat betekent dat je bij ons een verzoek kan indienen om de persoonsgegevens die wij van jou beschikken in een computerbestand naar jou of een ander, door jou genoemde organisatie, te sturen.</p>
             <p>
@@ -105,7 +105,7 @@ const PrivacyPage = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Beveiliging</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Beveiliging</h2>
             <p>
               Droomvriendjes neemt de bescherming van jouw gegevens serieus en neemt passende maatregelen om misbruik, 
               verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. 
@@ -114,13 +114,13 @@ const PrivacyPage = () => {
             </p>
           </section>
 
-          <section className="bg-purple-50 rounded-xl p-6">
-            <h2 className="text-2xl font-bold text-purple-900 mb-4">Vragen?</h2>
+          <section className="bg-warm-brown-50 rounded-xl p-6">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Vragen?</h2>
             <p className="mb-4">
               Heb je vragen over ons privacybeleid? Neem dan contact met ons op:
             </p>
             <p>Email: info@droomvriendjes.nl</p>
-            <p>KVK: 9921083</p>
+            <p>KVK: 99210835\n              <p>BTW: NL204392123B01</p>
           </section>
         </div>
       </div>
