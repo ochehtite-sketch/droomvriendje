@@ -32,7 +32,7 @@ const Header = () => {
             <img 
               alt="Droomvriendjes.nl" 
               className="h-16 sm:h-24 w-auto" 
-              src="https://i.imgur.com/IESI44c.png"
+              src="/logo.svg"
             />
           </Link>
           
