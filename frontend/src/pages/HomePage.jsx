@@ -689,26 +689,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Trust Section - Warm Brown Theme */}
-      <section className="py-16 bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {features.map((feature, idx) => (
-              <div key={idx} className="text-center">
-                <div className="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mx-auto mb-4">
-                  {feature.icon === 'ShieldCheck' && <ShieldCheck className="w-8 h-8 text-warm-brown-500" />}
-                  {feature.icon === 'Truck' && <Truck className="w-8 h-8 text-warm-brown-500" />}
-                  {feature.icon === 'Award' && <Award className="w-8 h-8 text-warm-brown-500" />}
-                  {feature.icon === 'Star' && <Star className="w-8 h-8 text-amber-400 fill-amber-400" />}
-                </div>
-                <h3 className="font-bold text-slate-900 mb-2">{feature.title}</h3>
-                <p className="text-sm text-slate-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section - Warm Brown Theme */}
       <section id="faq" className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
