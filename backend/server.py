@@ -3073,6 +3073,277 @@ async def abandoned_cart_scheduler():
             # Continue running even after errors
             await asyncio.sleep(60)  # Wait 1 minute before retrying after error
 
+
+# ============== EMAIL CAMPAIGN 15% KORTING ==============
+
+class EmailCampaignStats(BaseModel):
+    total_contacts: int
+    pending: int
+    sent: int
+    failed: int
+    sources: dict
+
+class EmailCampaignSendRequest(BaseModel):
+    batch_size: int = 50  # Number of emails to send per batch
+    delay_seconds: float = 1.0  # Delay between emails to avoid rate limiting
+
+@app.get("/api/admin/email-campaign/stats")
+async def get_email_campaign_stats():
+    """Get statistics for the 15% discount email campaign"""
+    try:
+        collection = db['email_campaign_15_percent']
+        
+        total = await collection.count_documents({})
+        pending = await collection.count_documents({"status": "pending"})
+        sent = await collection.count_documents({"status": "sent"})
+        failed = await collection.count_documents({"status": "failed"})
+        
+        # Count by source
+        pipeline = [
+            {"$group": {"_id": "$source", "count": {"$sum": 1}}}
+        ]
+        sources_cursor = collection.aggregate(pipeline)
+        sources = {}
+        async for doc in sources_cursor:
+            sources[doc["_id"]] = doc["count"]
+        
+        return {
+            "success": True,
+            "stats": {
+                "total_contacts": total,
+                "pending": pending,
+                "sent": sent,
+                "failed": failed,
+                "sources": sources
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error getting campaign stats: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+def create_15_percent_email_html(firstname: str, gender: str = "") -> str:
+    """Create beautiful HTML email for 15% discount campaign"""
+    
+    # Personalized greeting
+    if firstname:
+        greeting = f"Beste {firstname},"
+    else:
+        greeting = "Beste,"
+    
+    return f'''
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #F6F1EB;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        
+        <!-- Header -->
+        <div style="background-color: #A26A49; padding: 30px 20px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px;">🧸 Droomvriendjes</h1>
+            <p style="color: #F6F1EB; margin: 10px 0 0 0; font-size: 14px;">Betere nachten voor het hele gezin</p>
+        </div>
+        
+        <!-- Main Content -->
+        <div style="padding: 40px 30px;">
+            <p style="font-size: 18px; color: #333; margin-bottom: 20px;">{greeting}</p>
+            
+            <h2 style="color: #A26A49; font-size: 24px; margin-bottom: 15px;">
+                🎁 Exclusief voor jou: 15% KORTING!
+            </h2>
+            
+            <p style="font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 20px;">
+                Ken je dat? Je kind dat maar niet in slaap valt, overprikkeld is, of bang in het donker? 
+                Onze Droomvriendjes helpen meer dan <strong>10.000+ gezinnen</strong> aan betere nachten!
+            </p>
+            
+            <div style="background-color: #FFF8F3; border: 2px dashed #A26A49; border-radius: 10px; padding: 20px; text-align: center; margin: 30px 0;">
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;">Jouw exclusieve kortingscode:</p>
+                <p style="margin: 0; font-size: 32px; font-weight: bold; color: #A26A49; letter-spacing: 3px;">WELKOM15</p>
+                <p style="margin: 10px 0 0 0; font-size: 14px; color: #888;">Geldig op je gehele bestelling</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://droomvriendjes.nl/knuffels" 
+                   style="display: inline-block; background-color: #A26A49; color: #ffffff; padding: 16px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 8px;">
+                    Shop Nu met 15% Korting →
+                </a>
+            </div>
+            
+            <!-- Features -->
+            <div style="margin: 30px 0; padding: 20px; background-color: #F6F1EB; border-radius: 10px;">
+                <p style="font-weight: bold; color: #333; margin: 0 0 15px 0;">Waarom kiezen voor Droomvriendjes?</p>
+                <p style="margin: 8px 0; color: #555;">✅ Rustgevende sterrenprojectie & muziek</p>
+                <p style="margin: 8px 0; color: #555;">✅ 86% van de kinderen slaapt beter</p>
+                <p style="margin: 8px 0; color: #555;">✅ Gratis verzending in heel Nederland</p>
+                <p style="margin: 8px 0; color: #555;">✅ 14 dagen niet goed = geld terug</p>
+            </div>
+            
+            <p style="font-size: 14px; color: #888; margin-top: 30px;">
+                Liefs,<br>
+                <strong style="color: #A26A49;">Team Droomvriendjes</strong>
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #3A271C; padding: 25px 20px; text-align: center;">
+            <p style="color: #F6F1EB; margin: 0 0 10px 0; font-size: 14px;">
+                Droomvriendjes | Schaesbergerweg 103, 6415 AD Heerlen
+            </p>
+            <p style="color: #888; margin: 0; font-size: 12px;">
+                <a href="https://droomvriendjes.nl" style="color: #A26A49;">Website</a> | 
+                <a href="mailto:info@droomvriendjes.nl" style="color: #A26A49;">Contact</a>
+            </p>
+            <p style="color: #666; margin: 15px 0 0 0; font-size: 11px;">
+                Je ontvangt deze email omdat je interesse hebt getoond in producten voor een betere nachtrust.
+            </p>
+        </div>
+        
+    </div>
+</body>
+</html>
+'''
+
+
+def create_15_percent_email_text(firstname: str) -> str:
+    """Create plain text version of the 15% discount email"""
+    greeting = f"Beste {firstname}," if firstname else "Beste,"
+    
+    return f'''{greeting}
+
+🎁 EXCLUSIEF VOOR JOU: 15% KORTING!
+
+Ken je dat? Je kind dat maar niet in slaap valt, overprikkeld is, of bang in het donker?
+Onze Droomvriendjes helpen meer dan 10.000+ gezinnen aan betere nachten!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+JOUW KORTINGSCODE: WELKOM15
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👉 Shop nu: https://droomvriendjes.nl/knuffels
+
+Waarom kiezen voor Droomvriendjes?
+✅ Rustgevende sterrenprojectie & muziek
+✅ 86% van de kinderen slaapt beter
+✅ Gratis verzending in heel Nederland
+✅ 14 dagen niet goed = geld terug
+
+Liefs,
+Team Droomvriendjes
+
+---
+Droomvriendjes | Schaesbergerweg 103, 6415 AD Heerlen
+info@droomvriendjes.nl | https://droomvriendjes.nl
+'''
+
+
+@app.post("/api/admin/email-campaign/send-batch")
+async def send_email_campaign_batch(request: EmailCampaignSendRequest):
+    """Send a batch of emails from the 15% discount campaign"""
+    try:
+        collection = db['email_campaign_15_percent']
+        
+        # Get pending emails
+        pending_cursor = collection.find({"status": "pending"}).limit(request.batch_size)
+        pending_list = await pending_cursor.to_list(length=request.batch_size)
+        
+        if not pending_list:
+            return {
+                "success": True,
+                "message": "No pending emails to send",
+                "sent": 0,
+                "failed": 0
+            }
+        
+        sent_count = 0
+        failed_count = 0
+        
+        for contact in pending_list:
+            try:
+                email = contact['email']
+                firstname = contact.get('firstname', '')
+                gender = contact.get('gender', '')
+                
+                # Create email content
+                html_content = create_15_percent_email_html(firstname, gender)
+                text_content = create_15_percent_email_text(firstname)
+                
+                # Send email
+                subject = "🎁 Exclusief voor jou: 15% korting op Droomvriendjes!"
+                success = send_email(email, subject, html_content, text_content)
+                
+                if success:
+                    # Update status to sent
+                    await collection.update_one(
+                        {"_id": contact["_id"]},
+                        {"$set": {"status": "sent", "sent_at": datetime.now(timezone.utc)}}
+                    )
+                    sent_count += 1
+                else:
+                    # Update status to failed
+                    await collection.update_one(
+                        {"_id": contact["_id"]},
+                        {"$set": {"status": "failed", "error": "SMTP error"}}
+                    )
+                    failed_count += 1
+                
+                # Delay between emails to avoid rate limiting
+                await asyncio.sleep(request.delay_seconds)
+                
+            except Exception as e:
+                logger.error(f"Error sending to {contact.get('email')}: {str(e)}")
+                await collection.update_one(
+                    {"_id": contact["_id"]},
+                    {"$set": {"status": "failed", "error": str(e)}}
+                )
+                failed_count += 1
+        
+        # Get updated stats
+        remaining = await collection.count_documents({"status": "pending"})
+        
+        return {
+            "success": True,
+            "message": f"Batch completed: {sent_count} sent, {failed_count} failed",
+            "sent": sent_count,
+            "failed": failed_count,
+            "remaining": remaining
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in email campaign batch: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/admin/email-campaign/reset-failed")
+async def reset_failed_emails():
+    """Reset failed emails back to pending status for retry"""
+    try:
+        collection = db['email_campaign_15_percent']
+        
+        result = await collection.update_many(
+            {"status": "failed"},
+            {"$set": {"status": "pending", "error": None}}
+        )
+        
+        return {
+            "success": True,
+            "message": f"Reset {result.modified_count} failed emails to pending"
+        }
+    except Exception as e:
+        logger.error(f"Error resetting failed emails: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/admin/email-campaign/preview")
+async def preview_campaign_email():
+    """Preview the 15% discount email template"""
+    html = create_15_percent_email_html("Jan", "male")
+    return Response(content=html, media_type="text/html")
+
+
 @app.on_event("startup")
 async def init_email_service():
     global email_service, abandoned_cart_scheduler_task
