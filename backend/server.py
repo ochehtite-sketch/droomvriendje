@@ -3337,6 +3337,181 @@ async def reset_failed_emails():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/admin/email-campaign/monitor")
+async def monitor_email_campaign():
+    """
+    Uitgebreide monitoring voor email campagne met bounce rates en error tracking
+    """
+    try:
+        collection = db['email_campaign_15_percent']
+        
+        # Basis statistieken
+        total = await collection.count_documents({})
+        pending = await collection.count_documents({"status": "pending"})
+        sent = await collection.count_documents({"status": "sent"})
+        failed = await collection.count_documents({"status": "failed"})
+        
+        # Bereken percentages
+        if total > 0:
+            sent_percentage = round((sent / total) * 100, 2)
+            failed_percentage = round((failed / total) * 100, 2)
+            pending_percentage = round((pending / total) * 100, 2)
+        else:
+            sent_percentage = failed_percentage = pending_percentage = 0
+        
+        # Bounce rate (failed / (sent + failed))
+        total_attempted = sent + failed
+        bounce_rate = round((failed / total_attempted) * 100, 2) if total_attempted > 0 else 0
+        
+        # Success rate
+        success_rate = round((sent / total_attempted) * 100, 2) if total_attempted > 0 else 0
+        
+        # Groepeer errors
+        error_pipeline = [
+            {"$match": {"status": "failed", "error": {"$exists": True}}},
+            {"$group": {"_id": "$error", "count": {"$sum": 1}}},
+            {"$sort": {"count": -1}},
+            {"$limit": 10}
+        ]
+        error_cursor = collection.aggregate(error_pipeline)
+        error_breakdown = {}
+        async for doc in error_cursor:
+            if doc["_id"]:
+                error_breakdown[doc["_id"][:50]] = doc["count"]
+        
+        # Recente failures (laatste 10)
+        recent_failures_cursor = collection.find(
+            {"status": "failed"}
+        ).sort("_id", -1).limit(10)
+        recent_failures = []
+        async for doc in recent_failures_cursor:
+            recent_failures.append({
+                "email": doc.get("email", "")[:30] + "...",
+                "error": doc.get("error", "Unknown")[:50],
+                "source": doc.get("source", "")
+            })
+        
+        # Statistieken per bron
+        source_pipeline = [
+            {"$group": {
+                "_id": {"source": "$source", "status": "$status"},
+                "count": {"$sum": 1}
+            }}
+        ]
+        source_cursor = collection.aggregate(source_pipeline)
+        source_stats = {}
+        async for doc in source_cursor:
+            source = doc["_id"]["source"]
+            status = doc["_id"]["status"]
+            if source not in source_stats:
+                source_stats[source] = {"pending": 0, "sent": 0, "failed": 0}
+            source_stats[source][status] = doc["count"]
+        
+        # Health status
+        if bounce_rate > 10:
+            health_status = "⚠️ WAARSCHUWING - Hoge bounce rate!"
+            health_color = "red"
+        elif bounce_rate > 5:
+            health_status = "⚡ MATIG - Bounce rate verhoogd"
+            health_color = "yellow"
+        else:
+            health_status = "✅ GOED - Normale bounce rate"
+            health_color = "green"
+        
+        return {
+            "success": True,
+            "health": {
+                "status": health_status,
+                "color": health_color
+            },
+            "summary": {
+                "total_contacts": total,
+                "pending": pending,
+                "sent": sent,
+                "failed": failed
+            },
+            "rates": {
+                "bounce_rate": f"{bounce_rate}%",
+                "success_rate": f"{success_rate}%",
+                "sent_percentage": f"{sent_percentage}%",
+                "failed_percentage": f"{failed_percentage}%",
+                "pending_percentage": f"{pending_percentage}%"
+            },
+            "progress": {
+                "completed": sent + failed,
+                "remaining": pending,
+                "progress_percentage": f"{round(((sent + failed) / total) * 100, 2)}%" if total > 0 else "0%"
+            },
+            "error_breakdown": error_breakdown,
+            "recent_failures": recent_failures,
+            "source_stats": source_stats
+        }
+        
+    except Exception as e:
+        logger.error(f"Error monitoring campaign: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/admin/email-campaign/failed-emails")
+async def get_failed_emails(skip: int = 0, limit: int = 50):
+    """Get list of failed emails with error details"""
+    try:
+        collection = db['email_campaign_15_percent']
+        
+        cursor = collection.find({"status": "failed"}).skip(skip).limit(limit)
+        failed_list = []
+        async for doc in cursor:
+            failed_list.append({
+                "email": doc.get("email"),
+                "firstname": doc.get("firstname"),
+                "lastname": doc.get("lastname"),
+                "source": doc.get("source"),
+                "error": doc.get("error"),
+                "created_at": doc.get("created_at").isoformat() if doc.get("created_at") else None
+            })
+        
+        total_failed = await collection.count_documents({"status": "failed"})
+        
+        return {
+            "success": True,
+            "total_failed": total_failed,
+            "showing": len(failed_list),
+            "skip": skip,
+            "limit": limit,
+            "failed_emails": failed_list
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting failed emails: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/admin/email-campaign/test-send")
+async def test_send_campaign_email(test_email: str):
+    """Send a test email to verify SMTP settings"""
+    try:
+        html_content = create_15_percent_email_html("Test", "")
+        text_content = create_15_percent_email_text("Test")
+        subject = "🧪 TEST: 15% korting op Droomvriendjes!"
+        
+        success = send_email(test_email, subject, html_content, text_content)
+        
+        if success:
+            return {
+                "success": True,
+                "message": f"Test email verzonden naar {test_email}"
+            }
+        else:
+            return {
+                "success": False,
+                "message": "Email verzenden mislukt - controleer SMTP instellingen"
+            }
+            
+    except Exception as e:
+        logger.error(f"Test email error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/admin/email-campaign/preview")
 async def preview_campaign_email():
     """Preview the 15% discount email template"""
