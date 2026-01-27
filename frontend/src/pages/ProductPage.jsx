@@ -301,25 +301,25 @@ const ProductPage = () => {
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
                       <Shield className="w-6 h-6 text-green-600" />
                     </div>
-                    <p className="text-xs text-gray-700 font-semibold">14 dagen<br />proefslapen</p>
+                    <p className="text-xs text-slate-700 font-semibold">14 dagen<br />proefslapen</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Check className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Check className="w-6 h-6 text-warm-brown-600" />
                     </div>
-                    <p className="text-xs text-gray-700 font-semibold">Gratis<br />verzending</p>
+                    <p className="text-xs text-slate-700 font-semibold">Gratis<br />verzending</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Star className="w-6 h-6 text-yellow-600" />
+                    <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Star className="w-6 h-6 text-amber-600" />
                     </div>
-                    <p className="text-xs text-gray-700 font-semibold">CE<br />gecertificeerd</p>
+                    <p className="text-xs text-slate-700 font-semibold">CE<br />gecertificeerd</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <div className="w-12 h-12 bg-warm-brown-50 rounded-full flex items-center justify-center mx-auto mb-2">
                       <span className="text-xl">🇳🇱</span>
                     </div>
-                    <p className="text-xs text-gray-700 font-semibold">Nederlandse<br />klantenservice</p>
+                    <p className="text-xs text-slate-700 font-semibold">Nederlandse<br />klantenservice</p>
                   </div>
                 </div>
               </div>
