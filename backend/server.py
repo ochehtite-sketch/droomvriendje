@@ -2558,16 +2558,18 @@ async def google_ads_status():
         "client_secret_set": bool(GOOGLE_ADS_CONFIG.get("client_secret")),
     }
 
+# Store OAuth states for CSRF protection
+oauth_states = {}
+
 @api_router.get("/google-ads/oauth-url")
 async def get_google_ads_oauth_url(request: Request):
-    """Get OAuth authorization URL for Google Ads"""
+    """Get OAuth authorization URL for Google Ads with CSRF protection"""
     from services.google_ads_service import google_ads_service
+    import secrets
     
     # Use the request's origin for dynamic redirect URI
-    # This allows testing from both preview and production
     origin = request.headers.get("origin") or request.headers.get("referer", "").rstrip("/")
     if origin:
-        # Extract base URL from origin/referer
         from urllib.parse import urlparse
         parsed = urlparse(origin)
         base_url = f"{parsed.scheme}://{parsed.netloc}"
@@ -2575,48 +2577,66 @@ async def get_google_ads_oauth_url(request: Request):
         base_url = get_frontend_url()
     
     redirect_uri = f"{base_url}/admin/google-ads/callback"
+    
+    # Generate state for CSRF protection
+    state = secrets.token_urlsafe(32)
+    oauth_states[state] = {
+        "redirect_uri": redirect_uri,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
     try:
-        auth_url = google_ads_service.get_oauth_url(redirect_uri)
-        return {"auth_url": auth_url, "redirect_uri": redirect_uri}
+        result = google_ads_service.get_oauth_url(redirect_uri, state)
+        return result
     except Exception as e:
         logger.error(f"Error generating OAuth URL: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
+class OAuthCallbackRequest(BaseModel):
+    code: str
+    state: str
+    origin: Optional[str] = None
+
+
 @api_router.post("/google-ads/oauth-callback")
-async def google_ads_oauth_callback(request: Request, code: str, origin: str = None):
-    """Exchange OAuth code for tokens"""
+async def google_ads_oauth_callback(request: OAuthCallbackRequest):
+    """Exchange OAuth code for tokens with CSRF verification"""
     from services.google_ads_service import google_ads_service
     
-    # Use the origin parameter passed from frontend (most reliable)
-    if origin:
-        base_url = origin.rstrip("/")
-    else:
-        # Fallback to headers
-        header_origin = request.headers.get("origin") or request.headers.get("referer", "").rstrip("/")
-        if header_origin:
-            from urllib.parse import urlparse
-            parsed = urlparse(header_origin)
-            base_url = f"{parsed.scheme}://{parsed.netloc}"
-        else:
-            base_url = get_frontend_url()
+    # Verify state for CSRF protection
+    if request.state not in oauth_states:
+        logger.warning(f"Invalid OAuth state received: {request.state}")
+        raise HTTPException(status_code=400, detail="Invalid state - possible CSRF attack")
     
-    redirect_uri = f"{base_url}/admin/google-ads/callback"
-    logger.info(f"OAuth callback - using redirect_uri: {redirect_uri}")
+    stored_state = oauth_states.pop(request.state)  # Remove used state
+    redirect_uri = stored_state["redirect_uri"]
+    
+    logger.info(f"OAuth callback - state verified, using redirect_uri: {redirect_uri}")
     
     try:
-        tokens = google_ads_service.exchange_code_for_tokens(code, redirect_uri)
+        tokens = google_ads_service.exchange_code_for_tokens(request.code, redirect_uri)
         
         # Store refresh token in database for future use
         await db.google_ads_tokens.update_one(
             {"type": "google_ads"},
             {"$set": {
                 "refresh_token": tokens.get("refresh_token"),
+                "access_token": tokens.get("access_token"),
+                "token_expiry": tokens.get("expiry"),
                 "updated_at": datetime.now(timezone.utc).isoformat()
             }},
             upsert=True
         )
         
-        return {"success": True, "message": "OAuth completed successfully"}
+        # Also update environment variable for immediate use
+        os.environ["GOOGLE_ADS_REFRESH_TOKEN"] = tokens.get("refresh_token", "")
+        
+        return {
+            "success": True, 
+            "message": "Google Ads account succesvol verbonden!",
+            "has_refresh_token": bool(tokens.get("refresh_token"))
+        }
     except Exception as e:
         logger.error(f"OAuth callback error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
