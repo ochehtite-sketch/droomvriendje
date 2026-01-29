@@ -97,6 +97,18 @@ function App() {
               {/* Offline Marketing Landing Pages */}
               <Route path="/actie/:channel" element={<OfflineLandingPage />} />
               <Route path="/qr/:channel" element={<OfflineLandingPage />} />
+              {/* SEO Landing Pages */}
+              <Route path="/slaapknuffel" element={<SeoLandingPage />} />
+              <Route path="/knuffel-nachtlampje" element={<SeoLandingPage />} />
+              <Route path="/baby-nachtlamp" element={<SeoLandingPage />} />
+              <Route path="/kraamcadeau" element={<SeoLandingPage />} />
+              <Route path="/kind-slaapt-niet-door" element={<SeoLandingPage />} />
+              <Route path="/sterrenprojector-knuffel" element={<SeoLandingPage />} />
+              <Route path="/white-noise-knuffel" element={<SeoLandingPage />} />
+              <Route path="/peuter-nachtlampje" element={<SeoLandingPage />} />
+              <Route path="/baby-slaapt-slecht" element={<SeoLandingPage />} />
+              <Route path="/beste-slaapknuffel" element={<SeoLandingPage />} />
+              <Route path="/seo/:keyword" element={<SeoLandingPage />} />
               <Route path="/uitproberen" element={<UitproberenPage />} />
               <Route path="/vrouwen-60" element={<VrouwenLandingPage />} />
               <Route path="/ouders-baby" element={<OudersBabyPage />} />
