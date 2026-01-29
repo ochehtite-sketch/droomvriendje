@@ -74,6 +74,7 @@ function App() {
               <Route path="/over-ons" element={<OverOnsPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/retourneren" element={<RetournerenPage />} />
+              <Route path="/verzending" element={<VerzendingPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/voorwaarden" element={<VoorwaardenPage />} />
               <Route path="/blogs" element={<BlogsPage />} />
