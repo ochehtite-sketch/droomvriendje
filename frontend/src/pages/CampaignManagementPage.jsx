@@ -61,6 +61,66 @@ const CampaignManagementPage = () => {
 
   const totalDailyBudget = shoppingCampaigns.reduce((sum, c) => sum + c.dailyBudget, 0);
 
+  const toggleCampaignSelection = (id) => {
+    setSelectedCampaigns(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
+  const selectAllCampaigns = () => {
+    if (selectedCampaigns.length === shoppingCampaigns.length) {
+      setSelectedCampaigns([]);
+    } else {
+      setSelectedCampaigns(shoppingCampaigns.map(c => c.id));
+    }
+  };
+
+  const createCampaignsInGoogleAds = async () => {
+    setIsCreating(true);
+    setCreateResult(null);
+    
+    try {
+      const campaignIds = selectedCampaigns.length > 0 ? selectedCampaigns : null;
+      
+      const response = await fetch(`${API_URL}/api/google-ads/campaigns/create-predefined`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ campaign_ids: campaignIds })
+      });
+      
+      const result = await response.json();
+      setCreateResult(result);
+      
+      if (result.error && result.error.includes("OAuth")) {
+        toast({
+          title: "OAuth Vereist",
+          description: "Verbind eerst je Google Ads account via Admin > Google Ads",
+          variant: "destructive"
+        });
+      } else if (result.success_count > 0) {
+        toast({
+          title: `${result.success_count} Campagnes Aangemaakt!`,
+          description: `Succesvol in Google Ads geïmporteerd. Status: PAUSED`,
+        });
+      } else if (result.fail_count > 0) {
+        toast({
+          title: "Fout bij aanmaken",
+          description: `${result.fail_count} campagnes konden niet worden aangemaakt`,
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      console.error('Error creating campaigns:', error);
+      toast({
+        title: "Fout",
+        description: "Kon geen verbinding maken met Google Ads API",
+        variant: "destructive"
+      });
+    } finally {
+      setIsCreating(false);
+    }
+  };
+
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 py-8">
