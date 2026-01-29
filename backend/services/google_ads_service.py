@@ -206,13 +206,30 @@ class GoogleAdsService:
             logger.error(f"Error retrieving campaigns: {e}")
             return []
     
+    def _create_budget(self, budget_name: str, daily_budget: float) -> Optional[str]:
+        """Create a campaign budget and return resource name"""
+        budget_service = self.client.get_service("CampaignBudgetService")
+        budget_operation = self.client.get_type("CampaignBudgetOperation")
+        budget = budget_operation.create
+        budget.name = budget_name
+        budget.delivery_method = self.client.enums.BudgetDeliveryMethodEnum.STANDARD
+        budget.amount_micros = int(daily_budget * 1_000_000)
+        
+        budget_response = budget_service.mutate_campaign_budgets(
+            customer_id=CUSTOMER_ID,
+            operations=[budget_operation]
+        )
+        return budget_response.results[0].resource_name
+
     def create_shopping_campaign(
         self,
         campaign_name: str,
         daily_budget: float,
-        merchant_id: int = None
+        merchant_id: int = None,
+        priority: int = 0,
+        target_roas: float = None
     ) -> dict:
-        """Create a new Shopping campaign"""
+        """Create a new Standard Shopping campaign"""
         if not self.client:
             self.client = self._initialize_client()
             
@@ -223,20 +240,7 @@ class GoogleAdsService:
         
         try:
             campaign_service = self.client.get_service("CampaignService")
-            budget_service = self.client.get_service("CampaignBudgetService")
-            
-            # Create campaign budget
-            budget_operation = self.client.get_type("CampaignBudgetOperation")
-            budget = budget_operation.create
-            budget.name = f"{campaign_name} Budget"
-            budget.delivery_method = self.client.enums.BudgetDeliveryMethodEnum.STANDARD
-            budget.amount_micros = int(daily_budget * 1_000_000)
-            
-            budget_response = budget_service.mutate_campaign_budgets(
-                customer_id=CUSTOMER_ID,
-                operations=[budget_operation]
-            )
-            budget_resource_name = budget_response.results[0].resource_name
+            budget_resource_name = self._create_budget(f"{campaign_name} Budget", daily_budget)
             
             # Create Shopping campaign
             campaign_operation = self.client.get_type("CampaignOperation")
@@ -244,11 +248,16 @@ class GoogleAdsService:
             campaign.name = campaign_name
             campaign.advertising_channel_type = self.client.enums.AdvertisingChannelTypeEnum.SHOPPING
             campaign.shopping_setting.merchant_id = merchant_id
-            campaign.shopping_setting.campaign_priority = 0
+            campaign.shopping_setting.campaign_priority = priority
             campaign.shopping_setting.enable_local = True
             campaign.status = self.client.enums.CampaignStatusEnum.PAUSED
             campaign.campaign_budget = budget_resource_name
-            campaign.manual_cpc.enhanced_cpc_enabled = False
+            
+            # Set bidding strategy
+            if target_roas:
+                campaign.target_roas.target_roas = target_roas / 100  # Convert percentage to decimal
+            else:
+                campaign.manual_cpc.enhanced_cpc_enabled = False
             
             campaign_response = campaign_service.mutate_campaigns(
                 customer_id=CUSTOMER_ID,
@@ -263,7 +272,8 @@ class GoogleAdsService:
                 "campaign_id": campaign_resource_name,
                 "campaign_name": campaign_name,
                 "budget": daily_budget,
-                "merchant_id": merchant_id
+                "merchant_id": merchant_id,
+                "type": "Standard Shopping"
             }
             
         except GoogleAdsException as ex:
@@ -278,6 +288,219 @@ class GoogleAdsService:
         except Exception as e:
             logger.error(f"Error creating shopping campaign: {e}")
             return {"error": str(e)}
+
+    def create_performance_max_campaign(
+        self,
+        campaign_name: str,
+        daily_budget: float,
+        target_roas: float = None,
+        merchant_id: int = None
+    ) -> dict:
+        """Create a new Performance Max campaign"""
+        if not self.client:
+            self.client = self._initialize_client()
+            
+        if not self.client:
+            return {"error": "Client not initialized - OAuth required"}
+            
+        merchant_id = merchant_id or MERCHANT_CENTER_ID
+        
+        try:
+            campaign_service = self.client.get_service("CampaignService")
+            budget_resource_name = self._create_budget(f"{campaign_name} Budget", daily_budget)
+            
+            # Create Performance Max campaign
+            campaign_operation = self.client.get_type("CampaignOperation")
+            campaign = campaign_operation.create
+            campaign.name = campaign_name
+            campaign.advertising_channel_type = self.client.enums.AdvertisingChannelTypeEnum.PERFORMANCE_MAX
+            campaign.status = self.client.enums.CampaignStatusEnum.PAUSED
+            campaign.campaign_budget = budget_resource_name
+            
+            # Set bidding strategy - Performance Max uses maximize conversions or target ROAS
+            if target_roas:
+                campaign.maximize_conversion_value.target_roas = target_roas / 100
+            else:
+                campaign.maximize_conversions.target_cpa_micros = 0  # Maximize conversions
+            
+            # Shopping setting for retail
+            campaign.shopping_setting.merchant_id = merchant_id
+            
+            campaign_response = campaign_service.mutate_campaigns(
+                customer_id=CUSTOMER_ID,
+                operations=[campaign_operation]
+            )
+            
+            campaign_resource_name = campaign_response.results[0].resource_name
+            logger.info(f"Performance Max campaign created: {campaign_resource_name}")
+            
+            return {
+                "success": True,
+                "campaign_id": campaign_resource_name,
+                "campaign_name": campaign_name,
+                "budget": daily_budget,
+                "type": "Performance Max"
+            }
+            
+        except GoogleAdsException as ex:
+            error_details = []
+            for error in ex.failure.errors:
+                error_details.append({
+                    "code": str(error.error_code),
+                    "message": error.message
+                })
+            logger.error(f"Google Ads API error: {error_details}")
+            return {"error": "API error", "details": error_details}
+        except Exception as e:
+            logger.error(f"Error creating Performance Max campaign: {e}")
+            return {"error": str(e)}
+
+    def create_search_campaign(
+        self,
+        campaign_name: str,
+        daily_budget: float,
+        target_roas: float = None,
+        target_cpa: float = None,
+        keywords: List[str] = None,
+        headlines: List[str] = None,
+        descriptions: List[str] = None
+    ) -> dict:
+        """Create a new Search campaign with responsive search ads"""
+        if not self.client:
+            self.client = self._initialize_client()
+            
+        if not self.client:
+            return {"error": "Client not initialized - OAuth required"}
+        
+        try:
+            campaign_service = self.client.get_service("CampaignService")
+            budget_resource_name = self._create_budget(f"{campaign_name} Budget", daily_budget)
+            
+            # Create Search campaign
+            campaign_operation = self.client.get_type("CampaignOperation")
+            campaign = campaign_operation.create
+            campaign.name = campaign_name
+            campaign.advertising_channel_type = self.client.enums.AdvertisingChannelTypeEnum.SEARCH
+            campaign.status = self.client.enums.CampaignStatusEnum.PAUSED
+            campaign.campaign_budget = budget_resource_name
+            
+            # Network settings
+            campaign.network_settings.target_google_search = True
+            campaign.network_settings.target_search_network = True
+            
+            # Set bidding strategy
+            if target_roas:
+                campaign.target_roas.target_roas = target_roas / 100
+            elif target_cpa:
+                campaign.target_cpa.target_cpa_micros = int(target_cpa * 1_000_000)
+            else:
+                campaign.maximize_conversions.target_cpa_micros = 0
+            
+            campaign_response = campaign_service.mutate_campaigns(
+                customer_id=CUSTOMER_ID,
+                operations=[campaign_operation]
+            )
+            
+            campaign_resource_name = campaign_response.results[0].resource_name
+            logger.info(f"Search campaign created: {campaign_resource_name}")
+            
+            return {
+                "success": True,
+                "campaign_id": campaign_resource_name,
+                "campaign_name": campaign_name,
+                "budget": daily_budget,
+                "type": "Search"
+            }
+            
+        except GoogleAdsException as ex:
+            error_details = []
+            for error in ex.failure.errors:
+                error_details.append({
+                    "code": str(error.error_code),
+                    "message": error.message
+                })
+            logger.error(f"Google Ads API error: {error_details}")
+            return {"error": "API error", "details": error_details}
+        except Exception as e:
+            logger.error(f"Error creating Search campaign: {e}")
+            return {"error": str(e)}
+
+    def create_bulk_campaigns(self, campaigns: List[dict]) -> dict:
+        """Create multiple campaigns from a list of campaign configs"""
+        if not self.client:
+            self.client = self._initialize_client()
+            
+        if not self.client:
+            return {"error": "Client not initialized - OAuth required", "created": [], "failed": []}
+        
+        results = {
+            "created": [],
+            "failed": [],
+            "total": len(campaigns)
+        }
+        
+        for campaign_config in campaigns:
+            try:
+                campaign_type = campaign_config.get("type", "Standard Shopping")
+                name = campaign_config.get("name")
+                budget = campaign_config.get("dailyBudget", 10.0)
+                target_roas = campaign_config.get("targetRoas")
+                target_cpa = campaign_config.get("targetCpa")
+                
+                if campaign_type == "Performance Max":
+                    result = self.create_performance_max_campaign(
+                        campaign_name=name,
+                        daily_budget=budget,
+                        target_roas=target_roas
+                    )
+                elif campaign_type == "Search":
+                    result = self.create_search_campaign(
+                        campaign_name=name,
+                        daily_budget=budget,
+                        target_roas=target_roas,
+                        target_cpa=target_cpa,
+                        keywords=campaign_config.get("keywords", {}).get("exact", []),
+                        headlines=campaign_config.get("adCopy", {}).get("headlines", []),
+                        descriptions=campaign_config.get("adCopy", {}).get("descriptions", [])
+                    )
+                elif campaign_type == "Demand Gen":
+                    # Demand Gen uses similar structure to Performance Max
+                    result = self.create_performance_max_campaign(
+                        campaign_name=name,
+                        daily_budget=budget,
+                        target_roas=target_roas
+                    )
+                else:  # Standard Shopping
+                    result = self.create_shopping_campaign(
+                        campaign_name=name,
+                        daily_budget=budget,
+                        target_roas=target_roas
+                    )
+                
+                if result.get("success"):
+                    results["created"].append({
+                        "name": name,
+                        "type": campaign_type,
+                        "campaign_id": result.get("campaign_id")
+                    })
+                else:
+                    results["failed"].append({
+                        "name": name,
+                        "type": campaign_type,
+                        "error": result.get("error")
+                    })
+                    
+            except Exception as e:
+                logger.error(f"Error creating campaign {campaign_config.get('name')}: {e}")
+                results["failed"].append({
+                    "name": campaign_config.get("name"),
+                    "error": str(e)
+                })
+        
+        results["success_count"] = len(results["created"])
+        results["fail_count"] = len(results["failed"])
+        
+        return results
 
 
 # Singleton instance
