@@ -1072,23 +1072,36 @@ async def validate_discount_code(data: DiscountCodeValidate):
         
         if discount_code:
             # Check if code is expired
-            if discount_code.get("expires_at"):
-                expires = datetime.fromisoformat(discount_code["expires_at"])
-                if expires < datetime.now(timezone.utc):
-                    return {"valid": False, "message": "Deze kortingscode is verlopen"}
+            expires_field = discount_code.get("expires_at") or discount_code.get("valid_until")
+            if expires_field:
+                try:
+                    expires = datetime.fromisoformat(expires_field.replace('Z', '+00:00'))
+                    if expires < datetime.now(timezone.utc):
+                        return {"valid": False, "message": "Deze kortingscode is verlopen"}
+                except:
+                    pass
             
             # Check usage limit
-            if discount_code.get("max_uses"):
-                if discount_code.get("uses", 0) >= discount_code["max_uses"]:
-                    return {"valid": False, "message": "Deze kortingscode is niet meer geldig"}
+            max_uses = discount_code.get("max_uses")
+            current_uses = discount_code.get("uses", 0) or discount_code.get("current_uses", 0)
+            if max_uses and current_uses >= max_uses:
+                return {"valid": False, "message": "Deze kortingscode is niet meer geldig"}
             
-            # Calculate discount
-            discount_type = discount_code.get("type", "percentage")
-            discount_value = discount_code.get("value", 0)
+            # Check minimum order amount
+            min_order = discount_code.get("min_order", 0) or discount_code.get("min_order_amount", 0)
+            if min_order and data.cart_total < min_order:
+                return {"valid": False, "message": f"Minimale bestelwaarde: €{min_order:.2f}"}
+            
+            # Calculate discount - support both field naming conventions
+            discount_type = discount_code.get("type") or discount_code.get("discount_type", "percentage")
+            discount_value = discount_code.get("value") or discount_code.get("discount_value", 0)
             
             if discount_type == "percentage":
                 discount_amount = data.cart_total * (discount_value / 100)
                 message = f"{discount_value}% korting toegepast"
+            elif discount_type == "free_shipping":
+                discount_amount = 0
+                message = "Gratis verzending toegepast"
             else:  # fixed amount
                 discount_amount = min(discount_value, data.cart_total)
                 message = f"€{discount_amount:.2f} korting toegepast"
