@@ -2857,6 +2857,38 @@ async def track_qr_scan(data: QRScanTrackingData):
         return {"status": "error"}
 
 
+class SeoVisitData(BaseModel):
+    keyword: str
+    page_title: Optional[str] = None
+    timestamp: Optional[str] = None
+
+
+@api_router.post("/tracking/seo-visit")
+async def track_seo_visit(data: SeoVisitData):
+    """Track SEO landing page visits"""
+    try:
+        await db.seo_visits.insert_one({
+            "keyword": data.keyword,
+            "page_title": data.page_title,
+            "visited_at": data.timestamp or datetime.now(timezone.utc).isoformat()
+        })
+        
+        # Update keyword stats
+        await db.seo_keyword_stats.update_one(
+            {"keyword": data.keyword},
+            {
+                "$inc": {"visits": 1},
+                "$set": {"last_visit": datetime.now(timezone.utc).isoformat()}
+            },
+            upsert=True
+        )
+        
+        return {"status": "tracked"}
+    except Exception as e:
+        logger.error(f"Error tracking SEO visit: {e}")
+        return {"status": "error"}
+
+
 @api_router.get("/tracking/offline-stats")
 async def get_offline_marketing_stats():
     """Get statistics for offline marketing campaigns"""
