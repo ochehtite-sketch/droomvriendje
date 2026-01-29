@@ -2796,6 +2796,98 @@ async def get_predefined_campaigns():
     }
 
 
+# ============== QR CODE & OFFLINE MARKETING TRACKING ==============
+
+class QRScanTrackingData(BaseModel):
+    channel: str
+    code: Optional[str] = None
+    timestamp: Optional[str] = None
+    referrer: Optional[str] = None
+    utm_source: Optional[str] = None
+    utm_medium: Optional[str] = None
+    utm_campaign: Optional[str] = None
+
+
+@api_router.post("/tracking/qr-scan")
+async def track_qr_scan(data: QRScanTrackingData):
+    """Track QR code scans for offline marketing campaigns"""
+    try:
+        tracking_data = {
+            "channel": data.channel,
+            "discount_code": data.code,
+            "scanned_at": data.timestamp or datetime.now(timezone.utc).isoformat(),
+            "referrer": data.referrer,
+            "utm_source": data.utm_source,
+            "utm_medium": data.utm_medium,
+            "utm_campaign": data.utm_campaign,
+            "converted": False
+        }
+        
+        await db.qr_scans.insert_one(tracking_data)
+        
+        # Update channel stats
+        await db.offline_campaign_stats.update_one(
+            {"channel": data.channel},
+            {
+                "$inc": {"scans": 1},
+                "$set": {"last_scan": datetime.now(timezone.utc).isoformat()}
+            },
+            upsert=True
+        )
+        
+        return {"status": "tracked"}
+    except Exception as e:
+        logger.error(f"Error tracking QR scan: {e}")
+        return {"status": "error"}
+
+
+@api_router.get("/tracking/offline-stats")
+async def get_offline_marketing_stats():
+    """Get statistics for offline marketing campaigns"""
+    try:
+        # Get scan stats per channel
+        pipeline = [
+            {"$group": {
+                "_id": "$channel",
+                "total_scans": {"$sum": 1},
+                "last_scan": {"$max": "$scanned_at"}
+            }},
+            {"$sort": {"total_scans": -1}}
+        ]
+        
+        scan_stats = await db.qr_scans.aggregate(pipeline).to_list(100)
+        
+        # Get discount code usage
+        discount_pipeline = [
+            {"$match": {"channel": {"$exists": True}}},
+            {"$group": {
+                "_id": "$code",
+                "uses": {"$first": "$uses"},
+                "channel": {"$first": "$channel"},
+                "value": {"$first": "$value"},
+                "type": {"$first": "$type"}
+            }}
+        ]
+        
+        discount_stats = await db.discounts.aggregate(discount_pipeline).to_list(100)
+        
+        # Calculate totals
+        total_scans = sum(s["total_scans"] for s in scan_stats)
+        
+        return {
+            "total_scans": total_scans,
+            "by_channel": {s["_id"]: {"scans": s["total_scans"], "last_scan": s.get("last_scan")} for s in scan_stats},
+            "discount_codes": discount_stats,
+            "summary": {
+                "channels_active": len(scan_stats),
+                "codes_active": len([d for d in discount_stats if d.get("uses", 0) > 0])
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error getting offline stats: {e}")
+        return {"error": str(e)}
+
+
 # ============== MERCHANT CENTER SFTP UPLOAD ==============
 
 @api_router.post("/feed/upload-to-merchant-center")
