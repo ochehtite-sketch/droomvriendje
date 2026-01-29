@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Star, Truck, RotateCcw, ShieldCheck, Check, Sparkles, Moon, Volume2 } from 'lucide-react';
-import { products } from '../data/mockData';
+import { products } from '../data/mockData.js';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
