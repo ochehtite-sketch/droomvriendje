@@ -68,8 +68,84 @@ const ProductPage = () => {
 
   const productReviews = reviews.filter(r => r.product === product.shortName);
 
+  // Schema.org Product structured data for Google Merchant Center compliance
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "image": product.image,
+    "sku": `DV-${product.id.toString().padStart(4, '0')}`,
+    "mpn": `DV-${product.id.toString().padStart(4, '0')}`,
+    "brand": {
+      "@type": "Brand",
+      "name": "Droomvriendjes"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://droomvriendjes.nl/product/${product.id}`,
+      "priceCurrency": "EUR",
+      "price": product.price.toFixed(2),
+      "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      "availability": product.inStock !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@type": "Organization",
+        "name": "Droomvriendjes",
+        "url": "https://droomvriendjes.nl"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "EUR"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": ["NL", "BE"]
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": ["NL", "BE"],
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating || "4.9",
+      "reviewCount": product.reviews || "50",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  };
+
   return (
     <Layout backButtonText="Terug" showPromoBanner={false} bgClassName="bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
+      {/* Schema.org Product Data for Google Merchant */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {/* Product Detail */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
