@@ -77,7 +77,8 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Klantenservice</h4>
             <ul className="space-y-3 text-sm">
               <li><Link to="/contact" className="opacity-80 hover:opacity-100 hover:text-warm-brown-300 transition">Contact Opnemen</Link></li>
-              <li><Link to="/retourneren" className="opacity-80 hover:opacity-100 hover:text-warm-brown-300 transition">Verzending & Retourneren</Link></li>
+              <li><Link to="/verzending" className="opacity-80 hover:opacity-100 hover:text-warm-brown-300 transition">Verzending & Levering</Link></li>
+              <li><Link to="/retourneren" className="opacity-80 hover:opacity-100 hover:text-warm-brown-300 transition">Retourneren & Ruilen</Link></li>
               <li><Link to="/#faq" className="opacity-80 hover:opacity-100 hover:text-warm-brown-300 transition">Veelgestelde Vragen (FAQ)</Link></li>
               <li><Link to="/reviews" className="opacity-80 hover:opacity-100 hover:text-warm-brown-300 transition">Klantbeoordelingen</Link></li>
             </ul>
