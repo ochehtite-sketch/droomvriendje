@@ -143,6 +143,7 @@ function App() {
         </BrowserRouter>
       </CartProvider>
     </div>
+    </HelmetProvider>
   );
 }
 
