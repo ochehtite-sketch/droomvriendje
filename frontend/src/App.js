@@ -50,6 +50,7 @@ import OudersSlaaptipsPage from "./pages/OudersSlaaptipsPage";
 import RustmomentOudersPage from "./pages/RustmomentOudersPage";
 import VerzendingPage from "./pages/VerzendingPage";
 import CampaignManagementPage from "./pages/CampaignManagementPage";
+import OfflineLandingPage from "./pages/OfflineLandingPage";
 import { Toaster } from "./components/ui/toaster";
 import ScrollToTop from "./components/ScrollToTop";
 
