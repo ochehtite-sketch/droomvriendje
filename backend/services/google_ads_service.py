@@ -59,9 +59,14 @@ class GoogleAdsService:
             logger.error(f"Failed to initialize Google Ads client: {e}")
             return None
     
-    def get_oauth_url(self, redirect_uri: str) -> str:
-        """Generate OAuth authorization URL"""
+    def get_oauth_url(self, redirect_uri: str, state: str = None) -> dict:
+        """Generate OAuth authorization URL with CSRF protection"""
+        import secrets
         from google_auth_oauthlib.flow import Flow
+        
+        # Generate state token for CSRF protection if not provided
+        if not state:
+            state = secrets.token_urlsafe(32)
         
         flow = Flow.from_client_config(
             {
@@ -76,13 +81,18 @@ class GoogleAdsService:
         )
         flow.redirect_uri = redirect_uri
         
-        auth_url, _ = flow.authorization_url(
+        auth_url, returned_state = flow.authorization_url(
             access_type="offline",
             include_granted_scopes="true",
-            prompt="consent"
+            prompt="consent",
+            state=state
         )
         
-        return auth_url
+        return {
+            "auth_url": auth_url,
+            "state": state,
+            "redirect_uri": redirect_uri
+        }
     
     def exchange_code_for_tokens(self, code: str, redirect_uri: str) -> dict:
         """Exchange authorization code for tokens"""
