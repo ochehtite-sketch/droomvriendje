@@ -2668,6 +2668,114 @@ async def get_google_ads_account():
         return {"error": str(e)}
 
 
+class BulkCampaignRequest(BaseModel):
+    campaigns: List[dict]
+
+
+class PredefinedCampaignsRequest(BaseModel):
+    campaign_ids: Optional[List[int]] = None  # If None, create all 20
+
+
+# Predefined 20 Shopping Campaigns for Droomvriendjes
+PREDEFINED_CAMPAIGNS = [
+    # Performance Max (5)
+    {"id": 1, "name": "PMAX - Slaapknuffels Algemeen", "type": "Performance Max", "dailyBudget": 25.00, "targetRoas": 400},
+    {"id": 2, "name": "PMAX - Baby & Peuter", "type": "Performance Max", "dailyBudget": 20.00, "targetRoas": 350},
+    {"id": 3, "name": "PMAX - Cadeau & Seizoen", "type": "Performance Max", "dailyBudget": 30.00, "targetRoas": 300},
+    {"id": 4, "name": "PMAX - Premium Producten", "type": "Performance Max", "dailyBudget": 15.00, "targetRoas": 500},
+    {"id": 5, "name": "PMAX - Retargeting Converters", "type": "Performance Max", "dailyBudget": 15.00, "targetRoas": 600},
+    # Standard Shopping (5)
+    {"id": 6, "name": "Shopping - Bestsellers", "type": "Standard Shopping", "dailyBudget": 20.00, "targetRoas": 450},
+    {"id": 7, "name": "Shopping - Nieuwe Producten", "type": "Standard Shopping", "dailyBudget": 10.00, "targetRoas": None},
+    {"id": 8, "name": "Shopping - Budget Vriendelijk", "type": "Standard Shopping", "dailyBudget": 12.00, "targetRoas": 350},
+    {"id": 9, "name": "Shopping - België Focus", "type": "Standard Shopping", "dailyBudget": 15.00, "targetRoas": 380},
+    {"id": 10, "name": "Shopping - Bundels & Sets", "type": "Standard Shopping", "dailyBudget": 18.00, "targetRoas": 420},
+    # Demand Gen (5)
+    {"id": 11, "name": "Demand Gen - Slaapproblemen", "type": "Demand Gen", "dailyBudget": 15.00, "targetCpa": 12.00},
+    {"id": 12, "name": "Demand Gen - Emotioneel Verhaal", "type": "Demand Gen", "dailyBudget": 12.00, "targetCpa": 15.00},
+    {"id": 13, "name": "Demand Gen - YouTube Discovery", "type": "Demand Gen", "dailyBudget": 20.00, "targetRoas": None},
+    {"id": 14, "name": "Demand Gen - Gmail Ads", "type": "Demand Gen", "dailyBudget": 8.00, "targetCpa": 10.00},
+    {"id": 15, "name": "Demand Gen - Discover Feed", "type": "Demand Gen", "dailyBudget": 10.00, "targetRoas": None},
+    # Search/SEA (5)
+    {"id": 16, "name": "Search - Brand Terms", "type": "Search", "dailyBudget": 5.00, "targetRoas": None, 
+     "keywords": {"exact": ["droomvriendjes", "droomvriendje"]},
+     "adCopy": {"headlines": ["Droomvriendjes® Officiële Shop", "Gratis Verzending", "4.9★ Trustpilot"], 
+                "descriptions": ["Slaapknuffels met Nachtlampje & White Noise. 10.000+ Tevreden Klanten."]}},
+    {"id": 17, "name": "Search - High Intent Keywords", "type": "Search", "dailyBudget": 25.00, "targetRoas": 400,
+     "keywords": {"exact": ["slaapknuffel kopen", "knuffel nachtlampje kopen"]},
+     "adCopy": {"headlines": ["Slaapknuffel Met Nachtlampje", "Nu €49,95", "Morgen in Huis"],
+                "descriptions": ["86% Slaapt Beter. Gratis Verzending. 14 Dagen Retour."]}},
+    {"id": 18, "name": "Search - Problem-Aware Keywords", "type": "Search", "dailyBudget": 20.00, "targetRoas": None,
+     "keywords": {"broad": ["kind slaapt niet door", "baby huilt nachts"]},
+     "adCopy": {"headlines": ["Kind Slaapt Niet Door?", "De Oplossing: Droomvriendjes"],
+                "descriptions": ["Slaapknuffels met Rustgevend Licht & Geluid. Probeer Risico-Vrij!"]}},
+    {"id": 19, "name": "Search - Competitor Keywords", "type": "Search", "dailyBudget": 15.00, "targetCpa": 15.00,
+     "keywords": {"broad": ["cloud b knuffel", "skip hop nachtlamp"]},
+     "adCopy": {"headlines": ["Premium Alternatief", "Vergelijk & Bespaar"],
+                "descriptions": ["Betere Reviews, Betere Prijs. Gratis Verzending."]}},
+    {"id": 20, "name": "Search - Gift Keywords", "type": "Search", "dailyBudget": 18.00, "targetRoas": 350,
+     "keywords": {"exact": ["kraamcadeau origineel", "cadeau babyshower"]},
+     "adCopy": {"headlines": ["Het Perfecte Kraamcadeau", "Origineel & Praktisch"],
+                "descriptions": ["Geef Een Droomvriendje! Gratis Cadeauverpakking."]}},
+]
+
+
+@api_router.post("/google-ads/campaigns/bulk-create")
+async def bulk_create_campaigns(request: BulkCampaignRequest):
+    """Create multiple campaigns at once"""
+    from services.google_ads_service import google_ads_service
+    
+    try:
+        result = google_ads_service.create_bulk_campaigns(request.campaigns)
+        return result
+    except Exception as e:
+        logger.error(f"Error in bulk campaign creation: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.post("/google-ads/campaigns/create-predefined")
+async def create_predefined_campaigns(request: PredefinedCampaignsRequest = None):
+    """Create predefined Droomvriendjes campaigns (all 20 or selected by ID)"""
+    from services.google_ads_service import google_ads_service
+    
+    try:
+        # Select campaigns to create
+        if request and request.campaign_ids:
+            campaigns_to_create = [c for c in PREDEFINED_CAMPAIGNS if c["id"] in request.campaign_ids]
+        else:
+            campaigns_to_create = PREDEFINED_CAMPAIGNS
+        
+        if not campaigns_to_create:
+            return {"error": "Geen campagnes gevonden om aan te maken", "created": [], "failed": []}
+        
+        result = google_ads_service.create_bulk_campaigns(campaigns_to_create)
+        return result
+    except Exception as e:
+        logger.error(f"Error creating predefined campaigns: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@api_router.get("/google-ads/campaigns/predefined")
+async def get_predefined_campaigns():
+    """Get list of all predefined campaigns that can be created"""
+    total_budget = sum(c["dailyBudget"] for c in PREDEFINED_CAMPAIGNS)
+    
+    by_type = {}
+    for c in PREDEFINED_CAMPAIGNS:
+        campaign_type = c["type"]
+        if campaign_type not in by_type:
+            by_type[campaign_type] = {"count": 0, "budget": 0}
+        by_type[campaign_type]["count"] += 1
+        by_type[campaign_type]["budget"] += c["dailyBudget"]
+    
+    return {
+        "campaigns": PREDEFINED_CAMPAIGNS,
+        "total_count": len(PREDEFINED_CAMPAIGNS),
+        "total_daily_budget": total_budget,
+        "by_type": by_type
+    }
+
+
 # ============== MERCHANT CENTER SFTP UPLOAD ==============
 
 @api_router.post("/feed/upload-to-merchant-center")
