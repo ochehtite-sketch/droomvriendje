@@ -3,15 +3,22 @@
 ## Latest Update: 29 January 2026
 
 ### Completed This Session:
+- ✅ **GOOGLE ADS API KOPPELING** - Automatisch campagnes aanmaken
+  - `POST /api/google-ads/campaigns/create-predefined` endpoint
+  - `POST /api/google-ads/campaigns/bulk-create` endpoint
+  - Support voor Performance Max, Standard Shopping, Demand Gen, Search
+- ✅ **CAMPAIGN MANAGEMENT DASHBOARD** - `/admin/campaigns`
+  - Visueel overzicht van 20 campagnes
+  - One-click import naar Google Ads
+  - Selectie per campagne of allemaal
 - ✅ **20 SHOPPING CAMPAGNES** - SEO & SEA geoptimaliseerd
-  - 5x Performance Max campagnes
-  - 5x Standard Shopping campagnes  
-  - 5x Demand Gen campagnes
-  - 5x Search (SEA) campagnes
-  - Totaal dagbudget: €323
-- ✅ **VERZENDING PAGINA** - Nieuwe `/verzending` pagina voor Google Merchant compliance
-- ✅ **PRODUCT SCHEMA.ORG** - Structured data toegevoegd aan ProductPage
-- ✅ **CAMPAGNE MANAGEMENT PAGINA** - `/admin/campaigns` voor beheer
+  - 5x Performance Max (€105/dag)
+  - 5x Standard Shopping (€75/dag)
+  - 5x Demand Gen (€65/dag)
+  - 5x Search/SEA (€83/dag)
+  - Totaal: €328/dag
+- ✅ **VERZENDING PAGINA** - `/verzending` voor Google Merchant compliance
+- ✅ **PRODUCT SCHEMA.ORG** - Structured data op ProductPage
 
 ### Previous Sessions Completed:
 - ✅ **WARM BROWN THEME** - Volledige website redesign
