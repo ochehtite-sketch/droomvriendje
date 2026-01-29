@@ -48,6 +48,7 @@ import EmailMarketingPage from "./pages/EmailMarketingPage";
 import TipsBedtijdPage from "./pages/TipsBedtijdPage";
 import OudersSlaaptipsPage from "./pages/OudersSlaaptipsPage";
 import RustmomentOudersPage from "./pages/RustmomentOudersPage";
+import VerzendingPage from "./pages/VerzendingPage";
 import { Toaster } from "./components/ui/toaster";
 import ScrollToTop from "./components/ScrollToTop";
 
