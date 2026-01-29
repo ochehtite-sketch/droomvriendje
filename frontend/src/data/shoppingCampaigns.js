@@ -523,4 +523,29 @@ export const campaignMetrics = {
   conversionRate: 2.60
 };
 
+// Helper functions
+export const getActiveCampaigns = () => {
+  return shoppingCampaigns.filter(c => c.status === 'active');
+};
+
+export const getTotalDailyBudget = () => {
+  return shoppingCampaigns.reduce((sum, c) => sum + c.dailyBudget, 0);
+};
+
+export const exportCampaignsToCSV = () => {
+  const headers = ['ID', 'Name', 'Type', 'Status', 'Daily Budget', 'Target ROAS', 'Description'];
+  const rows = shoppingCampaigns.map(c => [
+    c.id,
+    c.name,
+    c.type,
+    c.status,
+    c.dailyBudget,
+    c.targetRoas || '',
+    c.description
+  ]);
+  
+  const csv = [headers, ...rows].map(row => row.join(',')).join('\n');
+  return csv;
+};
+
 export default shoppingCampaigns;
