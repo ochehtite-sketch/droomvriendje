@@ -289,13 +289,27 @@ const CampaignManagementPage = () => {
         {/* Campaign Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {filteredCampaigns.map(campaign => (
-            <Card key={campaign.id} className="border-warm-brown-100 hover:shadow-lg transition-shadow">
+            <Card 
+              key={campaign.id} 
+              className={`border-warm-brown-100 hover:shadow-lg transition-shadow cursor-pointer ${
+                selectedCampaigns.includes(campaign.id) ? 'ring-2 ring-purple-500 bg-purple-50/30' : ''
+              }`}
+              onClick={() => toggleCampaignSelection(campaign.id)}
+            >
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
-                  <Badge className={`${getTypeColor(campaign.type)} flex items-center gap-1`}>
-                    {getTypeIcon(campaign.type)}
-                    {campaign.type}
-                  </Badge>
+                  <div className="flex items-center gap-2">
+                    <input 
+                      type="checkbox"
+                      checked={selectedCampaigns.includes(campaign.id)}
+                      onChange={() => {}}
+                      className="w-4 h-4 text-purple-600 rounded"
+                    />
+                    <Badge className={`${getTypeColor(campaign.type)} flex items-center gap-1`}>
+                      {getTypeIcon(campaign.type)}
+                      {campaign.type}
+                    </Badge>
+                  </div>
                   <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
                     Actief
                   </Badge>
