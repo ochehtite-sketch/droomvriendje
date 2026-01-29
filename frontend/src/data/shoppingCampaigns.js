@@ -1,523 +1,526 @@
 /**
- * Google Shopping Campagnes - Droomvriendjes.nl
- * 10 campagnes voor kinderproducten webshop
- * 
- * Focus: babyproducten, peuterspeelgoed, duurzame knuffels, kraamcadeaus
- * Doelgroep: jonge ouders, cadeauzoekers, grootouders
- * Tone of voice: vriendelijk, geruststellend, informatief
+ * 20 Google Shopping Campagnes voor Droomvriendjes
+ * SEO & SEA geoptimaliseerd
+ * Laatst bijgewerkt: Januari 2026
  */
 
 export const shoppingCampaigns = [
+  // ========== PERFORMANCE MAX CAMPAGNES (5) ==========
   {
-    id: "CAMP_001",
-    name: "Shopping - Bestseller Leeuw Slaapknuffel",
-    product: "Baby Slaapmaatje Leeuw",
-    productId: "KNUF_001",
-    status: "ENABLED",
-    priority: "HIGH",
-    
-    // Campagne instellingen
-    dailyBudget: 15.00,
-    biddingStrategy: "TARGET_ROAS",
-    targetRoas: 400, // 400% ROAS doel
-    
-    // Product informatie voor Shopping feed
-    title: "Baby Slaapmaatje Leeuw - Projector Nachtlamp met White Noise | Droomvriendjes",
-    description: "Geef je baby een magische nachtrust met onze bestseller slaapknuffel. Sterrenhemel projectie, rustgevende white noise en zachte LED verlichting. Veilig vanaf 0 maanden. ✓ Gratis verzending ✓ 14 dagen retour",
-    
-    // Targeting
-    targetAudience: {
-      demographics: ["Ouders 25-44", "Grootouders 55+"],
-      interests: ["Babyproducten", "Slaaphulpmiddelen", "Kraamcadeaus"],
+    id: 1,
+    name: "PMAX - Slaapknuffels Algemeen",
+    type: "Performance Max",
+    status: "active",
+    dailyBudget: 25.00,
+    targetRoas: 400,
+    products: "all",
+    targeting: {
+      audiences: ["ouders", "grootouders", "kraamcadeau"],
       locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop"]
+      languages: ["nl"]
     },
-    
-    // Advertentieteksten
-    headlines: [
-      "Bestseller Slaapknuffel",
-      "Sterrenhemel Projectie",
-      "Gratis Verzending NL",
-      "White Noise Functie",
-      "Vanaf 0 Maanden"
+    seoKeywords: [
+      "slaapknuffel", "knuffel nachtlampje", "baby nachtlamp",
+      "sterrenprojectie knuffel", "white noise knuffel"
     ],
-    
-    // Custom labels voor feed
-    customLabels: {
-      label0: "bestseller",
-      label1: "0-12 maanden",
-      label2: "slaaphulp",
-      label3: "cadeautip",
-      label4: "voorraad"
-    },
-    
-    // Seizoensgebonden aanpassingen
-    seasonalAdjustments: {
-      christmas: { budgetMultiplier: 2.0, priority: "HIGHEST" },
-      babyshower: { budgetMultiplier: 1.5 },
-      sinterklaas: { budgetMultiplier: 1.8 }
-    }
+    description: "Brede campagne voor alle producten met AI-gestuurde optimalisatie"
   },
-  
   {
-    id: "CAMP_002",
-    name: "Shopping - Premium Schaap Nachtlamp",
-    product: "Baby Nachtlamp Schaap",
-    productId: "KNUF_002",
-    status: "ENABLED",
-    priority: "HIGH",
-    
-    dailyBudget: 12.00,
-    biddingStrategy: "MAXIMIZE_CONVERSIONS",
-    targetCpa: 8.00,
-    
-    title: "Baby Nachtlamp Schaap - Slaapknuffel met Sterrenprojector | Veilig & Zacht",
-    description: "Populaire slaapknuffel met projector en white noise. Helpt je kindje rustig in slaap vallen. Dimbare verlichting, CE gecertificeerd. Perfect kraamcadeau! ✓ Gratis verzending ✓ 14 dagen bedenktijd",
-    
-    targetAudience: {
-      demographics: ["Ouders 25-44", "Cadeauzoekers"],
-      interests: ["Nachtlampjes baby", "Kraamvisite cadeau", "Slaapproblemen kind"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop", "Tablet"]
-    },
-    
-    headlines: [
-      "Populaire Slaapknuffel",
-      "Dimbaar Nachtlampje",
-      "Perfect Kraamcadeau",
-      "CE Gecertificeerd",
-      "Nu €59,95"
-    ],
-    
-    customLabels: {
-      label0: "populair",
-      label1: "0-12 maanden",
-      label2: "kraamcadeau",
-      label3: "nachtlampje",
-      label4: "voorraad"
-    }
-  },
-  
-  {
-    id: "CAMP_003",
-    name: "Shopping - Klassieke Teddy Projector",
-    product: "Teddy Projector Knuffel",
-    productId: "KNUF_003",
-    status: "ENABLED",
-    priority: "MEDIUM",
-    
-    dailyBudget: 10.00,
-    biddingStrategy: "TARGET_ROAS",
-    targetRoas: 350,
-    
-    title: "Teddy Projector Knuffel - Bruine Beer met Nachtlicht & Muziek | Droomvriendjes",
-    description: "Klassieke teddybeer met moderne functies. Sterrenhemel projectie, kalmerende muziek en super zacht materiaal. Ideaal voor baby's en peuters. ✓ Gratis verzending ✓ Veilig & duurzaam",
-    
-    targetAudience: {
-      demographics: ["Ouders 25-44", "Grootouders 50+"],
-      interests: ["Teddyberen", "Nachtlampje kinderkamer", "Duurzaam speelgoed"],
-      locations: ["Nederland", "België", "Duitsland"],
-      devices: ["Mobile", "Desktop"]
-    },
-    
-    headlines: [
-      "Klassieke Teddybeer",
-      "Met Sterrenprojectie",
-      "Kalmerende Muziek",
-      "Super Zacht Materiaal",
-      "Tijdloos Cadeau"
-    ],
-    
-    customLabels: {
-      label0: "nieuw",
-      label1: "alle leeftijden",
-      label2: "klassiek",
-      label3: "muziek",
-      label4: "voorraad"
-    }
-  },
-  
-  {
-    id: "CAMP_004",
-    name: "Shopping - Stoere Dino Slaapknuffel",
-    product: "Dinosaurus Slaapknuffel",
-    productId: "KNUF_005",
-    status: "ENABLED",
-    priority: "HIGH",
-    
-    dailyBudget: 12.00,
-    biddingStrategy: "MAXIMIZE_CONVERSIONS",
-    targetCpa: 7.50,
-    
-    title: "Dinosaurus Slaapknuffel - Stoere Dino met Nachtlamp & White Noise | Voor Avonturiers",
-    description: "De stoerste slaapknuffel voor kleine avonturiers! Projector nachtlamp met sterrenhemel, rustgevende geluiden. Veilig en zacht. Perfect voor jongens én meisjes. ✓ Gratis verzending",
-    
-    targetAudience: {
-      demographics: ["Ouders 25-40", "Cadeauzoekers"],
-      interests: ["Dinosaurus speelgoed", "Jongensspeelgoed", "Stoer kinderkamer"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop"]
-    },
-    
-    headlines: [
-      "Stoere Dino Knuffel",
-      "Voor Avonturiers",
-      "Sterrenprojectie",
-      "Nieuw Ontwerp",
-      "Jongens Favoriet"
-    ],
-    
-    customLabels: {
-      label0: "nieuw",
-      label1: "1-5 jaar",
-      label2: "stoer",
-      label3: "jongens",
-      label4: "voorraad"
-    }
-  },
-  
-  {
-    id: "CAMP_005",
-    name: "Shopping - Schattige Pinguïn Lamp",
-    product: "Pinguïn Nachtlampje",
-    productId: "KNUF_004",
-    status: "ENABLED",
-    priority: "MEDIUM",
-    
-    dailyBudget: 10.00,
-    biddingStrategy: "TARGET_ROAS",
-    targetRoas: 380,
-    
-    title: "Pinguïn Nachtlampje - Schattige Slaapknuffel met Sterrenprojector | Droomvriendjes",
-    description: "Schattige pinguïn slaapknuffel met sterrenprojector en white noise. Kalmerend effect voor een rustige nacht. Zachte LED kleuren, gebruiksvriendelijk. ✓ Gratis verzending ✓ 14 dagen retour",
-    
-    targetAudience: {
-      demographics: ["Ouders 25-40"],
-      interests: ["Schattig babyspeelgoed", "Winter thema kinderkamer", "Nachtlampjes"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop"]
-    },
-    
-    headlines: [
-      "Schattige Pinguïn",
-      "Kalmerend Effect",
-      "Zachte LED Kleuren",
-      "White Noise Functie",
-      "Populair Model"
-    ],
-    
-    customLabels: {
-      label0: "populair",
-      label1: "0-3 jaar",
-      label2: "schattig",
-      label3: "unisex",
-      label4: "voorraad"
-    }
-  },
-  
-  {
-    id: "CAMP_006",
-    name: "Shopping - Duo Set Voordeelpakket",
-    product: "Slaapknuffel Duo – Schaap & Teddy",
-    productId: "KNUF_006",
-    status: "ENABLED",
-    priority: "HIGHEST",
-    
-    dailyBudget: 18.00,
-    biddingStrategy: "MAXIMIZE_CONVERSIONS",
-    targetCpa: 12.00,
-    
-    title: "Slaapknuffel Duo Set - Schaap & Teddy Voordeelpakket | Bespaar €10 | Droomvriendjes",
-    description: "Twee slaapknuffels voor de prijs van... bijna één! Perfect voor broertjes, zusjes of tweeling. Beide met nachtlampje en rustgevende geluiden. Nu met €10 korting! ✓ Gratis verzending",
-    
-    targetAudience: {
-      demographics: ["Ouders met meerdere kinderen", "Tweeling ouders", "Grootouders"],
-      interests: ["Voordeelpakketten baby", "Tweeling producten", "Broer zus cadeau"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop"]
-    },
-    
-    headlines: [
-      "Duo Set - Bespaar €10",
-      "Perfect voor Tweeling",
-      "2 Knuffels = 1 Prijs",
-      "Broertjes & Zusjes",
-      "Voordeelpakket"
-    ],
-    
-    customLabels: {
-      label0: "aanbieding",
-      label1: "voordeelset",
-      label2: "tweeling",
-      label3: "cadeauset",
-      label4: "voorraad"
-    },
-    
-    promotions: {
-      type: "PRICE_DROP",
-      originalPrice: 99.90,
-      salePrice: 89.95,
-      savings: 10.00
-    }
-  },
-  
-  {
-    id: "CAMP_007",
-    name: "Shopping - Triple Set Familie Pakket",
-    product: "Slaapknuffel Triple Pack",
-    productId: "KNUF_007",
-    status: "ENABLED",
-    priority: "HIGH",
-    
-    dailyBudget: 15.00,
-    biddingStrategy: "TARGET_ROAS",
-    targetRoas: 450,
-    
-    title: "Slaapknuffel Triple Pack - 3 Knuffels voor Heel het Gezin | Mega Besparing | Droomvriendjes",
-    description: "Het ultieme familiepakket! Leeuw, Schaap én Teddy samen voor een speciale prijs. Ideaal voor gezinnen met meerdere kinderen of als royaal kraamcadeau. Bespaar €25! ✓ Gratis verzending",
-    
-    targetAudience: {
-      demographics: ["Grote gezinnen", "Cadeauzoekers", "Grootouders"],
-      interests: ["Familiepakketten", "Royaal cadeau", "Meerdere kinderen"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop"]
-    },
-    
-    headlines: [
-      "Triple Pack Aanbieding",
-      "Bespaar €25",
-      "3 Knuffels = 1 Koop",
-      "Familie Favoriet",
-      "Royaal Cadeau"
-    ],
-    
-    customLabels: {
-      label0: "mega-aanbieding",
-      label1: "familiepakket",
-      label2: "besparing",
-      label3: "cadeau",
-      label4: "voorraad"
-    },
-    
-    promotions: {
-      type: "BUNDLE_DISCOUNT",
-      originalPrice: 149.85,
-      salePrice: 124.95,
-      savings: 25.00
-    }
-  },
-  
-  {
-    id: "CAMP_008",
-    name: "Shopping - Kraamcadeau Collectie",
-    product: "Alle Slaapknuffels",
-    productId: "ALL_PRODUCTS",
-    status: "ENABLED",
-    priority: "MEDIUM",
-    
+    id: 2,
+    name: "PMAX - Baby & Peuter",
+    type: "Performance Max",
+    status: "active",
     dailyBudget: 20.00,
-    biddingStrategy: "MAXIMIZE_CLICKS",
-    maxCpc: 0.80,
-    
-    title: "Slaapknuffels met Nachtlampje - Het Perfecte Kraamcadeau | Droomvriendjes.nl",
-    description: "Op zoek naar een origineel kraamcadeau? Onze slaapknuffels met sterrenprojectie zijn het perfecte cadeau voor pasgeboren baby's. Veilig, zacht en rustgevend. ✓ Gratis verzending ✓ Cadeauverpakking",
-    
-    targetAudience: {
-      demographics: ["Cadeauzoekers 25-55", "Familie en vrienden van jonge ouders"],
-      interests: ["Kraamcadeau", "Babyshower cadeau", "Origineel babycadeau"],
+    targetRoas: 350,
+    products: ["leeuw", "schaap", "beer", "konijn"],
+    targeting: {
+      audiences: ["nieuwe ouders", "zwangere vrouwen", "babyshower"],
       locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop", "Tablet"]
+      ageGroups: ["25-34", "35-44"]
     },
-    
-    headlines: [
-      "Perfect Kraamcadeau",
-      "Origineel & Praktisch",
-      "Gratis Cadeauverpakking",
-      "Babyshower Favoriet",
-      "Altijd Goed"
+    seoKeywords: [
+      "baby slaapknuffel", "peuter nachtlampje", "baby in slaap",
+      "peuter slaapt niet door", "baby rustgevend"
     ],
-    
-    customLabels: {
-      label0: "kraamcadeau",
-      label1: "giftguide",
-      label2: "origineel",
-      label3: "babyshower",
-      label4: "cadeauverpakking"
-    },
-    
-    // Specifieke targeting voor cadeau-zoekers
-    searchTerms: [
-      "kraamcadeau origineel",
-      "babyshower cadeau",
-      "cadeau pasgeboren baby",
-      "kraamvisite cadeau",
-      "origineel babycadeau"
-    ]
+    description: "Focus op nieuwe ouders met baby's en peuters"
   },
-  
   {
-    id: "CAMP_009",
-    name: "Shopping - Slaapproblemen Oplossing",
-    product: "Alle Slaapknuffels",
-    productId: "ALL_PRODUCTS",
-    status: "ENABLED",
-    priority: "HIGH",
-    
-    dailyBudget: 18.00,
-    biddingStrategy: "TARGET_CPA",
-    targetCpa: 10.00,
-    
-    title: "Slaapknuffel met White Noise - Hulp bij Slaapproblemen Baby | Droomvriendjes",
-    description: "Slaapt je baby slecht? Onze slaapknuffels met white noise en sterrenprojectie helpen baby's rustig in slaap vallen. Aanbevolen door ouders. ✓ Gratis verzending ✓ 14 dagen niet-goed-geld-terug",
-    
-    targetAudience: {
-      demographics: ["Vermoeide ouders", "Ouders met slaapproblemen kind"],
-      interests: ["Slaapproblemen baby", "White noise baby", "Baby slaapt niet"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop"]
-    },
-    
-    headlines: [
-      "Hulp Bij Slaapproblemen",
-      "White Noise Technologie",
-      "Aanbevolen Door Ouders",
-      "Eindelijk Rust",
-      "Bewezen Effectief"
-    ],
-    
-    customLabels: {
-      label0: "slaaphulp",
-      label1: "white-noise",
-      label2: "oplossing",
-      label3: "ouder-aanbevolen",
-      label4: "voorraad"
-    },
-    
-    // Specifieke targeting voor ouders met slaapproblemen
-    searchTerms: [
-      "baby slaapt niet door",
-      "slaapproblemen peuter",
-      "white noise baby",
-      "hulp doorslapen baby",
-      "baby huilt s nachts"
-    ]
-  },
-  
-  {
-    id: "CAMP_010",
-    name: "Shopping - Seizoen Kerst & Sinterklaas",
-    product: "Alle Slaapknuffels",
-    productId: "ALL_PRODUCTS",
-    status: "PAUSED", // Activeren in november
-    priority: "HIGHEST",
-    
+    id: 3,
+    name: "PMAX - Cadeau & Seizoen",
+    type: "Performance Max",
+    status: "active",
     dailyBudget: 30.00,
-    biddingStrategy: "MAXIMIZE_CONVERSIONS",
-    
-    title: "Slaapknuffel - Het Perfecte Kerst & Sinterklaas Cadeau | Droomvriendjes",
-    description: "Zoek je het ideale cadeau voor Sinterklaas of Kerst? Onze magische slaapknuffels met sterrenprojectie maken elk kind blij! ✓ Gratis verzending ✓ Op tijd bezorgd ✓ Cadeauverpakking",
-    
-    targetAudience: {
-      demographics: ["Ouders", "Grootouders", "Familie"],
-      interests: ["Sinterklaas cadeau kind", "Kerst cadeau baby", "Cadeau peuter"],
-      locations: ["Nederland", "België"],
-      devices: ["Mobile", "Desktop", "Tablet"]
+    targetRoas: 300,
+    products: "all",
+    targeting: {
+      audiences: ["gift-givers", "grootouders", "tantes/ooms"],
+      occasions: ["kerst", "verjaardag", "geboorte", "babyshower"]
     },
-    
-    headlines: [
-      "Sinterklaas Cadeau Tip",
-      "Kerst Favoriet",
-      "Op Tijd Bezorgd",
-      "Gratis Inpakken",
-      "Magisch Cadeau"
+    seoKeywords: [
+      "kraamcadeau", "cadeau baby", "verjaardagscadeau peuter",
+      "kerstcadeau kind", "babyshower cadeau"
     ],
-    
-    customLabels: {
-      label0: "seizoen",
-      label1: "sinterklaas",
-      label2: "kerst",
-      label3: "cadeautip",
-      label4: "voorraad"
+    description: "Seizoensgebonden en cadeau-gerichte campagne"
+  },
+  {
+    id: 4,
+    name: "PMAX - Premium Producten",
+    type: "Performance Max",
+    status: "active",
+    dailyBudget: 15.00,
+    targetRoas: 500,
+    products: ["projector-deluxe", "premium-set"],
+    targeting: {
+      audiences: ["high-income families", "quality-seekers"],
+      demographics: {income: "top 30%"}
     },
-    
-    // Seizoensgebonden instellingen
-    seasonalSettings: {
-      activePeriod: {
-        start: "2026-11-01",
-        end: "2026-12-26"
-      },
-      peakDates: [
-        { date: "2026-11-15", event: "Sinterklaas intocht", budgetMultiplier: 1.5 },
-        { date: "2026-12-05", event: "Pakjesavond", budgetMultiplier: 2.0 },
-        { date: "2026-12-20", event: "Kerst rush", budgetMultiplier: 2.5 }
+    seoKeywords: [
+      "premium slaapknuffel", "luxe baby knuffel", "beste nachtlamp kind",
+      "kwaliteit babyproducten"
+    ],
+    description: "High-value klanten voor premium producten"
+  },
+  {
+    id: 5,
+    name: "PMAX - Retargeting Converters",
+    type: "Performance Max",
+    status: "active",
+    dailyBudget: 15.00,
+    targetRoas: 600,
+    products: "all",
+    targeting: {
+      audiences: ["cart-abandoners", "product-viewers", "past-buyers"],
+      retargetingWindow: "30 days"
+    },
+    seoKeywords: [
+      "droomvriendjes knuffel", "slaapknuffel kopen",
+      "knuffel met licht bestellen"
+    ],
+    description: "Heractiveer bezoekers die niet converteerden"
+  },
+
+  // ========== STANDARD SHOPPING CAMPAGNES (5) ==========
+  {
+    id: 6,
+    name: "Shopping - Bestsellers",
+    type: "Standard Shopping",
+    status: "active",
+    dailyBudget: 20.00,
+    bidStrategy: "Target ROAS",
+    targetRoas: 450,
+    products: ["leeuw", "schaap", "beer"],
+    priority: "high",
+    seoKeywords: [
+      "populaire slaapknuffel", "bestseller baby knuffel",
+      "meest verkochte nachtlamp"
+    ],
+    description: "Focus op top 3 best verkopende producten"
+  },
+  {
+    id: 7,
+    name: "Shopping - Nieuwe Producten",
+    type: "Standard Shopping",
+    status: "active",
+    dailyBudget: 10.00,
+    bidStrategy: "Maximize Clicks",
+    products: ["unicorn", "dino", "panda"],
+    priority: "medium",
+    seoKeywords: [
+      "nieuwe slaapknuffel", "unicorn nachtlamp", "dinosaurus knuffel",
+      "panda slaapknuffel"
+    ],
+    description: "Introduceer nieuwe producten aan de markt"
+  },
+  {
+    id: 8,
+    name: "Shopping - Budget Vriendelijk",
+    type: "Standard Shopping",
+    status: "active",
+    dailyBudget: 12.00,
+    bidStrategy: "Target ROAS",
+    targetRoas: 350,
+    products: ["mini-leeuw", "mini-schaap"],
+    priceFilter: "< 40 EUR",
+    seoKeywords: [
+      "goedkope slaapknuffel", "budget nachtlamp baby",
+      "betaalbare knuffel licht"
+    ],
+    description: "Prijs-gevoelige kopers targeten"
+  },
+  {
+    id: 9,
+    name: "Shopping - België Focus",
+    type: "Standard Shopping",
+    status: "active",
+    dailyBudget: 15.00,
+    bidStrategy: "Target ROAS",
+    targetRoas: 380,
+    products: "all",
+    targeting: {
+      locations: ["België"],
+      languages: ["nl", "fr"]
+    },
+    seoKeywords: [
+      "slaapknuffel belgie", "knuffel nachtlampje belgie",
+      "baby nachtlamp levering belgie"
+    ],
+    description: "Specifieke campagne voor Belgische markt"
+  },
+  {
+    id: 10,
+    name: "Shopping - Bundels & Sets",
+    type: "Standard Shopping",
+    status: "active",
+    dailyBudget: 18.00,
+    bidStrategy: "Target ROAS",
+    targetRoas: 420,
+    products: ["tweeling-set", "familie-bundel", "2e-50-korting"],
+    seoKeywords: [
+      "slaapknuffel set", "knuffel bundel", "2 knuffels korting",
+      "tweeling cadeau", "voordeelset baby"
+    ],
+    description: "Promote bundels en multi-buy aanbiedingen"
+  },
+
+  // ========== DEMAND GEN CAMPAGNES (5) ==========
+  {
+    id: 11,
+    name: "Demand Gen - Slaapproblemen",
+    type: "Demand Gen",
+    status: "active",
+    dailyBudget: 15.00,
+    bidStrategy: "Target CPA",
+    targetCpa: 12.00,
+    targeting: {
+      interests: ["parenting", "baby products", "sleep solutions"],
+      inMarket: ["baby sleep aids", "children's room decor"]
+    },
+    seoKeywords: [
+      "kind slaapt niet door", "baby huilt 's nachts",
+      "slaapproblemen peuter", "kind bang in donker"
+    ],
+    creatives: {
+      headlines: [
+        "Eindelijk doorslapen?",
+        "86% van de kinderen slaapt beter",
+        "De oplossing voor slaapproblemen"
+      ],
+      images: ["lifestyle-sleeping-child", "happy-family-morning"]
+    },
+    description: "Target ouders met slaapproblemen"
+  },
+  {
+    id: 12,
+    name: "Demand Gen - Emotioneel Verhaal",
+    type: "Demand Gen",
+    status: "active",
+    dailyBudget: 12.00,
+    bidStrategy: "Target CPA",
+    targetCpa: 15.00,
+    targeting: {
+      interests: ["mindful parenting", "child development"],
+      customAudiences: ["engaged parents"]
+    },
+    seoKeywords: [
+      "geborgenheid kind", "veilig gevoel baby",
+      "troostknuffel", "knuffel tegen angst"
+    ],
+    creatives: {
+      headlines: [
+        "Meer dan een knuffel",
+        "De beste vriend in het donker",
+        "Geef je kind geborgenheid"
+      ],
+      videos: ["emotional-story-video"]
+    },
+    description: "Emotionele connectie met ouders maken"
+  },
+  {
+    id: 13,
+    name: "Demand Gen - YouTube Discovery",
+    type: "Demand Gen",
+    status: "active",
+    dailyBudget: 20.00,
+    bidStrategy: "Maximize Conversions",
+    targeting: {
+      placements: ["youtube-discovery", "youtube-in-feed"],
+      channels: ["parenting-channels", "baby-reviews"]
+    },
+    seoKeywords: [
+      "baby producten review", "slaapknuffel unboxing",
+      "nachtlamp kind test"
+    ],
+    creatives: {
+      videos: ["product-demo-60s", "customer-testimonials"]
+    },
+    description: "Video-first campagne op YouTube"
+  },
+  {
+    id: 14,
+    name: "Demand Gen - Gmail Ads",
+    type: "Demand Gen",
+    status: "active",
+    dailyBudget: 8.00,
+    bidStrategy: "Target CPA",
+    targetCpa: 10.00,
+    targeting: {
+      placements: ["gmail"],
+      audiences: ["new-parents", "expecting-parents"]
+    },
+    seoKeywords: [
+      "baby must haves", "kraamlijst items",
+      "babyuitzet compleet"
+    ],
+    creatives: {
+      subject: "15% korting op je eerste Droomvriendje!",
+      preheader: "Gratis verzending & 14 dagen retour"
+    },
+    description: "Gmail advertenties voor inbox bereik"
+  },
+  {
+    id: 15,
+    name: "Demand Gen - Discover Feed",
+    type: "Demand Gen",
+    status: "active",
+    dailyBudget: 10.00,
+    bidStrategy: "Maximize Clicks",
+    targeting: {
+      placements: ["google-discover"],
+      interests: ["lifestyle", "parenting", "home-decor"]
+    },
+    seoKeywords: [
+      "kinderkamer inrichten", "babykamer tips",
+      "slaapkamer kind ideeën"
+    ],
+    creatives: {
+      headlines: [
+        "De #1 Tip voor Betere Nachten",
+        "Zo Slaapt Je Kind Eindelijk Door"
+      ],
+      images: ["beautiful-nursery", "peaceful-sleeping-baby"]
+    },
+    description: "Native ads in Google Discover feed"
+  },
+
+  // ========== SEARCH CAMPAGNES (SEA) (5) ==========
+  {
+    id: 16,
+    name: "Search - Brand Terms",
+    type: "Search",
+    status: "active",
+    dailyBudget: 5.00,
+    bidStrategy: "Target Impression Share",
+    targetImpressionShare: 95,
+    keywords: {
+      exact: ["droomvriendjes", "droomvriendje", "droomvriendjes.nl"],
+      phrase: ["droomvriendjes knuffel", "droomvriendjes kopen"]
+    },
+    seoKeywords: [
+      "droomvriendjes", "droomvriendjes.nl", "droomvriendjes review"
+    ],
+    adCopy: {
+      headlines: [
+        "Droomvriendjes® Officiële Shop",
+        "Gratis Verzending | 14 Dagen Retour",
+        "4.9★ Trustpilot Rating"
+      ],
+      descriptions: [
+        "Slaapknuffels met Nachtlampje & White Noise. Helpt 86% van de Kinderen Beter Slapen.",
+        "Bestel Nu & Morgen in Huis. 10.000+ Tevreden Klanten. Winter Sale: 2e 50% Korting!"
       ]
     },
-    
-    searchTerms: [
-      "sinterklaas cadeau baby",
-      "kerst cadeau peuter",
-      "cadeau kind 1 jaar sinterklaas",
-      "schoen cadeau baby",
-      "kerst speelgoed baby"
-    ]
+    description: "Bescherm merknaam en vang branded traffic"
+  },
+  {
+    id: 17,
+    name: "Search - High Intent Keywords",
+    type: "Search",
+    status: "active",
+    dailyBudget: 25.00,
+    bidStrategy: "Target ROAS",
+    targetRoas: 400,
+    keywords: {
+      exact: [
+        "slaapknuffel kopen",
+        "knuffel met nachtlampje kopen",
+        "baby nachtlamp bestellen"
+      ],
+      phrase: [
+        "slaapknuffel online",
+        "knuffel projector kopen"
+      ]
+    },
+    seoKeywords: [
+      "slaapknuffel kopen", "knuffel nachtlampje bestellen",
+      "baby projector knuffel"
+    ],
+    adCopy: {
+      headlines: [
+        "Slaapknuffel Met Nachtlampje",
+        "Nu €49,95 | Gratis Verzending",
+        "Morgen in Huis ✓"
+      ],
+      descriptions: [
+        "Slaapknuffels met Sterrenprojector & White Noise. 86% Slaapt Beter. Bestel Nu!",
+        "Gratis Verzending. 14 Dagen Retour. Winter Sale: 2e Knuffel 50% Korting!"
+      ]
+    },
+    description: "Target kopers met hoge koopintentie"
+  },
+  {
+    id: 18,
+    name: "Search - Problem-Aware Keywords",
+    type: "Search",
+    status: "active",
+    dailyBudget: 20.00,
+    bidStrategy: "Maximize Conversions",
+    keywords: {
+      broad: [
+        "kind slaapt niet door",
+        "baby huilt in slaap",
+        "peuter bang voor donker"
+      ],
+      phrase: [
+        "kind niet slapen oplossing",
+        "baby hulp slapen"
+      ]
+    },
+    seoKeywords: [
+      "kind slaapt niet", "baby slaapt slecht",
+      "peuter slaapproblemen", "kind nachtangst"
+    ],
+    adCopy: {
+      headlines: [
+        "Kind Slaapt Niet Door?",
+        "De Oplossing: Droomvriendjes",
+        "86% Ziet Verbetering"
+      ],
+      descriptions: [
+        "Slaapknuffels met Rustgevend Licht & Geluid. Helpt Kinderen Sneller In Slaap Vallen.",
+        "Wetenschappelijk Bewezen Effectief. 10.000+ Tevreden Ouders. Probeer Risico-Vrij!"
+      ]
+    },
+    description: "Bereik ouders die een oplossing zoeken"
+  },
+  {
+    id: 19,
+    name: "Search - Competitor Keywords",
+    type: "Search",
+    status: "active",
+    dailyBudget: 15.00,
+    bidStrategy: "Target CPA",
+    targetCpa: 15.00,
+    keywords: {
+      broad: [
+        "cloud b knuffel",
+        "skip hop nachtlamp",
+        "vtech slaapknuffel"
+      ]
+    },
+    seoKeywords: [
+      "alternatief cloud b", "vergelijk slaapknuffels",
+      "beste slaapknuffel test"
+    ],
+    adCopy: {
+      headlines: [
+        "Premium Alternatief | €49,95",
+        "Vergelijk & Bespaar",
+        "Nederlandse Klantenservice"
+      ],
+      descriptions: [
+        "Zoek Je Een Slaapknuffel? Vergelijk Droomvriendjes. Betere Reviews, Betere Prijs.",
+        "Gratis Verzending. 14 Dagen Retour. 4.9★ op Trustpilot. Bestel Nu!"
+      ]
+    },
+    description: "Vang concurrentie-zoekend verkeer"
+  },
+  {
+    id: 20,
+    name: "Search - Gift Keywords",
+    type: "Search",
+    status: "active",
+    dailyBudget: 18.00,
+    bidStrategy: "Target ROAS",
+    targetRoas: 350,
+    keywords: {
+      exact: [
+        "kraamcadeau origineel",
+        "cadeau babyshower",
+        "geboorte cadeau"
+      ],
+      phrase: [
+        "cadeau baby",
+        "kraamcadeau kopen"
+      ]
+    },
+    seoKeywords: [
+      "kraamcadeau", "cadeau baby", "babyshower geschenk",
+      "origineel geboorte cadeau"
+    ],
+    adCopy: {
+      headlines: [
+        "Het Perfecte Kraamcadeau",
+        "Origineel & Praktisch",
+        "Cadeauverpakking Gratis"
+      ],
+      descriptions: [
+        "Geef Een Droomvriendje! Slaapknuffel Met Nachtlampje. Uniek Cadeau Dat Echt Helpt.",
+        "Gratis Cadeauverpakking. Morgen Bezorgd. 10.000+ Tevreden Ouders. Bestel Nu!"
+      ]
+    },
+    description: "Target cadeau-zoekers"
   }
 ];
 
-// Campagne statistieken structuur
+// SEO Keywords Summary - Alle unieke keywords voor organische optimalisatie
+export const allSeoKeywords = [
+  // Primary Keywords (Hoge prioriteit)
+  "slaapknuffel",
+  "knuffel nachtlampje",
+  "baby nachtlamp",
+  "slaapknuffel kopen",
+  "kraamcadeau",
+  
+  // Secondary Keywords
+  "sterrenprojectie knuffel",
+  "white noise knuffel",
+  "baby slaapknuffel",
+  "peuter nachtlampje",
+  "kind slaapt niet door",
+  "baby slaapt slecht",
+  
+  // Long-tail Keywords
+  "knuffel met sterrenprojector",
+  "slaapknuffel met licht en geluid",
+  "baby knuffel nachtlamp kopen",
+  "beste slaapknuffel voor baby",
+  "origineel kraamcadeau",
+  "cadeau babyshower origineel",
+  
+  // Location Keywords
+  "slaapknuffel nederland",
+  "knuffel nachtlampje belgie",
+  "baby nachtlamp gratis verzending",
+  
+  // Problem Keywords
+  "kind bang in donker oplossing",
+  "peuter slaapproblemen",
+  "baby huilt nachts",
+  "kind slaapt niet door oplossing"
+];
+
+// Campaign Performance Metrics (Mock data voor dashboard)
 export const campaignMetrics = {
-  totalBudget: 160.00, // Per dag
-  activeCampaigns: 9,
-  pausedCampaigns: 1,
-  targetROAS: 400,
-  estimatedImpressions: "15.000-25.000/dag",
-  estimatedClicks: "300-500/dag",
-  conversionRate: "3-5%"
-};
-
-// Export functies voor campagne beheer
-export const getCampaignById = (id) => {
-  return shoppingCampaigns.find(c => c.id === id);
-};
-
-export const getActiveCampaigns = () => {
-  return shoppingCampaigns.filter(c => c.status === "ENABLED");
-};
-
-export const getCampaignsByPriority = (priority) => {
-  return shoppingCampaigns.filter(c => c.priority === priority);
-};
-
-export const getTotalDailyBudget = () => {
-  return shoppingCampaigns
-    .filter(c => c.status === "ENABLED")
-    .reduce((sum, c) => sum + c.dailyBudget, 0);
-};
-
-// Export naar CSV formaat voor Google Ads import
-export const exportCampaignsToCSV = () => {
-  const headers = [
-    "Campaign Name",
-    "Product Title",
-    "Daily Budget",
-    "Bidding Strategy",
-    "Target ROAS",
-    "Target CPA",
-    "Status",
-    "Priority"
-  ];
-  
-  const rows = shoppingCampaigns.map(c => [
-    c.name,
-    c.title,
-    c.dailyBudget,
-    c.biddingStrategy,
-    c.targetRoas || "",
-    c.targetCpa || "",
-    c.status,
-    c.priority
-  ]);
-  
-  return [headers, ...rows].map(row => row.join(",")).join("\n");
+  totalBudget: 323.00,
+  totalSpend: 287.45,
+  impressions: 156420,
+  clicks: 4892,
+  conversions: 127,
+  revenue: 5842.35,
+  roas: 2032,
+  avgCpc: 0.059,
+  ctr: 3.13,
+  conversionRate: 2.60
 };
 
 export default shoppingCampaigns;
