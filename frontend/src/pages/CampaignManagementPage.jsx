@@ -140,6 +140,78 @@ const CampaignManagementPage = () => {
           </div>
         </div>
 
+        {/* Google Ads Import Section */}
+        <Card className="mb-8 border-2 border-purple-200 bg-purple-50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Upload className="w-5 h-5 text-purple-600" />
+              Importeer naar Google Ads
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div>
+                <p className="text-slate-700 mb-2">
+                  Maak automatisch {selectedCampaigns.length > 0 ? selectedCampaigns.length : 'alle 20'} campagnes aan in Google Ads.
+                </p>
+                <p className="text-sm text-slate-500">
+                  Campagnes worden aangemaakt met status <Badge variant="outline">PAUSED</Badge> - activeer ze handmatig in Google Ads.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline"
+                  onClick={selectAllCampaigns}
+                  size="sm"
+                >
+                  {selectedCampaigns.length === shoppingCampaigns.length ? 'Deselecteer Alle' : 'Selecteer Alle'}
+                </Button>
+                <Button 
+                  onClick={createCampaignsInGoogleAds}
+                  disabled={isCreating}
+                  className="bg-purple-600 hover:bg-purple-700"
+                >
+                  {isCreating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Bezig...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="w-4 h-4 mr-2" />
+                      Importeer naar Google Ads
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+            
+            {/* Result Display */}
+            {createResult && (
+              <div className={`mt-4 p-4 rounded-lg ${createResult.error ? 'bg-red-50 border border-red-200' : 'bg-green-50 border border-green-200'}`}>
+                {createResult.error ? (
+                  <div className="flex items-center gap-2 text-red-700">
+                    <AlertCircle className="w-5 h-5" />
+                    <span>{createResult.error}</span>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="flex items-center gap-2 text-green-700 mb-2">
+                      <CheckCircle className="w-5 h-5" />
+                      <span className="font-bold">{createResult.success_count} van {createResult.total} campagnes aangemaakt!</span>
+                    </div>
+                    {createResult.failed?.length > 0 && (
+                      <p className="text-sm text-red-600">
+                        Mislukt: {createResult.failed.map(f => f.name).join(', ')}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
         {/* Metrics Overview */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <Card className="border-warm-brown-100">
