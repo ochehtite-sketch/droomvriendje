@@ -1040,6 +1040,7 @@ async def validate_discount_code(data: DiscountCodeValidate):
     """Validate a discount code and return the discount amount"""
     try:
         code = data.code.strip().upper()
+        logger.info(f"Validating discount code: {code}")
         
         # Check if it's a gift card code (starts with DV-)
         if code.startswith("DV-"):
@@ -1069,6 +1070,8 @@ async def validate_discount_code(data: DiscountCodeValidate):
             "code": code,
             "active": True
         })
+        
+        logger.info(f"Discount code lookup result: {discount_code is not None}")
         
         if discount_code:
             # Check if code is expired
