@@ -63,6 +63,7 @@ function App() {
   }, []);
 
   return (
+    <HelmetProvider>
     <div className="App">
       <CartProvider>
         <BrowserRouter>
