@@ -6,16 +6,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import { shoppingCampaigns, campaignMetrics, allSeoKeywords } from '../data/shoppingCampaigns';
+import { useToast } from '../hooks/use-toast';
 import { 
   Search, TrendingUp, DollarSign, Eye, MousePointer, ShoppingCart,
-  Zap, Target, Youtube, Mail, Megaphone, ArrowLeft, Copy, Check,
-  Filter, BarChart3
+  Zap, Target, Megaphone, ArrowLeft, Copy, Check,
+  BarChart3, Upload, Loader2, AlertCircle, CheckCircle
 } from 'lucide-react';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+
 const CampaignManagementPage = () => {
+  const { toast } = useToast();
   const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [copiedKeywords, setCopiedKeywords] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
+  const [createResult, setCreateResult] = useState(null);
+  const [selectedCampaigns, setSelectedCampaigns] = useState([]);
 
   const getTypeIcon = (type) => {
     switch(type) {
