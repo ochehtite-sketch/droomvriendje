@@ -247,46 +247,47 @@ export const products = [
   },
   {
     id: 6,
-    name: "Slaapknuffel Duo – Schaap & Teddy",
-    shortName: "Duo Schaap & Teddy",
+    name: "Droomvriendjes Duo Set – Leeuw & Schaapje met Projector",
+    shortName: "Duo Set",
     price: 89.95,
-    originalPrice: 99.90,
-    image: "https://i.imgur.com/7gNmXs4.jpeg",
+    originalPrice: 109.90,
+    image: "/products/duo-main.png",
     gallery: [
-      "https://i.imgur.com/YmWqlp4.jpeg",
-      "https://i.imgur.com/aN7mdYv.jpeg",
-      "https://i.imgur.com/gtJ57SZ.jpeg",
-      "https://i.imgur.com/JAg2LWX.jpeg",
-      "https://i.imgur.com/46XLMop.jpeg",
-      "https://i.imgur.com/4PfzfNg.jpeg",
-      "https://i.imgur.com/1YOYEQR.jpeg"
+      "/products/duo/Duo_Front_product_01.png",
+      "/products/duo/DUO_Side_product_02.png",
+      "/products/duo/DUO_back_product_03.png",
+      "/products/duo/Duo_gift1_produc_06.png",
+      "/products/duo/DUO_gift2_product_06.png",
+      "/products/duo/Duo_Lifestyle_prodcut_07.png",
+      "/products/duo/Duo_Lifestyle01_prodcut_08.png",
+      "/products/duo/DUO_Lifestyle_prodcut_09.png"
     ],
-    description: "Twee schattige slaapknuffels met nachtlampjes. Perfect voor broertjes en zusjes!",
+    description: "De ultieme voordeelset: twee Droomvriendjes voor de prijs van bijna één! Deze set bevat onze populaire Leeuw met AI Huilsensor én het Slaperig Schaapje met bewegende 'Nodding Off' functie. Perfect voor tweeling, broertjes/zusjes, of om één thuis en één bij opa en oma te houden.",
     features: [
-      "2 knuffels in 1 set",
-      "Beide met nachtlampje",
-      "Zachte materialen",
-      "Kalmerende geluiden"
+      "2 complete Droomvriendjes in 1 set",
+      "Leeuw met AI Huilsensor + Schaapje met Nodding Off",
+      "Beide met sterrenprojectie en melodieën",
+      "€20 voordeelkorting"
     ],
     benefits: [
-      "👫 Perfect voor twee",
-      "💡 Dubbel nachtlicht",
-      "🎵 Rustgevende geluiden",
-      "💤 Samen slapen"
+      "👫 Perfect voor twee kindjes",
+      "🤖 Leeuw: AI Huilsensor voor automatische troost",
+      "🐑 Schaapje: Kalmerende knik-beweging",
+      "💰 Bespaar €20 op de setprijs"
     ],
-    rating: 4.8,
-    reviews: 234,
+    rating: 4.9,
+    reviews: 1847,
     badge: "VOORDEELSET",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie",
-    // GA4 E-commerce tags
+    warranty: "30 dagen slaapgarantie",
+    sku: "DUO-001",
     item_id: "KNUF_006",
     item_category: "Knuffels",
     item_category2: "Voordeelsets",
     item_category3: "Duo Sets",
     item_category4: "Large",
     item_category5: "Met Projectie",
-    item_variant: "wit-bruin"
+    item_variant: "goud-wit"
   },
   {
     id: 7,
