@@ -127,10 +127,10 @@
 
 ## Upcoming Tasks (P1)
 
-1. **Email Campagne Hervatten** - Na 24 uur wachten
-2. **Google Merchant Review** - Na deployment
-3. **Product Data Migratie** - mockData.js naar MongoDB
-4. **Google Ads API** - Automatisch campagnes aanmaken
+1. **Product Data Migratie** - mockData.js naar MongoDB (KRITIEK)
+2. **Google Ads OAuth** - User moet redirect URIs configureren
+3. **Email Campagne Hervatten** - Na 24 uur wachten
+4. **Google Merchant Review** - Na deployment aanvragen
 
 ## Future Tasks (P2+)
 
