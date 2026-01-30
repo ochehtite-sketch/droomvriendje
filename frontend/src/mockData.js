@@ -242,7 +242,7 @@ export const products = [
   },
   {
     id: 6,
-    name: "Droomvriendjes Duo Set – Leeuw & Schaapje met Projector",
+    name: "Droomvriendjes Duo Set – Liggend Schaapje & Witte Beer met Projector",
     shortName: "Duo Set",
     price: 89.95,
     originalPrice: 109.90,
@@ -256,17 +256,17 @@ export const products = [
       "/products/duo/Duo_Lifestyle01_prodcut_08.png",
       "/products/duo/DUO_Lifestyle_prodcut_09.png"
     ],
-    description: "De ultieme voordeelset: twee Droomvriendjes voor de prijs van bijna één! Deze set bevat onze populaire Leeuw met AI Huilsensor én het Slaperig Schaapje met bewegende 'Nodding Off' functie. Perfect voor tweeling, broertjes/zusjes, of om één thuis en één bij opa en oma te houden.",
+    description: "De ultieme voordeelset: twee Droomvriendjes voor de prijs van bijna één! Deze set bevat het schattige Liggende Schaapje én de knuffelbare Witte Beer, beide met sterrenprojector en rustgevende melodieën. Perfect voor tweeling, broertjes/zusjes, of om één thuis en één bij opa en oma te houden.",
     features: [
       "2 complete Droomvriendjes in 1 set",
-      "Leeuw met AI Huilsensor + Schaapje met Nodding Off",
+      "Liggend Schaapje + Witte Beer",
       "Beide met sterrenprojectie en melodieën",
       "€20 voordeelkorting"
     ],
     benefits: [
       "👫 Perfect voor twee kindjes",
-      "🤖 Leeuw: AI Huilsensor voor automatische troost",
-      "🐑 Schaapje: Kalmerende knik-beweging",
+      "🐑 Schaapje: Heerlijk knuffelbaar liggend design",
+      "🐻 Beer: Zachte witte vacht",
       "💰 Bespaar €20 op de setprijs"
     ],
     rating: 4.9,
@@ -281,7 +281,7 @@ export const products = [
     item_category3: "Duo Sets",
     item_category4: "Large",
     item_category5: "Met Projectie",
-    item_variant: "goud-wit"
+    item_variant: "wit-crème"
   },
   {
     id: 7,
