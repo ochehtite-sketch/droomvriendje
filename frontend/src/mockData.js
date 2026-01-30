@@ -429,7 +429,6 @@ export const products = [
     originalPrice: 59.95,
     image: "/products/beartwo-main.png",
     gallery: [
-      "/products/beartwo/BearTwo_Front_product_01.png",
       "/products/beartwo/BearTwo_Side_product_02.png",
       "/products/beartwo/BearTwo_back_prodcut_03.png",
       "/products/beartwo/BearTwo_dimenstions_product_04.png",
