@@ -48,6 +48,14 @@
 
 ## Current Blockers
 
+### 🟠 P1 - Google Ads OAuth Configuratie
+- **Status:** BLOCKED (user action required)
+- **Issue:** User moet redirect URIs toevoegen in Google Cloud Console
+- **Benodigde URIs:**
+  - `https://droomvriendjes.nl/admin/google-ads/callback`
+  - `https://droomshop.preview.emergentagent.com/admin/google-ads/callback`
+- **Actie:** User moet dit configureren in Google Cloud Console
+
 ### 🔴 P0 - Email Campagne SMTP Limiet
 - **Status:** BLOCKED
 - **Issue:** TransIP SMTP dagelijkse verzendlimiet bereikt
