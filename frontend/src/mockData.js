@@ -291,47 +291,50 @@ export const products = [
   },
   {
     id: 7,
-    name: "Beer Sterrenprojector Nachtlamp",
-    shortName: "Beer Projector",
-    price: 59.95,
+    name: "Bruine Beertje – Nachtlampje met Sterrenprojector & Slaapgeluiden",
+    shortName: "Bruine Beer",
+    price: 49.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/q2c7zsP.jpeg",
+    image: "/products/bearbrown-main.png",
     gallery: [
-      "https://i.imgur.com/xyXHy7f.jpeg",
-      "https://i.imgur.com/H5W6Q5h.jpeg",
-      "https://i.imgur.com/4BllnwS.jpeg",
-      "https://i.imgur.com/4GiHWvE.jpeg",
-      "https://i.imgur.com/0pPCNRt.jpeg",
-      "https://i.imgur.com/G3Q2WBz.jpeg",
-      "https://i.imgur.com/8TN6Erw.jpeg",
-      "https://i.imgur.com/NiZGGmg.jpeg"
+      "/products/bearbrown/BearBrown_Front_product_01.png",
+      "/products/bearbrown/BearBrown_Side_product_02.png",
+      "/products/bearbrown/BearBrown_back_prodcut_03.png",
+      "/products/bearbrown/BearBrown_dimenstions_product_04.png",
+      "/products/bearbrown/BearBrown_Macro_prodcut_05.png",
+      "/products/bearbrown/BearBrown_gift_product_06.png",
+      "/products/bearbrown/BearBrown_Lifestyle_prodcut_07.png",
+      "/products/bearbrown/BearBrown_Lifestyle_prodcut_08.png",
+      "/products/bearbrown/BearBrown_Lifestyle_prodcut_09.png",
+      "/products/bearbrown/BearBrown_packaging_product_10.png"
     ],
-    description: "Schattige beer met sterrenprojector en rustgevende slaapgeluiden voor je baby.",
+    description: "Deze lieve bruine beer is de perfecte slaapvriend voor je kindje. Met een zachte sterrenprojector en rustgevende slaapliedjes creëert dit beertje een geborgen sfeer in elke kinderkamer. De warme bruine kleur en het superzachte materiaal maken hem onweerstaanbaar om mee te knuffelen.",
     features: [
-      "Sterrenhemel projectie",
-      "Meerdere slaapgeluiden",
-      "Compact design",
-      "Timer functie"
+      "Sterrenhemel en oceaanprojectie",
+      "10 rustgevende melodieën",
+      "Zacht diffuus nachtlicht",
+      "30 minuten auto-uit timer",
+      "Werkt op 3x AA-batterijen"
     ],
     benefits: [
-      "🌟 Sterrenhemel",
-      "🎶 Slaapgeluiden",
-      "🐻 Schattig design",
-      "😴 Betere slaap"
+      "🐻 Zachte knuffelpartner",
+      "🌟 Magische sterrenprojectie",
+      "🎵 Rustgevende slaapliedjes",
+      "😴 Helpt bij doorslapen"
     ],
-    rating: 4.6,
-    reviews: 178,
-    badge: "BESTSELLER",
+    rating: 4.8,
+    reviews: 1456,
+    badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie",
-    // GA4 E-commerce tags
+    warranty: "30 dagen slaapgarantie",
+    sku: "FM666-72",
     item_id: "KNUF_007",
     item_category: "Knuffels",
     item_category2: "Slaapknuffels",
     item_category3: "Beren",
-    item_category4: "Compact",
+    item_category4: "Medium",
     item_category5: "Met Projectie",
-    item_variant: "beige"
+    item_variant: "bruin"
   },
   {
     id: 8,
