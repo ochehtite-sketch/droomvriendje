@@ -10,7 +10,6 @@ export const products = [
     originalPrice: 59.95,
     image: "/products/lion-main.png",
     gallery: [
-      "/products/lion/Lion_Front_product_01.png",
       "/products/lion/Lion_Side_product_02.png",
       "/products/lion/Lion_back_prodcut_03.png",
       "/products/lion/Lion_dimenstions_product_04.png",
