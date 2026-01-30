@@ -385,47 +385,50 @@ export const products = [
   },
   {
     id: 9,
-    name: "Kalmerende Eenhoorn Knuffel",
-    shortName: "Eenhoorn",
-    price: 59.95,
+    name: "Pinguïn Droomvriendje – Nachtlampje met Sterrenprojector & Witte Ruis",
+    shortName: "Pinguïn",
+    price: 49.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/KRNfDsV.jpeg",
+    image: "/products/penguin-main.png",
     gallery: [
-      "https://i.imgur.com/0bGQH9p.png",
-      "https://i.imgur.com/2Mp8DhI.png",
-      "https://i.imgur.com/WVBVI2s.png",
-      "https://i.imgur.com/hlK3PYx.png",
-      "https://i.imgur.com/I5SCJG1.png",
-      "https://i.imgur.com/QxrdidH.png",
-      "https://i.imgur.com/KcxOjMy.png",
-      "https://i.imgur.com/sapubN7.png"
+      "/products/penguin/Penguin_Front_product_01.png",
+      "/products/penguin/Penguin_Side_product_02.png",
+      "/products/penguin/Penguin_back_prodcut_03.png",
+      "/products/penguin/Penguin_dimenstions_product_04.png",
+      "/products/penguin/Penguin_Macro_prodcut_05.png",
+      "/products/penguin/Penguin_gift_product_06.png",
+      "/products/penguin/Penguin_Lifestyle_prodcut_07.png",
+      "/products/penguin/Penguin_Lifestyle_prodcut_08.png",
+      "/products/penguin/Penguin_Lifestyle_prodcut_09.png",
+      "/products/penguin/Penguin_packaging_product_10.png"
     ],
-    description: "Magische eenhoorn met kalmerend licht. De perfecte slaaphulp voor je kleintje!",
+    description: "Dit schattige pinguïntje brengt de magie van de poolnacht naar de kinderkamer. Met een prachtige sterrenprojectie en rustgevende witte ruis-geluiden helpt deze Droomvriend je kindje om heerlijk weg te dromen. Het unieke design maakt hem tot een echte blikvanger.",
     features: [
-      "Roze eenhoorn design",
-      "Zacht nachtlampje",
-      "Sterretjes details",
-      "Super zacht pluche"
+      "Sterrenhemel en oceaanprojectie",
+      "8 white noise geluiden",
+      "Zacht LED nachtlicht",
+      "30 minuten auto-uit timer",
+      "Werkt op 3x AA-batterijen"
     ],
     benefits: [
-      "🦄 Magisch design",
-      "✨ Sterretjes patroon",
-      "💖 Roze dromen",
-      "😴 Rustige nachtjes"
+      "🐧 Uniek pinguïn design",
+      "⭐ Magische sterrenhemel",
+      "🎶 Kalmerende white noise",
+      "💙 Rustgevende sfeer"
     ],
-    rating: 4.9,
-    reviews: 267,
+    rating: 4.8,
+    reviews: 987,
     badge: "POPULAIR",
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie",
-    // GA4 E-commerce tags
+    warranty: "30 dagen slaapgarantie",
+    sku: "FM666-75",
     item_id: "KNUF_009",
     item_category: "Knuffels",
     item_category2: "Slaapknuffels",
-    item_category3: "Fantasiedieren",
+    item_category3: "Pooldieren",
     item_category4: "Medium",
-    item_category5: "Met Nachtlicht",
-    item_variant: "roze-regenboog"
+    item_category5: "Met Projectie",
+    item_variant: "blauw-wit"
   },
   {
     id: 11,
