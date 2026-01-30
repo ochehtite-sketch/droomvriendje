@@ -383,7 +383,6 @@ export const products = [
     originalPrice: 59.95,
     image: "/products/penguin-main.png",
     gallery: [
-      "/products/penguin/Penguin_Front_product_01.png",
       "/products/penguin/Penguin_Side_product_02.png",
       "/products/penguin/Penguin_back_prodcut_03.png",
       "/products/penguin/Penguin_dimenstions_product_04.png",
