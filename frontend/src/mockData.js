@@ -517,48 +517,51 @@ export const products = [
   },
   {
     id: 13,
-    name: "Baby Slaapmaatje Teddy Bruin",
-    shortName: "Slaapmaatje Teddy",
+    name: "Grijze Teddybeer – Premium Nachtlampje met Projector & Melodieën",
+    shortName: "Grijze Teddy",
     price: 49.95,
     originalPrice: 59.95,
-    image: "https://i.imgur.com/rgrTbmF.jpeg",
+    image: "/products/beartwo-main.png",
     gallery: [
-      "https://i.imgur.com/20H8VWo.jpeg",
-      "https://i.imgur.com/ZuxBiSp.jpeg",
-      "https://i.imgur.com/eM7G4OR.jpeg",
-      "https://i.imgur.com/PbIEHDw.jpeg",
-      "https://i.imgur.com/Ozq7cnr.jpeg",
-      "https://i.imgur.com/PwHLpLf.jpeg",
-      "https://i.imgur.com/0bKtnUq.jpeg",
-      "https://i.imgur.com/i4FzYoB.jpeg",
-      "https://i.imgur.com/wHnNI1Y.jpeg"
+      "/products/beartwo/BearTwo_Front_product_01.png",
+      "/products/beartwo/BearTwo_Side_product_02.png",
+      "/products/beartwo/BearTwo_back_prodcut_03.png",
+      "/products/beartwo/BearTwo_dimenstions_product_04.png",
+      "/products/beartwo/BearTwo_Macro_prodcut_05.png",
+      "/products/beartwo/BearTwo_gift_product_06.png",
+      "/products/beartwo/BearTwo_Lifestyle_prodcut_07.png",
+      "/products/beartwo/BearTwo_Lifestyle_prodcut_08.png",
+      "/products/beartwo/BearTwo_Lifestyle_prodcut_09.png",
+      "/products/beartwo/BearTwo_packaging_product_10.png"
     ],
-    description: "Lieve bruine teddy slaapmaatje met zacht nachtlampje en kalmerende geluiden. Ideaal voor een rustige nacht.",
+    description: "Deze elegante grijze teddybeer is de perfecte metgezel voor rustige nachten. Met premium sterrenprojectie en kalmerende hartslaggeluiden helpt dit knuffeltje je kindje om veilig en geborgen in slaap te vallen. De neutrale grijze kleur past in elke kinderkamer.",
     features: [
-      "Warm nachtlampje",
-      "Hartslag en white noise",
-      "Super zacht pluche",
-      "Automatische timer"
+      "Premium sterrenprojectie",
+      "Hartslag en white noise geluiden",
+      "Zacht diffuus nachtlicht",
+      "30 minuten auto-uit timer",
+      "Werkt op 3x AA-batterijen"
     ],
     benefits: [
-      "💤 Sneller inslapen",
-      "🧸 Knuffelbare vriend",
-      "🌟 Geruststellend licht",
-      "😴 Doorslapen"
+      "💤 Helpt sneller inslapen",
+      "🧸 Knuffelbare beste vriend",
+      "🌟 Geruststellend sterrenlicht",
+      "😴 Ondersteunt doorslapen"
     ],
     rating: 4.9,
-    reviews: 76,
+    reviews: 1567,
     badge: "BESTSELLER",
     inStock: true,
     ageRange: "Vanaf 0 maanden",
-    warranty: "14 dagen geld-terug-garantie",
+    warranty: "30 dagen slaapgarantie",
+    sku: "FM666-73",
     item_id: "KNUF_013",
     item_category: "Knuffels",
     item_category2: "Slaapknuffels",
     item_category3: "Beren",
     item_category4: "Medium",
     item_category5: "Met Nachtlamp",
-    item_variant: "bruin"
+    item_variant: "grijs"
   }
 ];
 
