@@ -57,7 +57,6 @@ export const products = [
     originalPrice: 64.95,
     image: "/products/sheep-main.png",
     gallery: [
-      "/products/sheep/Sheep_front_prodcut_01.png",
       "/products/sheep/Sheep_side_prodcut_02.png",
       "/products/sheep/Sheep_back_prodcut_03.png",
       "/products/sheep/Sheep_dimenstions_product_04.png",
