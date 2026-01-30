@@ -104,7 +104,11 @@ const seoPages = {
 };
 
 const SeoLandingPage = () => {
-  const { keyword } = useParams();
+  const { keyword: paramKeyword } = useParams();
+  const location = useLocation();
+  
+  // Get keyword from URL param OR from pathname (for direct routes like /slaapknuffel)
+  const keyword = paramKeyword || location.pathname.replace('/', '').replace('/seo/', '');
   const page = seoPages[keyword] || seoPages['slaapknuffel'];
   const featuredProducts = products.slice(0, 3);
 
