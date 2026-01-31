@@ -202,6 +202,34 @@ const CheckoutPage = () => {
     { value: 'bancontact', label: 'Bancontact', icon: '🇧🇪', description: 'Voor België' },
   ];
 
+  // Get cross-sell products (exclude items already in cart)
+  const cartProductIds = cart.map(item => item.id);
+  const crossSellProducts = products
+    .filter(p => !cartProductIds.includes(p.id) && p.id !== 6) // Exclude cart items and Duo set
+    .slice(0, 5);
+
+  // Handle quick add to cart
+  const handleQuickAdd = (product) => {
+    addToCart(product);
+    setAddedProducts(prev => ({ ...prev, [product.id]: true }));
+    
+    // Reset the "added" state after 2 seconds
+    setTimeout(() => {
+      setAddedProducts(prev => ({ ...prev, [product.id]: false }));
+    }, 2000);
+  };
+
+  // Scroll cross-sell strip
+  const scrollCrossSell = (direction) => {
+    if (crossSellRef.current) {
+      const scrollAmount = 200;
+      crossSellRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Empty cart view
   if (cart.length === 0) {
     return (
