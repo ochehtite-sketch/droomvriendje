@@ -156,6 +156,7 @@ export const products = [
     originalPrice: 64.95,
     image: "/products/dino-main.png",
     gallery: [
+      "/products/dino-main.png",
       "/products/dino/Dinno_Side_product_02.png",
       "/products/dino/Dinno_back_prodcut_03.png",
       "/products/dino/Dinno_dimenstions_product_04.png",
