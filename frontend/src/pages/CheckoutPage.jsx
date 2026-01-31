@@ -480,6 +480,91 @@ const CheckoutPage = () => {
                   ))}
                 </div>
 
+                {/* Cross-sell Strip */}
+                {crossSellProducts.length > 0 && (
+                  <div className="mb-6 -mx-2 px-2">
+                    <div className="bg-gradient-to-r from-warm-brown-50 to-amber-50 rounded-xl p-4 border border-warm-brown-100">
+                      <div className="flex items-center justify-between mb-3">
+                        <div>
+                          <p className="text-sm font-bold text-warm-brown-700">
+                            🎁 Voeg nog 1 knuffel toe voor 15% extra korting!
+                          </p>
+                          <p className="text-xs text-warm-brown-600">Meest gekozen samen met jouw bestelling</p>
+                        </div>
+                        <div className="flex gap-1">
+                          <button 
+                            type="button"
+                            onClick={() => scrollCrossSell('left')}
+                            className="w-7 h-7 bg-white rounded-full shadow flex items-center justify-center hover:bg-warm-brown-50 transition"
+                          >
+                            <ChevronLeft className="w-4 h-4 text-warm-brown-600" />
+                          </button>
+                          <button 
+                            type="button"
+                            onClick={() => scrollCrossSell('right')}
+                            className="w-7 h-7 bg-white rounded-full shadow flex items-center justify-center hover:bg-warm-brown-50 transition"
+                          >
+                            <ChevronRight className="w-4 h-4 text-warm-brown-600" />
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div 
+                        ref={crossSellRef}
+                        className="flex gap-3 overflow-x-auto scrollbar-hide pb-2 -mb-2"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                      >
+                        {crossSellProducts.map(product => (
+                          <div 
+                            key={product.id}
+                            className="flex-shrink-0 w-[140px] bg-white rounded-xl p-2 shadow-sm border border-warm-brown-100 hover:shadow-md transition group"
+                          >
+                            <div className="relative">
+                              <img 
+                                src={product.image} 
+                                alt={product.shortName}
+                                className="w-full h-20 object-contain rounded-lg bg-warm-brown-50 mb-2"
+                              />
+                              <span className="absolute top-1 left-1 bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
+                                -15%
+                              </span>
+                            </div>
+                            <p className="text-xs font-semibold text-slate-700 truncate mb-1">
+                              {product.shortName}
+                            </p>
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <span className="text-xs font-bold text-warm-brown-600">
+                                  €{(product.price * 0.85).toFixed(2).replace('.', ',')}
+                                </span>
+                                <span className="text-[10px] text-slate-400 line-through ml-1">
+                                  €{product.price.toFixed(2).replace('.', ',')}
+                                </span>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => handleQuickAdd(product)}
+                                disabled={addedProducts[product.id]}
+                                className={`w-7 h-7 rounded-full flex items-center justify-center transition-all ${
+                                  addedProducts[product.id]
+                                    ? 'bg-green-500 text-white scale-110'
+                                    : 'bg-warm-brown-500 text-white hover:bg-warm-brown-600 hover:scale-105'
+                                }`}
+                              >
+                                {addedProducts[product.id] ? (
+                                  <Check className="w-4 h-4" />
+                                ) : (
+                                  <Plus className="w-4 h-4" />
+                                )}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Pricing */}
                 <div className="space-y-2 text-sm mb-6">
                   <div className="flex justify-between">
