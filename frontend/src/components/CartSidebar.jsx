@@ -332,6 +332,86 @@ const CartSidebar = () => {
                   Voeg nog 1 knuffel toe voor 50% korting!
                 </div>
               )}
+
+              {/* Cross-sell Strip */}
+              {crossSellProducts.length > 0 && (
+                <div className="bg-gradient-to-r from-warm-brown-50 to-amber-50 rounded-xl p-3 border border-warm-brown-100 -mx-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-bold text-warm-brown-700">
+                      🎁 Voeg toe voor 50% korting!
+                    </p>
+                    <div className="flex gap-1">
+                      <button 
+                        type="button"
+                        onClick={() => scrollCrossSell('left')}
+                        className="w-6 h-6 bg-white rounded-full shadow flex items-center justify-center hover:bg-warm-brown-50 transition"
+                      >
+                        <ChevronLeft className="w-3 h-3 text-warm-brown-600" />
+                      </button>
+                      <button 
+                        type="button"
+                        onClick={() => scrollCrossSell('right')}
+                        className="w-6 h-6 bg-white rounded-full shadow flex items-center justify-center hover:bg-warm-brown-50 transition"
+                      >
+                        <ChevronRight className="w-3 h-3 text-warm-brown-600" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div 
+                    ref={crossSellRef}
+                    className="flex gap-2 overflow-x-auto scrollbar-hide pb-1"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  >
+                    {crossSellProducts.map(product => (
+                      <div 
+                        key={product.id}
+                        className="flex-shrink-0 w-[100px] bg-white rounded-lg p-2 shadow-sm border border-warm-brown-100 hover:shadow-md transition"
+                      >
+                        <div className="relative">
+                          <img 
+                            src={product.image} 
+                            alt={product.shortName}
+                            className="w-full h-14 object-contain rounded bg-warm-brown-50 mb-1"
+                          />
+                          <span className="absolute top-0.5 left-0.5 bg-green-500 text-white text-[8px] font-bold px-1 py-0.5 rounded">
+                            -50%
+                          </span>
+                        </div>
+                        <p className="text-[10px] font-semibold text-slate-700 truncate mb-1">
+                          {product.shortName}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-col">
+                            <span className="text-[10px] font-bold text-warm-brown-600">
+                              €{(product.price * 0.5).toFixed(2).replace('.', ',')}
+                            </span>
+                            <span className="text-[8px] text-slate-400 line-through">
+                              €{product.price.toFixed(2).replace('.', ',')}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleQuickAdd(product)}
+                            disabled={addedProducts[product.id]}
+                            className={`w-6 h-6 rounded-full flex items-center justify-center transition-all ${
+                              addedProducts[product.id]
+                                ? 'bg-green-500 text-white scale-110'
+                                : 'bg-warm-brown-500 text-white hover:bg-warm-brown-600 hover:scale-105'
+                            }`}
+                          >
+                            {addedProducts[product.id] ? (
+                              <Check className="w-3 h-3" />
+                            ) : (
+                              <Plus className="w-3 h-3" />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               
               {/* Email input for checkout */}
               <div className="space-y-2">
