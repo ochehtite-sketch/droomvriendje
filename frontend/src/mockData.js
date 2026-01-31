@@ -344,6 +344,7 @@ export const products = [
     originalPrice: 59.95,
     image: "/products/sheeptwo-main.png",
     gallery: [
+      "/products/sheeptwo-main.png",
       "/products/sheeptwo/SheepTwo_Side_product_02.png",
       "/products/sheeptwo/SheepTwo_back_prodcut_03.png",
       "/products/sheeptwo/SheepTwo_dimenstions_product_04.png",
