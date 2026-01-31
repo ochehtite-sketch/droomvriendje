@@ -148,7 +148,7 @@ const CadeaubonPage = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="w-6 h-6 bg-warm-brown-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
-                  <span>Betaal veilig via iDEAL, Klarna of creditcard</span>
+                  <span>Betaal veilig via iDEAL of creditcard</span>
                 </li>
                 <li className="flex items-start">
                   <span className="w-6 h-6 bg-warm-brown-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
