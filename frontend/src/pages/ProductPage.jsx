@@ -149,9 +149,9 @@ const ProductPage = () => {
       {/* Product Detail */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Product Image Gallery */}
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Product Image Gallery - Sticky */}
+            <div className="lg:sticky lg:top-24 lg:self-start">
               {/* Main Image */}
               <div className="relative bg-[#faf7f4] rounded-3xl p-8 mb-4 shadow-sm">
                 <img 
