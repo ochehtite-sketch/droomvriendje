@@ -741,7 +741,7 @@ const HomePage = () => {
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-warm-brown-100">
             <span><Check className="w-4 h-4 inline mr-2" /> Gratis verzending</span>
             <span><Check className="w-4 h-4 inline mr-2" /> 14 dagen retour</span>
-            <span><Check className="w-4 h-4 inline mr-2" /> Klarna achteraf</span>
+            <span><Check className="w-4 h-4 inline mr-2" /> Veilig betalen</span>
           </div>
         </div>
       </section>
