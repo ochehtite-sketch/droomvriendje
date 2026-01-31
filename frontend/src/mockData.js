@@ -253,6 +253,7 @@ export const products = [
     originalPrice: 109.90,
     image: "/products/duo-main.png",
     gallery: [
+      "/products/duo-main.png",
       "/products/duo/DUO_Side_product_02.png",
       "/products/duo/DUO_back_product_03.png",
       "/products/duo/Duo_gift1_produc_06.png",
