@@ -481,315 +481,336 @@ export const products = [
 ];
 
 export const reviews = [
-  // Leeuw reviews
+  // Reviews met profielfoto's - Gender matched
   {
     id: 1,
-    name: "Sophie M.",
+    name: "Jan Heuvelmans",
     rating: 5,
     date: "2 dagen geleden",
     title: "Eindelijk rust bij het slapengaan!",
-    text: "Onze dochter (3 jaar) heeft altijd moeite gehad met in slaap vallen. Sinds we de Droomvriendjes Leeuw hebben, vraagt ze er zelf om voor het slapen. Ze wordt er helemaal rustig van. Absolute aanrader!",
+    text: "Zeer zacht knuffeltje met prettig licht, ons kind slaapt er rustig mee in. De kwaliteit is top!",
     verified: true,
-    product: "Leeuw"
+    product: "Leeuw",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/d244d74a8f47870b355ab304efb3133a5dd797d99e1160bb61475e41e8e4eb90.png"
   },
   {
     id: 2,
-    name: "Emma K.",
-    rating: 5,
+    name: "Marieke Jansen",
+    rating: 4,
     date: "1 week geleden",
-    title: "Minder stress en angst",
-    text: "Mijn dochter van 5 had last van nachtmerries. Met de Droomvriendjes Leeuw voelt ze zich veiliger en slaapt ze veel rustiger. De kwaliteit is ook top!",
+    title: "Mooi ontwerp",
+    text: "Mooi ontwerp en fijne verlichting, iets kleiner dan verwacht maar onze dochter is er dol op.",
     verified: true,
-    product: "Leeuw"
+    product: "Leeuw",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/a11460d8cecaa08d7fcc692578251ef6d8dc284595f3026804d93f132308a039.png"
   },
   {
     id: 3,
-    name: "Peter H.",
+    name: "Peter van Dijk",
     rating: 5,
     date: "3 weken geleden",
-    title: "Top service en product",
-    text: "Snel geleverd en precies zoals omschreven. Onze tweeling is er dol op! De sterrenprojectie is prachtig.",
+    title: "Perfect nachtlampje",
+    text: "Perfect nachtlampje voor de babykamer, geeft warm en rustig licht. De sterrenprojectie is prachtig.",
     verified: true,
-    product: "Leeuw"
+    product: "Leeuw",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/0792732468dc40ed3f703b855c9d6801031b5fc7cb82c231845a2cf7cf1ab391.png"
   },
-  // Schaap reviews
   {
     id: 4,
-    name: "Lisa V.",
+    name: "Linda Bakker",
     rating: 5,
     date: "5 dagen geleden",
-    title: "Echt fantastisch!",
-    text: "Mijn zoontje met ADHD komt eindelijk tot rust met het Schaapje. De ademhaling en het licht helpen hem enorm. We zijn zo blij ermee!",
+    title: "Zeer tevreden!",
+    text: "Goede kwaliteit en voelt stevig aan, zeer tevreden. Mijn zoontje slaapt nu veel rustiger.",
     verified: true,
-    product: "Schaap"
+    product: "Schaap",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/d2023b66f077ea0f34986a60b319c0f01507a269e5b2d5fca38e7a9b25f77cf8.png"
   },
   {
     id: 5,
-    name: "Sarah B.",
+    name: "Mark Smit",
     rating: 5,
     date: "2 weken geleden",
-    title: "Geweldige knuffel!",
-    text: "Het Schaapje is perfect! De white noise functie helpt mijn dochter om rustig te worden. Ze neemt hem overal mee naartoe. Zeer aan te raden!",
+    title: "Dochter is er dol op!",
+    text: "Mijn dochter is er meteen dol op geworden. Ze neemt hem overal mee naartoe. Top kwaliteit!",
     verified: true,
-    product: "Schaap"
+    product: "Schaap",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/afc52adf4bf0fff2a665314245979ecdec5d204eb652a6fca2faced41d574d22.png"
   },
   {
     id: 6,
-    name: "Jasper de V.",
-    rating: 5,
+    name: "Sanne Visser",
+    rating: 4,
     date: "1 maand geleden",
-    title: "Beste investering ooit",
-    text: "Ons zoontje van 2 slaapt nu elke nacht door. Het schaapje is zijn beste vriendje geworden. Fantastische kwaliteit!",
+    title: "Makkelijk te bedienen",
+    text: "Makkelijk te bedienen en zacht genoeg om te knuffelen. Fijn product voor de kinderkamer.",
     verified: true,
-    product: "Schaap"
+    product: "Schaap",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/1d580c8b709b44e0c63a2b8d5bef8215a91a4257891e19e2ba2e2205dbe1bfa5.png"
   },
-  // Teddy reviews
   {
     id: 7,
-    name: "Mark de J.",
+    name: "Jeroen de Boer",
     rating: 5,
     date: "1 week geleden",
-    title: "Beste aankoop ooit!",
-    text: "De Teddy is geweldig! Onze baby van 8 maanden slaapt nu door. De sterrenhemel projectie is zo mooi en rustgevend. Top kwaliteit!",
+    title: "Ideale combinatie",
+    text: "Ideale combinatie van knuffel en nachtlampje. Onze baby van 8 maanden slaapt er heerlijk mee.",
     verified: true,
-    product: "Teddy"
+    product: "Panda",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/e6b97932c5d6cd11dd07de86e9d552c6ea68fffdcc4a5a99d17974bebb98335e.png"
   },
   {
     id: 8,
-    name: "Thomas P.",
-    rating: 4,
+    name: "Annelies Meijer",
+    rating: 5,
     date: "2 weken geleden",
-    title: "Erg tevreden",
-    text: "Mooi product, doet wat het belooft. Onze zoon valt nu sneller in slaap. De kalmerende muziek is heerlijk!",
+    title: "Werkt perfect",
+    text: "Ziet er leuk uit en werkt precies zoals beschreven. De kalmerende muziek is heerlijk!",
     verified: true,
-    product: "Teddy"
+    product: "Panda",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/d4a59540e4928b2947094a2e76f409cbbc95e83e6f0485da775db1045178fe39.png"
   },
   {
     id: 9,
-    name: "Linda S.",
+    name: "Bas van den Berg",
     rating: 5,
     date: "3 weken geleden",
-    title: "Minder schermtijd!",
-    text: "Eindelijk een schermvrij alternatief dat werkt! Onze zoon kijkt nu naar de sterrenhemel in plaats van naar een tablet. Geweldig product!",
+    title: "Heel schattig",
+    text: "Heel schattig en niet te fel voor 's nachts. Onze zoon kijkt nu naar de sterrenhemel in plaats van tablet.",
     verified: true,
-    product: "Teddy"
+    product: "Panda",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/7c46cb0b004c0b3f6352e5e951ad7f4312539bfa867ceb772cd47b7830b3f2fa.png"
   },
-  // Pinguïn reviews
   {
     id: 10,
-    name: "Marieke J.",
-    rating: 5,
+    name: "Kim Mulder",
+    rating: 4,
     date: "4 dagen geleden",
-    title: "Schattig en effectief!",
-    text: "De pinguïn is zo schattig! Mijn dochtertje is er verliefd op. De white noise helpt haar om rustig in te slapen. Aanrader!",
+    title: "Doet wat het moet doen",
+    text: "Fijn product, doet wat het moet doen. Mijn dochtertje is er verliefd op.",
     verified: true,
-    product: "Pinguïn"
+    product: "Dino",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/8e34db9f4bbfd3c2881e92254d6b8c6124bcc9c633cb519f9aa0c95a82e268d1.png"
   },
   {
     id: 11,
-    name: "Dennis K.",
+    name: "Erik de Groot",
     rating: 5,
     date: "2 weken geleden",
-    title: "Perfect cadeau",
-    text: "Gekocht als kraamcadeau. De ouders waren super blij! De baby slaapt nu veel rustiger.",
+    title: "Veilig gevoel",
+    text: "Geeft een veilig gevoel in bed voor ons kind. De sterrenprojectie is prachtig!",
     verified: true,
-    product: "Pinguïn"
+    product: "Dino",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/9aa3940d2f2d7b300b56cb73430fc2cffbe83953b6a9b12f59e89f8e9d6474f1.png"
   },
   {
     id: 12,
-    name: "Anne-Marie L.",
-    rating: 4,
+    name: "Nathalie Bos",
+    rating: 5,
     date: "1 maand geleden",
-    title: "Hele fijne knuffel",
-    text: "Onze zoon van 4 is dol op zijn pinguïn. De sterrenprojectie is prachtig. Goede kwaliteit!",
+    title: "Goede afwerking",
+    text: "Zacht materiaal en goede afwerking. Onze 3-jarige was altijd bang in het donker, nu niet meer!",
     verified: true,
-    product: "Pinguïn"
+    product: "Dino",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/1bedcbc7db82520e0309faeeb8fd81f2d6e2793179a01e2f158f95d0023bc8b4.png"
   },
-  // Dinosaurus reviews
   {
     id: 13,
-    name: "Jordy B.",
+    name: "Tom Kok",
     rating: 5,
     date: "3 dagen geleden",
-    title: "Stoer en rustgevend!",
-    text: "Mijn zoon wilde per se een dino en deze is perfect! Stoer design maar toch rustgevend. Hij slaapt nu veel beter.",
+    title: "Mooi cadeau",
+    text: "Mooi cadeau voor jonge ouders. De baby slaapt nu veel rustiger. Aanrader!",
     verified: true,
-    product: "Dinosaurus"
+    product: "Eenhoorn",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/d5873aa7b1eed68178e5afb0cf49f3c21f4a7f7b2926f51dff8e8f0559e1eadb.png"
   },
   {
     id: 14,
-    name: "Michelle T.",
-    rating: 5,
+    name: "Ilse van Leeuwen",
+    rating: 4,
     date: "1 week geleden",
-    title: "Eindelijk doorslapen",
-    text: "Onze 3-jarige was altijd bang in het donker. Met de dinosaurus en zijn sterrenhemel voelt hij zich nu veilig!",
+    title: "Handig in gebruik",
+    text: "Handig in gebruik, ook midden in de nacht. Mijn dochter vindt het magisch!",
     verified: true,
-    product: "Dinosaurus"
+    product: "Eenhoorn",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/666a1106bef3fc94dc1e5f12fe547e525212c5e85e782a098b9beff147a3059b.png"
   },
   {
     id: 15,
-    name: "Kevin R.",
+    name: "Dennis Schouten",
     rating: 5,
     date: "3 weken geleden",
-    title: "Top product",
-    text: "De dino is echt super! Goede geluidskwaliteit en mooie projectie. Mijn zoon neemt hem overal mee.",
+    title: "Neemt hem overal mee",
+    text: "Ons zoontje neemt hem overal mee naartoe. De kwaliteit is echt top!",
     verified: true,
-    product: "Dinosaurus"
+    product: "Eenhoorn",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/206e5f71fa593021a56848c539c5afb0a364eaaa2d4a5b8bdb60a0ca2e657218.png"
   },
-  // Duo Schaap & Teddy reviews
   {
     id: 16,
-    name: "Anouk de G.",
-    rating: 5,
+    name: "Laura Willems",
+    rating: 4,
     date: "1 week geleden",
-    title: "Perfect voor tweeling!",
-    text: "Met een tweeling is dit de ideale set! Beide knuffels zijn prachtig en nu slapen ze allebei door. Heel blij mee!",
+    title: "Prima kwaliteit",
+    text: "Prima kwaliteit voor deze prijs. Onze tweeling is er dol op!",
     verified: true,
-    product: "Duo Schaap & Teddy"
+    product: "Duo",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/e177922a69f0a90b82fcc4186ce4468d902e67c50c18e4a3edf81dbf5941ff1e.png"
   },
   {
     id: 17,
-    name: "Bas M.",
+    name: "Koen Hendriks",
     rating: 5,
     date: "2 weken geleden",
-    title: "Geweldige voordeelset",
-    text: "Gekocht voor onze twee kinderen. Beide zijn er dol op! Super prijs-kwaliteit verhouding.",
+    title: "Rustgevend licht",
+    text: "Rustgevend licht en lieve uitstraling. Beide kinderen slapen nu door!",
     verified: true,
-    product: "Duo Schaap & Teddy"
+    product: "Duo",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/888e4cd9bd3cdcb865250af54433f816044f6271d2db619195dc5188dd52247b.png"
   },
   {
     id: 18,
-    name: "Esther v.D.",
+    name: "Femke van der Meer",
     rating: 5,
     date: "1 maand geleden",
-    title: "Beide kinderen gelukkig",
-    text: "Geen ruzie meer over wie welke knuffel krijgt. Beiden prachtig en werken perfect!",
+    title: "Geschikt voor peuters",
+    text: "Zeer geschikt voor peuters. Geen ruzie meer over wie welke knuffel krijgt!",
     verified: true,
-    product: "Duo Schaap & Teddy"
+    product: "Duo",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/8c246f56537bedce49bcfb552a44a50c3b87b87ba4d668b464c1e5a714d64acf.png"
   },
-  // Beer Projector reviews
   {
     id: 19,
-    name: "Carlijn W.",
+    name: "Martijn de Jong",
     rating: 5,
     date: "5 dagen geleden",
-    title: "Prachtige sterrenhemel!",
-    text: "De beer projector is fantastisch! De sterrenhemel is zo mooi, onze dochter vindt het magisch. Slaapt nu binnen 10 minuten.",
+    title: "Precies wat we zochten",
+    text: "Precies wat we zochten voor het slapen gaan. De sterrenhemel is zo mooi!",
     verified: true,
-    product: "Beer Projector"
+    product: "Bruine Beer",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/4ef0058cdf8bf199e785ddf40e1981dc46cecaa083a88c9867a9959762ab8882.png"
   },
   {
     id: 20,
-    name: "Rob S.",
-    rating: 4,
+    name: "Rianne van Oosten",
+    rating: 5,
     date: "2 weken geleden",
-    title: "Goede slaaphulp",
-    text: "Compacte beer met mooie projectie. Onze zoon is er blij mee. Batterijen gaan wel snel op.",
+    title: "Stevig en zacht",
+    text: "Stevig en zacht tegelijk, erg tevreden. Onze dochter slaapt nu binnen 10 minuten.",
     verified: true,
-    product: "Beer Projector"
+    product: "Bruine Beer",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/9fe1820161e84325bfd54e93bd7383862515a58a4ac9e3a2fe85d3f5912e5ee2.png"
   },
   {
     id: 21,
-    name: "Iris P.",
+    name: "Paul Kuiper",
     rating: 5,
     date: "3 weken geleden",
-    title: "Schattig en functioneel",
-    text: "De beertje is super schattig! De geluiden zijn kalmerend en de projectie is prachtig. Heel tevreden!",
+    title: "Zonder storend licht",
+    text: "Fijn nachtlampje zonder storend licht. De geluidskwaliteit is ook top!",
     verified: true,
-    product: "Beer Projector"
+    product: "Bruine Beer",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/d972265210076a020aa3281083ea0e2fc5b763628c8aa0cd64e3afed9257a35d.png"
   },
-  // Schaap Liggend reviews
   {
     id: 22,
-    name: "Nathalie K.",
-    rating: 5,
+    name: "Sophie van Dam",
+    rating: 4,
     date: "4 dagen geleden",
-    title: "Extra zacht en lief",
-    text: "Dit liggende schaapje is super zacht! Mijn baby knuffelt er elke nacht mee. Het licht is perfect dim.",
+    title: "Mooi design",
+    text: "Goede functies en mooi design. Mijn zoon neemt hem overal mee.",
     verified: true,
-    product: "Schaap Liggend"
+    product: "Liggend Schaapje",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/147a82a13177c4671a2d1dfa601932419a3732839002bb653897186647632ad7.png"
   },
   {
     id: 23,
-    name: "Frank J.",
+    name: "Arjan de Bruin",
     rating: 5,
     date: "1 week geleden",
-    title: "Perfect voor baby",
-    text: "Ideaal voor in de wieg. Niet te groot, super zacht en de geluiden zijn kalmerend. Aanrader!",
+    title: "Slaapt sneller in",
+    text: "Mijn dochter slaapt sneller in sinds we deze gebruiken. Fantastische aankoop!",
     verified: true,
-    product: "Schaap Liggend"
+    product: "Liggend Schaapje",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/b7dfba04fe153fe75f7f35d49bf0f0386a10d3fa2ce66e92b8d4aa352919dd5c.png"
   },
   {
     id: 24,
-    name: "Monique H.",
-    rating: 5,
-    date: "1 maand geleden",
-    title: "Beste keuze",
-    text: "Van alle slaapknuffels die we hebben geprobeerd is deze de beste. Zacht materiaal en fijn licht.",
+    name: "Monique van Dalen",
+    rating: 4,
+    date: "2 weken geleden",
+    title: "Netjes afgewerkt",
+    text: "Netjes afgewerkt en eenvoudig te bedienen. Aanrader voor jonge kinderen!",
     verified: true,
-    product: "Schaap Liggend"
+    product: "Liggend Schaapje",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/13c172b41853d343594708cfa06884d65f7e70478e735bbc2ab0c6160d6b2db2.png"
   },
-  // Eenhoorn reviews
   {
     id: 25,
-    name: "Lotte B.",
+    name: "Wouter Verhoeven",
     rating: 5,
-    date: "2 dagen geleden",
-    title: "Droom voor elke meid!",
-    text: "Onze dochter is VERLIEFD op haar eenhoorn! Het roze licht en de sterretjes zijn prachtig. Ze wil niet meer zonder slapen.",
+    date: "3 dagen geleden",
+    title: "Vriendelijk gezichtje",
+    text: "Heel zacht en vriendelijk gezichtje. Onze baby is er meteen dol op!",
     verified: true,
-    product: "Eenhoorn"
+    product: "Pinguïn",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/044df327659befd8f587df7a8dd9c5af5f8cf00a7ff0868da175f0649348b286.png"
   },
   {
     id: 26,
-    name: "Rianne T.",
+    name: "Hanneke de Wit",
     rating: 5,
     date: "1 week geleden",
-    title: "Magisch mooi",
-    text: "De eenhoorn is echt magisch! Mijn dochtertje noemt haar 'prinses'. Prachtige kwaliteit.",
+    title: "Werkt betrouwbaar",
+    text: "Werkt betrouwbaar en voelt veilig aan. De white noise helpt enorm!",
     verified: true,
-    product: "Eenhoorn"
+    product: "Pinguïn",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/b9b41d75d5fdac1a091a4708e81da31c624ceeffc80515274a20073ba915ba37.png"
   },
   {
     id: 27,
-    name: "Suzanne M.",
+    name: "Joost Vos",
     rating: 5,
     date: "2 weken geleden",
-    title: "Perfecte slaapmaatje",
-    text: "Super zacht en het licht is precies goed. Onze dochter slaapt nu rustig door. Top product!",
+    title: "Zeker een aanrader",
+    text: "Zeker een aanrader voor jonge kinderen. De sterrenprojectie is prachtig!",
     verified: true,
-    product: "Eenhoorn"
-  },
-  // Panda reviews
-  {
-    id: 31,
-    name: "Daniëlle H.",
-    rating: 5,
-    date: "1 dag geleden",
-    title: "Superschattig!",
-    text: "De panda is ZO schattig! Mijn zoontje wil hem niet meer loslaten. De sterrenprojectie is prachtig en de muziek kalmerend.",
-    verified: true,
-    product: "Panda"
+    product: "Pinguïn",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/4e307c57525ca36b4ac554e991890ec08ac987f9298a69ef042a305131777774.png"
   },
   {
-    id: 32,
-    name: "Steven K.",
-    rating: 5,
-    date: "1 week geleden",
-    title: "Beste cadeau ooit",
-    text: "Gekocht voor het zoontje van mijn zus. Ze waren er allemaal verliefd op! Werkt perfect.",
+    id: 28,
+    name: "Evelien van Loon",
+    rating: 4,
+    date: "3 weken geleden",
+    title: "Doet wat het belooft",
+    text: "Doet precies wat het belooft. Fijne knuffel voor ons zoontje.",
     verified: true,
-    product: "Panda"
+    product: "Grijze Teddy",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/ec911a715cfdbc8522432aca7a65b3d9069c566f3a45b38a01776e0ce62ba6e4.png"
   },
   {
-    id: 33,
-    name: "Wendy P.",
+    id: 29,
+    name: "Bart van der Heijden",
     rating: 5,
+    date: "5 dagen geleden",
+    title: "Prachtig voor avondritueel",
+    text: "Prachtig product voor het avondritueel. Maakt bedtijd een stuk rustiger!",
+    verified: true,
+    product: "Grijze Teddy",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/baf39649f65b3928bea4820b411bc21edc0f033bed41b3c3b5ec015b487d1f6f.png"
+  },
+  {
+    id: 30,
+    name: "Inge Koster",
+    rating: 4,
     date: "2 weken geleden",
-    title: "Fantastische kwaliteit",
-    text: "De panda is van topkwaliteit. Zacht, mooie kleuren, en de functies werken perfect. Heel blij mee!",
+    title: "Goede balans",
+    text: "Goede balans tussen knuffel en lamp. Onze dochter wil hem niet meer missen!",
     verified: true,
-    product: "Panda"
+    product: "Grijze Teddy",
+    avatar: "https://static.prod-images.emergentagent.com/jobs/2409d4a1-a842-4b9a-9da4-375b73bbb74d/images/ee8c342e320ff69ea6b5e693bfe0b07052f842a61019f6082018899604a2577f.png"
   }
 ];
 
