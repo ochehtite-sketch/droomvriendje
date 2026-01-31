@@ -145,15 +145,15 @@ const VerzendingPage = () => {
               </div>
               <div className="bg-white rounded-xl p-4 text-center border border-warm-brown-200">
                 <CreditCard className="w-8 h-8 text-warm-brown-500 mx-auto mb-2" />
-                <p className="font-semibold text-sm">Klarna</p>
-              </div>
-              <div className="bg-white rounded-xl p-4 text-center border border-warm-brown-200">
-                <CreditCard className="w-8 h-8 text-warm-brown-500 mx-auto mb-2" />
                 <p className="font-semibold text-sm">PayPal</p>
               </div>
               <div className="bg-white rounded-xl p-4 text-center border border-warm-brown-200">
                 <CreditCard className="w-8 h-8 text-warm-brown-500 mx-auto mb-2" />
                 <p className="font-semibold text-sm">Creditcard</p>
+              </div>
+              <div className="bg-white rounded-xl p-4 text-center border border-warm-brown-200">
+                <CreditCard className="w-8 h-8 text-warm-brown-500 mx-auto mb-2" />
+                <p className="font-semibold text-sm">Apple Pay</p>
               </div>
             </div>
             
