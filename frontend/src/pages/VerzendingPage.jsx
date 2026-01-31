@@ -90,7 +90,7 @@ const VerzendingPage = () => {
               <div className="text-center">
                 <div className="w-12 h-12 bg-warm-brown-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-xl">2</div>
                 <h3 className="font-bold text-slate-900 mb-2">Betaal</h3>
-                <p className="text-sm text-slate-600">Betaal veilig met iDEAL, Klarna, PayPal of creditcard</p>
+                <p className="text-sm text-slate-600">Betaal veilig met iDEAL, PayPal of creditcard</p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-warm-brown-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-xl">3</div>
