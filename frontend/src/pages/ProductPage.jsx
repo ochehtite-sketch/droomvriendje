@@ -489,7 +489,7 @@ const ProductPage = () => {
               Alleen de zachtste materialen voor jouw baby
             </h3>
             <p className="text-slate-500 font-medium leading-relaxed text-lg italic">
-              "Onze {product.shortName} is gemaakt van premium, hypoallergeen pluche. Zo zacht dat je kindje hem nooit meer wil loslaten."
+              &ldquo;Onze {product.shortName} is gemaakt van premium, hypoallergeen pluche. Zo zacht dat je kindje hem nooit meer wil loslaten.&rdquo;
             </p>
             <ul className="space-y-4">
               <li className="flex items-center gap-4">
