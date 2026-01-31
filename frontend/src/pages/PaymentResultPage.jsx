@@ -14,6 +14,39 @@ const PaymentResultPage = () => {
   const [orderData, setOrderData] = useState(null);
   const [error, setError] = useState(null);
   const purchaseTracked = useRef(false);
+  const surveyRendered = useRef(false);
+
+  // Google Customer Reviews Survey
+  useEffect(() => {
+    if (status === 'paid' && orderData && !surveyRendered.current) {
+      surveyRendered.current = true;
+      
+      // Calculate estimated delivery date (3-5 business days from now)
+      const deliveryDate = new Date();
+      deliveryDate.setDate(deliveryDate.getDate() + 5);
+      const estimatedDelivery = deliveryDate.toISOString().split('T')[0]; // YYYY-MM-DD format
+      
+      // Load Google survey script
+      window.renderOptIn = function() {
+        if (window.gapi && window.gapi.surveyoptin) {
+          window.gapi.load('surveyoptin', function() {
+            window.gapi.surveyoptin.render({
+              "merchant_id": 5711881654,
+              "order_id": orderId,
+              "email": orderData.customer_email || '',
+              "delivery_country": "NL",
+              "estimated_delivery_date": estimatedDelivery
+            });
+          });
+        }
+      };
+      
+      // Check if script already loaded
+      if (window.gapi && window.gapi.surveyoptin) {
+        window.renderOptIn();
+      }
+    }
+  }, [status, orderData, orderId]);
 
   useEffect(() => {
     const checkPaymentStatus = async () => {
