@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail, Tag, Ticket, Check } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Truck, Loader2, Mail, Tag, Ticket, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { trackBeginCheckout, trackCheckoutClicked } from '../utils/analytics';
+import { products } from '../mockData';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
