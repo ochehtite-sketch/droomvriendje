@@ -487,7 +487,7 @@ const CheckoutPage = () => {
                       <div className="flex items-center justify-between mb-3">
                         <div>
                           <p className="text-sm font-bold text-warm-brown-700">
-                            🎁 Voeg nog 1 knuffel toe voor 15% extra korting!
+                            🎁 Voeg nog 1 knuffel toe voor 50% korting!
                           </p>
                           <p className="text-xs text-warm-brown-600">Meest gekozen samen met jouw bestelling</p>
                         </div>
@@ -526,7 +526,7 @@ const CheckoutPage = () => {
                                 className="w-full h-20 object-contain rounded-lg bg-warm-brown-50 mb-2"
                               />
                               <span className="absolute top-1 left-1 bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
-                                -15%
+                                -50%
                               </span>
                             </div>
                             <p className="text-xs font-semibold text-slate-700 truncate mb-1">
@@ -535,7 +535,7 @@ const CheckoutPage = () => {
                             <div className="flex items-center justify-between">
                               <div>
                                 <span className="text-xs font-bold text-warm-brown-600">
-                                  €{(product.price * 0.85).toFixed(2).replace('.', ',')}
+                                  €{(product.price * 0.5).toFixed(2).replace('.', ',')}
                                 </span>
                                 <span className="text-[10px] text-slate-400 line-through ml-1">
                                   €{product.price.toFixed(2).replace('.', ',')}
