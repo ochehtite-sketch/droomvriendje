@@ -122,7 +122,6 @@ const Footer = () => {
               <p className="font-semibold text-white text-sm mb-3">Betaalmethoden:</p>
               <div className="flex flex-wrap gap-2">
                 <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-medium">iDEAL</div>
-                <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-medium">Klarna</div>
                 <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-medium">PayPal</div>
                 <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-medium">Visa</div>
                 <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-medium">Mastercard</div>
