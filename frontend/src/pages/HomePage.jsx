@@ -794,10 +794,10 @@ const HomePage = () => {
               <h4 className="text-white font-bold mb-6">Betaalmethoden</h4>
               <div className="grid grid-cols-3 gap-2">
                 <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">iDEAL</div>
-                <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">KLARNA</div>
                 <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">PAYPAL</div>
                 <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">VISA</div>
                 <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">MC</div>
+                <div className="bg-white/10 h-8 rounded flex items-center justify-center px-2 text-[10px] font-bold">APPLE</div>
               </div>
             </div>
           </div>
