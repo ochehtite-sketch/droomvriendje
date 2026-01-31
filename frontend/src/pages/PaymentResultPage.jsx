@@ -4,6 +4,7 @@ import { Moon, CheckCircle, XCircle, Clock, ArrowLeft, Package } from 'lucide-re
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { trackPurchase } from '../utils/analytics';
+import { Helmet } from 'react-helmet-async';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
