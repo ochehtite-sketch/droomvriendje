@@ -205,6 +205,7 @@ export const products = [
     originalPrice: 64.95,
     image: "/products/unicorn-main.png",
     gallery: [
+      "/products/unicorn-main.png",
       "/products/unicorn/Unicorn_Side_product_02.png",
       "/products/unicorn/Unicorn_back_prodcut_03.png",
       "/products/unicorn/Unicorn_dimenstions_product_04.png",
