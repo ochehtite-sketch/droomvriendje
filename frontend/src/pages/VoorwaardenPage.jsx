@@ -100,7 +100,8 @@ const VoorwaardenPage = () => {
               <p className="font-bold text-slate-900 mb-3">Geaccepteerde betaalmethoden:</p>
               <div className="flex flex-wrap gap-2">
                 <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">iDEAL</span>
-                <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">Klarna</span>
+                <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">iDEAL</span>
+                <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">PayPal</span>
                 <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">PayPal</span>
                 <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">Creditcard</span>
                 <span className="bg-white px-3 py-1 rounded border border-warm-brown-200 text-sm">Apple Pay</span>
