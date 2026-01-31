@@ -591,9 +591,9 @@ const ProductPage = () => {
                   {/* Header with Avatar */}
                   <div className="flex items-start gap-3 mb-4">
                     <img 
-                      src={`https://i.pravatar.cc/48?img=${(review.id % 20) + 20}`}
+                      src={review.avatar || `https://i.pravatar.cc/48?img=${(review.id % 20) + 20}`}
                       alt={review.name}
-                      className="w-12 h-12 rounded-full"
+                      className="w-12 h-12 rounded-full object-cover"
                     />
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
