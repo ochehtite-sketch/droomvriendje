@@ -421,6 +421,141 @@ const ProductPage = () => {
         </div>
       </section>
 
+      {/* EXPANDED SECTIONS - Warm Brown Branding */}
+      <div className="mt-16 space-y-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section 1: AI & Psychology */}
+        <section className="text-center max-w-4xl mx-auto space-y-12">
+          <div className="space-y-4">
+            <span className="text-warm-brown-500 font-black uppercase tracking-[0.3em] text-xs">
+              Voor Ouders & Baby
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-800 leading-tight italic">
+              Waarom ouders kiezen voor de {product.shortName}
+            </h2>
+            <p className="text-slate-500 font-medium text-lg leading-relaxed">
+              Wetenschappelijk bewezen geluiden en kleuren die bijdragen aan een betere nachtrust voor zowel kind als ouder.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mx-auto text-warm-brown-500">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h4 className="text-xl font-black italic">AI Huilsensor</h4>
+              <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                De sensor herkent babygehuil en activeert direct om je kindje te troosten. Zo vallen ze vaak weer zelf in slaap zonder dat jij uit bed hoeft.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mx-auto text-warm-brown-500">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+              </div>
+              <h4 className="text-xl font-black italic">Zachte Projectie</h4>
+              <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                De 3-in-1 projector met sterren en oceaan stimuleert de melatonine aanmaak, wat de natuurlijke slaapcyclus van je baby ondersteunt.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-white rounded-2xl shadow-md flex items-center justify-center mx-auto text-warm-brown-500">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+              <h4 className="text-xl font-black italic">Hartslag Geluid</h4>
+              <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                De baarmoderhartslag en white noise simuleren de veilige omgeving van de baarmoeder, voor een maximaal gevoel van geborgenheid.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2: Material & Washable */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-[3rem] overflow-hidden shadow-sm border border-warm-brown-100 p-4 lg:p-0">
+          <div className="h-full min-h-[400px]">
+            <img 
+              src={galleryImages[4] || galleryImages[1] || product.image}
+              alt={`${product.name} materiaal detail`}
+              className="w-full h-full object-cover rounded-[2.5rem] lg:rounded-none"
+            />
+          </div>
+          <div className="p-8 lg:p-16 space-y-6">
+            <h3 className="text-2xl md:text-3xl font-black italic leading-tight text-slate-800">
+              Alleen de zachtste materialen voor jouw baby
+            </h3>
+            <p className="text-slate-500 font-medium leading-relaxed text-lg italic">
+              "Onze {product.shortName} is gemaakt van premium, hypoallergeen pluche. Zo zacht dat je kindje hem nooit meer wil loslaten."
+            </p>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-warm-brown-50 flex items-center justify-center text-warm-brown-500 shadow-sm shrink-0">
+                  <Check className="w-5 h-5" />
+                </div>
+                <span className="font-bold text-slate-700">100% Kindveilig (CE-gecertificeerd)</span>
+              </li>
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-warm-brown-50 flex items-center justify-center text-warm-brown-500 shadow-sm shrink-0">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <span className="font-bold text-slate-700">Wasbaar (Electronicabox is eenvoudig uitneembaar)</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Section 3: Technical Specs */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1 space-y-8">
+            <h2 className="text-3xl md:text-4xl font-black italic text-slate-800">Technische Specificaties</h2>
+            <div className="space-y-0">
+              <div className="flex justify-between py-5 border-b border-warm-brown-100 group">
+                <span className="font-black text-slate-400 uppercase tracking-widest text-[11px] group-hover:text-warm-brown-600 transition">
+                  Projectie Standen
+                </span>
+                <span className="font-bold text-slate-800 italic">3-in-1 (Sterren, Oceaan, Lamp)</span>
+              </div>
+              <div className="flex justify-between py-5 border-b border-warm-brown-100 group">
+                <span className="font-black text-slate-400 uppercase tracking-widest text-[11px] group-hover:text-warm-brown-600 transition">
+                  Audio Content
+                </span>
+                <span className="font-bold text-slate-800 italic">10 Slaapliedjes + 5 White Noise</span>
+              </div>
+              <div className="flex justify-between py-5 border-b border-warm-brown-100 group">
+                <span className="font-black text-slate-400 uppercase tracking-widest text-[11px] group-hover:text-warm-brown-600 transition">
+                  Voeding
+                </span>
+                <span className="font-bold text-slate-800 italic">USB-C Oplaadbaar (Inbegrepen)</span>
+              </div>
+              <div className="flex justify-between py-5 border-b border-warm-brown-100 group">
+                <span className="font-black text-slate-400 uppercase tracking-widest text-[11px] group-hover:text-warm-brown-600 transition">
+                  Timer
+                </span>
+                <span className="font-bold text-slate-800 italic">30 minuten Auto-uit</span>
+              </div>
+            </div>
+            <div className="p-5 bg-warm-brown-50 rounded-2xl border border-warm-brown-100 italic">
+              <p className="text-xs text-warm-brown-800 font-bold leading-relaxed">
+                <span className="uppercase mr-2 font-black">Tip:</span> 
+                Oplaadbare batterijen zijn niet nodig, omdat de {product.shortName} volledig oplaadbaar is via USB. 
+                De module heeft een ingebouwde timer van 30 minuten voor optimaal energieverbruik.
+              </p>
+            </div>
+          </div>
+          <div className="order-1 lg:order-2">
+            <img 
+              src={galleryImages[3] || galleryImages[2] || product.image}
+              alt={`${product.name} afmetingen`}
+              className="w-full h-auto rounded-[3rem] shadow-2xl bg-white p-6 border border-warm-brown-50"
+            />
+          </div>
+        </section>
+      </div>
+
       {/* Product Reviews - Enhanced Design */}
       <section className="py-16 bg-gradient-to-b from-[#fdf8f3] to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
