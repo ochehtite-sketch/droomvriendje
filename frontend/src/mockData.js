@@ -107,6 +107,7 @@ export const products = [
     originalPrice: 64.95,
     image: "/products/panda-main.png",
     gallery: [
+      "/products/panda-main.png",
       "/products/panda/Panda_Side_product_02.png",
       "/products/panda/Panda_back_prodcut_03.png",
       "/products/panda/Panda_dimenstions_product_04.png",
