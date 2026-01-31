@@ -11,16 +11,46 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const CartSidebar = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart, updateQuantity, getSubtotal, getDiscount, getTotal, getItemCount, isCartOpen, setIsCartOpen, appliedCoupon, setAppliedCoupon } = useCart();
+  const { cart, removeFromCart, updateQuantity, getSubtotal, getDiscount, getTotal, getItemCount, isCartOpen, setIsCartOpen, appliedCoupon, setAppliedCoupon, addToCart } = useCart();
   const [checkoutEmail, setCheckoutEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const crossSellRef = useRef(null);
+  const [addedProducts, setAddedProducts] = useState({});
   
   // Discount code state
   const [discountCode, setDiscountCode] = useState('');
   const [isValidatingCode, setIsValidatingCode] = useState(false);
   const [codeError, setCodeError] = useState('');
   const [codeSuccess, setCodeSuccess] = useState('');
+
+  // Get cross-sell products (exclude items already in cart)
+  const cartProductIds = cart.map(item => item.id);
+  const crossSellProducts = products
+    .filter(p => !cartProductIds.includes(p.id) && p.id !== 6) // Exclude cart items and Duo set
+    .slice(0, 5);
+
+  // Handle quick add to cart
+  const handleQuickAdd = (product) => {
+    addToCart(product);
+    setAddedProducts(prev => ({ ...prev, [product.id]: true }));
+    
+    // Reset the "added" state after 2 seconds
+    setTimeout(() => {
+      setAddedProducts(prev => ({ ...prev, [product.id]: false }));
+    }, 2000);
+  };
+
+  // Scroll cross-sell strip
+  const scrollCrossSell = (direction) => {
+    if (crossSellRef.current) {
+      const scrollAmount = 150;
+      crossSellRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
