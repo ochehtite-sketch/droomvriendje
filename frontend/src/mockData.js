@@ -297,6 +297,7 @@ export const products = [
     originalPrice: 59.95,
     image: "/products/bearbrown-main.png",
     gallery: [
+      "/products/bearbrown-main.png",
       "/products/bearbrown/BearBrown_Side_product_02.png",
       "/products/bearbrown/BearBrown_back_prodcut_03.png",
       "/products/bearbrown/BearBrown_dimenstions_product_04.png",
