@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="flex flex-col items-center">
               <CreditCard className="w-8 h-8 text-warm-brown-400 mb-2" />
               <p className="font-semibold text-white text-sm">Veilig Betalen</p>
-              <p className="text-xs opacity-70">iDEAL, Klarna, PayPal</p>
+              <p className="text-xs opacity-70">iDEAL, PayPal, Creditcard</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-8 h-8 flex items-center justify-center mb-2">
