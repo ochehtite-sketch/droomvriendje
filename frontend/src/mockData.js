@@ -122,8 +122,7 @@ export const products = [
     features: [
       "60 verschillende liedjes + 6 white noise opties",
       "7 lichtmodi voor gepersonaliseerde sfeer",
-      "3-in-1 effecten: sterren, oceaan en nachtlamp",
-      "Werkt op 3x AA-batterijen"
+      "3-in-1 effecten: sterren, oceaan en nachtlamp"
     ],
     benefits: [
       "🐼 Slaap-ondersteuning: Rustgevende beweging",
