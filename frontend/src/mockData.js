@@ -118,9 +118,8 @@ export const products = [
       "/products/panda/Panda_Lifestyle_prodcut_09.png",
       "/products/panda/Panda_packaging_product_10.png"
     ],
-    description: "Onze Slaperige Panda is ontworpen om van bedtijd een feestje te maken. Dit interactieve projector-speelgoed combineert een zachte beweging ('Nodding Off') met een indrukwekkend aanbod aan geluiden en lichteffecten. Of je nu kiest voor de sterrenhemel of de oceaanprojectie, de 7 lichtstanden zorgen altijd voor de juiste sfeer om rustig in slaap te vallen.",
+    description: "Onze Slaperige Panda is ontworpen om van bedtijd een feestje te maken. Dit interactieve projector-speelgoed combineert een zachte beweging met een indrukwekkend aanbod aan geluiden en lichteffecten. Of je nu kiest voor de sterrenhemel of de oceaanprojectie, de 7 lichtstanden zorgen altijd voor de juiste sfeer om rustig in slaap te vallen.",
     features: [
-      "Nodding Off beweging - rustgevende slaapbeweging",
       "60 verschillende liedjes + 6 white noise opties",
       "7 lichtmodi voor gepersonaliseerde sfeer",
       "3-in-1 effecten: sterren, oceaan en nachtlamp",
