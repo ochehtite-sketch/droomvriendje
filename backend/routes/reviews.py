@@ -252,6 +252,18 @@ async def delete_review(review_id: str):
     return {"success": True, "message": "Review verwijderd"}
 
 
+@router.delete("")
+async def delete_all_reviews():
+    """Delete all reviews"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    result = await db.reviews.delete_many({})
+    
+    logger.info(f"All reviews deleted: {result.deleted_count} reviews removed")
+    return {"success": True, "deleted": result.deleted_count, "message": f"{result.deleted_count} reviews verwijderd"}
+
+
 @router.get("/stats")
 async def get_review_stats():
     """Get review statistics"""
