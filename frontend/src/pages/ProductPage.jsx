@@ -315,17 +315,19 @@ const ProductPage = () => {
               </div>
 
               {/* Features */}
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-[#5a4a3a] mb-4">Eigenschappen:</h3>
-                <div className="space-y-2">
-                  {product.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start space-x-2">
-                      <Sparkles className="w-5 h-5 text-[#8B7355] mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
+              {product.features && product.features.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-[#5a4a3a] mb-4">Eigenschappen:</h3>
+                  <div className="space-y-2">
+                    {product.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start space-x-2">
+                        <Sparkles className="w-5 h-5 text-[#8B7355] mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* CTA Buttons - CRO Optimized */}
               <div className="space-y-3 mb-6">
