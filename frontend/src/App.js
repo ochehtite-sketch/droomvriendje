@@ -53,6 +53,7 @@ import VerzendingPage from "./pages/VerzendingPage";
 import CampaignManagementPage from "./pages/CampaignManagementPage";
 import OfflineLandingPage from "./pages/OfflineLandingPage";
 import SeoLandingPage from "./pages/SeoLandingPage";
+import AdminReviewsImporterPage from "./pages/AdminReviewsImporterPage";
 import { Toaster } from "./components/ui/toaster";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -137,6 +138,7 @@ function App() {
               <Route path="/admin/keywords" element={<ProtectedAdminRoute><KeywordsPage /></ProtectedAdminRoute>} />
               <Route path="/admin/email-marketing" element={<ProtectedAdminRoute><EmailMarketingPage /></ProtectedAdminRoute>} />
               <Route path="/admin/campaigns" element={<ProtectedAdminRoute><CampaignManagementPage /></ProtectedAdminRoute>} />
+              <Route path="/admin/product-reviews-importer" element={<ProtectedAdminRoute><AdminReviewsImporterPage /></ProtectedAdminRoute>} />
             </Routes>
             <Toaster />
           </AdminAuthProvider>

@@ -139,14 +139,17 @@ api_router = APIRouter(prefix="/api")
 # Import and setup modular routes
 from routes import products as products_route
 from routes import discount_codes as discount_codes_route
+from routes import reviews as reviews_route
 
 # Set database for routes
 products_route.set_database(db)
 discount_codes_route.set_database(db)
+reviews_route.set_database(db)
 
 # Include modular routers
 api_router.include_router(products_route.router)
 api_router.include_router(discount_codes_route.router)
+api_router.include_router(reviews_route.router)
 
 # ============== GOOGLE SHOPPING FEED CONSTANTS ==============
 SHOP_URL = os.environ.get('SHOP_URL', 'https://droomvriendjes.nl')
