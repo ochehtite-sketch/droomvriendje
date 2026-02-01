@@ -89,8 +89,6 @@ const ProductPage = () => {
     );
   }
 
-  const productReviews = reviews.filter(r => r.product === product.shortName);
-
   // Schema.org Product structured data for Google Merchant Center compliance
   const productSchema = {
     "@context": "https://schema.org",
