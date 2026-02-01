@@ -229,8 +229,9 @@ async def create_review(review: ReviewCreate):
     
     await db.reviews.insert_one(review_doc)
     
-    # Return without _id
-    del review_doc["_id"] if "_id" in review_doc else None
+    # Remove MongoDB _id before returning
+    if "_id" in review_doc:
+        del review_doc["_id"]
     
     logger.info(f"Review created for product {product_name} by {review.name}")
     return review_doc
