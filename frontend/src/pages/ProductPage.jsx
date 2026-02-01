@@ -44,6 +44,25 @@ const ProductPage = () => {
     setSelectedImage(0); // Reset to first image when product changes
   }, [id]);
 
+  // Fetch reviews from database
+  useEffect(() => {
+    const fetchReviews = async () => {
+      if (!product) return;
+      setLoadingReviews(true);
+      try {
+        const response = await fetch(`${API_URL}/api/reviews/by-product/${encodeURIComponent(product.shortName)}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProductReviews(data);
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+      setLoadingReviews(false);
+    };
+    fetchReviews();
+  }, [product]);
+
   useEffect(() => {
     if (product) {
       trackViewItem(product);
