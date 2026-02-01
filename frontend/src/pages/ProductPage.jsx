@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { products, reviews, faqs } from '../mockData';
+import { products, faqs } from '../mockData';
 import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
@@ -11,10 +11,14 @@ import Layout from '../components/Layout';
 import { trackViewItem } from '../utils/analytics';
 import { AdSquare, AdMultiplex } from '../components/AdSense';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 const ProductPage = () => {
   const { id } = useParams();
   const { addToCart, setIsCartOpen } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [productReviews, setProductReviews] = useState([]);
+  const [loadingReviews, setLoadingReviews] = useState(true);
   
   const product = useMemo(() => {
     return products.find(p => p.id === parseInt(id));
