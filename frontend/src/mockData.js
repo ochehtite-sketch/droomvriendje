@@ -121,10 +121,12 @@ export const products = [
     description: "Onze Slaperige Panda is ontworpen om van bedtijd een feestje te maken. Dit interactieve projector-speelgoed combineert een zachte beweging met een indrukwekkend aanbod aan geluiden en lichteffecten. Of je nu kiest voor de sterrenhemel of de oceaanprojectie, de 7 lichtstanden zorgen altijd voor de juiste sfeer om rustig in slaap te vallen.",
     features: [],
     benefits: [
-      "🐼 Slaap-ondersteuning: Rustgevende beweging",
-      "🎵 60 liedjes en 6 witte ruis-opties",
-      "🌟 3-in-1 projectie-effecten",
-      "💡 7 lichtstanden voor perfecte sfeer"
+      "🐼 Slaap-ondersteuning: Zachte, rustgevende beweging helpt je kindje ontspannen en sneller in slaap vallen",
+      "🎵 Muziek & witte ruis: Kies uit 60 kalmerende liedjes en 6 witte-ruisopties voor een vertrouwde en rustige slaapomgeving",
+      "🌟 3-in-1 projectie: Wissel eenvoudig tussen betoverende effecten zoals sterrenhemel, oceaan of nachtlampje",
+      "💡 7 lichtstanden: Van zacht nachtlampje tot sfeervol licht, perfect aan te passen aan de kamer",
+      "🔋 Batterij: Werkt op 3× AA-batterijen (niet inbegrepen)",
+      "✨ Magische sfeer: Creëer een rustige en veilige omgeving die het slapen leuk en ontspannend maakt"
     ],
     rating: 4.9,
     reviews: 1654,
