@@ -144,6 +144,28 @@ const AdminReviewsImporterPage = () => {
     }
   };
 
+  // Handle delete all reviews
+  const handleDeleteAllReviews = async () => {
+    if (!window.confirm(`Weet je zeker dat je ALLE ${reviews.length} reviews wilt verwijderen? Dit kan niet ongedaan worden gemaakt!`)) return;
+
+    try {
+      const response = await fetch(`${API_URL}/api/reviews`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(`${result.deleted} reviews verwijderd`);
+        fetchReviews();
+        fetchStats();
+      } else {
+        alert('Verwijderen mislukt');
+      }
+    } catch (error) {
+      alert('Er ging iets mis');
+    }
+  };
+
   // Download CSV template
   const downloadTemplate = () => {
     const template = 'name,rating,title,text,verified,avatar_url,date\nJan Jansen,5,Geweldige knuffel!,Mijn kind slaapt nu veel beter. Aanrader!,true,,2 weken geleden\nMarie de Vries,4,Fijn product,Goede kwaliteit en snelle levering.,true,,1 maand geleden';
