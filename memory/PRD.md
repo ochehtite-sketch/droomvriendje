@@ -1,8 +1,20 @@
 # Droomvriendjes - Product Requirements Document
 
-## Latest Update: 30 January 2026
+## Latest Update: 1 February 2026
 
-### Completed This Session (30 Jan):
+### Completed This Session (1 Feb):
+- ✅ **REVIEWS CSV IMPORTER TOOL** - Admin functie om reviews te importeren
+  - Nieuwe admin pagina: `/admin/product-reviews-importer`
+  - Backend API: `POST /api/reviews/import-csv`
+  - Productselectie dropdown voor import
+  - CSV template download functie
+  - Reviews overzicht met zoek en filter
+  - Verwijder functie per review
+  - Statistieken dashboard (totaal reviews, per product)
+  - Password protected via admin auth
+- ✅ **Dashboard link** - Review importer toegevoegd aan admin Quick Actions
+
+### Previously Completed (30 Jan):
 - ✅ **5 NIEUWE PRODUCTEN TOEGEVOEGD** met professionele afbeeldingen
   - Duo Set (ID 6) - Leeuw & Schaapje combinatie
   - Bruine Beer (ID 7) - Met sterrenprojector
