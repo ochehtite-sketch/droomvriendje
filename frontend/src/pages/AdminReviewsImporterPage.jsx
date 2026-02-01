@@ -203,15 +203,28 @@ const AdminReviewsImporterPage = () => {
                 <p className="text-sm text-gray-500">Importeer reviews via CSV voor elk product</p>
               </div>
             </div>
-            <Button
-              onClick={downloadTemplate}
-              variant="outline"
-              className="flex items-center gap-2"
-              data-testid="download-template-btn"
-            >
-              <Download className="w-4 h-4" />
-              CSV Template
-            </Button>
+            <div className="flex items-center gap-2">
+              {reviews.length > 0 && (
+                <Button
+                  onClick={handleDeleteAllReviews}
+                  variant="outline"
+                  className="flex items-center gap-2 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300"
+                  data-testid="delete-all-btn"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Alles Verwijderen ({reviews.length})
+                </Button>
+              )}
+              <Button
+                onClick={downloadTemplate}
+                variant="outline"
+                className="flex items-center gap-2"
+                data-testid="download-template-btn"
+              >
+                <Download className="w-4 h-4" />
+                CSV Template
+              </Button>
+            </div>
           </div>
         </div>
       </div>
