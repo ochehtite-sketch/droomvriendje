@@ -46,17 +46,19 @@ img {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f5efe8;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9333ea;
+  background: #8B7355;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7e22ce;
+  background: #6d5a45;
 }
