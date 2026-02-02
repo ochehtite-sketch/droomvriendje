@@ -424,10 +424,34 @@ const AdminReviewsImporterPage = () => {
           {/* Reviews List */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-sm border">
+              {/* Stats Bar */}
+              <div className="p-4 border-b bg-gray-50">
+                <div className="flex flex-wrap gap-4 text-sm">
+                  <span className="text-gray-600">
+                    Totaal: <strong className="text-gray-900">{reviews.length}</strong>
+                  </span>
+                  <span className="text-gray-400">|</span>
+                  <span className="text-gray-600 flex items-center gap-1">
+                    <FileText className="w-4 h-4" />
+                    CSV: <strong className="text-blue-600">{csvImportedCount}</strong>
+                  </span>
+                  <span className="text-gray-600 flex items-center gap-1">
+                    <User className="w-4 h-4" />
+                    Gebruikers: <strong className="text-green-600">{userSubmittedCount}</strong>
+                  </span>
+                  {hiddenCount > 0 && (
+                    <span className="text-gray-600 flex items-center gap-1">
+                      <EyeOff className="w-4 h-4" />
+                      Verborgen: <strong className="text-orange-600">{hiddenCount}</strong>
+                    </span>
+                  )}
+                </div>
+              </div>
+
               {/* Filters */}
               <div className="p-4 border-b">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="relative flex-1">
+                <div className="flex flex-col sm:flex-row gap-3 flex-wrap">
+                  <div className="relative flex-1 min-w-[200px]">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <Input
                       type="text"
@@ -441,13 +465,33 @@ const AdminReviewsImporterPage = () => {
                   <select
                     value={filterProduct}
                     onChange={(e) => setFilterProduct(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-sm min-w-[180px]"
+                    className="border rounded-lg px-3 py-2 text-sm min-w-[150px]"
                     data-testid="filter-product"
                   >
                     <option value="">Alle producten</option>
                     {productNames.map((name) => (
                       <option key={name} value={name}>{name}</option>
                     ))}
+                  </select>
+                  <select
+                    value={filterSource}
+                    onChange={(e) => setFilterSource(e.target.value)}
+                    className="border rounded-lg px-3 py-2 text-sm min-w-[130px]"
+                    data-testid="filter-source"
+                  >
+                    <option value="">Alle bronnen</option>
+                    <option value="csv_import">CSV Import</option>
+                    <option value="user_submitted">Gebruiker</option>
+                  </select>
+                  <select
+                    value={filterVisibility}
+                    onChange={(e) => setFilterVisibility(e.target.value)}
+                    className="border rounded-lg px-3 py-2 text-sm min-w-[130px]"
+                    data-testid="filter-visibility"
+                  >
+                    <option value="">Alle status</option>
+                    <option value="visible">Zichtbaar</option>
+                    <option value="hidden">Verborgen</option>
                   </select>
                   <Button
                     variant="outline"
@@ -470,8 +514,8 @@ const AdminReviewsImporterPage = () => {
                 ) : filteredReviews.length === 0 ? (
                   <div className="p-12 text-center">
                     <MessageSquare className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                    <p className="text-gray-500 mb-2">Nog geen reviews in de database</p>
-                    <p className="text-sm text-gray-400">Importeer reviews via CSV om te beginnen</p>
+                    <p className="text-gray-500 mb-2">Geen reviews gevonden</p>
+                    <p className="text-sm text-gray-400">Pas je filters aan of importeer reviews via CSV</p>
                   </div>
                 ) : (
                   <table className="w-full">
@@ -481,12 +525,17 @@ const AdminReviewsImporterPage = () => {
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Review</th>
                         <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Rating</th>
+                        <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Bron</th>
                         <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Acties</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {filteredReviews.map((review) => (
-                        <tr key={review.id} className="hover:bg-gray-50" data-testid={`review-row-${review.id}`}>
+                        <tr 
+                          key={review.id} 
+                          className={`hover:bg-gray-50 ${review.visible === false ? 'opacity-50 bg-gray-50' : ''}`} 
+                          data-testid={`review-row-${review.id}`}
+                        >
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-3">
                               <img
