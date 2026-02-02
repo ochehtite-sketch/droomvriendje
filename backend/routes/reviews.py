@@ -31,6 +31,15 @@ class ReviewCreate(BaseModel):
     verified: bool = True
     avatar: Optional[str] = None
 
+class UserReviewSubmit(BaseModel):
+    product_id: int
+    product_name: str
+    name: str
+    email: Optional[str] = None
+    rating: int
+    title: str
+    text: str
+
 class ReviewResponse(BaseModel):
     id: str
     product_id: int
@@ -43,6 +52,8 @@ class ReviewResponse(BaseModel):
     avatar: Optional[str]
     date: str
     created_at: str
+    visible: bool = True
+    source: str = "csv_import"
 
 class CSVImportResult(BaseModel):
     success: bool
@@ -58,7 +69,7 @@ def get_default_avatar(name: str) -> str:
 
 
 @router.get("")
-async def get_reviews(product_id: Optional[int] = None):
+async def get_reviews(product_id: Optional[int] = None, include_hidden: bool = False):
     """Get all reviews, optionally filtered by product_id"""
     if db is None:
         raise HTTPException(status_code=500, detail="Database not initialized")
@@ -67,22 +78,100 @@ async def get_reviews(product_id: Optional[int] = None):
     if product_id:
         query["product_id"] = product_id
     
+    # By default, only show visible reviews (for public pages)
+    if not include_hidden:
+        query["visible"] = {"$ne": False}
+    
     reviews = await db.reviews.find(query, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    return reviews
+
+
+@router.get("/admin")
+async def get_all_reviews_admin():
+    """Get all reviews including hidden ones (for admin panel)"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    reviews = await db.reviews.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
     return reviews
 
 
 @router.get("/by-product/{product_short_name}")
 async def get_reviews_by_product_name(product_short_name: str):
-    """Get reviews for a specific product by shortName"""
+    """Get visible reviews for a specific product by shortName"""
     if db is None:
         raise HTTPException(status_code=500, detail="Database not initialized")
     
     reviews = await db.reviews.find(
-        {"product_name": product_short_name},
+        {"product_name": product_short_name, "visible": {"$ne": False}},
         {"_id": 0}
     ).sort("created_at", -1).to_list(100)
     
     return reviews
+
+
+@router.post("/submit")
+async def submit_user_review(review: UserReviewSubmit):
+    """Submit a review from a user on the product page"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    # Validate rating
+    if review.rating < 1 or review.rating > 5:
+        raise HTTPException(status_code=400, detail="Rating moet tussen 1 en 5 zijn")
+    
+    # Validate required fields
+    if not review.name.strip():
+        raise HTTPException(status_code=400, detail="Naam is verplicht")
+    if not review.text.strip():
+        raise HTTPException(status_code=400, detail="Review tekst is verplicht")
+    if not review.title.strip():
+        raise HTTPException(status_code=400, detail="Titel is verplicht")
+    
+    review_doc = {
+        "id": str(uuid.uuid4())[:8],
+        "product_id": review.product_id,
+        "product_name": review.product_name,
+        "name": review.name.strip(),
+        "email": review.email,
+        "rating": review.rating,
+        "title": review.title.strip(),
+        "text": review.text.strip(),
+        "verified": False,  # User-submitted reviews are not verified by default
+        "avatar": get_default_avatar(review.name),
+        "date": "vandaag",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "source": "user_submitted",
+        "visible": True  # Visible by default, admin can hide
+    }
+    
+    await db.reviews.insert_one(review_doc)
+    
+    # Remove MongoDB _id before returning
+    if "_id" in review_doc:
+        del review_doc["_id"]
+    
+    logger.info(f"User review submitted for product {review.product_name} by {review.name}")
+    return {"success": True, "message": "Review succesvol ingediend!", "review": review_doc}
+
+
+@router.patch("/{review_id}/visibility")
+async def toggle_review_visibility(review_id: str, visible: bool):
+    """Toggle review visibility (hide/show)"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    result = await db.reviews.update_one(
+        {"id": review_id},
+        {"$set": {"visible": visible}}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Review niet gevonden")
+    
+    status = "zichtbaar" if visible else "verborgen"
+    logger.info(f"Review {review_id} visibility set to {visible}")
+    return {"success": True, "message": f"Review is nu {status}"}
 
 
 @router.post("/import-csv")
