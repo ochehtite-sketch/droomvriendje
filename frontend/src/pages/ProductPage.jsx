@@ -970,6 +970,13 @@ const ProductPage = () => {
           <AdMultiplex />
         </div>
       </section>
+
+      {/* Sticky Add to Cart */}
+      <StickyAddToCart 
+        product={product} 
+        onAddToCart={handleAddToCart}
+        isCartOpen={isCartOpen}
+      />
     </Layout>
   );
 };
