@@ -13,6 +13,7 @@ const Header = () => {
   const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const navLinks = [
+    { href: "/", label: "Home" },
     { href: "/knuffels", label: "Knuffels" },
     { href: "/cadeaubon", label: "Cadeaubonnen" },
     { href: "/over-ons", label: "Over Droomvriendjes" },
