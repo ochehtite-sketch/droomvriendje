@@ -22,10 +22,21 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
   const [reviews, setReviews] = useState([]);
+  const [fiveStarReviews, setFiveStarReviews] = useState([]);
   const [reviewStats, setReviewStats] = useState({ total: 0, avgRating: 4.9 });
 
   // Filter out of stock products from homepage
   const availableProducts = products.filter(p => p.inStock !== false);
+
+  // Shuffle array helper function
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
   // Fetch reviews from database
   useEffect(() => {
@@ -35,6 +46,11 @@ const HomePage = () => {
         if (response.ok) {
           const data = await response.json();
           setReviews(data);
+          
+          // Filter and shuffle 5-star reviews
+          const fiveStars = data.filter(r => r.rating === 5);
+          setFiveStarReviews(shuffleArray(fiveStars));
+          
           if (data.length > 0) {
             const avg = (data.reduce((acc, r) => acc + r.rating, 0) / data.length).toFixed(1);
             setReviewStats({ total: data.length, avgRating: avg });
