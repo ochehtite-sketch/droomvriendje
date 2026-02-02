@@ -6,7 +6,8 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
-import { Star, ShoppingCart, Check, Sparkles, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Input } from '../components/ui/input';
+import { Star, ShoppingCart, Check, Sparkles, Shield, ChevronLeft, ChevronRight, Send, User, MessageSquare } from 'lucide-react';
 import Layout from '../components/Layout';
 import { trackViewItem } from '../utils/analytics';
 import { AdSquare, AdMultiplex } from '../components/AdSense';
@@ -19,6 +20,19 @@ const ProductPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [productReviews, setProductReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
+  
+  // Review form state
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [reviewForm, setReviewForm] = useState({
+    name: '',
+    email: '',
+    rating: 5,
+    title: '',
+    text: ''
+  });
+  const [submittingReview, setSubmittingReview] = useState(false);
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const [reviewError, setReviewError] = useState('');
   
   const product = useMemo(() => {
     return products.find(p => p.id === parseInt(id));
