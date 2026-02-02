@@ -32,11 +32,11 @@ const AdminReviewsImporterPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterProduct, setFilterProduct] = useState('');
 
-  // Fetch reviews from database
+  // Fetch reviews from database (including hidden for admin)
   const fetchReviews = async () => {
     setLoadingReviews(true);
     try {
-      const response = await fetch(`${API_URL}/api/reviews`);
+      const response = await fetch(`${API_URL}/api/reviews/admin`);
       if (response.ok) {
         const data = await response.json();
         setReviews(data);
