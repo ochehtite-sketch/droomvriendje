@@ -77,8 +77,11 @@ const StickyAddToCart = ({ product, onAddToCart, isCartOpen }) => {
   // Calculate discount percentage if original price exists
   const hasDiscount = product.originalPrice && product.originalPrice > product.price;
   const discountPercent = hasDiscount 
-    ? Math.round((1 - product.price / product.originalPrice) * 100) 
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
+  
+  // Only show discount badge if discount is meaningful (> 5%)
+  const showDiscountBadge = hasDiscount && discountPercent >= 5 && discountPercent <= 50;
 
   return (
     <div 
