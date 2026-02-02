@@ -65,6 +65,23 @@ const AdminReviewsImporterPage = () => {
     fetchStats();
   }, []);
 
+  // Handle toggle visibility
+  const handleToggleVisibility = async (reviewId, currentVisible) => {
+    try {
+      const response = await fetch(`${API_URL}/api/reviews/${reviewId}/visibility?visible=${!currentVisible}`, {
+        method: 'PATCH'
+      });
+
+      if (response.ok) {
+        fetchReviews();
+      } else {
+        alert('Wijzigen mislukt');
+      }
+    } catch (error) {
+      alert('Er ging iets mis');
+    }
+  };
+
   // Handle file selection
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
