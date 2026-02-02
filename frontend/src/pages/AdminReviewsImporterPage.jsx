@@ -205,11 +205,20 @@ const AdminReviewsImporterPage = () => {
     const matchesSearch = review.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          review.text.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesProduct = !filterProduct || review.product_name === filterProduct;
-    return matchesSearch && matchesProduct;
+    const matchesSource = !filterSource || review.source === filterSource;
+    const matchesVisibility = !filterVisibility || 
+      (filterVisibility === 'visible' && review.visible !== false) ||
+      (filterVisibility === 'hidden' && review.visible === false);
+    return matchesSearch && matchesProduct && matchesSource && matchesVisibility;
   });
 
   // Get unique product names for filter
   const productNames = [...new Set(reviews.map(r => r.product_name))];
+
+  // Count stats
+  const userSubmittedCount = reviews.filter(r => r.source === 'user_submitted').length;
+  const csvImportedCount = reviews.filter(r => r.source === 'csv_import').length;
+  const hiddenCount = reviews.filter(r => r.visible === false).length;
 
   return (
     <div className="min-h-screen bg-gray-50" data-testid="admin-reviews-importer">
