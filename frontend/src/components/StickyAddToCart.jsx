@@ -12,7 +12,7 @@ const StickyAddToCart = ({ product, onAddToCart, isCartOpen }) => {
 
   useEffect(() => {
     // Find the main add-to-cart button on the page
-    const mainAddToCartBtn = document.querySelector('[data-testid="add-to-cart-btn"]');
+    const mainAddToCartBtn = document.querySelector('[data-testid="add-to-cart-button"]');
     
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
