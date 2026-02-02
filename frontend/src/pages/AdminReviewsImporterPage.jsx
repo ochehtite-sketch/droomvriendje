@@ -35,6 +35,8 @@ const AdminReviewsImporterPage = () => {
   const [stats, setStats] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterProduct, setFilterProduct] = useState('');
+  const [filterSource, setFilterSource] = useState('');
+  const [filterVisibility, setFilterVisibility] = useState('');
 
   // Fetch reviews from database (including hidden for admin)
   const fetchReviews = async () => {
