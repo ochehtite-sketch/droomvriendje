@@ -56,24 +56,30 @@ const ProductPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setSelectedImage(0); // Reset to first image when product changes
+    // Reset review form when product changes
+    setShowReviewForm(false);
+    setReviewSubmitted(false);
+    setReviewError('');
+    setReviewForm({ name: '', email: '', rating: 5, title: '', text: '' });
   }, [id]);
 
   // Fetch reviews from database
-  useEffect(() => {
-    const fetchReviews = async () => {
-      if (!product) return;
-      setLoadingReviews(true);
-      try {
-        const response = await fetch(`${API_URL}/api/reviews/by-product/${encodeURIComponent(product.shortName)}`);
-        if (response.ok) {
-          const data = await response.json();
-          setProductReviews(data);
-        }
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
+  const fetchReviews = async () => {
+    if (!product) return;
+    setLoadingReviews(true);
+    try {
+      const response = await fetch(`${API_URL}/api/reviews/by-product/${encodeURIComponent(product.shortName)}`);
+      if (response.ok) {
+        const data = await response.json();
+        setProductReviews(data);
       }
-      setLoadingReviews(false);
-    };
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+    setLoadingReviews(false);
+  };
+
+  useEffect(() => {
     fetchReviews();
   }, [product]);
 
@@ -82,6 +88,45 @@ const ProductPage = () => {
       trackViewItem(product);
     }
   }, [product]);
+
+  // Submit review handler
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    setReviewError('');
+    setSubmittingReview(true);
+
+    try {
+      const response = await fetch(`${API_URL}/api/reviews/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_id: product.id,
+          product_name: product.shortName,
+          name: reviewForm.name,
+          email: reviewForm.email,
+          rating: reviewForm.rating,
+          title: reviewForm.title,
+          text: reviewForm.text
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setReviewSubmitted(true);
+        setShowReviewForm(false);
+        setReviewForm({ name: '', email: '', rating: 5, title: '', text: '' });
+        // Refresh reviews to show the new one
+        fetchReviews();
+      } else {
+        setReviewError(result.detail || 'Er ging iets mis. Probeer het opnieuw.');
+      }
+    } catch (error) {
+      setReviewError('Er ging iets mis. Probeer het opnieuw.');
+    }
+
+    setSubmittingReview(false);
+  };
 
   const handleAddToCart = () => {
     addToCart(product);
