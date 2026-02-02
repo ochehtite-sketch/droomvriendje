@@ -77,6 +77,7 @@ const StickyAddToCart = ({ product, onAddToCart, isCartOpen }) => {
   // Always show 50% discount badge for marketing purposes
   const showDiscountBadge = true;
   const discountPercent = 50;
+  const hasDiscount = product.originalPrice && product.originalPrice > product.price;
 
   return (
     <div 
