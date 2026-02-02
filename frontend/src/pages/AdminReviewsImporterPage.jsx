@@ -570,13 +570,40 @@ const AdminReviewsImporterPage = () => {
                             </div>
                           </td>
                           <td className="px-4 py-3 text-center">
-                            <button
-                              onClick={() => handleDeleteReview(review.id)}
-                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                              data-testid={`delete-review-${review.id}`}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                            <span className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${
+                              review.source === 'user_submitted' 
+                                ? 'bg-green-50 text-green-700' 
+                                : 'bg-blue-50 text-blue-700'
+                            }`}>
+                              {review.source === 'user_submitted' ? (
+                                <><User className="w-3 h-3" /> Gebruiker</>
+                              ) : (
+                                <><FileText className="w-3 h-3" /> CSV</>
+                              )}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <div className="flex items-center justify-center gap-1">
+                              <button
+                                onClick={() => handleToggleVisibility(review.id, review.visible !== false)}
+                                className={`p-2 rounded-lg transition-colors ${
+                                  review.visible === false 
+                                    ? 'text-orange-500 hover:bg-orange-50' 
+                                    : 'text-gray-400 hover:text-green-600 hover:bg-green-50'
+                                }`}
+                                title={review.visible === false ? 'Tonen' : 'Verbergen'}
+                                data-testid={`toggle-visibility-${review.id}`}
+                              >
+                                {review.visible === false ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                              </button>
+                              <button
+                                onClick={() => handleDeleteReview(review.id)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                data-testid={`delete-review-${review.id}`}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))}
