@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { products, reviews, benefits, features, testimonials, videos, faqs } from '../mockData';
+import { products, benefits, features, videos, faqs } from '../mockData';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -16,12 +16,36 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 const HomePage = () => {
   const navigate = useNavigate();
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal, getItemCount, isCartOpen, setIsCartOpen } = useCart();
+  const [reviews, setReviews] = useState([]);
+  const [reviewStats, setReviewStats] = useState({ total: 0, avgRating: 4.9 });
 
   // Filter out of stock products from homepage
   const availableProducts = products.filter(p => p.inStock !== false);
+
+  // Fetch reviews from database
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/reviews`);
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+          if (data.length > 0) {
+            const avg = (data.reduce((acc, r) => acc + r.rating, 0) / data.length).toFixed(1);
+            setReviewStats({ total: data.length, avgRating: avg });
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+    fetchReviews();
+  }, []);
 
   // GA4: Track view_item_list when page loads
   useEffect(() => {
