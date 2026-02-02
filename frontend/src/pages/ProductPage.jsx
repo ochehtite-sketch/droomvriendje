@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '..
 import { Input } from '../components/ui/input';
 import { Star, ShoppingCart, Check, Sparkles, Shield, ChevronLeft, ChevronRight, Send, User, MessageSquare } from 'lucide-react';
 import Layout from '../components/Layout';
+import StickyAddToCart from '../components/StickyAddToCart';
 import { trackViewItem } from '../utils/analytics';
 import { AdSquare, AdMultiplex } from '../components/AdSense';
 
@@ -16,7 +17,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { addToCart, setIsCartOpen } = useCart();
+  const { addToCart, setIsCartOpen, isCartOpen } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [productReviews, setProductReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
