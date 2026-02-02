@@ -15,7 +15,11 @@ import {
   Package,
   MessageSquare,
   Search,
-  RefreshCw
+  RefreshCw,
+  Eye,
+  EyeOff,
+  User,
+  FileText
 } from 'lucide-react';
 import { products } from '../mockData';
 
