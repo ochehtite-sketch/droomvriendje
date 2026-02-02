@@ -630,90 +630,94 @@ const HomePage = () => {
       )}
 
       {/* Reviews Section - Warm Brown Theme */}
-      <section id="reviews" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">
-              Klantbeoordelingen
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
-              Echte Reviews van Echte Ouders
-            </h2>
-            <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  ))}
+      {reviews.length > 3 && (
+        <section id="reviews" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Section Header */}
+            <div className="text-center mb-12">
+              <span className="text-warm-brown-600 font-bold uppercase tracking-widest text-sm">
+                Klantbeoordelingen
+              </span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">
+                Echte Reviews van Echte Ouders
+              </h2>
+              <div className="flex items-center justify-center gap-4 mb-4 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="font-bold text-gray-900">{reviewStats.avgRating}/5</span>
                 </div>
-                <span className="font-bold text-gray-900">4.9/5</span>
+                <span className="text-gray-400">|</span>
+                <span className="text-gray-600">{reviewStats.total} geverifieerde reviews</span>
               </div>
-              <span className="text-gray-400">|</span>
-              <span className="text-gray-600">500+ geverifieerde reviews</span>
+            </div>
+            
+            {/* Reviews Grid - Show reviews 4-9 (after first 3 testimonials) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {reviews.slice(3, 9).map((review, index) => (
+                <div 
+                  key={review.id} 
+                  className="bg-white rounded-[32px] border border-slate-100 p-6 sm:p-10 hover:shadow-md transition-all duration-300"
+                  data-testid={`review-card-${index}`}
+                >
+                  {/* Header with Avatar */}
+                  <div className="flex items-start gap-4 mb-4">
+                    <img 
+                      src={review.avatar || `https://ui-avatars.com/api/?name=${review.name}&background=8B7355&color=fff`}
+                      alt={review.name}
+                      className="w-12 h-12 rounded-2xl object-cover"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-slate-900">{review.name}</span>
+                        {review.verified && (
+                          <span className="text-green-600 text-[10px] font-bold bg-green-50 px-2 py-0.5 rounded-full flex items-center gap-1 uppercase tracking-tight">
+                            <Check className="w-3 h-3" /> Geverifieerd
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 mt-1">
+                        <div className="flex">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                          ))}
+                        </div>
+                        <span className="text-xs text-slate-400">{review.date}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Review Content */}
+                  <h4 className="font-black text-slate-900 mb-2 text-xl leading-tight">&ldquo;{review.title}&rdquo;</h4>
+                  <p className="text-slate-600 text-sm mb-4 leading-relaxed font-medium">{review.text}</p>
+                  
+                  {/* Product Tag */}
+                  <div className="pt-6 border-t border-slate-50">
+                    <span className="inline-flex items-center gap-1 bg-warm-brown-50 text-warm-brown-600 px-3 py-1 rounded-full text-xs font-bold">
+                      Gekocht: {review.product_name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Load More */}
+            <div className="text-center mt-12">
+              <Link to="/reviews">
+                <Button 
+                  className="px-10 py-5 bg-white border-2 border-slate-200 text-slate-800 font-black rounded-2xl hover:border-warm-brown-500 hover:text-warm-brown-600 transition-all flex items-center gap-3 mx-auto shadow-sm"
+                  data-testid="load-more-reviews-btn"
+                >
+                  Laad meer reviews <Plus className="w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
-          
-          {/* Reviews Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.slice(0, 6).map((review, index) => (
-              <div 
-                key={review.id} 
-                className="bg-white rounded-[32px] border border-slate-100 p-6 sm:p-10 hover:shadow-md transition-all duration-300"
-                data-testid={`review-card-${index}`}
-              >
-                {/* Header with Avatar */}
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-warm-brown-50 rounded-2xl flex items-center justify-center font-black text-warm-brown-700 text-lg">
-                    {review.name.charAt(0)}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-slate-900">{review.name}</span>
-                      {review.verified && (
-                        <span className="text-green-600 text-[10px] font-bold bg-green-50 px-2 py-0.5 rounded-full flex items-center gap-1 uppercase tracking-tight">
-                          <Check className="w-3 h-3" /> Geverifieerd
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="flex">
-                        {[...Array(review.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                        ))}
-                      </div>
-                      <span className="text-xs text-slate-400">{review.date}</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Review Content */}
-                <h4 className="font-black text-slate-900 mb-2 text-xl leading-tight">&ldquo;{review.title}&rdquo;</h4>
-                <p className="text-slate-600 text-sm mb-4 leading-relaxed font-medium">{review.text}</p>
-                
-                {/* Product Tag */}
-                <div className="pt-6 border-t border-slate-50">
-                  <span className="inline-flex items-center gap-1 bg-warm-brown-50 text-warm-brown-600 px-3 py-1 rounded-full text-xs font-bold">
-                    Gekocht: {review.product}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Load More */}
-          <div className="text-center mt-12">
-            <Link to="/reviews">
-              <Button 
-                className="px-10 py-5 bg-white border-2 border-slate-200 text-slate-800 font-black rounded-2xl hover:border-warm-brown-500 hover:text-warm-brown-600 transition-all flex items-center gap-3 mx-auto shadow-sm"
-                data-testid="load-more-reviews-btn"
-              >
-                Laad meer reviews <Plus className="w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* FAQ Section - Warm Brown Theme */}
       <section id="faq" className="py-16 bg-white">
