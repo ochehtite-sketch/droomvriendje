@@ -267,7 +267,8 @@ async def import_reviews_csv(
                     "avatar": avatar,
                     "date": date,
                     "created_at": datetime.now(timezone.utc).isoformat(),
-                    "source": "csv_import"
+                    "source": "csv_import",
+                    "visible": True
                 }
                 
                 await db.reviews.insert_one(review_doc)
