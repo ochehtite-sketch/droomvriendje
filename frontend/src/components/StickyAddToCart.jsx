@@ -107,7 +107,7 @@ const StickyAddToCart = ({ product, onAddToCart, isCartOpen }) => {
                 alt={product.shortName}
                 className="w-14 h-14 sm:w-16 sm:h-16 object-contain rounded-xl bg-[#fdf8f3] p-1"
               />
-              {hasDiscount && (
+              {showDiscountBadge && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                   -{discountPercent}%
                 </span>
