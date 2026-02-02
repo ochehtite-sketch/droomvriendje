@@ -545,6 +545,98 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* 5-Star Reviews Carousel Section */}
+      {fiveStarReviews.length > 0 && (
+        <section className="py-20 bg-gradient-to-b from-white to-[#fdf8f3]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-bold mb-4">
+                <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                Topbeoordelingen
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
+                Wat Onze Klanten Zeggen
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Ontdek waarom duizenden ouders kiezen voor Droomvriendjes
+              </p>
+            </div>
+
+            {/* Reviews Swiper Carousel */}
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={24}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="pb-12"
+            >
+              {fiveStarReviews.slice(0, 12).map((review, index) => (
+                <SwiperSlide key={review.id}>
+                  <div 
+                    className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 h-full flex flex-col"
+                    data-testid={`five-star-review-${index}`}
+                  >
+                    {/* 5 Stars */}
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    
+                    {/* Review Title */}
+                    <h3 className="font-bold text-slate-900 text-lg mb-3 leading-tight">
+                      &ldquo;{review.title}&rdquo;
+                    </h3>
+                    
+                    {/* Review Text */}
+                    <p className="text-slate-600 text-sm leading-relaxed flex-grow mb-6">
+                      {review.text}
+                    </p>
+                    
+                    {/* Reviewer Info */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-gray-100 mt-auto">
+                      <img 
+                        src={review.avatar || `https://ui-avatars.com/api/?name=${review.name}&background=8B7355&color=fff`}
+                        alt={review.name}
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                      <div className="flex-1">
+                        <p className="font-semibold text-slate-900 text-sm">{review.name}</p>
+                        <p className="text-xs text-[#8B7355]">Gekocht: {review.product_name}</p>
+                      </div>
+                      {review.verified && (
+                        <span className="text-green-500 text-xs font-medium flex items-center gap-1">
+                          <Check className="w-3 h-3" /> Geverifieerd
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* CTA */}
+            <div className="text-center mt-8">
+              <Link to="/reviews">
+                <Button 
+                  className="bg-[#8B7355] hover:bg-[#6d5a45] text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                  data-testid="view-all-five-star-reviews-btn"
+                >
+                  Bekijk Alle {reviewStats.total} Reviews →
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Testimonials Section - Warm Brown Theme */}
       {reviews.length > 0 && (
         <section className="py-20 bg-warm-brown-50">
