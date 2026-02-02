@@ -1,30 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { Star, Filter, ChevronDown } from 'lucide-react';
-import { reviews, products } from '../mockData';
+import { Star, Filter, ChevronDown, RefreshCw } from 'lucide-react';
+import { products } from '../mockData';
 import Layout from '../components/Layout';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const ReviewsPage = () => {
   const [selectedProduct, setSelectedProduct] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState(null);
+
+  // Fetch reviews from database
+  useEffect(() => {
+    const fetchReviews = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`${API_URL}/api/reviews`);
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+      setLoading(false);
+    };
+
+    const fetchStats = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/reviews/stats`);
+        if (response.ok) {
+          const data = await response.json();
+          setStats(data);
+        }
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    };
+
+    fetchReviews();
+    fetchStats();
+  }, []);
 
   // Get unique products from reviews
-  const productNames = [...new Set(reviews.map(r => r.product))];
+  const productNames = [...new Set(reviews.map(r => r.product_name))];
 
   // Filter reviews
   const filteredReviews = reviews
-    .filter(review => selectedProduct === 'all' || review.product === selectedProduct)
+    .filter(review => selectedProduct === 'all' || review.product_name === selectedProduct)
     .sort((a, b) => {
       if (sortBy === 'rating') return b.rating - a.rating;
       return 0; // Default to original order (recent)
     });
 
   // Calculate stats
-  const avgRating = (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1);
+  const avgRating = reviews.length > 0 
+    ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
+    : '0.0';
   const ratingCounts = [5, 4, 3, 2, 1].map(rating => 
     reviews.filter(r => r.rating === rating).length
   );
+
+  if (loading) {
+    return (
+      <Layout backButtonText="Terug naar Home">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#fdf8f3] to-white">
+          <div className="text-center">
+            <RefreshCw className="w-8 h-8 animate-spin text-[#8B7355] mx-auto mb-4" />
+            <p className="text-gray-600">Reviews laden...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (reviews.length === 0) {
+    return (
+      <Layout backButtonText="Terug naar Home">
+        <div className="min-h-screen bg-gradient-to-b from-[#fdf8f3] to-white py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-[#5a4a3a] mb-4">
+                Klantbeoordelingen
+              </h1>
+              <div className="bg-white rounded-2xl border border-gray-200 p-12 mt-8">
+                <Star className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 text-lg">Nog geen reviews beschikbaar.</p>
+                <p className="text-gray-400 mt-2">Binnenkort komen hier echte klantbeoordelingen!</p>
+                <Link to="/">
+                  <Button className="mt-6 bg-[#8B7355] hover:bg-[#6d5a45]">
+                    Bekijk onze producten
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout backButtonText="Terug naar Home">
@@ -55,22 +133,24 @@ const ReviewsPage = () => {
             {/* Customer Avatars */}
             <div className="flex items-center justify-center gap-2 mb-4">
               <div className="flex -space-x-2">
-                {[1, 5, 8, 9, 12].map((img) => (
+                {reviews.slice(0, 5).map((review, idx) => (
                   <img 
-                    key={img}
-                    src={`https://i.pravatar.cc/40?img=${img}`} 
-                    alt="Klant" 
-                    className="w-10 h-10 rounded-full border-2 border-white shadow-sm" 
+                    key={idx}
+                    src={review.avatar || `https://ui-avatars.com/api/?name=${review.name}&background=8B7355&color=fff`}
+                    alt={review.name} 
+                    className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" 
                   />
                 ))}
-                <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-[#8B7355] flex items-center justify-center text-white text-xs font-bold">
-                  +{reviews.length}
-                </div>
+                {reviews.length > 5 && (
+                  <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-[#8B7355] flex items-center justify-center text-white text-xs font-bold">
+                    +{reviews.length - 5}
+                  </div>
+                )}
               </div>
             </div>
             
             <p className="text-lg text-gray-600">
-              Gebaseerd op <span className="font-bold text-gray-900">{reviews.length}+</span> geverifieerde reviews
+              Gebaseerd op <span className="font-bold text-gray-900">{reviews.length}</span> geverifieerde reviews
             </p>
           </div>
         </div>
@@ -92,7 +172,7 @@ const ReviewsPage = () => {
                     <div className="flex-1 bg-gray-200 rounded-full h-2.5">
                       <div 
                         className="bg-amber-400 h-2.5 rounded-full transition-all"
-                        style={{ width: `${(ratingCounts[index] / reviews.length) * 100}%` }}
+                        style={{ width: reviews.length > 0 ? `${(ratingCounts[index] / reviews.length) * 100}%` : '0%' }}
                       ></div>
                     </div>
                     <span className="text-sm text-gray-500 w-8">{ratingCounts[index]}</span>
@@ -123,7 +203,7 @@ const ReviewsPage = () => {
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
-                    {product} ({reviews.filter(r => r.product === product).length})
+                    {product} ({reviews.filter(r => r.product_name === product).length})
                   </button>
                 ))}
               </div>
@@ -132,82 +212,71 @@ const ReviewsPage = () => {
 
           {/* Reviews Grid */}
           <div className="lg:col-span-3">
-            {/* Sort Controls */}
+            {/* Sort Bar */}
             <div className="flex items-center justify-between mb-6">
               <p className="text-gray-600">
                 <span className="font-bold text-gray-900">{filteredReviews.length}</span> reviews gevonden
               </p>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-500">Sorteer op:</span>
-                <select 
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white"
-                >
-                  <option value="recent">Meest recent</option>
-                  <option value="rating">Hoogste beoordeling</option>
-                </select>
-              </div>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#8B7355]"
+              >
+                <option value="recent">Meest recent</option>
+                <option value="rating">Hoogste beoordeling</option>
+              </select>
             </div>
 
             {/* Reviews */}
             <div className="space-y-4">
-              {filteredReviews.map((review, index) => (
+              {filteredReviews.map((review) => (
                 <div 
-                  key={review.id} 
-                  className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300"
+                  key={review.id}
+                  className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-md transition-all"
                   data-testid={`review-${review.id}`}
                 >
                   <div className="flex items-start gap-4">
                     {/* Avatar */}
                     <img 
-                      src={`https://i.pravatar.cc/56?img=${(review.id % 30) + 15}`}
+                      src={review.avatar || `https://ui-avatars.com/api/?name=${review.name}&background=8B7355&color=fff`}
                       alt={review.name}
-                      className="w-14 h-14 rounded-full flex-shrink-0"
+                      className="w-12 h-12 rounded-full object-cover"
                     />
                     
                     <div className="flex-1">
                       {/* Header */}
-                      <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center justify-between mb-2">
                         <div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-gray-900">{review.name}</span>
-                            {review.verified && (
-                              <span className="text-green-500 text-sm flex items-center gap-1 bg-green-50 px-2 py-0.5 rounded-full">
-                                <span>✓</span> Geverifieerd
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2 mt-1">
-                            {/* Trustpilot-style Stars */}
-                            <div className="flex">
-                              {[...Array(5)].map((_, i) => (
-                                <div 
-                                  key={i} 
-                                  className={`w-5 h-5 flex items-center justify-center ${
-                                    i < review.rating ? 'bg-green-500' : 'bg-gray-200'
-                                  }`}
-                                >
-                                  <Star className={`w-3.5 h-3.5 ${i < review.rating ? 'fill-white text-white' : 'fill-gray-400 text-gray-400'}`} />
-                                </div>
-                              ))}
-                            </div>
-                            <span className="text-sm text-gray-400">•</span>
-                            <span className="text-sm text-gray-500">{review.date}</span>
-                          </div>
+                          <span className="font-bold text-gray-900">{review.name}</span>
+                          {review.verified && (
+                            <span className="ml-2 text-green-500 text-sm">✓ Geverifieerd</span>
+                          )}
                         </div>
+                        <span className="text-sm text-gray-400">{review.date}</span>
                       </div>
                       
-                      {/* Review Title */}
-                      <h3 className="font-bold text-[#5a4a3a] text-lg mb-2">{review.title}</h3>
+                      {/* Stars */}
+                      <div className="flex items-center gap-1 mb-3">
+                        {[...Array(5)].map((_, i) => (
+                          <div 
+                            key={i} 
+                            className={`w-5 h-5 flex items-center justify-center ${
+                              i < review.rating ? 'bg-green-500' : 'bg-gray-200'
+                            }`}
+                          >
+                            <Star className={`w-3 h-3 ${i < review.rating ? 'fill-white text-white' : 'fill-gray-400 text-gray-400'}`} />
+                          </div>
+                        ))}
+                      </div>
                       
-                      {/* Review Text */}
-                      <p className="text-gray-600 leading-relaxed mb-3">{review.text}</p>
+                      {/* Content */}
+                      <h4 className="font-bold text-[#5a4a3a] mb-2">{review.title}</h4>
+                      <p className="text-gray-600">{review.text}</p>
                       
                       {/* Product Tag */}
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 bg-[#f5efe8] text-[#8B7355] px-3 py-1.5 rounded-full text-sm font-medium">
-                          🧸 {review.product}
+                      <div className="mt-4">
+                        <span className="inline-flex items-center gap-1 bg-[#f5efe8] text-[#8B7355] px-3 py-1 rounded-full text-sm font-medium">
+                          Gekocht: {review.product_name}
                         </span>
                       </div>
                     </div>
@@ -215,30 +284,6 @@ const ReviewsPage = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-16 bg-gradient-to-r from-[#8B7355] to-[#6d5a45] text-white rounded-3xl p-8 md:p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Word ook een tevreden klant! 🎉
-          </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Sluit je aan bij 10.000+ ouders die kiezen voor Droomvriendjes
-          </p>
-          <Link to="/knuffels">
-            <Button 
-              size="lg" 
-              className="bg-white text-[#8B7355] hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full"
-              data-testid="shop-cta-btn"
-            >
-              🛒 Bekijk Onze Knuffels
-            </Button>
-          </Link>
-          <div className="mt-6 flex items-center justify-center gap-4 text-sm opacity-80 flex-wrap">
-            <span>✓ Gratis verzending</span>
-            <span>✓ 14 dagen retour</span>
-            <span>✓ CE-gecertificeerd</span>
           </div>
         </div>
       </div>
