@@ -731,6 +731,166 @@ const ProductPage = () => {
               </Link>
             </div>
           )}
+
+          {/* Write Review Section */}
+          <div className="mt-16 max-w-2xl mx-auto">
+            {reviewSubmitted ? (
+              <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-green-800 mb-2">Bedankt voor je review!</h3>
+                <p className="text-green-700">Je review is succesvol ingediend en wordt binnenkort weergegeven.</p>
+              </div>
+            ) : !showReviewForm ? (
+              <div className="bg-[#fdf8f3] rounded-2xl p-8 text-center border-2 border-[#e8e0d8]">
+                <MessageSquare className="w-12 h-12 text-[#8B7355] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-[#5a4a3a] mb-2">Deel je ervaring</h3>
+                <p className="text-gray-600 mb-6">Heb je dit product gekocht? Laat anderen weten wat je ervan vindt!</p>
+                <Button 
+                  onClick={() => setShowReviewForm(true)}
+                  className="bg-[#8B7355] hover:bg-[#6d5a45] text-white px-8 py-3 rounded-full"
+                  data-testid="write-review-btn"
+                >
+                  Schrijf een Review
+                </Button>
+              </div>
+            ) : (
+              <div className="bg-white rounded-2xl p-8 border-2 border-[#e8e0d8] shadow-lg">
+                <h3 className="text-xl font-bold text-[#5a4a3a] mb-6 flex items-center gap-2">
+                  <MessageSquare className="w-6 h-6 text-[#8B7355]" />
+                  Schrijf een Review voor {product.shortName}
+                </h3>
+
+                {reviewError && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700">
+                    {reviewError}
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmitReview} className="space-y-6">
+                  {/* Rating */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Jouw Beoordeling *
+                    </label>
+                    <div className="flex gap-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setReviewForm({ ...reviewForm, rating: star })}
+                          className="p-1 transition-transform hover:scale-110"
+                          data-testid={`rating-star-${star}`}
+                        >
+                          <Star 
+                            className={`w-8 h-8 ${
+                              star <= reviewForm.rating 
+                                ? 'fill-amber-400 text-amber-400' 
+                                : 'fill-gray-200 text-gray-200'
+                            }`} 
+                          />
+                        </button>
+                      ))}
+                      <span className="ml-2 text-gray-600 self-center">
+                        {reviewForm.rating} van 5 sterren
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Je Naam *
+                    </label>
+                    <Input
+                      type="text"
+                      value={reviewForm.name}
+                      onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
+                      placeholder="Bijv. Jan Jansen"
+                      required
+                      className="w-full"
+                      data-testid="review-name-input"
+                    />
+                  </div>
+
+                  {/* Email (optional) */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      E-mail <span className="text-gray-400 font-normal">(optioneel, wordt niet getoond)</span>
+                    </label>
+                    <Input
+                      type="email"
+                      value={reviewForm.email}
+                      onChange={(e) => setReviewForm({ ...reviewForm, email: e.target.value })}
+                      placeholder="jan@voorbeeld.nl"
+                      className="w-full"
+                      data-testid="review-email-input"
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Titel van je Review *
+                    </label>
+                    <Input
+                      type="text"
+                      value={reviewForm.title}
+                      onChange={(e) => setReviewForm({ ...reviewForm, title: e.target.value })}
+                      placeholder="Bijv. Geweldig product!"
+                      required
+                      className="w-full"
+                      data-testid="review-title-input"
+                    />
+                  </div>
+
+                  {/* Review Text */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Je Review *
+                    </label>
+                    <textarea
+                      value={reviewForm.text}
+                      onChange={(e) => setReviewForm({ ...reviewForm, text: e.target.value })}
+                      placeholder="Vertel anderen over je ervaring met dit product..."
+                      required
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] resize-none"
+                      data-testid="review-text-input"
+                    />
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex gap-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setShowReviewForm(false)}
+                      className="flex-1 border-gray-300"
+                    >
+                      Annuleren
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={submittingReview}
+                      className="flex-1 bg-[#8B7355] hover:bg-[#6d5a45] text-white"
+                      data-testid="submit-review-btn"
+                    >
+                      {submittingReview ? (
+                        'Verzenden...'
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 mr-2" />
+                          Review Plaatsen
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
