@@ -624,7 +624,7 @@ const HomePage = () => {
 
             {/* CTA */}
             <div className="text-center mt-8">
-              <Link to="/reviews">
+              <Link to="/droomvriendjes-reviews">
                 <Button 
                   className="bg-[#8B7355] hover:bg-[#6d5a45] text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
                   data-testid="view-all-five-star-reviews-btn"
