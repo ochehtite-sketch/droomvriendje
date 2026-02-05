@@ -13,7 +13,8 @@ import {
   Check,
   X,
   Image as ImageIcon,
-  Euro
+  Euro,
+  Settings
 } from 'lucide-react';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
