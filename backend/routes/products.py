@@ -542,3 +542,60 @@ async def delete_product(product_id: int):
     except Exception as e:
         logger.error(f"Error deleting product {product_id}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@router.put("/{product_id}/advanced")
+async def update_product_advanced(product_id: int, updates: dict):
+    """
+    Update product with advanced customizations (images, sections, etc.)
+    For the Advanced Product Editor
+    """
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not configured")
+    
+    try:
+        # Remove fields that shouldn't be updated
+        updates.pop("id", None)
+        updates.pop("_id", None)
+        updates["updated_at"] = datetime.now(timezone.utc)
+        
+        # Store advanced customizations
+        result = await db.products.update_one(
+            {"id": product_id},
+            {"$set": updates}
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Product not found")
+        
+        # Return updated product
+        product = await db.products.find_one({"id": product_id}, {"_id": 0})
+        logger.info(f"Product {product_id} advanced settings updated")
+        return product
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating product advanced {product_id}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/{product_id}/advanced")
+async def get_product_advanced(product_id: int):
+    """Get product with all advanced customizations"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not configured")
+    
+    try:
+        product = await db.products.find_one({"id": product_id}, {"_id": 0})
+        
+        if not product:
+            raise HTTPException(status_code=404, detail="Product not found")
+        
+        return product
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error fetching product advanced {product_id}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
