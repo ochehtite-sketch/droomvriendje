@@ -55,6 +55,7 @@ import OfflineLandingPage from "./pages/OfflineLandingPage";
 import SeoLandingPage from "./pages/SeoLandingPage";
 import AdminReviewsImporterPage from "./pages/AdminReviewsImporterPage";
 import AdminReviewsToolAdvanced from "./pages/AdminReviewsToolAdvanced";
+import DroomvriendjesReviewsPage from "./pages/DroomvriendjesReviewsPage";
 import { Toaster } from "./components/ui/toaster";
 import ScrollToTop from "./components/ScrollToTop";
 
