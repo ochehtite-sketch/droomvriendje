@@ -61,6 +61,18 @@ class CSVImportResult(BaseModel):
     skipped: int
     errors: List[str]
 
+class ReviewUpdate(BaseModel):
+    name: Optional[str] = None
+    rating: Optional[int] = None
+    title: Optional[str] = None
+    text: Optional[str] = None
+    verified: Optional[bool] = None
+    visible: Optional[bool] = None
+    avatar: Optional[str] = None
+
+class BulkDeleteRequest(BaseModel):
+    review_ids: List[str]
+
 # Helper to generate avatar placeholder
 def get_default_avatar(name: str) -> str:
     """Generate a UI Avatars URL based on name"""
