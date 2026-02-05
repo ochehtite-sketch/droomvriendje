@@ -54,6 +54,7 @@ import CampaignManagementPage from "./pages/CampaignManagementPage";
 import OfflineLandingPage from "./pages/OfflineLandingPage";
 import SeoLandingPage from "./pages/SeoLandingPage";
 import AdminReviewsImporterPage from "./pages/AdminReviewsImporterPage";
+import AdminReviewsToolAdvanced from "./pages/AdminReviewsToolAdvanced";
 import { Toaster } from "./components/ui/toaster";
 import ScrollToTop from "./components/ScrollToTop";
 
