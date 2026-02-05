@@ -511,15 +511,3 @@ async def get_random_five_star_reviews(limit: int = 10):
     
     reviews = await db.reviews.aggregate(pipeline).to_list(limit)
     return reviews
-
-    return {
-        "total_reviews": total,
-        "by_product": [
-            {
-                "product_name": stat["_id"],
-                "count": stat["count"],
-                "avg_rating": round(stat["avg_rating"], 1)
-            }
-            for stat in product_stats
-        ]
-    }
