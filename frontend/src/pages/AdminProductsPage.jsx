@@ -366,34 +366,46 @@ const AdminProductsPage = () => {
                   </div>
                   
                   {/* Actions */}
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleEdit(product)}
-                      className="flex-1"
-                      data-testid={`edit-product-${product.id}`}
-                    >
-                      <Pencil className="w-4 h-4 mr-1" />
-                      Bewerk
-                    </Button>
-                    <button
-                      onClick={() => toggleStock(product)}
-                      className={`px-3 rounded-md text-xs font-medium transition-colors ${
-                        product.inStock !== false
-                          ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                          : 'bg-red-100 text-red-700 hover:bg-red-200'
-                      }`}
-                    >
-                      {product.inStock !== false ? 'Op voorraad' : 'Uitverkocht'}
-                    </button>
-                    <button
-                      onClick={() => handleDelete(product.id)}
-                      className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                      data-testid={`delete-product-${product.id}`}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleEdit(product)}
+                        className="flex-1"
+                        data-testid={`edit-product-${product.id}`}
+                      >
+                        <Pencil className="w-4 h-4 mr-1" />
+                        Bewerk
+                      </Button>
+                      <button
+                        onClick={() => toggleStock(product)}
+                        className={`px-3 rounded-md text-xs font-medium transition-colors ${
+                          product.inStock !== false
+                            ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                            : 'bg-red-100 text-red-700 hover:bg-red-200'
+                        }`}
+                      >
+                        {product.inStock !== false ? 'Op voorraad' : 'Uitverkocht'}
+                      </button>
+                      <button
+                        onClick={() => handleDelete(product.id)}
+                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                        data-testid={`delete-product-${product.id}`}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <Link to={`/admin/products/${product.id}/advanced-editor`} className="w-full">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full bg-[#F5F1ED] hover:bg-[#e8dfd4] border-[#8B7355] text-[#8B7355]"
+                      >
+                        <Settings className="w-4 h-4 mr-1" />
+                        Advanced Editor
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
