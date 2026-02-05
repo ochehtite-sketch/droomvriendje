@@ -505,12 +505,12 @@ const AdminDashboardPage = () => {
             </Card>
           </Link>
           
-          <Link to="/admin/product-reviews-importer" data-testid="reviews-importer-link">
+          <Link to="/admin/reviews-tool" data-testid="reviews-tool-link">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-[#8B7355]">
               <CardContent className="p-6 text-center">
                 <MessageSquare className="w-10 h-10 mx-auto text-[#8B7355] mb-3" />
-                <h3 className="font-semibold text-gray-900">Reviews</h3>
-                <p className="text-sm text-gray-500">CSV Import</p>
+                <h3 className="font-semibold text-gray-900">Reviews Tool</h3>
+                <p className="text-sm text-gray-500">Beheer & Bewerk</p>
               </CardContent>
             </Card>
           </Link>
