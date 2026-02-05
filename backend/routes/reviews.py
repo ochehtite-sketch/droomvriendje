@@ -398,3 +398,128 @@ async def get_review_stats():
             for stat in product_stats
         ]
     }
+
+
+@router.patch("/{review_id}")
+async def update_review(review_id: str, update: ReviewUpdate):
+    """Update a review by ID"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    # Build update dict with only provided fields
+    update_data = {}
+    if update.name is not None:
+        update_data["name"] = update.name
+    if update.rating is not None:
+        if update.rating < 1 or update.rating > 5:
+            raise HTTPException(status_code=400, detail="Rating moet tussen 1 en 5 zijn")
+        update_data["rating"] = update.rating
+    if update.title is not None:
+        update_data["title"] = update.title
+    if update.text is not None:
+        update_data["text"] = update.text
+    if update.verified is not None:
+        update_data["verified"] = update.verified
+    if update.visible is not None:
+        update_data["visible"] = update.visible
+    if update.avatar is not None:
+        update_data["avatar"] = update.avatar
+    
+    if not update_data:
+        raise HTTPException(status_code=400, detail="Geen update velden opgegeven")
+    
+    result = await db.reviews.update_one(
+        {"id": review_id},
+        {"$set": update_data}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Review niet gevonden")
+    
+    logger.info(f"Review updated: {review_id}")
+    return {"success": True, "message": "Review bijgewerkt"}
+
+
+@router.post("/bulk-delete")
+async def bulk_delete_reviews(request: BulkDeleteRequest):
+    """Delete multiple reviews by IDs"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    if not request.review_ids:
+        raise HTTPException(status_code=400, detail="Geen review IDs opgegeven")
+    
+    result = await db.reviews.delete_many({"id": {"$in": request.review_ids}})
+    
+    logger.info(f"Bulk delete: {result.deleted_count} reviews removed")
+    return {
+        "success": True,
+        "deleted": result.deleted_count,
+        "message": f"{result.deleted_count} reviews verwijderd"
+    }
+
+
+@router.get("/filter")
+async def filter_reviews(
+    rating: Optional[int] = None,
+    product_id: Optional[int] = None,
+    source: Optional[str] = None,
+    visible: Optional[bool] = None,
+    search: Optional[str] = None
+):
+    """Filter reviews with multiple criteria"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    query = {}
+    
+    if rating is not None:
+        query["rating"] = rating
+    
+    if product_id is not None:
+        query["product_id"] = product_id
+    
+    if source is not None:
+        query["source"] = source
+    
+    if visible is not None:
+        query["visible"] = visible
+    
+    if search:
+        # Search in name, title, and text
+        query["$or"] = [
+            {"name": {"$regex": search, "$options": "i"}},
+            {"title": {"$regex": search, "$options": "i"}},
+            {"text": {"$regex": search, "$options": "i"}}
+        ]
+    
+    reviews = await db.reviews.find(query, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    return reviews
+
+
+@router.get("/five-star-random")
+async def get_random_five_star_reviews(limit: int = 10):
+    """Get random 5-star reviews for homepage display"""
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database not initialized")
+    
+    pipeline = [
+        {"$match": {"rating": 5, "visible": {"$ne": False}}},
+        {"$sample": {"size": limit}},
+        {"$project": {"_id": 0}}
+    ]
+    
+    reviews = await db.reviews.aggregate(pipeline).to_list(limit)
+    return reviews
+
+    return {
+        "total_reviews": total,
+        "by_product": [
+            {
+                "product_name": stat["_id"],
+                "count": stat["count"],
+                "avg_rating": round(stat["avg_rating"], 1)
+            }
+            for stat in product_stats
+        ]
+    }
