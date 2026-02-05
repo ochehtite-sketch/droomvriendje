@@ -98,6 +98,7 @@ function App() {
               <Route path="/hsp" element={<HSPPage />} />
               <Route path="/dementie" element={<DementiePage />} />
               <Route path="/reviews" element={<ReviewsPage />} />
+              <Route path="/droomvriendjes-reviews" element={<DroomvriendjesReviewsPage />} />
               <Route path="/naam-bedenker" element={<NaamBedenkerPage />} />
               {/* Offline Marketing Landing Pages */}
               <Route path="/actie/:channel" element={<OfflineLandingPage />} />
