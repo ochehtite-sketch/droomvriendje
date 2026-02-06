@@ -95,6 +95,8 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
+    // Also clear coupon when cart is cleared (after successful purchase)
+    setAppliedCoupon(null);
   };
 
   // Bereken subtotaal (zonder korting)
