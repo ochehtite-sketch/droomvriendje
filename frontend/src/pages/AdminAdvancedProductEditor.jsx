@@ -57,9 +57,42 @@ const AdminAdvancedProductEditor = () => {
           const data = await response.json();
           setProduct(data);
           
+          // SEO Alt-Text keywords in Dutch
+          const seoKeywords = [
+            "Droomvriendjes Slaapknuffel",
+            "Knuffel met hartslag baby",
+            "Witte ruis knuffel leeuw",
+            "Slaaphulp baby hartslagsensor",
+            "Droomvriendjes Slimme Leeuw",
+            "Zachte knuffel met baarmoedergeluiden",
+            "Baby slaapritueel knuffel",
+            "Droomvriendjes Slaperige Panda",
+            "Interactieve knuffel voor pasgeborenen",
+            "Beste slaapknuffel 2026"
+          ];
+          
           // Initialize edit data from product
+          const imagesWithAlt = (data.gallery || [{ url: data.image }]).map((img, index) => {
+            if (typeof img === 'string') {
+              // Convert string URLs to objects with alt-text
+              return {
+                url: img,
+                alt: img.alt || seoKeywords[index % seoKeywords.length] || `${data.shortName || data.name} - Afbeelding ${index + 1}`,
+                visible: true,
+                order: index
+              };
+            }
+            // Already an object, ensure it has alt-text
+            return {
+              ...img,
+              alt: img.alt || seoKeywords[index % seoKeywords.length] || `${data.shortName || data.name} - Afbeelding ${index + 1}`,
+              visible: img.visible !== undefined ? img.visible : true,
+              order: img.order !== undefined ? img.order : index
+            };
+          });
+          
           setEditData({
-            images: data.gallery || [{ url: data.image, visible: true, order: 0 }],
+            images: imagesWithAlt,
             sections: data.customSections || getDefaultSections(data),
             features: (data.features || []).map((f, i) => ({ id: i, text: f, visible: true })),
             benefits: (data.benefits || []).map((b, i) => ({ id: i, text: b, visible: true })),
