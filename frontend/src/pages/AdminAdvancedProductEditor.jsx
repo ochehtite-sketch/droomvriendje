@@ -120,7 +120,7 @@ const AdminAdvancedProductEditor = () => {
   const addImage = () => {
     setEditData(prev => ({
       ...prev,
-      images: [...prev.images, { url: '', visible: true, order: prev.images.length }]
+      images: [...prev.images, { url: '', alt: '', visible: true, order: prev.images.length }]
     }));
   };
 
