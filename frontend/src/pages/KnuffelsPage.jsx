@@ -70,11 +70,6 @@ const KnuffelsPage = () => {
         </div>
       </section>
 
-      {/* Ad Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AdBanner />
-      </div>
-
       {/* Products Grid - Brown Theme */}
       <section className="py-12 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
