@@ -91,11 +91,11 @@ const KnuffelsPage = () => {
             {sortedProducts.map((product, index) => (
               <div 
                 key={product.id} 
-                className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col ${product.inStock === false ? 'opacity-75' : ''}`}
+                className={`group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full ${product.inStock === false ? 'opacity-75' : ''}`}
                 data-testid={`product-card-${product.id}`}
               >
                 {/* Product Image with Badge */}
-                <div className="relative">
+                <div className="relative aspect-square">
                   {/* Badge - Top Left */}
                   {product.badge && (
                     <div className="absolute top-3 left-3 z-10">
@@ -109,11 +109,12 @@ const KnuffelsPage = () => {
                   
                   {/* Product Image */}
                   <Link to={`/product/${product.id}`} onClick={() => { handleProductClick(product, index); window.scrollTo(0, 0); }}>
-                    <div className="relative bg-[#faf7f4] p-4 cursor-pointer aspect-square flex items-center justify-center">
+                    <div className="relative bg-[#faf7f4] cursor-pointer w-full h-full flex items-center justify-center p-4">
                       <img 
                         src={product.image} 
                         alt={product.name}
                         className={`w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 ${product.inStock === false ? 'grayscale' : ''}`}
+                        style={{ aspectRatio: '1/1' }}
                       />
                       {product.inStock === false && (
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -149,10 +150,12 @@ const KnuffelsPage = () => {
                     <span className="text-xs text-gray-500">({product.reviews} reviews)</span>
                   </div>
                   
-                  {/* Description */}
-                  <p className="text-sm text-gray-500 mb-3 line-clamp-2 flex-1">
-                    {product.description}
-                  </p>
+                  {/* Description with line-clamp */}
+                  <div className="min-h-[3.6rem] mb-3 flex-grow">
+                    <p className="text-sm text-gray-500 line-clamp-3">
+                      {product.description}
+                    </p>
+                  </div>
                   
                   {/* Stock Status */}
                   <div className="mb-3">
@@ -163,24 +166,26 @@ const KnuffelsPage = () => {
                     )}
                   </div>
                   
-                  {/* Add to Cart Button */}
-                  {product.inStock === false ? (
-                    <Button 
-                      className="w-full bg-gray-400 text-white font-medium py-3 rounded-lg cursor-not-allowed"
-                      disabled
-                    >
-                      Uitverkocht
-                    </Button>
-                  ) : (
-                    <Button 
-                      className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-medium py-3 rounded-lg transition-colors"
-                      onClick={() => addToCart(product)}
-                      data-testid={`add-to-cart-${product.id}`}
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      In Winkelwagen
-                    </Button>
-                  )}
+                  {/* Add to Cart Button - Always at bottom */}
+                  <div className="mt-auto">
+                    {product.inStock === false ? (
+                      <Button 
+                        className="w-full bg-gray-400 text-white font-medium py-3 rounded-lg cursor-not-allowed"
+                        disabled
+                      >
+                        Uitverkocht
+                      </Button>
+                    ) : (
+                      <Button 
+                        className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white font-medium py-3 rounded-lg transition-colors"
+                        onClick={() => addToCart(product)}
+                        data-testid={`add-to-cart-${product.id}`}
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        In Winkelwagen
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
