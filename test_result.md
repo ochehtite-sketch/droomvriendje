@@ -295,6 +295,8 @@ test_plan:
     - "AdSense Section Removal from ProductPage"
     - "Product Card Grid Normalization"
     - "Checkout Discount Logic & Coupon Persistence"
+    - "Scarcity Logic Fix - Sticky Bar Stock Counter"
+    - "SEO Alt-Text Integration - Admin & Frontend"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
