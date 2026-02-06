@@ -138,6 +138,18 @@ backend:
         agent: "testing"
         comment: "✅ PRODUCT ADVANCED APIs WORKING: PUT /products/{id}/advanced (save customizations), GET /products/{id}/advanced (fetch with customizations). Tested gallery images with both string URLs and objects with alt-text, sections, features. Backward compatibility confirmed - existing products work without migration. Mixed gallery formats supported correctly."
 
+  - task: "Orders API - Discount Calculations"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ ORDERS API WORKING: POST /orders endpoint correctly handles both automatic discount (2nd item 50%) and manual coupon (WELKOM10). Verified calculation: total_amount = subtotal - discount - coupon_discount. Tested edge cases: auto-only, coupon-only, combined discounts. All order fields (subtotal, discount, coupon_code, coupon_discount, total_amount) persist correctly in database."
+
 frontend:
   - task: "Reviews Tool Advanced Page"
     implemented: true
