@@ -1003,56 +1003,124 @@ const ProductPage = () => {
         </div>
       </section>
 
-      {/* Related Products */}
+      {/* Related Products Carousel - All Products */}
       <section className="py-16 bg-gradient-to-b from-[#fdf8f3] to-[#f5efe8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-[#5a4a3a] mb-8 text-center">
             Andere Knuffels
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.filter(p => p.id !== product.id).slice(0, 3).map((relatedProduct) => (
-              <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all border border-[#e8e0d8] bg-white flex flex-col h-full">
-                <div className="relative bg-[#faf7f4] p-6 aspect-square">
-                  {relatedProduct.badge && (
-                    <Badge className="absolute top-4 left-4 bg-[#2d2d2d] text-white z-10">
-                      {relatedProduct.badge}
-                    </Badge>
-                  )}
-                  <img 
-                    src={relatedProduct.image} 
-                    alt={relatedProduct.name}
-                    className="w-full h-full object-contain"
-                    style={{ aspectRatio: '1/1' }}
-                  />
-                </div>
-                <CardContent className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-[#3d3d3d] mb-2">{relatedProduct.shortName}</h3>
-                  
-                  {/* Description with line-clamp */}
-                  <div className="min-h-[4.5rem] mb-4 flex-grow">
-                    <p className="text-gray-600 text-sm line-clamp-3">{relatedProduct.description}</p>
+          
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Previous Button */}
+            <button
+              onClick={handleCarouselPrev}
+              disabled={carouselIndex === 0}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed hidden lg:flex items-center justify-center"
+              aria-label="Vorige producten"
+            >
+              <ChevronLeft className="w-6 h-6 text-[#8B7355]" />
+            </button>
+
+            {/* Carousel Track */}
+            <div 
+              ref={carouselRef}
+              className="overflow-hidden cursor-grab active:cursor-grabbing"
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleMouseUp}
+            >
+              <div 
+                className="flex gap-6 transition-transform duration-500 ease-out"
+                style={{ 
+                  transform: `translateX(-${carouselIndex * (100 / itemsPerView + 2)}%)`,
+                }}
+              >
+                {relatedProducts.map((relatedProduct) => (
+                  <div 
+                    key={relatedProduct.id}
+                    className="flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                  >
+                    <Card className="overflow-hidden hover:shadow-xl transition-all border border-[#e8e0d8] bg-white flex flex-col h-full">
+                      <div className="relative bg-[#faf7f4] p-6 aspect-square">
+                        {relatedProduct.badge && (
+                          <Badge className="absolute top-4 left-4 bg-[#2d2d2d] text-white z-10">
+                            {relatedProduct.badge}
+                          </Badge>
+                        )}
+                        <img 
+                          src={relatedProduct.image} 
+                          alt={relatedProduct.name}
+                          className="w-full h-full object-contain"
+                          style={{ aspectRatio: '1/1' }}
+                        />
+                      </div>
+                      <CardContent className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold text-[#3d3d3d] mb-2">{relatedProduct.shortName}</h3>
+                        
+                        {/* Description with line-clamp */}
+                        <div className="min-h-[4.5rem] mb-4 flex-grow">
+                          <p className="text-gray-600 text-sm line-clamp-3">{relatedProduct.description}</p>
+                        </div>
+                        
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-2xl font-bold text-[#8B7355]">€{relatedProduct.price.toFixed(2).replace('.', ',')}</span>
+                          <div className="flex items-center space-x-1">
+                            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                            <span className="text-sm font-semibold">{relatedProduct.rating}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Button always at bottom with mt-auto */}
+                        <div className="mt-auto">
+                          <Link to={`/product/${relatedProduct.id}`} onClick={() => window.scrollTo(0, 0)}>
+                            <Button className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white" data-testid={`view-product-${relatedProduct.id}`}>
+                              Bekijk Product
+                            </Button>
+                          </Link>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-[#8B7355]">€{relatedProduct.price.toFixed(2).replace('.', ',')}</span>
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      <span className="text-sm font-semibold">{relatedProduct.rating}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Button always at bottom with mt-auto */}
-                  <div className="mt-auto">
-                    <Link to={`/product/${relatedProduct.id}`} onClick={() => window.scrollTo(0, 0)}>
-                      <Button className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white" data-testid={`view-product-${relatedProduct.id}`}>
-                        Bekijk Product
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={handleCarouselNext}
+              disabled={carouselIndex >= maxIndex}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed hidden lg:flex items-center justify-center"
+              aria-label="Volgende producten"
+            >
+              <ChevronRight className="w-6 h-6 text-[#8B7355]" />
+            </button>
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCarouselIndex(index)}
+                className={`transition-all rounded-full ${
+                  index === carouselIndex 
+                    ? 'w-8 h-2 bg-[#8B7355]' 
+                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Ga naar slide ${index + 1}`}
+              />
             ))}
           </div>
+
+          {/* Mobile scroll hint */}
+          <p className="text-center text-sm text-gray-500 mt-4 lg:hidden">
+            ← Swipe om meer producten te zien →
+          </p>
         </div>
       </section>
 
