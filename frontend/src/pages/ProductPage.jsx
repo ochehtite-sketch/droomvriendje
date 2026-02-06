@@ -941,34 +941,44 @@ const ProductPage = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.filter(p => p.id !== product.id).slice(0, 3).map((relatedProduct) => (
-              <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all border border-[#e8e0d8] bg-white">
-                <div className="relative bg-[#faf7f4] p-6">
+              <Card key={relatedProduct.id} className="overflow-hidden hover:shadow-xl transition-all border border-[#e8e0d8] bg-white flex flex-col h-full">
+                <div className="relative bg-[#faf7f4] p-6 aspect-square">
                   {relatedProduct.badge && (
-                    <Badge className="absolute top-4 left-4 bg-[#2d2d2d] text-white">
+                    <Badge className="absolute top-4 left-4 bg-[#2d2d2d] text-white z-10">
                       {relatedProduct.badge}
                     </Badge>
                   )}
                   <img 
                     src={relatedProduct.image} 
                     alt={relatedProduct.name}
-                    className="w-full h-48 object-contain"
+                    className="w-full h-full object-contain"
+                    style={{ aspectRatio: '1/1' }}
                   />
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold text-[#3d3d3d] mb-2">{relatedProduct.shortName}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{relatedProduct.description}</p>
+                  
+                  {/* Description with line-clamp */}
+                  <div className="min-h-[4.5rem] mb-4 flex-grow">
+                    <p className="text-gray-600 text-sm line-clamp-3">{relatedProduct.description}</p>
+                  </div>
+                  
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-[#8B7355]">€{relatedProduct.price.toFixed(2)}</span>
+                    <span className="text-2xl font-bold text-[#8B7355]">€{relatedProduct.price.toFixed(2).replace('.', ',')}</span>
                     <div className="flex items-center space-x-1">
                       <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                       <span className="text-sm font-semibold">{relatedProduct.rating}</span>
                     </div>
                   </div>
-                  <Link to={`/product/${relatedProduct.id}`} onClick={() => window.scrollTo(0, 0)}>
-                    <Button className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white" data-testid={`view-product-${relatedProduct.id}`}>
-                      Bekijk Product
-                    </Button>
-                  </Link>
+                  
+                  {/* Button always at bottom with mt-auto */}
+                  <div className="mt-auto">
+                    <Link to={`/product/${relatedProduct.id}`} onClick={() => window.scrollTo(0, 0)}>
+                      <Button className="w-full bg-[#8B7355] hover:bg-[#6d5a45] text-white" data-testid={`view-product-${relatedProduct.id}`}>
+                        Bekijk Product
+                      </Button>
+                    </Link>
+                  </div>
                 </CardContent>
               </Card>
             ))}
