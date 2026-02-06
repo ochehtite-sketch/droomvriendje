@@ -441,8 +441,8 @@ const CheckoutPage = () => {
 
             {/* Right Column - Order Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
-                <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+              <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-6">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6 flex items-center gap-2">
                   <ShoppingCart className="w-5 h-5 text-warm-brown-500" />
                   Besteloverzicht
                 </h2>
@@ -454,33 +454,33 @@ const CheckoutPage = () => {
                       <img 
                         src={item.image} 
                         alt={item.shortName || item.name}
-                        className="w-16 h-16 object-cover rounded-xl bg-warm-brown-50"
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl bg-warm-brown-50"
                       />
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-slate-800 text-sm truncate">{item.shortName || item.name}</h3>
-                        <p className="text-warm-brown-600 font-bold">€{item.price.toFixed(2).replace('.', ',')}</p>
-                        <div className="flex items-center gap-2 mt-1">
+                        <h3 className="font-semibold text-slate-800 text-sm sm:text-base truncate">{item.shortName || item.name}</h3>
+                        <p className="text-warm-brown-600 font-bold text-base sm:text-lg">€{item.price.toFixed(2).replace('.', ',')}</p>
+                        <div className="flex items-center gap-2 mt-2">
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition"
+                            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition"
                           >
-                            <Minus className="w-3 h-3" />
+                            <Minus className="w-4 h-4" />
                           </button>
-                          <span className="w-6 text-center font-semibold text-sm">{item.quantity}</span>
+                          <span className="w-8 text-center font-semibold text-base">{item.quantity}</span>
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition"
+                            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition"
                           >
-                            <Plus className="w-3 h-3" />
+                            <Plus className="w-4 h-4" />
                           </button>
                           <button
                             type="button"
                             onClick={() => removeFromCart(item.id)}
-                            className="ml-auto text-red-500 hover:text-red-700 transition"
+                            className="ml-auto text-red-500 hover:text-red-700 transition p-2"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                       </div>
