@@ -51,7 +51,10 @@ class DroomvriendjesAPITester:
             elif method.upper() == "PUT":
                 response = requests.put(url, headers=self.headers, json=data, timeout=30)
             elif method.upper() == "PATCH":
-                response = requests.patch(url, headers=self.headers, json=data, timeout=30)
+                if "?" in endpoint:  # Query parameters in URL
+                    response = requests.patch(url, headers=self.headers, timeout=30)
+                else:
+                    response = requests.patch(url, headers=self.headers, json=data, timeout=30)
             elif method.upper() == "DELETE":
                 response = requests.delete(url, headers=self.headers, timeout=30)
             else:
