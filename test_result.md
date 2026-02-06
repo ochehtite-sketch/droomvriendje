@@ -253,6 +253,30 @@ frontend:
         agent: "main"
         comment: "Fixed coupon persistence: Added appliedCoupon to CheckoutPage, fixed order creation calculation (Subtotal - Auto - Coupon = Total), added coupon display in pricing breakdown, added localStorage persistence on coupon change, clearCart now clears coupon. Manual coupons no longer overwritten by auto promotions."
 
+  - task: "Scarcity Logic Fix - Sticky Bar Stock Counter"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/StickyAddToCart.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Implemented unidirectional stock decrement with sessionStorage. Stock now only decreases (3-7 initial), controlled decay of max 1-2 units per 2-minute intervals, never increases during session. Progress bar synced with stock number (lower stock = emptier bar). Fixed Math.random() issue that caused inconsistent display."
+
+  - task: "SEO Alt-Text Integration - Admin & Frontend"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/AdminAdvancedProductEditor.jsx, /app/frontend/src/pages/ProductPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Added SEO alt-text support: Admin editor pre-fills with 10 Dutch SEO keywords (Droomvriendjes Slaapknuffel, Knuffel met hartslag baby, etc.), dedicated alt-text input field with visual guidance, ProductPage updated to render alt-text in HTML <img> tags. Supports both legacy string URLs and new object format {url, alt}. Backward compatible."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
