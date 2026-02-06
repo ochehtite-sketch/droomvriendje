@@ -652,8 +652,16 @@ const ProductPage = () => {
           </div>
           <div className="order-1 lg:order-2">
             <img 
-              src={galleryImages[3] || galleryImages[2] || product.image}
-              alt={`${product.name} afmetingen`}
+              src={
+                (galleryImages[3]?.url || galleryImages[3]) || 
+                (galleryImages[2]?.url || galleryImages[2]) || 
+                (product.image?.url || product.image)
+              }
+              alt={
+                galleryImages[3]?.alt || 
+                galleryImages[2]?.alt || 
+                `${product.name} afmetingen`
+              }
               className="w-full h-auto rounded-[3rem] shadow-2xl bg-white p-6 border border-warm-brown-50"
             />
           </div>
