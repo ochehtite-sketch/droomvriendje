@@ -396,23 +396,23 @@ const CheckoutPage = () => {
               </div>
 
               {/* Payment Methods */}
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                   <CreditCard className="w-5 h-5 text-warm-brown-500" />
                   Betaalmethode
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {paymentMethods.map(method => (
                     <label 
                       key={method.value} 
-                      className={`relative flex flex-col items-center p-4 border-2 rounded-xl cursor-pointer hover:border-warm-brown-400 transition ${
+                      className={`relative flex flex-col items-center p-5 border-2 rounded-xl cursor-pointer hover:border-warm-brown-400 transition ${
                         formData.paymentMethod === method.value 
                           ? 'border-warm-brown-500 bg-warm-brown-50 shadow-md' 
                           : 'border-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       {method.popular && (
-                        <span className="absolute -top-2 -right-2 bg-warm-brown-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">
+                        <span className="absolute -top-2 -right-2 bg-warm-brown-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                           Populair
                         </span>
                       )}
@@ -424,17 +424,17 @@ const CheckoutPage = () => {
                         onChange={() => handlePaymentMethodChange(method.value)}
                         className="sr-only"
                       />
-                      <span className="text-3xl mb-1">{method.icon}</span>
-                      <span className="font-semibold text-slate-700 text-sm">{method.label}</span>
-                      <span className="text-xs text-slate-500 text-center mt-1">{method.description}</span>
+                      <span className="text-4xl mb-2">{method.icon}</span>
+                      <span className="font-semibold text-slate-700 text-base">{method.label}</span>
+                      <span className="text-sm text-slate-500 text-center mt-1">{method.description}</span>
                     </label>
                   ))}
                 </div>
                 
                 {/* Payment Security Badge */}
-                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600 bg-green-50 p-3 rounded-xl">
+                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600 bg-green-50 p-4 rounded-xl">
                   <Lock className="w-4 h-4 text-green-600" />
-                  <span>Veilige betaling via Mollie - SSL versleuteld</span>
+                  <span className="text-center">Veilige betaling via Mollie - SSL versleuteld</span>
                 </div>
               </div>
             </div>
