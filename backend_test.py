@@ -23,7 +23,7 @@ class DroomvriendjesAPITester:
         self.headers = HEADERS
         self.test_results = []
         self.created_review_ids = []
-        self.test_product_id = 1  # Use existing product
+        self.test_product_id = 2  # Use existing product (ID 1 doesn't exist)
         
     def log_result(self, test_name, success, message, details=None):
         """Log test result"""
