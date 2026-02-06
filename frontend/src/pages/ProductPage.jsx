@@ -274,23 +274,27 @@ const ProductPage = () => {
               {/* Thumbnail Gallery - Show only unique images */}
               {galleryImages.length > 1 && (
                 <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
-                  {galleryImages.map((img, idx) => (
-                    <button
-                      key={`thumb-${idx}-${img.slice(-10)}`}
-                      onClick={() => setSelectedImage(idx)}
-                      className={`flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-2 transition-all ${
-                        selectedImage === idx 
-                          ? 'border-[#8B7355] ring-2 ring-[#8B7355]/30 scale-105' 
-                          : 'border-gray-200 hover:border-[#8B7355]/50 hover:scale-102'
-                      }`}
-                    >
-                      <img 
-                        src={img} 
-                        alt={`${product.name} foto ${idx + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
+                  {galleryImages.map((img, idx) => {
+                    const imgUrl = img?.url || img;
+                    const imgAlt = img?.alt || `${product.name} foto ${idx + 1}`;
+                    return (
+                      <button
+                        key={`thumb-${idx}-${imgUrl.slice(-10)}`}
+                        onClick={() => setSelectedImage(idx)}
+                        className={`flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-2 transition-all ${
+                          selectedImage === idx 
+                            ? 'border-[#8B7355] ring-2 ring-[#8B7355]/30 scale-105' 
+                            : 'border-gray-200 hover:border-[#8B7355]/50 hover:scale-102'
+                        }`}
+                      >
+                        <img 
+                          src={imgUrl} 
+                          alt={imgAlt}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
