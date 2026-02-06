@@ -296,8 +296,8 @@ const CheckoutPage = () => {
             {/* Left Column - Form */}
             <div className="lg:col-span-2 space-y-6">
               {/* Contact Info */}
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                   <Lock className="w-5 h-5 text-warm-brown-500" />
                   Contactgegevens
                 </h2>
@@ -308,17 +308,17 @@ const CheckoutPage = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                  className="w-full p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                 />
               </div>
 
               {/* Shipping Address */}
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                   <Truck className="w-5 h-5 text-warm-brown-500" />
                   Verzendadres
                 </h2>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     type="text"
                     name="firstName"
@@ -326,7 +326,7 @@ const CheckoutPage = () => {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                    className="p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -335,7 +335,7 @@ const CheckoutPage = () => {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                    className="p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -344,7 +344,7 @@ const CheckoutPage = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    className="md:col-span-2 p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                    className="sm:col-span-2 p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -353,7 +353,7 @@ const CheckoutPage = () => {
                     value={formData.zipCode}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                    className="p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="text"
@@ -362,7 +362,7 @@ const CheckoutPage = () => {
                     value={formData.city}
                     onChange={handleInputChange}
                     required
-                    className="p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                    className="p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                   <input
                     type="tel"
@@ -370,14 +370,14 @@ const CheckoutPage = () => {
                     placeholder="Telefoonnummer (optioneel)"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="md:col-span-2 p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
+                    className="sm:col-span-2 p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none transition"
                   />
                 </div>
               </div>
 
               {/* Comments/Special Requests */}
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-warm-brown-500" />
                   Opmerkingen
                 </h2>
@@ -386,11 +386,11 @@ const CheckoutPage = () => {
                   placeholder="Heb je een speciale wens of opmerking? (bijvoorbeeld: cadeauverpakking, bezorgmoment, persoonlijk bericht)"
                   value={formData.comment}
                   onChange={handleInputChange}
-                  rows="3"
-                  className="w-full p-3 border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none resize-none transition"
+                  rows="4"
+                  className="w-full p-4 text-base border-2 border-slate-200 rounded-xl focus:border-warm-brown-500 focus:outline-none resize-none transition"
                 />
-                <p className="text-xs text-slate-500 mt-2 flex items-center gap-1">
-                  <Heart className="w-3 h-3 text-warm-brown-400" />
+                <p className="text-xs sm:text-sm text-slate-500 mt-2 flex items-center gap-1">
+                  <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-warm-brown-400" />
                   Optioneel - We doen ons best om aan je wensen te voldoen!
                 </p>
               </div>
