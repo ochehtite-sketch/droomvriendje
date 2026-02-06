@@ -9,7 +9,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { cart, getSubtotal, getDiscount, getTotal, updateQuantity, removeFromCart, clearCart, addToCart } = useCart();
+  const { cart, getSubtotal, getDiscount, getTotal, updateQuantity, removeFromCart, clearCart, addToCart, appliedCoupon, setAppliedCoupon } = useCart();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const trackingTimeoutRef = useRef(null);
