@@ -39,14 +39,24 @@ const ProductPage = () => {
   }, [id]);
 
   // Create gallery array - main image + unique gallery images (no duplicates)
+  // Support both string URLs and objects with {url, alt}
   const galleryImages = useMemo(() => {
     if (!product) return [];
-    const images = [product.image];
+    
+    const processImage = (img) => {
+      if (typeof img === 'string') {
+        return { url: img, alt: product.name };
+      }
+      return { url: img.url || img, alt: img.alt || product.name };
+    };
+    
+    const images = [processImage(product.image)];
     if (product.gallery && product.gallery.length > 0) {
       // Filter out duplicates - only add images that aren't already in the array
       product.gallery.forEach(img => {
-        if (!images.includes(img)) {
-          images.push(img);
+        const processed = processImage(img);
+        if (!images.find(i => i.url === processed.url)) {
+          images.push(processed);
         }
       });
     }
