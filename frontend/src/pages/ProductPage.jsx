@@ -575,8 +575,16 @@ const ProductPage = () => {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white rounded-[3rem] overflow-hidden shadow-sm border border-warm-brown-100 p-4 lg:p-0">
           <div className="h-full min-h-[400px]">
             <img 
-              src={galleryImages[4] || galleryImages[1] || product.image}
-              alt={`${product.name} materiaal detail`}
+              src={
+                (galleryImages[4]?.url || galleryImages[4]) || 
+                (galleryImages[1]?.url || galleryImages[1]) || 
+                (product.image?.url || product.image)
+              }
+              alt={
+                galleryImages[4]?.alt || 
+                galleryImages[1]?.alt || 
+                `${product.name} materiaal detail`
+              }
               className="w-full h-full object-cover rounded-[2.5rem] lg:rounded-none"
             />
           </div>
