@@ -134,6 +134,12 @@ const CheckoutPage = () => {
       }).catch(() => {});
       
       // Create order
+      // Calculate final total: (Subtotal - Auto Discount) - Manual Coupon = Total
+      const subtotal = getSubtotal();
+      const autoDiscount = getDiscount(); // 2nd item 50% off
+      const couponDiscount = appliedCoupon ? appliedCoupon.discount_amount : 0;
+      const finalTotal = Math.max(0, subtotal - autoDiscount - couponDiscount);
+      
       const orderResponse = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -152,9 +158,11 @@ const CheckoutPage = () => {
             quantity: item.quantity,
             image: item.image
           })),
-          subtotal: getSubtotal(),
-          discount: getDiscount(),
-          total_amount: getTotal()
+          subtotal: subtotal,
+          discount: autoDiscount,
+          coupon_code: appliedCoupon ? appliedCoupon.code : null,
+          coupon_discount: couponDiscount,
+          total_amount: finalTotal
         })
       });
 
