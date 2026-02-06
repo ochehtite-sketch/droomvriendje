@@ -245,8 +245,8 @@ const ProductPage = () => {
               {/* Main Image */}
               <div className="relative bg-[#faf7f4] rounded-3xl p-8 mb-4 shadow-sm">
                 <img 
-                  src={galleryImages[selectedImage]} 
-                  alt={product.name}
+                  src={galleryImages[selectedImage]?.url || galleryImages[selectedImage]} 
+                  alt={galleryImages[selectedImage]?.alt || product.name}
                   className="w-full h-auto object-contain max-h-[500px]"
                 />
                 
