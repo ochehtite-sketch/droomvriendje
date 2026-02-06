@@ -34,6 +34,13 @@ const ProductPage = () => {
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const [reviewError, setReviewError] = useState('');
   
+  // Carousel state for "Andere Knuffels"
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const carouselRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  
   const product = useMemo(() => {
     return products.find(p => p.id === parseInt(id));
   }, [id]);
