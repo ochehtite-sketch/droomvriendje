@@ -240,10 +240,14 @@ const StickyAddToCart = ({ product, onAddToCart, isCartOpen }) => {
         <div className="mt-2 hidden sm:block">
           <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
             <span>🔥 Bijna uitverkocht!</span>
-            <span>Nog {Math.floor(Math.random() * 5) + 3} op voorraad</span>
+            <span>Nog {stockLeft || 3} op voorraad</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-gradient-to-r from-orange-400 to-red-500 h-1.5 rounded-full" style={{ width: '75%' }} />
+            {/* Progress bar synced with stock - lower stock = emptier bar */}
+            <div 
+              className="bg-gradient-to-r from-orange-400 to-red-500 h-1.5 rounded-full transition-all duration-500" 
+              style={{ width: `${Math.min(100, ((stockLeft || 3) / 10) * 100)}%` }} 
+            />
           </div>
         </div>
 
