@@ -459,21 +459,24 @@ class DroomvriendjesAPITester:
         if response and response.status_code == 404:
             self.log_result("Invalid Review ID", True, "Correctly returned 404 for invalid ID")
         else:
-            self.log_result("Invalid Review ID", False, "Should return 404 for invalid ID")
+            status = response.status_code if response else "No response"
+            self.log_result("Invalid Review ID", False, f"Expected 404, got {status}")
         
         # 2. Test empty bulk delete
         response = self.make_request("POST", "/reviews/bulk-delete", {"review_ids": []})
         if response and response.status_code == 400:
             self.log_result("Empty Bulk Delete", True, "Correctly rejected empty bulk delete")
         else:
-            self.log_result("Empty Bulk Delete", False, "Should reject empty bulk delete")
+            status = response.status_code if response else "No response"
+            self.log_result("Empty Bulk Delete", False, f"Expected 400, got {status}")
         
         # 3. Test invalid product ID
         response = self.make_request("GET", "/products/99999/advanced")
         if response and response.status_code == 404:
             self.log_result("Invalid Product ID", True, "Correctly returned 404 for invalid product")
         else:
-            self.log_result("Invalid Product ID", False, "Should return 404 for invalid product")
+            status = response.status_code if response else "No response"
+            self.log_result("Invalid Product ID", False, f"Expected 404, got {status}")
         
         # 4. Test concurrent operations (simulate with multiple requests)
         print("Testing concurrent operations...")
