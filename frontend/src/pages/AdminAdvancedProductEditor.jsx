@@ -390,65 +390,82 @@ const AdminAdvancedProductEditor = () => {
                   {editData.images.map((image, index) => (
                     <div 
                       key={index}
-                      className={`flex items-center gap-4 p-4 border rounded-xl ${
-                        !image.visible ? 'bg-gray-50 opacity-60' : ''
+                      className={`border rounded-xl overflow-hidden ${
+                        !image.visible ? 'bg-gray-50 opacity-60' : 'bg-white'
                       }`}
                     >
-                      {/* Drag Handle */}
-                      <div className="text-gray-400 cursor-move">
-                        <GripVertical className="w-5 h-5" />
-                      </div>
+                      <div className="flex items-center gap-4 p-4">
+                        {/* Drag Handle */}
+                        <div className="text-gray-400 cursor-move">
+                          <GripVertical className="w-5 h-5" />
+                        </div>
 
-                      {/* Image Preview */}
-                      <div className="w-20 h-20 bg-[#fdf8f3] rounded-lg flex items-center justify-center overflow-hidden">
-                        {image.url ? (
-                          <img src={image.url} alt={`Image ${index + 1}`} className="w-full h-full object-contain" />
-                        ) : (
-                          <ImageIcon className="w-8 h-8 text-gray-300" />
-                        )}
-                      </div>
+                        {/* Image Preview */}
+                        <div className="w-20 h-20 bg-[#fdf8f3] rounded-lg flex items-center justify-center overflow-hidden">
+                          {image.url ? (
+                            <img src={image.url} alt={image.alt || `Image ${index + 1}`} className="w-full h-full object-contain" />
+                          ) : (
+                            <ImageIcon className="w-8 h-8 text-gray-300" />
+                          )}
+                        </div>
 
-                      {/* URL Input */}
-                      <div className="flex-1">
-                        <label className="text-xs text-gray-500 mb-1 block">Afbeelding URL</label>
+                        {/* URL Input */}
+                        <div className="flex-1">
+                          <label className="text-xs text-gray-500 mb-1 block">Afbeelding URL</label>
+                          <Input
+                            value={image.url}
+                            onChange={(e) => updateImage(index, 'url', e.target.value)}
+                            placeholder="/products/image.png of https://..."
+                            className="text-sm"
+                          />
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => moveImage(index, 'up')}
+                            disabled={index === 0}
+                            className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                          >
+                            <ChevronUp className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => moveImage(index, 'down')}
+                            disabled={index === editData.images.length - 1}
+                            className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                          >
+                            <ChevronDown className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => updateImage(index, 'visible', !image.visible)}
+                            className={`p-2 rounded-lg transition-colors ${
+                              image.visible ? 'text-green-600 hover:bg-green-50' : 'text-orange-500 hover:bg-orange-50'
+                            }`}
+                          >
+                            {image.visible ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                          </button>
+                          <button
+                            onClick={() => removeImage(index)}
+                            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                      
+                      {/* SEO Alt-Text Field */}
+                      <div className="px-4 pb-4 bg-blue-50/30 border-t">
+                        <label className="text-xs font-medium text-gray-700 mb-1 flex items-center gap-1 mt-2">
+                          <Star className="w-3 h-3 text-amber-500" />
+                          SEO Alt-Text (voor Google Images)
+                        </label>
                         <Input
-                          value={image.url}
-                          onChange={(e) => updateImage(index, 'url', e.target.value)}
-                          placeholder="/products/image.png of https://..."
-                          className="text-sm"
+                          value={image.alt || ''}
+                          onChange={(e) => updateImage(index, 'alt', e.target.value)}
+                          placeholder="Droomvriendjes Slaapknuffel - Beste slaapknuffel 2026"
+                          className="text-sm bg-white"
                         />
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex items-center gap-1">
-                        <button
-                          onClick={() => moveImage(index, 'up')}
-                          disabled={index === 0}
-                          className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30"
-                        >
-                          <ChevronUp className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => moveImage(index, 'down')}
-                          disabled={index === editData.images.length - 1}
-                          className="p-2 text-gray-400 hover:text-gray-600 disabled:opacity-30"
-                        >
-                          <ChevronDown className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() => updateImage(index, 'visible', !image.visible)}
-                          className={`p-2 rounded-lg transition-colors ${
-                            image.visible ? 'text-green-600 hover:bg-green-50' : 'text-orange-500 hover:bg-orange-50'
-                          }`}
-                        >
-                          {image.visible ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                        </button>
-                        <button
-                          onClick={() => removeImage(index)}
-                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        <p className="text-xs text-gray-500 mt-1">💡 Tip: Gebruik Nederlandse keywords voor betere vindbaarheid</p>
                       </div>
                     </div>
                   ))}
