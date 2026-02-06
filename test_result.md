@@ -355,3 +355,47 @@ agent_communication:
       Final Total = Subtotal - Automatic Discount (2nd 50%) - Manual Coupon + Shipping (€0)
       
       All fixes tested and frontend restarted successfully.
+  
+  - agent: "main"
+    message: |
+      **MASTER INSTRUCTIONS IMPLEMENTED:**
+      
+      ✅ **PART 1 - Scarcity Logic (Sticky Bar):**
+      - Unidirectional Decrement: Stock counter now ONLY decreases, never increases
+      - Session Persistence: Uses sessionStorage to lock stock number per product
+      - Initial Stock: Random 3-7 units on first visit
+      - Controlled Decay: Max 1-2 units decrease per 2-minute interval
+      - Visual Sync: Progress bar dynamically synced (stock 3 = ~30%, stock 7 = ~70%)
+      - Fixed: Removed Math.random() that caused jumps from 4→7
+      - Customer sees consistent declining numbers throughout session
+      
+      ✅ **PART 2 - Admin Media Synchronization:**
+      - Gallery Management: Advanced Product Editor enhanced with full CRUD
+      - Image Objects: Support both string URLs (legacy) and {url, alt} objects
+      - Thumbnail Gallery: Visual preview of all product images in admin
+      - Upload/Delete/Reorder: Drag-drop, visibility toggle, ordering controls
+      - Data Mapping: Automatic conversion of existing string URLs to objects
+      - Backward Compatible: Existing products work without migration
+      
+      ✅ **PART 3 - SEO Alt-Text Integration:**
+      - Admin Fields: Dedicated "SEO Alt-Text" input for every image
+      - Pre-filled Keywords: Top 10 Dutch SEO terms auto-populated:
+        * Droomvriendjes Slaapknuffel
+        * Knuffel met hartslag baby
+        * Witte ruis knuffel leeuw
+        * Slaaphulp baby hartslagsensor
+        * Droomvriendjes Slimme Leeuw
+        * Zachte knuffel met baarmoedergeluiden
+        * Baby slaapritueel knuffel
+        * Droomvriendjes Slaperige Panda
+        * Interactieve knuffel voor pasgeborenen
+        * Beste slaapknuffel 2026
+      - Frontend Injection: Alt-text correctly rendered in <img alt="..."> tags
+      - Google Images Ready: Optimized for Dutch search rankings
+      
+      ✅ **PART 4 - Checkout Validation (Already Complete):**
+      - Total Calculation: (Subtotal - Auto - Coupon + Shipping) = Total ✓
+      - Discount Stacking: WELKOM10 persists with auto promotions ✓
+      - Cart/Checkout Sync: Identical totals displayed ✓
+      
+      **Status:** All 4 parts complete. Frontend restarted. Ready for testing.
