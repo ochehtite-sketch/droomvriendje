@@ -35,6 +35,15 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('droomvriendjes_cart', JSON.stringify(cart));
   }, [cart]);
 
+  // Save coupon to localStorage when it changes
+  useEffect(() => {
+    if (appliedCoupon) {
+      localStorage.setItem('droomvriendjes_coupon', JSON.stringify(appliedCoupon));
+    } else {
+      localStorage.removeItem('droomvriendjes_coupon');
+    }
+  }, [appliedCoupon]);
+
   // Track view_cart when cart opens
   useEffect(() => {
     if (isCartOpen && cart.length > 0) {
