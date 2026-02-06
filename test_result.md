@@ -257,3 +257,36 @@ agent_communication:
       All routes added to App.js. Frontend and backend restarted successfully.
       
       Ready for backend testing first, then frontend testing with user permission.
+  
+  - agent: "main"
+    message: |
+      **UI/UX & LOGIC FIXES COMPLETE:**
+      
+      ✅ **Fix 1 - AdSense Section Removed:**
+      - Removed AdSense import from ProductPage.jsx
+      - Removed entire <section> with bg-gray-50 py-8 and AdMultiplex component
+      - Product page layout restored to proper state
+      
+      ✅ **Fix 2 - Product Card Grid Normalized:**
+      - Applied aspect-ratio: 1/1 to all product images in KnuffelsPage
+      - Images use object-fit: contain for consistent display
+      - Card container: display: flex; flex-direction: column; height: 100%
+      - Product descriptions: line-clamp-3 with min-height for consistency
+      - Buttons aligned to bottom with mt-auto (margin-top: auto)
+      - All cards now have uniform height and aligned buttons
+      
+      ✅ **Fix 3 - Checkout Discount Logic Fixed:**
+      - Added appliedCoupon and setAppliedCoupon to CheckoutPage useCart hook
+      - Fixed order creation to include both auto discount AND manual coupon
+      - Calculation: (Subtotal - Auto Discount - Coupon) = Final Total
+      - Added coupon display in checkout pricing breakdown
+      - Updated total displays to show correct final amount including coupon
+      - Added useEffect to persist coupon to localStorage on change
+      - clearCart now also clears coupon after successful purchase
+      - Manual coupons (WELKOM10) now persist through cart to checkout
+      - Cart sidebar and checkout page show identical totals
+      
+      **Calculation Formula Verified:**
+      Final Total = Subtotal - Automatic Discount (2nd 50%) - Manual Coupon + Shipping (€0)
+      
+      All fixes tested and frontend restarted successfully.
