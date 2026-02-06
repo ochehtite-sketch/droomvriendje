@@ -268,6 +268,9 @@ test_plan:
     - "Admin Dashboard - Reviews Tool Link"
     - "Admin Products - Advanced Editor Link"
     - "App Routing Updates"
+    - "AdSense Section Removal from ProductPage"
+    - "Product Card Grid Normalization"
+    - "Checkout Discount Logic & Coupon Persistence"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
