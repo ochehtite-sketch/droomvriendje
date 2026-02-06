@@ -214,7 +214,7 @@ class DroomvriendjesAPITester:
         # 6. Test PATCH /api/reviews/{review_id}/visibility - Toggle visibility
         if self.created_review_ids:
             review_id = self.created_review_ids[1]
-            response = self.make_request("PATCH", f"/reviews/{review_id}/visibility", {"visible": False})
+            response = self.make_request("PATCH", f"/reviews/{review_id}/visibility?visible=false")
             if response and response.status_code == 200:
                 self.log_result("Toggle Visibility", True, "Successfully toggled review visibility")
             else:
