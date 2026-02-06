@@ -217,6 +217,42 @@ frontend:
         agent: "main"
         comment: "Added routes: /admin/reviews-tool, /droomvriendjes-reviews, /admin/products/:productId/advanced-editor. All imports added."
 
+  - task: "AdSense Section Removal from ProductPage"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ProductPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Removed AdSense import and entire advertisement section (bg-gray-50 py-8 with AdMultiplex). Product page layout restored."
+
+  - task: "Product Card Grid Normalization"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/KnuffelsPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed product cards: 1:1 aspect ratio with contain, flex column with h-full, line-clamp-3 for descriptions, min-height for text consistency, buttons aligned to bottom with mt-auto."
+
+  - task: "Checkout Discount Logic & Coupon Persistence"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/CheckoutPage.jsx, /app/frontend/src/context/CartContext.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed coupon persistence: Added appliedCoupon to CheckoutPage, fixed order creation calculation (Subtotal - Auto - Coupon = Total), added coupon display in pricing breakdown, added localStorage persistence on coupon change, clearCart now clears coupon. Manual coupons no longer overwritten by auto promotions."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
