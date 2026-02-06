@@ -261,15 +261,18 @@ frontend:
 
   - task: "Checkout Discount Logic & Coupon Persistence"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/frontend/src/pages/CheckoutPage.jsx, /app/frontend/src/context/CartContext.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Fixed coupon persistence: Added appliedCoupon to CheckoutPage, fixed order creation calculation (Subtotal - Auto - Coupon = Total), added coupon display in pricing breakdown, added localStorage persistence on coupon change, clearCart now clears coupon. Manual coupons no longer overwritten by auto promotions."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE: Cart persistence failure. Products successfully added to cart on /knuffels page (confirmed: 2 products added via console logs), but cart becomes empty when navigating to /checkout page. CartContext state not persisting between page navigations. Cannot test checkout discount logic or coupon functionality due to empty cart. This blocks all checkout-related testing."
 
   - task: "Scarcity Logic Fix - Sticky Bar Stock Counter"
     implemented: true
