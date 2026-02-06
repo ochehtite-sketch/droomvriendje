@@ -11,7 +11,6 @@ import { Star, ShoppingCart, Check, Sparkles, Shield, ChevronLeft, ChevronRight,
 import Layout from '../components/Layout';
 import StickyAddToCart from '../components/StickyAddToCart';
 import { trackViewItem } from '../utils/analytics';
-import { AdSquare, AdMultiplex } from '../components/AdSense';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
