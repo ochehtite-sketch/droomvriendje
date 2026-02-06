@@ -2,13 +2,66 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ShoppingCart, Star, ChevronUp, X, Minus, Plus } from 'lucide-react';
 import { Button } from './ui/button';
 
+// Helper function to manage stock scarcity logic
+const getSessionStock = (productId) => {
+  const storageKey = `stock_${productId}`;
+  const sessionKey = `stock_session_${productId}`;
+  
+  // Check if we have a session-locked stock number
+  let currentStock = sessionStorage.getItem(storageKey);
+  let sessionCreated = sessionStorage.getItem(sessionKey);
+  
+  if (!currentStock || !sessionCreated) {
+    // First visit - initialize with a random low stock (3-7)
+    const initialStock = Math.floor(Math.random() * 5) + 3;
+    sessionStorage.setItem(storageKey, initialStock.toString());
+    sessionStorage.setItem(sessionKey, Date.now().toString());
+    return initialStock;
+  }
+  
+  // Parse existing stock
+  let stock = parseInt(currentStock);
+  const sessionTime = parseInt(sessionCreated);
+  const timeSinceSession = Date.now() - sessionTime;
+  
+  // Controlled decay: decrease by 1 every 2 minutes (120000ms), max decrease of 2
+  const minutesElapsed = Math.floor(timeSinceSession / 120000);
+  if (minutesElapsed > 0) {
+    const decrease = Math.min(minutesElapsed, 2); // Max 2 decrease
+    stock = Math.max(1, stock - decrease); // Never go below 1
+    sessionStorage.setItem(storageKey, stock.toString());
+    sessionStorage.setItem(sessionKey, Date.now().toString());
+  }
+  
+  return stock;
+};
+
 const StickyAddToCart = ({ product, onAddToCart, isCartOpen }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState('bottom'); // 'bottom' or 'top'
   const [quantity, setQuantity] = useState(1);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [stockLeft, setStockLeft] = useState(null);
   const lastScrollY = useRef(0);
   const addToCartButtonRef = useRef(null);
+
+  // Initialize stock on mount and check periodically
+  useEffect(() => {
+    if (!product) return;
+    
+    const updateStock = () => {
+      const stock = getSessionStock(product.id);
+      setStockLeft(stock);
+    };
+    
+    // Initial stock
+    updateStock();
+    
+    // Check every minute for potential decay
+    const interval = setInterval(updateStock, 60000);
+    
+    return () => clearInterval(interval);
+  }, [product]);
 
   useEffect(() => {
     // Find the main add-to-cart button on the page
