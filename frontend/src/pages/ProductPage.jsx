@@ -155,6 +155,53 @@ const ProductPage = () => {
     setIsCartOpen(true);
   };
 
+  // Carousel handlers
+  const relatedProducts = products.filter(p => p.id !== product.id);
+  const itemsPerView = 3;
+  const maxIndex = Math.max(0, relatedProducts.length - itemsPerView);
+
+  const handleCarouselPrev = () => {
+    setCarouselIndex(prev => Math.max(0, prev - 1));
+  };
+
+  const handleCarouselNext = () => {
+    setCarouselIndex(prev => Math.min(maxIndex, prev + 1));
+  };
+
+  // Drag handlers for mobile
+  const handleMouseDown = (e) => {
+    if (!carouselRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging || !carouselRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e) => {
+    if (!carouselRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging || !carouselRef.current) return;
+    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   if (!product) {
     return (
       <Layout backButtonText="Terug">
