@@ -6,7 +6,6 @@ import Layout from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Star, ShoppingCart, Filter } from 'lucide-react';
 import { trackViewItemList, trackSelectItem } from '../utils/analytics';
-import { AdBanner } from '../components/AdSense';
 
 const KnuffelsPage = () => {
   const { addToCart } = useCart();
