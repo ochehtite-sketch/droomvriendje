@@ -574,7 +574,7 @@ const CheckoutPage = () => {
                 )}
 
                 {/* Pricing */}
-                <div className="space-y-2 text-sm mb-6">
+                <div className="space-y-2 text-sm sm:text-base mb-6">
                   <div className="flex justify-between">
                     <span className="text-slate-600">Subtotaal</span>
                     <span className="font-semibold">€{getSubtotal().toFixed(2).replace('.', ',')}</span>
@@ -598,7 +598,7 @@ const CheckoutPage = () => {
                 </div>
 
                 {/* Total */}
-                <div className="flex justify-between text-xl font-bold mb-6 pt-4 border-t-2 border-warm-brown-100">
+                <div className="flex justify-between text-xl sm:text-2xl font-bold mb-6 pt-4 border-t-2 border-warm-brown-100">
                   <span>Totaal</span>
                   <span className="text-warm-brown-600">€{(Math.max(0, getTotal() - (appliedCoupon ? appliedCoupon.discount_amount : 0))).toFixed(2).replace('.', ',')}</span>
                 </div>
@@ -607,24 +607,24 @@ const CheckoutPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-warm-brown-500 text-white py-4 rounded-xl font-bold text-lg hover:bg-warm-brown-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-warm-brown-500 text-white py-5 sm:py-6 rounded-xl font-bold text-lg sm:text-xl hover:bg-warm-brown-600 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   data-testid="checkout-submit-button"
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Verwerken...
+                      <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" />
+                      <span>Verwerken...</span>
                     </>
                   ) : (
                     <>
-                      <Lock className="w-5 h-5" />
-                      Veilig betalen €{(Math.max(0, getTotal() - (appliedCoupon ? appliedCoupon.discount_amount : 0))).toFixed(2).replace('.', ',')}
+                      <Lock className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <span>Veilig betalen €{(Math.max(0, getTotal() - (appliedCoupon ? appliedCoupon.discount_amount : 0))).toFixed(2).replace('.', ',')}</span>
                     </>
                   )}
                 </button>
 
                 {/* Trust indicators */}
-                <div className="mt-4 flex items-center justify-center gap-4 text-xs text-slate-500">
+                <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-500">
                   <span className="flex items-center gap-1">
                     <Heart className="w-4 h-4 text-warm-brown-400" />
                     Met liefde gemaakt
@@ -636,7 +636,7 @@ const CheckoutPage = () => {
                 </div>
 
                 {/* Terms */}
-                <p className="text-center text-xs text-slate-500 mt-4">
+                <p className="text-center text-xs sm:text-sm text-slate-500 mt-4">
                   Door te bestellen ga je akkoord met onze{' '}
                   <Link to="/voorwaarden" className="text-warm-brown-600 underline hover:text-warm-brown-700">
                     algemene voorwaarden
