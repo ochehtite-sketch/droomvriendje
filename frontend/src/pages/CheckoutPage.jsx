@@ -585,6 +585,12 @@ const CheckoutPage = () => {
                       <span className="font-semibold">-€{getDiscount().toFixed(2).replace('.', ',')}</span>
                     </div>
                   )}
+                  {appliedCoupon && (
+                    <div className="flex justify-between text-green-600">
+                      <span>Kortingscode ({appliedCoupon.code})</span>
+                      <span className="font-semibold">-€{appliedCoupon.discount_amount.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span className="text-slate-600">Verzending</span>
                     <span className="font-semibold text-green-600">GRATIS</span>
@@ -594,7 +600,7 @@ const CheckoutPage = () => {
                 {/* Total */}
                 <div className="flex justify-between text-xl font-bold mb-6 pt-4 border-t-2 border-warm-brown-100">
                   <span>Totaal</span>
-                  <span className="text-warm-brown-600">€{getTotal().toFixed(2).replace('.', ',')}</span>
+                  <span className="text-warm-brown-600">€{(Math.max(0, getTotal() - (appliedCoupon ? appliedCoupon.discount_amount : 0))).toFixed(2).replace('.', ',')}</span>
                 </div>
 
                 {/* Submit Button */}
@@ -612,7 +618,7 @@ const CheckoutPage = () => {
                   ) : (
                     <>
                       <Lock className="w-5 h-5" />
-                      Veilig betalen €{getTotal().toFixed(2).replace('.', ',')}
+                      Veilig betalen €{(Math.max(0, getTotal() - (appliedCoupon ? appliedCoupon.discount_amount : 0))).toFixed(2).replace('.', ',')}
                     </>
                   )}
                 </button>
