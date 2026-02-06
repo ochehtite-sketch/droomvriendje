@@ -306,8 +306,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Review API Enhancement - Edit, Bulk Delete, Filtering"
-    - "Product Advanced Editor API"
+    - "Checkout Discount Logic & Coupon Persistence"
     - "Reviews Tool Advanced Page"
     - "Public Reviews Page - Droomvriendjes Reviews"
     - "Admin Dashboard - Reviews Tool Link"
@@ -315,12 +314,12 @@ test_plan:
     - "App Routing Updates"
     - "AdSense Section Removal from ProductPage"
     - "Product Card Grid Normalization"
-    - "Checkout Discount Logic & Coupon Persistence"
     - "Scarcity Logic Fix - Sticky Bar Stock Counter"
     - "SEO Alt-Text Integration - Admin & Frontend"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Checkout Discount Logic & Coupon Persistence"
   test_all: true
-  test_priority: "high_first"
+  test_priority: "stuck_first"
 
 agent_communication:
   - agent: "main"
